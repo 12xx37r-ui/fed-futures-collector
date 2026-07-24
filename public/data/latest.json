@@ -1,11 +1,6 @@
 {
-<<<<<<< HEAD
   "engine_version": "3.0.0-fast-bulk-fred",
-  "generated_at_utc": "2026-07-24T03:31:57.892759+00:00",
-=======
-  "engine_version": "2.9.0-fomc-market-live",
-  "generated_at_utc": "2026-07-24T04:21:13.554260+00:00",
->>>>>>> a30888407622cbf2b74bed53b40591190577a32a
+  "generated_at_utc": "2026-07-24T04:40:01.144825+00:00",
   "next_fomc": "2026-07-29",
   "fomc_dates": [
     "2021-01-05",
@@ -541,8 +536,8 @@
       {
         "symbol": "SR3U26.CME",
         "contract_month": "2026-09",
-        "price": 96.015,
-        "implied_average_rate": 3.985
+        "price": 96.01,
+        "implied_average_rate": 3.99
       },
       {
         "symbol": "SR1V26.CME",
@@ -601,8 +596,8 @@
       {
         "symbol": "SR3H27.CME",
         "contract_month": "2027-03",
-        "price": 95.73,
-        "implied_average_rate": 4.27
+        "price": 95.735,
+        "implied_average_rate": 4.265
       },
       {
         "symbol": "SR1J27.CME",
@@ -655,8 +650,8 @@
       {
         "symbol": "SR3Z27.CME",
         "contract_month": "2027-12",
-        "price": 95.825,
-        "implied_average_rate": 4.175
+        "price": 95.82,
+        "implied_average_rate": 4.18
       }
     ]
   },
@@ -689,12 +684,11 @@
     }
   },
   "confidence": {
-<<<<<<< HEAD
-    "score": 64,
-    "grade": "LOW",
-    "logical_groups_ok": 7,
+    "score": 83,
+    "grade": "MEDIUM",
+    "logical_groups_ok": 8,
     "logical_groups_total": 9,
-    "critical_ok": 2,
+    "critical_ok": 3,
     "critical_total": 5,
     "stale_fred_series": 0,
     "groups": {
@@ -702,21 +696,12 @@
       "zq_curve": true,
       "sofr_curve": true,
       "fred": false,
-      "nyfed_effr": false,
+      "nyfed_effr": true,
       "nyfed_sofr": true,
       "fomc_calendar": true,
       "fed_text": true,
       "dotplot": true
     }
-=======
-    "score": 58,
-    "grade": "LOW",
-    "source_ok": 50,
-    "source_total": 139,
-    "critical_ok": 3,
-    "feature_checks_passed": 5,
-    "feature_checks_total": 5
->>>>>>> a30888407622cbf2b74bed53b40591190577a32a
   },
   "warnings": [
     "자동가중치 최적화 비활성: need 40 labeled snapshots; have 0"
