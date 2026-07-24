@@ -143,5 +143,44 @@
       }
     },
     "actual_direction": null
+  },
+  {
+    "snapshot_key": "2026-07-24T06:04:50.798498+00:00|2026-07-29",
+    "captured_at_utc": "2026-07-24T06:04:55.027943+00:00",
+    "meeting": "2026-07-29",
+    "probabilities": {
+      "cut": 19.91,
+      "hold": 47.5,
+      "hike": 32.59
+    },
+    "features": {
+      "market": -0.10334000000000021,
+      "inflation": 0.0306,
+      "employment": -0.33822,
+      "growth": -0.75853,
+      "financial": -0.28275,
+      "fed_text": 0.0
+    },
+    "confidence": {
+      "score": 100,
+      "grade": "HIGH",
+      "logical_groups_ok": 9,
+      "logical_groups_total": 9,
+      "critical_ok": 5,
+      "critical_total": 5,
+      "stale_fred_series": 0,
+      "groups": {
+        "zq_continuous": true,
+        "zq_curve": true,
+        "sofr_curve": true,
+        "fred": true,
+        "nyfed_effr": true,
+        "nyfed_sofr": true,
+        "fomc_calendar": true,
+        "fed_text": true,
+        "dotplot": true
+      }
+    },
+    "actual_direction": null
   }
 ]

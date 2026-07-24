@@ -1,857 +1,857 @@
 {
-  "generated_at_utc": "2026-07-24T05:40:30.788706+00:00",
+  "generated_at_utc": "2026-07-24T06:04:54.804851+00:00",
   "collector_version": "3.3.0-fred-official-api",
   "sources": [
     {
       "name": "yahoo:ZQ=F",
       "ok": true,
-      "elapsed_ms": 212,
+      "elapsed_ms": 55,
       "error": null
     },
     {
       "name": "zq:ZQQ26.CBT",
       "ok": true,
-      "elapsed_ms": 130,
+      "elapsed_ms": 43,
       "error": null
-    },
-    {
-      "name": "zq:ZQV26",
-      "ok": false,
-      "elapsed_ms": 127,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQV26?range=5d&interval=1d"
-    },
-    {
-      "name": "zq:ZQN26.CBT",
-      "ok": true,
-      "elapsed_ms": 152,
-      "error": null
-    },
-    {
-      "name": "zq:ZQQ26",
-      "ok": false,
-      "elapsed_ms": 158,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQQ26?range=5d&interval=1d"
-    },
-    {
-      "name": "zq:ZQN26",
-      "ok": false,
-      "elapsed_ms": 162,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQN26?range=5d&interval=1d"
-    },
-    {
-      "name": "zq:ZQX26",
-      "ok": false,
-      "elapsed_ms": 155,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQX26?range=5d&interval=1d"
-    },
-    {
-      "name": "zq:ZQZ26.CBT",
-      "ok": true,
-      "elapsed_ms": 156,
-      "error": null
-    },
-    {
-      "name": "zq:ZQU26",
-      "ok": false,
-      "elapsed_ms": 162,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQU26?range=5d&interval=1d"
     },
     {
       "name": "zq:ZQZ26",
       "ok": false,
-      "elapsed_ms": 161,
+      "elapsed_ms": 35,
       "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQZ26?range=5d&interval=1d"
+    },
+    {
+      "name": "zq:ZQV26",
+      "ok": false,
+      "elapsed_ms": 39,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQV26?range=5d&interval=1d"
     },
     {
       "name": "zq:ZQV26.CBT",
       "ok": true,
-      "elapsed_ms": 180,
-      "error": null
-    },
-    {
-      "name": "zq:ZQU26.CBT",
-      "ok": true,
-      "elapsed_ms": 183,
+      "elapsed_ms": 45,
       "error": null
     },
     {
       "name": "zq:ZQX26.CBT",
       "ok": true,
-      "elapsed_ms": 184,
+      "elapsed_ms": 48,
       "error": null
     },
     {
-      "name": "zq:ZQF27",
+      "name": "zq:ZQQ26",
       "ok": false,
-      "elapsed_ms": 126,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQF27?range=5d&interval=1d"
+      "elapsed_ms": 57,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQQ26?range=5d&interval=1d"
     },
     {
-      "name": "zq:ZQG27.CBT",
+      "name": "zq:ZQX26",
+      "ok": false,
+      "elapsed_ms": 56,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQX26?range=5d&interval=1d"
+    },
+    {
+      "name": "zq:ZQZ26.CBT",
       "ok": true,
-      "elapsed_ms": 137,
+      "elapsed_ms": 59,
       "error": null
-    },
-    {
-      "name": "zq:ZQG27",
-      "ok": false,
-      "elapsed_ms": 158,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQG27?range=5d&interval=1d"
     },
     {
       "name": "zq:ZQF27.CBT",
       "ok": true,
-      "elapsed_ms": 187,
+      "elapsed_ms": 41,
       "error": null
     },
     {
       "name": "zq:ZQH27",
       "ok": false,
-      "elapsed_ms": 157,
+      "elapsed_ms": 30,
       "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQH27?range=5d&interval=1d"
-    },
-    {
-      "name": "zq:ZQK27.CBT",
-      "ok": true,
-      "elapsed_ms": 159,
-      "error": null
-    },
-    {
-      "name": "zq:ZQJ27",
-      "ok": false,
-      "elapsed_ms": 165,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQJ27?range=5d&interval=1d"
     },
     {
       "name": "zq:ZQH27.CBT",
       "ok": true,
-      "elapsed_ms": 184,
+      "elapsed_ms": 35,
       "error": null
     },
     {
-      "name": "zq:ZQJ27.CBT",
+      "name": "zq:ZQU26.CBT",
       "ok": true,
-      "elapsed_ms": 193,
+      "elapsed_ms": 92,
+      "error": null
+    },
+    {
+      "name": "zq:ZQN26",
+      "ok": false,
+      "elapsed_ms": 95,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQN26?range=5d&interval=1d"
+    },
+    {
+      "name": "zq:ZQU26",
+      "ok": false,
+      "elapsed_ms": 101,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQU26?range=5d&interval=1d"
+    },
+    {
+      "name": "zq:ZQG27",
+      "ok": false,
+      "elapsed_ms": 56,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQG27?range=5d&interval=1d"
+    },
+    {
+      "name": "zq:ZQN26.CBT",
+      "ok": true,
+      "elapsed_ms": 118,
       "error": null
     },
     {
       "name": "zq:ZQK27",
       "ok": false,
-      "elapsed_ms": 187,
+      "elapsed_ms": 32,
       "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQK27?range=5d&interval=1d"
     },
     {
       "name": "zq:ZQM27",
       "ok": false,
-      "elapsed_ms": 183,
+      "elapsed_ms": 33,
       "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQM27?range=5d&interval=1d"
-    },
-    {
-      "name": "zq:ZQM27.CBT",
-      "ok": true,
-      "elapsed_ms": 191,
-      "error": null
     },
     {
       "name": "zq:ZQN27.CBT",
       "ok": true,
-      "elapsed_ms": 157,
+      "elapsed_ms": 34,
       "error": null
     },
     {
-      "name": "zq:ZQN27",
-      "ok": false,
-      "elapsed_ms": 150,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQN27?range=5d&interval=1d"
+      "name": "zq:ZQG27.CBT",
+      "ok": true,
+      "elapsed_ms": 89,
+      "error": null
+    },
+    {
+      "name": "zq:ZQJ27.CBT",
+      "ok": true,
+      "elapsed_ms": 76,
+      "error": null
     },
     {
       "name": "zq:ZQQ27.CBT",
       "ok": true,
-      "elapsed_ms": 157,
+      "elapsed_ms": 35,
+      "error": null
+    },
+    {
+      "name": "zq:ZQJ27",
+      "ok": false,
+      "elapsed_ms": 85,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQJ27?range=5d&interval=1d"
+    },
+    {
+      "name": "zq:ZQF27",
+      "ok": false,
+      "elapsed_ms": 118,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQF27?range=5d&interval=1d"
+    },
+    {
+      "name": "zq:ZQU27",
+      "ok": false,
+      "elapsed_ms": 36,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQU27?range=5d&interval=1d"
+    },
+    {
+      "name": "zq:ZQN27",
+      "ok": false,
+      "elapsed_ms": 62,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQN27?range=5d&interval=1d"
+    },
+    {
+      "name": "zq:ZQV27",
+      "ok": false,
+      "elapsed_ms": 35,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQV27?range=5d&interval=1d"
+    },
+    {
+      "name": "zq:ZQX27.CBT",
+      "ok": true,
+      "elapsed_ms": 32,
+      "error": null
+    },
+    {
+      "name": "zq:ZQM27.CBT",
+      "ok": true,
+      "elapsed_ms": 85,
+      "error": null
+    },
+    {
+      "name": "zq:ZQQ27",
+      "ok": false,
+      "elapsed_ms": 58,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQQ27?range=5d&interval=1d"
+    },
+    {
+      "name": "zq:ZQV27.CBT",
+      "ok": true,
+      "elapsed_ms": 57,
+      "error": null
+    },
+    {
+      "name": "zq:ZQZ27.CBT",
+      "ok": true,
+      "elapsed_ms": 35,
+      "error": null
+    },
+    {
+      "name": "zq:ZQK27.CBT",
+      "ok": true,
+      "elapsed_ms": 112,
       "error": null
     },
     {
       "name": "zq:ZQU27.CBT",
       "ok": true,
-      "elapsed_ms": 163,
-      "error": null
-    },
-    {
-      "name": "zq:ZQU27",
-      "ok": false,
-      "elapsed_ms": 154,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQU27?range=5d&interval=1d"
-    },
-    {
-      "name": "zq:ZQV27",
-      "ok": false,
-      "elapsed_ms": 155,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQV27?range=5d&interval=1d"
-    },
-    {
-      "name": "zq:ZQQ27",
-      "ok": false,
-      "elapsed_ms": 187,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQQ27?range=5d&interval=1d"
-    },
-    {
-      "name": "zq:ZQX27.CBT",
-      "ok": true,
-      "elapsed_ms": 156,
-      "error": null
-    },
-    {
-      "name": "zq:ZQV27.CBT",
-      "ok": true,
-      "elapsed_ms": 192,
-      "error": null
-    },
-    {
-      "name": "zq:ZQZ27",
-      "ok": false,
-      "elapsed_ms": 150,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQZ27?range=5d&interval=1d"
-    },
-    {
-      "name": "zq:ZQZ27.CBT",
-      "ok": true,
-      "elapsed_ms": 155,
+      "elapsed_ms": 83,
       "error": null
     },
     {
       "name": "zq:ZQX27",
       "ok": false,
-      "elapsed_ms": 173,
+      "elapsed_ms": 86,
       "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQX27?range=5d&interval=1d"
     },
     {
-      "name": "zq:ZQF28.CBT",
+      "name": "zq:ZQZ27",
       "ok": false,
-      "elapsed_ms": 157,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQF28.CBT?range=5d&interval=1d"
+      "elapsed_ms": 86,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQZ27?range=5d&interval=1d"
     },
     {
       "name": "zq:ZQF28",
       "ok": false,
-      "elapsed_ms": 154,
+      "elapsed_ms": 109,
       "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQF28?range=5d&interval=1d"
     },
     {
-      "name": "sofr:SR1Q26.CME",
-      "ok": true,
-      "elapsed_ms": 138,
-      "error": null
-    },
-    {
-      "name": "sofr:SR1Z26.CME",
-      "ok": true,
-      "elapsed_ms": 131,
-      "error": null
-    },
-    {
-      "name": "sofr:SR1N26",
+      "name": "zq:ZQF28.CBT",
       "ok": false,
-      "elapsed_ms": 153,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1N26?range=5d&interval=1d"
+      "elapsed_ms": 117,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/ZQF28.CBT?range=5d&interval=1d"
     },
     {
-      "name": "sofr:SR1Q26",
-      "ok": false,
-      "elapsed_ms": 157,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1Q26?range=5d&interval=1d"
-    },
-    {
-      "name": "sofr:SR1V26.CME",
+      "name": "sofr:SR1N26.CME",
       "ok": true,
-      "elapsed_ms": 160,
+      "elapsed_ms": 40,
       "error": null
     },
     {
       "name": "sofr:SR1U26.CME",
       "ok": true,
-      "elapsed_ms": 164,
+      "elapsed_ms": 39,
       "error": null
     },
     {
-      "name": "sofr:SR1X26",
+      "name": "sofr:SR1V26",
       "ok": false,
-      "elapsed_ms": 158,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1X26?range=5d&interval=1d"
+      "elapsed_ms": 39,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1V26?range=5d&interval=1d"
     },
     {
-      "name": "sofr:SR1Z26",
-      "ok": false,
-      "elapsed_ms": 160,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1Z26?range=5d&interval=1d"
-    },
-    {
-      "name": "sofr:SR1N26.CME",
+      "name": "sofr:SR1Z26.CME",
       "ok": true,
-      "elapsed_ms": 179,
+      "elapsed_ms": 38,
       "error": null
     },
     {
       "name": "sofr:SR1X26.CME",
       "ok": true,
-      "elapsed_ms": 181,
+      "elapsed_ms": 42,
       "error": null
     },
     {
-      "name": "sofr:SR1U26",
+      "name": "sofr:SR1Q26",
       "ok": false,
-      "elapsed_ms": 185,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1U26?range=5d&interval=1d"
+      "elapsed_ms": 57,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1Q26?range=5d&interval=1d"
     },
     {
-      "name": "sofr:SR1V26",
+      "name": "sofr:SR1Q26.CME",
+      "ok": true,
+      "elapsed_ms": 61,
+      "error": null
+    },
+    {
+      "name": "sofr:SR1Z26",
       "ok": false,
-      "elapsed_ms": 190,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1V26?range=5d&interval=1d"
+      "elapsed_ms": 58,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1Z26?range=5d&interval=1d"
     },
     {
       "name": "sofr:SR1F27.CME",
       "ok": true,
-      "elapsed_ms": 131,
-      "error": null
-    },
-    {
-      "name": "sofr:SR1H27",
-      "ok": false,
-      "elapsed_ms": 131,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1H27?range=5d&interval=1d"
-    },
-    {
-      "name": "sofr:SR1J27.CME",
-      "ok": true,
-      "elapsed_ms": 146,
+      "elapsed_ms": 38,
       "error": null
     },
     {
       "name": "sofr:SR1G27",
       "ok": false,
-      "elapsed_ms": 157,
+      "elapsed_ms": 33,
       "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1G27?range=5d&interval=1d"
     },
     {
       "name": "sofr:SR1H27.CME",
       "ok": true,
-      "elapsed_ms": 155,
+      "elapsed_ms": 37,
       "error": null
     },
     {
-      "name": "sofr:SR1M27",
+      "name": "sofr:SR1N26",
       "ok": false,
-      "elapsed_ms": 126,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1M27?range=5d&interval=1d"
+      "elapsed_ms": 92,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1N26?range=5d&interval=1d"
+    },
+    {
+      "name": "sofr:SR1U26",
+      "ok": false,
+      "elapsed_ms": 89,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1U26?range=5d&interval=1d"
+    },
+    {
+      "name": "sofr:SR1J27.CME",
+      "ok": true,
+      "elapsed_ms": 33,
+      "error": null
+    },
+    {
+      "name": "sofr:SR1H27",
+      "ok": false,
+      "elapsed_ms": 37,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1H27?range=5d&interval=1d"
     },
     {
       "name": "sofr:SR1J27",
       "ok": false,
-      "elapsed_ms": 157,
+      "elapsed_ms": 32,
       "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1J27?range=5d&interval=1d"
     },
     {
       "name": "sofr:SR1F27",
       "ok": false,
-      "elapsed_ms": 191,
+      "elapsed_ms": 63,
       "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1F27?range=5d&interval=1d"
     },
     {
-      "name": "sofr:SR1K27",
-      "ok": false,
-      "elapsed_ms": 147,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1K27?range=5d&interval=1d"
+      "name": "sofr:SR1V26.CME",
+      "ok": true,
+      "elapsed_ms": 109,
+      "error": null
     },
     {
       "name": "sofr:SR1K27.CME",
       "ok": true,
-      "elapsed_ms": 158,
+      "elapsed_ms": 35,
       "error": null
     },
     {
-      "name": "sofr:SR1G27.CME",
+      "name": "sofr:SR1K27",
+      "ok": false,
+      "elapsed_ms": 35,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1K27?range=5d&interval=1d"
+    },
+    {
+      "name": "sofr:SR1M27",
+      "ok": false,
+      "elapsed_ms": 32,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1M27?range=5d&interval=1d"
+    },
+    {
+      "name": "sofr:SR1X26",
+      "ok": false,
+      "elapsed_ms": 119,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1X26?range=5d&interval=1d"
+    },
+    {
+      "name": "sofr:SR1N27.CME",
       "ok": true,
-      "elapsed_ms": 185,
+      "elapsed_ms": 36,
+      "error": null
+    },
+    {
+      "name": "sofr:SR1Q27.CME",
+      "ok": true,
+      "elapsed_ms": 33,
       "error": null
     },
     {
       "name": "sofr:SR1M27.CME",
       "ok": true,
-      "elapsed_ms": 159,
+      "elapsed_ms": 47,
       "error": null
     },
     {
-      "name": "sofr:SR1N27",
-      "ok": false,
-      "elapsed_ms": 132,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1N27?range=5d&interval=1d"
-    },
-    {
-      "name": "sofr:SR1N27.CME",
+      "name": "sofr:SR1G27.CME",
       "ok": true,
-      "elapsed_ms": 190,
+      "elapsed_ms": 88,
       "error": null
-    },
-    {
-      "name": "sofr:SR1U27.CME",
-      "ok": false,
-      "elapsed_ms": 145,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1U27.CME?range=5d&interval=1d"
-    },
-    {
-      "name": "sofr:SR1Q27.CME",
-      "ok": true,
-      "elapsed_ms": 159,
-      "error": null
-    },
-    {
-      "name": "sofr:SR1Q27",
-      "ok": false,
-      "elapsed_ms": 157,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1Q27?range=5d&interval=1d"
     },
     {
       "name": "sofr:SR1V27.CME",
       "ok": false,
-      "elapsed_ms": 154,
+      "elapsed_ms": 33,
       "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1V27.CME?range=5d&interval=1d"
     },
     {
-      "name": "sofr:SR1V27",
+      "name": "sofr:SR1Q27",
       "ok": false,
-      "elapsed_ms": 152,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1V27?range=5d&interval=1d"
+      "elapsed_ms": 54,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1Q27?range=5d&interval=1d"
+    },
+    {
+      "name": "sofr:SR1N27",
+      "ok": false,
+      "elapsed_ms": 64,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1N27?range=5d&interval=1d"
     },
     {
       "name": "sofr:SR1X27.CME",
       "ok": false,
-      "elapsed_ms": 149,
+      "elapsed_ms": 35,
       "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1X27.CME?range=5d&interval=1d"
     },
     {
       "name": "sofr:SR1X27",
       "ok": false,
-      "elapsed_ms": 156,
+      "elapsed_ms": 35,
       "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1X27?range=5d&interval=1d"
-    },
-    {
-      "name": "sofr:SR1Z27.CME",
-      "ok": true,
-      "elapsed_ms": 158,
-      "error": null
-    },
-    {
-      "name": "sofr:SR1Z27",
-      "ok": false,
-      "elapsed_ms": 155,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1Z27?range=5d&interval=1d"
-    },
-    {
-      "name": "sofr:SR1U27",
-      "ok": false,
-      "elapsed_ms": 182,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1U27?range=5d&interval=1d"
-    },
-    {
-      "name": "sofr:SR1F28.CME",
-      "ok": false,
-      "elapsed_ms": 128,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1F28.CME?range=5d&interval=1d"
-    },
-    {
-      "name": "sofr:SR3U26",
-      "ok": false,
-      "elapsed_ms": 125,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3U26?range=5d&interval=1d"
     },
     {
       "name": "sofr:SR1F28",
       "ok": false,
-      "elapsed_ms": 152,
+      "elapsed_ms": 33,
       "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1F28?range=5d&interval=1d"
     },
     {
-      "name": "sofr:SR3N26",
+      "name": "sofr:SR1Z27",
       "ok": false,
-      "elapsed_ms": 157,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3N26?range=5d&interval=1d"
+      "elapsed_ms": 39,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1Z27?range=5d&interval=1d"
+    },
+    {
+      "name": "sofr:SR1Z27.CME",
+      "ok": true,
+      "elapsed_ms": 49,
+      "error": null
+    },
+    {
+      "name": "sofr:SR1F28.CME",
+      "ok": false,
+      "elapsed_ms": 62,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1F28.CME?range=5d&interval=1d"
+    },
+    {
+      "name": "sofr:SR1U27",
+      "ok": false,
+      "elapsed_ms": 83,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1U27?range=5d&interval=1d"
     },
     {
       "name": "sofr:SR3Q26",
       "ok": false,
-      "elapsed_ms": 149,
+      "elapsed_ms": 37,
       "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3Q26?range=5d&interval=1d"
+    },
+    {
+      "name": "sofr:SR3V26.CME",
+      "ok": true,
+      "elapsed_ms": 37,
+      "error": null
+    },
+    {
+      "name": "sofr:SR1U27.CME",
+      "ok": false,
+      "elapsed_ms": 110,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1U27.CME?range=5d&interval=1d"
     },
     {
       "name": "sofr:SR3Q26.CME",
       "ok": true,
-      "elapsed_ms": 158,
+      "elapsed_ms": 58,
       "error": null
-    },
-    {
-      "name": "sofr:SR3X26",
-      "ok": false,
-      "elapsed_ms": 128,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3X26?range=5d&interval=1d"
     },
     {
       "name": "sofr:SR3U26.CME",
       "ok": true,
-      "elapsed_ms": 157,
+      "elapsed_ms": 57,
       "error": null
     },
     {
       "name": "sofr:SR3N26.CME",
       "ok": true,
-      "elapsed_ms": 184,
+      "elapsed_ms": 76,
       "error": null
     },
     {
-      "name": "sofr:SR3V26.CME",
-      "ok": true,
-      "elapsed_ms": 158,
-      "error": null
+      "name": "sofr:SR1V27",
+      "ok": false,
+      "elapsed_ms": 110,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR1V27?range=5d&interval=1d"
+    },
+    {
+      "name": "sofr:SR3N26",
+      "ok": false,
+      "elapsed_ms": 71,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3N26?range=5d&interval=1d"
+    },
+    {
+      "name": "sofr:SR3U26",
+      "ok": false,
+      "elapsed_ms": 61,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3U26?range=5d&interval=1d"
     },
     {
       "name": "sofr:SR3X26.CME",
       "ok": true,
-      "elapsed_ms": 158,
+      "elapsed_ms": 34,
       "error": null
     },
     {
-      "name": "sofr:SR3V26",
+      "name": "sofr:SR3X26",
       "ok": false,
-      "elapsed_ms": 190,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3V26?range=5d&interval=1d"
-    },
-    {
-      "name": "sofr:SR3Z26.CME",
-      "ok": true,
-      "elapsed_ms": 187,
-      "error": null
-    },
-    {
-      "name": "sofr:SR3F27.CME",
-      "ok": false,
-      "elapsed_ms": 169,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3F27.CME?range=5d&interval=1d"
+      "elapsed_ms": 34,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3X26?range=5d&interval=1d"
     },
     {
       "name": "sofr:SR3Z26",
       "ok": false,
-      "elapsed_ms": 174,
+      "elapsed_ms": 31,
       "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3Z26?range=5d&interval=1d"
-    },
-    {
-      "name": "sofr:SR3G27",
-      "ok": false,
-      "elapsed_ms": 155,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3G27?range=5d&interval=1d"
-    },
-    {
-      "name": "sofr:SR3G27.CME",
-      "ok": false,
-      "elapsed_ms": 158,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3G27.CME?range=5d&interval=1d"
-    },
-    {
-      "name": "sofr:SR3H27.CME",
-      "ok": true,
-      "elapsed_ms": 157,
-      "error": null
     },
     {
       "name": "sofr:SR3J27.CME",
       "ok": false,
-      "elapsed_ms": 155,
+      "elapsed_ms": 32,
       "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3J27.CME?range=5d&interval=1d"
     },
     {
-      "name": "sofr:SR3K27.CME",
+      "name": "sofr:SR3G27",
       "ok": false,
-      "elapsed_ms": 145,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3K27.CME?range=5d&interval=1d"
-    },
-    {
-      "name": "sofr:SR3F27",
-      "ok": false,
-      "elapsed_ms": 180,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3F27?range=5d&interval=1d"
-    },
-    {
-      "name": "sofr:SR3H27",
-      "ok": false,
-      "elapsed_ms": 184,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3H27?range=5d&interval=1d"
+      "elapsed_ms": 39,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3G27?range=5d&interval=1d"
     },
     {
       "name": "sofr:SR3J27",
       "ok": false,
-      "elapsed_ms": 183,
+      "elapsed_ms": 59,
       "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3J27?range=5d&interval=1d"
     },
     {
-      "name": "sofr:SR3K27",
+      "name": "sofr:SR3V26",
       "ok": false,
-      "elapsed_ms": 189,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3K27?range=5d&interval=1d"
+      "elapsed_ms": 109,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3V26?range=5d&interval=1d"
     },
     {
-      "name": "sofr:SR3N27",
+      "name": "sofr:SR3K27.CME",
       "ok": false,
-      "elapsed_ms": 128,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3N27?range=5d&interval=1d"
+      "elapsed_ms": 60,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3K27.CME?range=5d&interval=1d"
+    },
+    {
+      "name": "sofr:SR3H27.CME",
+      "ok": true,
+      "elapsed_ms": 69,
+      "error": null
     },
     {
       "name": "sofr:SR3M27.CME",
       "ok": true,
-      "elapsed_ms": 188,
+      "elapsed_ms": 37,
       "error": null
     },
     {
       "name": "sofr:SR3M27",
       "ok": false,
-      "elapsed_ms": 156,
+      "elapsed_ms": 34,
       "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3M27?range=5d&interval=1d"
     },
     {
-      "name": "sofr:SR3U27.CME",
+      "name": "sofr:SR3F27.CME",
+      "ok": false,
+      "elapsed_ms": 87,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3F27.CME?range=5d&interval=1d"
+    },
+    {
+      "name": "sofr:SR3G27.CME",
+      "ok": false,
+      "elapsed_ms": 84,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3G27.CME?range=5d&interval=1d"
+    },
+    {
+      "name": "sofr:SR3F27",
+      "ok": false,
+      "elapsed_ms": 88,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3F27?range=5d&interval=1d"
+    },
+    {
+      "name": "sofr:SR3N27.CME",
+      "ok": false,
+      "elapsed_ms": 31,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3N27.CME?range=5d&interval=1d"
+    },
+    {
+      "name": "sofr:SR3Z26.CME",
       "ok": true,
-      "elapsed_ms": 136,
+      "elapsed_ms": 122,
       "error": null
     },
     {
       "name": "sofr:SR3Q27",
       "ok": false,
-      "elapsed_ms": 151,
+      "elapsed_ms": 33,
       "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3Q27?range=5d&interval=1d"
+    },
+    {
+      "name": "sofr:SR3U27.CME",
+      "ok": true,
+      "elapsed_ms": 33,
+      "error": null
+    },
+    {
+      "name": "sofr:SR3K27",
+      "ok": false,
+      "elapsed_ms": 97,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3K27?range=5d&interval=1d"
+    },
+    {
+      "name": "sofr:SR3H27",
+      "ok": false,
+      "elapsed_ms": 110,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3H27?range=5d&interval=1d"
     },
     {
       "name": "sofr:SR3Q27.CME",
       "ok": false,
-      "elapsed_ms": 154,
+      "elapsed_ms": 57,
       "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3Q27.CME?range=5d&interval=1d"
     },
     {
-      "name": "sofr:SR3V27",
-      "ok": false,
-      "elapsed_ms": 130,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3V27?range=5d&interval=1d"
+      "name": "sofr:SR3Z27.CME",
+      "ok": true,
+      "elapsed_ms": 33,
+      "error": null
     },
     {
-      "name": "sofr:SR3U27",
+      "name": "sofr:SR3F28.CME",
       "ok": false,
-      "elapsed_ms": 150,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3U27?range=5d&interval=1d"
-    },
-    {
-      "name": "sofr:SR3V27.CME",
-      "ok": false,
-      "elapsed_ms": 153,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3V27.CME?range=5d&interval=1d"
-    },
-    {
-      "name": "sofr:SR3N27.CME",
-      "ok": false,
-      "elapsed_ms": 184,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3N27.CME?range=5d&interval=1d"
-    },
-    {
-      "name": "sofr:SR3X27.CME",
-      "ok": false,
-      "elapsed_ms": 155,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3X27.CME?range=5d&interval=1d"
+      "elapsed_ms": 32,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3F28.CME?range=5d&interval=1d"
     },
     {
       "name": "sofr:SR3X27",
       "ok": false,
-      "elapsed_ms": 158,
+      "elapsed_ms": 58,
       "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3X27?range=5d&interval=1d"
+    },
+    {
+      "name": "sofr:SR3U27",
+      "ok": false,
+      "elapsed_ms": 80,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3U27?range=5d&interval=1d"
+    },
+    {
+      "name": "sofr:SR3V27",
+      "ok": false,
+      "elapsed_ms": 78,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3V27?range=5d&interval=1d"
+    },
+    {
+      "name": "sofr:SR3V27.CME",
+      "ok": false,
+      "elapsed_ms": 86,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3V27.CME?range=5d&interval=1d"
+    },
+    {
+      "name": "sofr:SR3N27",
+      "ok": false,
+      "elapsed_ms": 108,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3N27?range=5d&interval=1d"
+    },
+    {
+      "name": "sofr:SR3X27.CME",
+      "ok": false,
+      "elapsed_ms": 107,
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3X27.CME?range=5d&interval=1d"
     },
     {
       "name": "sofr:SR3Z27",
       "ok": false,
-      "elapsed_ms": 147,
+      "elapsed_ms": 85,
       "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3Z27?range=5d&interval=1d"
     },
     {
       "name": "sofr:SR3F28",
       "ok": false,
-      "elapsed_ms": 155,
+      "elapsed_ms": 112,
       "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3F28?range=5d&interval=1d"
-    },
-    {
-      "name": "sofr:SR3F28.CME",
-      "ok": false,
-      "elapsed_ms": 158,
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/SR3F28.CME?range=5d&interval=1d"
-    },
-    {
-      "name": "sofr:SR3Z27.CME",
-      "ok": true,
-      "elapsed_ms": 188,
-      "error": null
-    },
-    {
-      "name": "fred:DGS10",
-      "ok": true,
-      "elapsed_ms": 547,
-      "error": null,
-      "stale": false
     },
     {
       "name": "fred:DGS2",
       "ok": true,
-      "elapsed_ms": 569,
+      "elapsed_ms": 357,
       "error": null,
       "stale": false
     },
     {
-      "name": "fred:SOFR",
+      "name": "fred:DGS10",
       "ok": true,
-      "elapsed_ms": 223,
+      "elapsed_ms": 379,
       "error": null,
       "stale": false
     },
     {
       "name": "fred:DFF",
       "ok": true,
-      "elapsed_ms": 382,
+      "elapsed_ms": 312,
       "error": null,
       "stale": false
     },
     {
-      "name": "fred:CPIAUCSL",
+      "name": "fred:SOFR",
       "ok": true,
-      "elapsed_ms": 245,
+      "elapsed_ms": 346,
       "error": null,
       "stale": false
     },
     {
       "name": "fred:CPILFESL",
       "ok": true,
-      "elapsed_ms": 232,
+      "elapsed_ms": 210,
       "error": null,
       "stale": false
     },
     {
-      "name": "fred:PCEPI",
-      "ok": true,
-      "elapsed_ms": 272,
-      "error": null,
-      "stale": false
-    },
-    {
-      "name": "fred:PCEPILFE",
-      "ok": true,
-      "elapsed_ms": 269,
-      "error": null,
-      "stale": false
-    },
-    {
-      "name": "fred:UNRATE",
-      "ok": true,
-      "elapsed_ms": 296,
-      "error": null,
-      "stale": false
-    },
-    {
-      "name": "fred:AHETPI",
-      "ok": true,
-      "elapsed_ms": 211,
-      "error": null,
-      "stale": false
-    },
-    {
-      "name": "fred:PAYEMS",
-      "ok": true,
-      "elapsed_ms": 444,
-      "error": null,
-      "stale": false
-    },
-    {
-      "name": "fred:ICSA",
-      "ok": true,
-      "elapsed_ms": 236,
-      "error": null,
-      "stale": false
-    },
-    {
-      "name": "fred:JTSJOL",
-      "ok": true,
-      "elapsed_ms": 246,
-      "error": null,
-      "stale": false
-    },
-    {
-      "name": "fred:INDPRO",
-      "ok": true,
-      "elapsed_ms": 238,
-      "error": null,
-      "stale": false
-    },
-    {
-      "name": "fred:RSAFS",
+      "name": "fred:CPIAUCSL",
       "ok": true,
       "elapsed_ms": 281,
       "error": null,
       "stale": false
     },
     {
+      "name": "fred:PCEPI",
+      "ok": true,
+      "elapsed_ms": 205,
+      "error": null,
+      "stale": false
+    },
+    {
+      "name": "fred:PCEPILFE",
+      "ok": true,
+      "elapsed_ms": 223,
+      "error": null,
+      "stale": false
+    },
+    {
+      "name": "fred:PAYEMS",
+      "ok": true,
+      "elapsed_ms": 240,
+      "error": null,
+      "stale": false
+    },
+    {
+      "name": "fred:UNRATE",
+      "ok": true,
+      "elapsed_ms": 288,
+      "error": null,
+      "stale": false
+    },
+    {
+      "name": "fred:AHETPI",
+      "ok": true,
+      "elapsed_ms": 371,
+      "error": null,
+      "stale": false
+    },
+    {
+      "name": "fred:ICSA",
+      "ok": true,
+      "elapsed_ms": 458,
+      "error": null,
+      "stale": false
+    },
+    {
+      "name": "fred:JTSJOL",
+      "ok": true,
+      "elapsed_ms": 194,
+      "error": null,
+      "stale": false
+    },
+    {
+      "name": "fred:RSAFS",
+      "ok": true,
+      "elapsed_ms": 187,
+      "error": null,
+      "stale": false
+    },
+    {
+      "name": "fred:INDPRO",
+      "ok": true,
+      "elapsed_ms": 307,
+      "error": null,
+      "stale": false
+    },
+    {
       "name": "fred:NFCI",
       "ok": true,
-      "elapsed_ms": 242,
+      "elapsed_ms": 195,
       "error": null,
       "stale": false
     },
     {
       "name": "fred:BAMLH0A0HYM2",
       "ok": true,
-      "elapsed_ms": 222,
+      "elapsed_ms": 195,
       "error": null,
       "stale": false
     },
     {
       "name": "fred:VIXCLS",
       "ok": true,
-      "elapsed_ms": 739,
+      "elapsed_ms": 227,
       "error": null,
       "stale": false
     },
     {
       "name": "nyfed:effr",
       "ok": true,
-      "elapsed_ms": 560,
+      "elapsed_ms": 337,
       "error": null
     },
     {
       "name": "nyfed:sofr",
       "ok": true,
-      "elapsed_ms": 172,
+      "elapsed_ms": 138,
       "error": null
     },
     {
       "name": "fed:press_rss",
       "ok": true,
-      "elapsed_ms": 129,
-      "error": null
-    },
-    {
-      "name": "fed:speeches_rss",
-      "ok": true,
-      "elapsed_ms": 162,
+      "elapsed_ms": 59,
       "error": null
     },
     {
       "name": "fed:fomc_calendar",
       "ok": true,
-      "elapsed_ms": 190,
+      "elapsed_ms": 73,
+      "error": null
+    },
+    {
+      "name": "fed:speeches_rss",
+      "ok": true,
+      "elapsed_ms": 90,
       "error": null
     },
     {
       "name": "fed:sep",
       "ok": true,
-      "elapsed_ms": 207,
+      "elapsed_ms": 108,
       "error": null
     }
   ]
