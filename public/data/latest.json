@@ -1,6 +1,6 @@
 {
-  "engine_version": "3.1.0-fred-date-parser-parallel",
-  "generated_at_utc": "2026-07-24T05:18:18.474032+00:00",
+  "engine_version": "3.3.0-fred-official-api",
+  "generated_at_utc": "2026-07-24T05:40:24.607065+00:00",
   "next_fomc": "2026-07-29",
   "fomc_dates": [
     "2021-01-05",
@@ -108,9 +108,9 @@
   "current_effective_rate": 3.63,
   "current_effective_rate_source": "nyfed_effr",
   "probabilities": {
-    "cut": 24.22,
-    "hold": 49.9,
-    "hike": 25.88
+    "cut": 20.89,
+    "hold": 48.15,
+    "hike": 30.96
   },
   "market_implied_target_probabilities": {
     "3.63": 91.73,
@@ -286,11 +286,11 @@
       "meeting": "2027-07-08",
       "contract_symbol": "ZQN27.CBT",
       "pre_meeting_rate": -4.6391,
-      "monthly_average_rate": 4.23,
-      "expected_post_meeting_rate": 6.81682,
+      "monthly_average_rate": 4.235,
+      "expected_post_meeting_rate": 6.82328,
       "target_rate_probabilities": {
-        "6.61": 17.63,
-        "6.86": 82.37
+        "6.61": 15.05,
+        "6.86": 84.95
       },
       "action_probabilities": {
         "cut": 0.0,
@@ -301,12 +301,12 @@
     {
       "meeting": "2027-07-28",
       "contract_symbol": "ZQN27.CBT",
-      "pre_meeting_rate": 6.81682,
-      "monthly_average_rate": 4.23,
-      "expected_post_meeting_rate": -13.23104,
+      "pre_meeting_rate": 6.82328,
+      "monthly_average_rate": 4.235,
+      "expected_post_meeting_rate": -13.23588,
       "target_rate_probabilities": {
-        "-13.18": 80.86,
-        "-13.43": 19.14
+        "-13.18": 76.34,
+        "-13.43": 23.66
       },
       "action_probabilities": {
         "cut": 100.0,
@@ -317,12 +317,12 @@
     {
       "meeting": "2027-09-15",
       "contract_symbol": "ZQU27.CBT",
-      "pre_meeting_rate": -13.23104,
+      "pre_meeting_rate": -13.23588,
       "monthly_average_rate": 4.22,
-      "expected_post_meeting_rate": 19.48966,
+      "expected_post_meeting_rate": 19.4939,
       "target_rate_probabilities": {
-        "19.27": 11.72,
-        "19.52": 88.28
+        "19.26": 8.09,
+        "19.51": 91.91
       },
       "action_probabilities": {
         "cut": 0.0,
@@ -333,12 +333,12 @@
     {
       "meeting": "2027-10-27",
       "contract_symbol": "ZQV27.CBT",
-      "pre_meeting_rate": 19.48966,
+      "pre_meeting_rate": 19.4939,
       "monthly_average_rate": 4.185,
-      "expected_post_meeting_rate": -75.39922,
+      "expected_post_meeting_rate": -75.42126,
       "target_rate_probabilities": {
-        "-75.26": 44.45,
-        "-75.51": 55.55
+        "-75.26": 33.94,
+        "-75.51": 66.06
       },
       "action_probabilities": {
         "cut": 100.0,
@@ -349,12 +349,12 @@
     {
       "meeting": "2027-12-08",
       "contract_symbol": "ZQZ27.CBT",
-      "pre_meeting_rate": -75.39922,
+      "pre_meeting_rate": -75.42126,
       "monthly_average_rate": 4.1,
-      "expected_post_meeting_rate": 27.28727,
+      "expected_post_meeting_rate": 27.2937,
       "target_rate_probabilities": {
-        "27.10": 25.4,
-        "27.35": 74.6
+        "27.08": 14.01,
+        "27.33": 85.99
       },
       "action_probabilities": {
         "cut": 0.0,
@@ -365,10 +365,10 @@
   ],
   "features": {
     "market": -0.04133999999999993,
-    "inflation": 0.0,
-    "employment": 0.0,
-    "growth": 0.0,
-    "financial": 0.0,
+    "inflation": 0.0306,
+    "employment": -0.33822,
+    "growth": -0.75853,
+    "financial": -0.28275,
     "fed_text": 0.0
   },
   "weights": {
@@ -468,14 +468,14 @@
       {
         "symbol": "ZQN27.CBT",
         "contract_month": "2027-07",
-        "price": 95.77,
-        "implied_average_rate": 4.23
+        "price": 95.765,
+        "implied_average_rate": 4.235
       },
       {
         "symbol": "ZQQ27.CBT",
         "contract_month": "2027-08",
-        "price": 95.78,
-        "implied_average_rate": 4.22
+        "price": 95.77,
+        "implied_average_rate": 4.23
       },
       {
         "symbol": "ZQU27.CBT",
@@ -518,8 +518,8 @@
       {
         "symbol": "SR1Q26.CME",
         "contract_month": "2026-08",
-        "price": 96.265,
-        "implied_average_rate": 3.735
+        "price": 96.26,
+        "implied_average_rate": 3.74
       },
       {
         "symbol": "SR3Q26.CME",
@@ -638,8 +638,8 @@
       {
         "symbol": "SR3U27.CME",
         "contract_month": "2027-09",
-        "price": 95.75,
-        "implied_average_rate": 4.25
+        "price": 95.755,
+        "implied_average_rate": 4.245
       },
       {
         "symbol": "SR1Z27.CME",
@@ -656,10 +656,10 @@
     ]
   },
   "macro_blocks": {
-    "inflation": 0.0,
-    "employment": 0.0,
-    "growth": 0.0,
-    "financial": 0.0
+    "inflation": 0.0306,
+    "employment": -0.33822,
+    "growth": -0.75853,
+    "financial": -0.28275
   },
   "fed_text": {
     "score": 0.0,
@@ -684,18 +684,18 @@
     }
   },
   "confidence": {
-    "score": 83,
-    "grade": "MEDIUM",
-    "logical_groups_ok": 8,
+    "score": 100,
+    "grade": "HIGH",
+    "logical_groups_ok": 9,
     "logical_groups_total": 9,
-    "critical_ok": 3,
+    "critical_ok": 5,
     "critical_total": 5,
     "stale_fred_series": 0,
     "groups": {
       "zq_continuous": true,
       "zq_curve": true,
       "sofr_curve": true,
-      "fred": false,
+      "fred": true,
       "nyfed_effr": true,
       "nyfed_sofr": true,
       "fomc_calendar": true,
