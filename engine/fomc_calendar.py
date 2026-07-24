@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import re
 from datetime import date
+
 from bs4 import BeautifulSoup
 
 MONTHS = {
@@ -10,8 +11,12 @@ MONTHS = {
     "september": 9, "october": 10, "november": 11, "december": 12,
 }
 MONTH_PATTERN = "|".join(MONTHS)
-MEETING_RE = re.compile(
-    rf"\b({MONTH_PATTERN})\s+(\d{{1,2}})(?:\s*[-–—]\s*(\d{{1,2}}))?\*?",
+
+# Scheduled FOMC meetings are normally displayed as date ranges, e.g. July 28-29.
+# Requiring a range prevents "Minutes released January 5" and similar dates
+# from being mistaken for policy-decision dates.
+MEETING_RANGE_RE = re.compile(
+    rf"\b({MONTH_PATTERN})\s+(\d{{1,2}})\s*[-–—]\s*(\d{{1,2}})\*?",
     re.IGNORECASE,
 )
 YEAR_SECTION_RE = re.compile(
@@ -21,30 +26,39 @@ YEAR_SECTION_RE = re.compile(
 
 
 def parse_fomc_dates(html: str) -> list[str]:
-    """Extract FOMC decision dates from the official calendar page.
+    """Extract scheduled FOMC decision dates from the official calendar page.
 
-    The Fed page exposes headings such as ``2026 FOMC Meetings`` followed by
-    entries such as ``July 28-29``.  The policy decision date is the final day.
+    Only scheduled date ranges are accepted. The final day of each range is
+    treated as the decision date. At most one scheduled meeting per month is
+    retained, preventing minutes-release dates and duplicated links from
+    entering the market-path calculation.
     """
     if not html:
         return []
 
     text = " ".join(BeautifulSoup(html, "html.parser").stripped_strings)
     text = re.sub(r"\s+", " ", text)
-    dates: set[str] = set()
+
+    by_month: dict[tuple[int, int], str] = {}
 
     for section in YEAR_SECTION_RE.finditer(text):
         year = int(section.group(1))
         body = section.group(2)
-        for match in MEETING_RE.finditer(body):
-            month_name, first_day, second_day = match.groups()
-            day = int(second_day or first_day)
+
+        for match in MEETING_RANGE_RE.finditer(body):
+            month_name, _first_day, final_day = match.groups()
+            month = MONTHS[month_name.lower()]
             try:
-                dates.add(date(year, MONTHS[month_name.lower()], day).isoformat())
+                decision = date(year, month, int(final_day))
             except ValueError:
                 continue
 
-    return sorted(dates)
+            key = (decision.year, decision.month)
+            # The official schedule should contain one scheduled meeting per
+            # month. Keeping the first range blocks duplicate page elements.
+            by_month.setdefault(key, decision.isoformat())
+
+    return sorted(by_month.values())
 
 
 def next_meeting(dates: list[str], today: date | None = None) -> str | None:
