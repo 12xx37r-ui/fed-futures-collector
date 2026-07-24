@@ -1,4 +1,4 @@
-name: Update Fed Policy Engine Data
+name: Update Fed Policy Engine Full
 
 on:
   workflow_dispatch:
@@ -11,34 +11,32 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Collect data
-        run: python collector.py
+      - name: Collect, calculate, snapshot, evaluate
+        run: python run.py
 
-      - name: Run policy engine
-        run: python engine.py
+      - name: Run tests
+        run: python -m unittest discover -s tests -v
 
-      - name: Commit generated JSON
+      - name: Commit generated data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add public/data/*.json
           if git diff --cached --quiet; then
-            echo "No data changes."
+            echo "No generated changes."
           else
-            git commit -m "Update policy engine data"
+            git commit -m "Update full policy engine data"
             git push
           fi

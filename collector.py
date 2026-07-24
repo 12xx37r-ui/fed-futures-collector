@@ -10,173 +10,189 @@ from typing import Any
 from urllib.parse import quote
 
 import requests
+from bs4 import BeautifulSoup
 
-from config import FED_ENDPOINTS, FRED_SERIES, NYFED_ENDPOINTS, YAHOO_SYMBOLS
+from config import (
+    FED_ENDPOINTS, FRED_SERIES, FUTURES_YEARS_AHEAD,
+    NYFED_ENDPOINTS, SOFR_ROOTS, ZQ_MONTH_CODES,
+)
 
 HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
         "AppleWebKit/537.36 Chrome/126 Safari/537.36"
     ),
-    "Accept": "application/json,text/plain,text/csv,application/xml,text/xml,*/*",
+    "Accept": "application/json,text/plain,text/csv,application/xml,text/xml,text/html,*/*",
 }
-TIMEOUT = 25
+TIMEOUT = 30
 
 
-def now_utc() -> str:
+def utc_now() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
-def get(url: str) -> requests.Response:
-    response = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
-    response.raise_for_status()
-    return response
+def request(url: str) -> requests.Response:
+    r = requests.get(url, headers=HEADERS, timeout=TIMEOUT, allow_redirects=True)
+    r.raise_for_status()
+    return r
 
 
-def fetch_yahoo(symbol: str) -> dict[str, Any]:
+def yahoo_chart(symbol: str, range_: str = "1mo") -> dict[str, Any]:
     url = (
         "https://query1.finance.yahoo.com/v8/finance/chart/"
-        f"{quote(symbol, safe='')}?range=1mo&interval=1d"
+        f"{quote(symbol, safe='')}?range={range_}&interval=1d"
     )
-    response = get(url)
-    payload = response.json()
-    result = payload["chart"]["result"][0]
+    payload = request(url).json()
+    result = payload.get("chart", {}).get("result")
+    if not result:
+        raise ValueError(f"No Yahoo chart result for {symbol}")
+    result = result[0]
     meta = result.get("meta", {})
-    timestamps = result.get("timestamp", [])
-    quote_data = result.get("indicators", {}).get("quote", [{}])[0]
-    closes = quote_data.get("close", [])
-
-    observations = []
-    for ts, close in zip(timestamps, closes):
-        if close is None:
+    timestamps = result.get("timestamp") or []
+    closes = (
+        result.get("indicators", {}).get("quote", [{}])[0].get("close") or []
+    )
+    obs = []
+    for ts, value in zip(timestamps, closes):
+        if value is None:
             continue
-        observations.append(
-            {
-                "date_utc": datetime.fromtimestamp(ts, timezone.utc).date().isoformat(),
-                "value": float(close),
-            }
-        )
-
+        obs.append({
+            "date": datetime.fromtimestamp(ts, timezone.utc).date().isoformat(),
+            "value": float(value),
+        })
     return {
         "symbol": symbol,
-        "currency": meta.get("currency"),
+        "price": meta.get("regularMarketPrice"),
         "exchange": meta.get("exchangeName"),
-        "regular_market_price": meta.get("regularMarketPrice"),
-        "observations": observations,
+        "currency": meta.get("currency"),
+        "observations": obs,
         "source_url": url,
     }
 
 
-def fetch_fred(series_id: str) -> dict[str, Any]:
+def fred_csv(series_id: str) -> dict[str, Any]:
     url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}"
-    response = get(url)
-    reader = csv.DictReader(io.StringIO(response.text))
     rows = []
+    reader = csv.DictReader(io.StringIO(request(url).text))
     for row in reader:
         raw = row.get(series_id)
-        if not raw or raw == ".":
+        if raw in (None, "", "."):
             continue
         try:
-            value = float(raw)
-        except ValueError:
-            continue
-        rows.append({"date": row["DATE"], "value": value})
-
+            rows.append({"date": row["DATE"], "value": float(raw)})
+        except (ValueError, KeyError):
+            pass
     return {
         "series_id": series_id,
         "latest": rows[-1] if rows else None,
-        "observations": rows[-400:],
+        "observations": rows[-900:],
         "source_url": url,
     }
 
 
-def fetch_json(url: str) -> dict[str, Any]:
-    response = get(url)
+def json_endpoint(url: str) -> dict[str, Any]:
+    return {"payload": request(url).json(), "source_url": url}
+
+
+def rss_or_html(url: str) -> dict[str, Any]:
+    r = request(url)
     return {
-        "payload": response.json(),
+        "content_type": r.headers.get("content-type"),
+        "text": r.text[:500000],
         "source_url": url,
     }
 
 
-def fetch_text(url: str) -> dict[str, Any]:
-    response = get(url)
-    return {
-        "content_type": response.headers.get("content-type"),
-        "text": response.text[:250000],
-        "source_url": url,
-    }
+def contract_candidates(root: str, exchange_suffixes: tuple[str, ...]) -> list[str]:
+    now = datetime.now(timezone.utc)
+    symbols = []
+    for year in range(now.year, now.year + FUTURES_YEARS_AHEAD + 1):
+        yy = str(year)[-2:]
+        for month_code in ZQ_MONTH_CODES:
+            for suffix in exchange_suffixes:
+                symbols.append(f"{root}{month_code}{yy}{suffix}")
+    return symbols
 
 
-def safe_collect(name: str, fn, *args) -> tuple[Any, dict[str, Any]]:
-    started = time.perf_counter()
+def safe(name: str, fn, *args) -> tuple[Any, dict[str, Any]]:
+    start = time.perf_counter()
     try:
         value = fn(*args)
         return value, {
-            "name": name,
-            "ok": True,
-            "elapsed_ms": round((time.perf_counter() - started) * 1000),
+            "name": name, "ok": True,
+            "elapsed_ms": round((time.perf_counter() - start) * 1000),
             "error": None,
         }
     except Exception as exc:
         return None, {
-            "name": name,
-            "ok": False,
-            "elapsed_ms": round((time.perf_counter() - started) * 1000),
+            "name": name, "ok": False,
+            "elapsed_ms": round((time.perf_counter() - start) * 1000),
             "error": f"{type(exc).__name__}: {exc}",
         }
 
 
-def main() -> None:
-    output_dir = Path("public/data")
-    output_dir.mkdir(parents=True, exist_ok=True)
+def collect_curve(symbols: list[str], group: str, statuses: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    curve = []
+    for symbol in symbols:
+        value, status = safe(f"{group}:{symbol}", yahoo_chart, symbol, "5d")
+        statuses.append(status)
+        if value and value.get("price") is not None:
+            curve.append(value)
+    return curve
 
-    data: dict[str, Any] = {
-        "generated_at_utc": now_utc(),
-        "market": {},
+
+def main() -> None:
+    out = Path("public/data")
+    out.mkdir(parents=True, exist_ok=True)
+
+    statuses: list[dict[str, Any]] = []
+    raw: dict[str, Any] = {
+        "generated_at_utc": utc_now(),
+        "futures": {},
         "fred": {},
         "nyfed": {},
         "fed": {},
     }
-    source_status: list[dict[str, Any]] = []
 
-    for key, symbol in YAHOO_SYMBOLS.items():
-        value, status = safe_collect(f"yahoo:{symbol}", fetch_yahoo, symbol)
-        data["market"][key] = value
-        source_status.append(status)
+    continuous, st = safe("yahoo:ZQ=F", yahoo_chart, "ZQ=F", "1mo")
+    statuses.append(st)
+    raw["futures"]["zq_continuous"] = continuous
+
+    zq_symbols = contract_candidates("ZQ", (".CBT", ""))
+    raw["futures"]["zq_curve"] = collect_curve(zq_symbols, "zq", statuses)
+
+    sofr_symbols = []
+    for root in SOFR_ROOTS:
+        sofr_symbols.extend(contract_candidates(root, (".CME", "")))
+    raw["futures"]["sofr_curve"] = collect_curve(sofr_symbols, "sofr", statuses)
 
     for series_id, key in FRED_SERIES.items():
-        value, status = safe_collect(f"fred:{series_id}", fetch_fred, series_id)
-        data["fred"][key] = value
-        source_status.append(status)
+        value, st = safe(f"fred:{series_id}", fred_csv, series_id)
+        statuses.append(st)
+        raw["fred"][key] = value
 
     for key, url in NYFED_ENDPOINTS.items():
-        value, status = safe_collect(f"nyfed:{key}", fetch_json, url)
-        data["nyfed"][key] = value
-        source_status.append(status)
+        value, st = safe(f"nyfed:{key}", json_endpoint, url)
+        statuses.append(st)
+        raw["nyfed"][key] = value
 
     for key, url in FED_ENDPOINTS.items():
-        value, status = safe_collect(f"fed:{key}", fetch_text, url)
-        data["fed"][key] = value
-        source_status.append(status)
+        value, st = safe(f"fed:{key}", rss_or_html, url)
+        statuses.append(st)
+        raw["fed"][key] = value
 
     Path("public/data/raw.json").write_text(
-        json.dumps(data, ensure_ascii=False, indent=2),
-        encoding="utf-8",
+        json.dumps(raw, ensure_ascii=False, indent=2), encoding="utf-8"
     )
     Path("public/data/source_status.json").write_text(
         json.dumps(
-            {
-                "generated_at_utc": now_utc(),
-                "sources": source_status,
-            },
-            ensure_ascii=False,
-            indent=2,
+            {"generated_at_utc": utc_now(), "sources": statuses},
+            ensure_ascii=False, indent=2,
         ),
         encoding="utf-8",
     )
-
-    ok_count = sum(1 for item in source_status if item["ok"])
-    print(f"Collected {ok_count}/{len(source_status)} sources successfully.")
+    ok = sum(1 for x in statuses if x["ok"])
+    print(f"collection complete: {ok}/{len(statuses)} sources")
 
 
 if __name__ == "__main__":
