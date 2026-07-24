@@ -30,7 +30,7 @@ jobs:
         env:
           PYTHONUNBUFFERED: "1"
         run: |
-          echo "RUNNING FED ENGINE V3.1"
+          echo "RUNNING FED ENGINE V3.2"
           python run.py
 
       - name: Run tests
