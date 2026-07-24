@@ -1,6 +1,6 @@
 {
   "engine_version": "3.1.0-fred-date-parser-parallel",
-  "generated_at_utc": "2026-07-24T05:04:17.327455+00:00",
+  "generated_at_utc": "2026-07-24T05:18:18.474032+00:00",
   "next_fomc": "2026-07-29",
   "fomc_dates": [
     "2021-01-05",
@@ -572,8 +572,8 @@
       {
         "symbol": "SR3Z26.CME",
         "contract_month": "2026-12",
-        "price": 95.835,
-        "implied_average_rate": 4.165
+        "price": 95.84,
+        "implied_average_rate": 4.16
       },
       {
         "symbol": "SR1F27.CME",
@@ -596,8 +596,8 @@
       {
         "symbol": "SR3H27.CME",
         "contract_month": "2027-03",
-        "price": 95.73,
-        "implied_average_rate": 4.27
+        "price": 95.735,
+        "implied_average_rate": 4.265
       },
       {
         "symbol": "SR1J27.CME",
