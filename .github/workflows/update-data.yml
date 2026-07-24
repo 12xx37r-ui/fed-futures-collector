@@ -11,12 +11,14 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 12
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
@@ -24,6 +26,9 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Collect, calculate, snapshot, evaluate
+        timeout-minutes: 7
+        env:
+          PYTHONUNBUFFERED: "1"
         run: python run.py
 
       - name: Run tests
