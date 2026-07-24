@@ -26,5 +26,33 @@
       "feature_checks_total": 5
     },
     "actual_direction": null
+  },
+  {
+    "snapshot_key": "2026-07-24T04:21:13.554260+00:00|2026-07-29",
+    "captured_at_utc": "2026-07-24T04:28:52.081526+00:00",
+    "meeting": "2026-07-29",
+    "probabilities": {
+      "cut": 24.22,
+      "hold": 49.9,
+      "hike": 25.88
+    },
+    "features": {
+      "market": -0.04133999999999993,
+      "inflation": 0.0,
+      "employment": 0.0,
+      "growth": 0.0,
+      "financial": 0.0,
+      "fed_text": 0.0
+    },
+    "confidence": {
+      "score": 58,
+      "grade": "LOW",
+      "source_ok": 50,
+      "source_total": 139,
+      "critical_ok": 3,
+      "feature_checks_passed": 5,
+      "feature_checks_total": 5
+    },
+    "actual_direction": null
   }
 ]
