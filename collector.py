@@ -11,14 +11,10 @@ from typing import Any
 from urllib.parse import quote
 
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
-from config import (
-    FED_ENDPOINTS,
-    FRED_SERIES,
-    NYFED_ENDPOINTS,
-    SOFR_ROOTS,
-    ZQ_MONTH_CODES,
-)
+from config import FED_ENDPOINTS, FRED_SERIES, NYFED_ENDPOINTS, SOFR_ROOTS
 
 HEADERS = {
     "User-Agent": (
@@ -28,14 +24,15 @@ HEADERS = {
     "Accept": "application/json,text/plain,text/csv,application/xml,text/xml,text/html,*/*",
 }
 
-# 없는 Yahoo 월물 심볼이 오래 붙잡지 못하도록 짧게 제한
-CONNECT_TIMEOUT = 3
-READ_TIMEOUT = 6
-REQUEST_TIMEOUT = (CONNECT_TIMEOUT, READ_TIMEOUT)
+FAST_TIMEOUT = (3, 6)
+OFFICIAL_TIMEOUT = (5, 25)
 MAX_WORKERS = 12
-
-# 현재 월부터 향후 18개월까지만 탐색
 CURVE_MONTHS_AHEAD = 18
+
+MONTH_TO_CODE = {
+    1: "F", 2: "G", 3: "H", 4: "J", 5: "K", 6: "M",
+    7: "N", 8: "Q", 9: "U", 10: "V", 11: "X", 12: "Z",
+}
 
 
 def utc_now() -> str:
@@ -46,15 +43,27 @@ def log(message: str) -> None:
     print(message, flush=True)
 
 
-def request(url: str) -> requests.Response:
-    response = requests.get(
-        url,
-        headers=HEADERS,
-        timeout=REQUEST_TIMEOUT,
-        allow_redirects=True,
+def make_session() -> requests.Session:
+    session = requests.Session()
+    retry = Retry(
+        total=2,
+        connect=2,
+        read=2,
+        backoff_factor=0.5,
+        status_forcelist=(429, 500, 502, 503, 504),
+        allowed_methods=frozenset(["GET"]),
     )
-    response.raise_for_status()
-    return response
+    session.mount("https://", HTTPAdapter(max_retries=retry))
+    session.headers.update(HEADERS)
+    return session
+
+
+def request(url: str, official: bool = False) -> requests.Response:
+    timeout = OFFICIAL_TIMEOUT if official else FAST_TIMEOUT
+    with make_session() as session:
+        response = session.get(url, timeout=timeout, allow_redirects=True)
+        response.raise_for_status()
+        return response
 
 
 def yahoo_chart(symbol: str, range_: str = "5d") -> dict[str, Any]:
@@ -62,33 +71,24 @@ def yahoo_chart(symbol: str, range_: str = "5d") -> dict[str, Any]:
         "https://query1.finance.yahoo.com/v8/finance/chart/"
         f"{quote(symbol, safe='')}?range={range_}&interval=1d"
     )
-    payload = request(url).json()
+    payload = request(url, official=False).json()
     result = payload.get("chart", {}).get("result")
     if not result:
-        error = payload.get("chart", {}).get("error")
-        raise ValueError(f"No Yahoo result for {symbol}: {error}")
+        raise ValueError(f"No Yahoo result for {symbol}")
 
     result = result[0]
     meta = result.get("meta", {})
     timestamps = result.get("timestamp") or []
-    closes = (
-        result.get("indicators", {})
-        .get("quote", [{}])[0]
-        .get("close") or []
-    )
+    closes = result.get("indicators", {}).get("quote", [{}])[0].get("close") or []
 
     observations = []
     for timestamp, value in zip(timestamps, closes):
         if value is None:
             continue
-        observations.append(
-            {
-                "date": datetime.fromtimestamp(
-                    timestamp, timezone.utc
-                ).date().isoformat(),
-                "value": float(value),
-            }
-        )
+        observations.append({
+            "date": datetime.fromtimestamp(timestamp, timezone.utc).date().isoformat(),
+            "value": float(value),
+        })
 
     price = meta.get("regularMarketPrice")
     if price is None and observations:
@@ -108,8 +108,9 @@ def yahoo_chart(symbol: str, range_: str = "5d") -> dict[str, Any]:
 
 def fred_csv(series_id: str) -> dict[str, Any]:
     url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}"
+    response = request(url, official=True)
     rows = []
-    reader = csv.DictReader(io.StringIO(request(url).text))
+    reader = csv.DictReader(io.StringIO(response.text))
 
     for row in reader:
         raw = row.get(series_id)
@@ -120,20 +121,23 @@ def fred_csv(series_id: str) -> dict[str, Any]:
         except (ValueError, KeyError):
             continue
 
+    if not rows:
+        raise ValueError(f"FRED returned no observations for {series_id}")
+
     return {
         "series_id": series_id,
-        "latest": rows[-1] if rows else None,
+        "latest": rows[-1],
         "observations": rows[-900:],
         "source_url": url,
     }
 
 
 def json_endpoint(url: str) -> dict[str, Any]:
-    return {"payload": request(url).json(), "source_url": url}
+    return {"payload": request(url, official=True).json(), "source_url": url}
 
 
 def text_endpoint(url: str) -> dict[str, Any]:
-    response = request(url)
+    response = request(url, official=True)
     return {
         "content_type": response.headers.get("content-type"),
         "text": response.text[:500000],
@@ -146,33 +150,18 @@ def add_months(year: int, month: int, offset: int) -> tuple[int, int]:
     return zero_based // 12, zero_based % 12 + 1
 
 
-MONTH_TO_CODE = {
-    1: "F", 2: "G", 3: "H", 4: "J", 5: "K", 6: "M",
-    7: "N", 8: "Q", 9: "U", 10: "V", 11: "X", 12: "Z",
-}
-
-
-def contract_candidates(
-    root: str,
-    exchange_suffixes: tuple[str, ...],
-) -> list[str]:
+def contract_candidates(root: str, suffixes: tuple[str, ...]) -> list[str]:
     now = datetime.now(timezone.utc)
     symbols = []
-
     for offset in range(CURVE_MONTHS_AHEAD + 1):
         year, month = add_months(now.year, now.month, offset)
-        yy = str(year)[-2:]
-        code = MONTH_TO_CODE[month]
-
-        for suffix in exchange_suffixes:
-            symbols.append(f"{root}{code}{yy}{suffix}")
-
+        for suffix in suffixes:
+            symbols.append(f"{root}{MONTH_TO_CODE[month]}{str(year)[-2:]}{suffix}")
     return symbols
 
 
 def safe_collect(name: str, fn, *args) -> tuple[Any, dict[str, Any]]:
     started = time.perf_counter()
-
     try:
         value = fn(*args)
         return value, {
@@ -190,170 +179,97 @@ def safe_collect(name: str, fn, *args) -> tuple[Any, dict[str, Any]]:
         }
 
 
-def collect_curve_parallel(
-    symbols: list[str],
-    group: str,
-    statuses: list[dict[str, Any]],
-) -> list[dict[str, Any]]:
-    log(
-        f"[{group}] parallel scan started: "
-        f"{len(symbols)} candidates, {MAX_WORKERS} workers"
-    )
-
+def collect_curve_parallel(symbols, group, statuses):
+    log(f"[{group}] scan started: {len(symbols)} candidates")
     usable = []
-    completed = 0
-
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-        future_map = {
-            executor.submit(
-                safe_collect,
-                f"{group}:{symbol}",
-                yahoo_chart,
-                symbol,
-                "5d",
-            ): symbol
-            for symbol in symbols
+        futures = {
+            executor.submit(safe_collect, f"{group}:{s}", yahoo_chart, s, "5d"): s
+            for s in symbols
         }
-
-        for future in as_completed(future_map):
-            symbol = future_map[future]
-            completed += 1
-
-            try:
-                value, status = future.result()
-            except Exception as exc:
-                value = None
-                status = {
-                    "name": f"{group}:{symbol}",
-                    "ok": False,
-                    "elapsed_ms": None,
-                    "error": f"{type(exc).__name__}: {exc}",
-                }
-
+        for index, future in enumerate(as_completed(futures), 1):
+            value, status = future.result()
             statuses.append(status)
-
-            if value and value.get("price") is not None:
+            if value:
                 usable.append(value)
-                log(
-                    f"[{group}] OK {symbol} "
-                    f"price={value['price']} "
-                    f"({completed}/{len(symbols)})"
-                )
-            elif completed % 10 == 0 or completed == len(symbols):
-                log(
-                    f"[{group}] progress "
-                    f"{completed}/{len(symbols)}, usable={len(usable)}"
-                )
-
-    usable.sort(key=lambda item: item["symbol"])
-    log(f"[{group}] scan finished: usable={len(usable)}")
+            if index % 10 == 0 or index == len(symbols):
+                log(f"[{group}] {index}/{len(symbols)}, usable={len(usable)}")
+    usable.sort(key=lambda x: x["symbol"])
     return usable
 
 
 def main() -> None:
-    started_all = time.perf_counter()
-    output_dir = Path("public/data")
-    output_dir.mkdir(parents=True, exist_ok=True)
-
-    statuses: list[dict[str, Any]] = []
-    raw: dict[str, Any] = {
+    started = time.perf_counter()
+    out = Path("public/data")
+    out.mkdir(parents=True, exist_ok=True)
+    statuses = []
+    raw = {
         "generated_at_utc": utc_now(),
-        "collector_version": "2.6.0-fast",
+        "collector_version": "2.7.0-input-repair",
         "futures": {},
         "fred": {},
         "nyfed": {},
         "fed": {},
     }
 
-    log("[1/6] Collecting ZQ continuous contract")
-    value, status = safe_collect(
-        "yahoo:ZQ=F",
-        yahoo_chart,
-        "ZQ=F",
-        "1mo",
-    )
-    statuses.append(status)
+    log("[1/6] ZQ continuous")
+    value, status = safe_collect("yahoo:ZQ=F", yahoo_chart, "ZQ=F", "1mo")
     raw["futures"]["zq_continuous"] = value
-    log(f"[1/6] ZQ continuous ok={status['ok']}")
+    statuses.append(status)
 
-    log("[2/6] Scanning ZQ monthly curve")
-    zq_symbols = contract_candidates("ZQ", (".CBT", ""))
+    log("[2/6] ZQ curve")
     raw["futures"]["zq_curve"] = collect_curve_parallel(
-        zq_symbols,
-        "zq",
-        statuses,
+        contract_candidates("ZQ", (".CBT", "")), "zq", statuses
     )
 
-    log("[3/6] Scanning SOFR futures curve")
-    sofr_symbols = []
+    log("[3/6] SOFR curve")
+    symbols = []
     for root in SOFR_ROOTS:
-        sofr_symbols.extend(
-            contract_candidates(root, (".CME", ""))
-        )
-    raw["futures"]["sofr_curve"] = collect_curve_parallel(
-        sofr_symbols,
-        "sofr",
-        statuses,
-    )
+        symbols.extend(contract_candidates(root, (".CME", "")))
+    raw["futures"]["sofr_curve"] = collect_curve_parallel(symbols, "sofr", statuses)
 
-    log(f"[4/6] Collecting {len(FRED_SERIES)} FRED series")
-    with ThreadPoolExecutor(max_workers=8) as executor:
-        future_map = {
-            executor.submit(
-                safe_collect,
-                f"fred:{series_id}",
-                fred_csv,
-                series_id,
-            ): (series_id, key)
-            for series_id, key in FRED_SERIES.items()
+    # FRED는 서버 부하·제한을 피하려고 동시 요청 수를 3개로 제한
+    log(f"[4/6] FRED {len(FRED_SERIES)} series")
+    with ThreadPoolExecutor(max_workers=3) as executor:
+        futures = {
+            executor.submit(safe_collect, f"fred:{sid}", fred_csv, sid): (sid, key)
+            for sid, key in FRED_SERIES.items()
         }
-
-        for future in as_completed(future_map):
-            series_id, key = future_map[future]
+        for future in as_completed(futures):
+            sid, key = futures[future]
             value, status = future.result()
-            statuses.append(status)
             raw["fred"][key] = value
-            log(f"[FRED] {series_id} ok={status['ok']}")
+            statuses.append(status)
+            log(f"[FRED] {sid} ok={status['ok']}")
 
-    log("[5/6] Collecting NY Fed official rates")
+    log("[5/6] NY Fed")
     for key, url in NYFED_ENDPOINTS.items():
-        value, status = safe_collect(
-            f"nyfed:{key}",
-            json_endpoint,
-            url,
-        )
-        statuses.append(status)
+        value, status = safe_collect(f"nyfed:{key}", json_endpoint, url)
         raw["nyfed"][key] = value
+        statuses.append(status)
         log(f"[NYFED] {key} ok={status['ok']}")
 
-    log("[6/6] Collecting Federal Reserve pages and feeds")
+    log("[6/6] Federal Reserve")
     with ThreadPoolExecutor(max_workers=4) as executor:
-        future_map = {
-            executor.submit(
-                safe_collect,
-                f"fed:{key}",
-                text_endpoint,
-                url,
-            ): key
+        futures = {
+            executor.submit(safe_collect, f"fed:{key}", text_endpoint, url): key
             for key, url in FED_ENDPOINTS.items()
         }
-
-        for future in as_completed(future_map):
-            key = future_map[future]
+        for future in as_completed(futures):
+            key = futures[future]
             value, status = future.result()
-            statuses.append(status)
             raw["fed"][key] = value
+            statuses.append(status)
             log(f"[FED] {key} ok={status['ok']}")
 
     Path("public/data/raw.json").write_text(
-        json.dumps(raw, ensure_ascii=False, indent=2),
-        encoding="utf-8",
+        json.dumps(raw, ensure_ascii=False, indent=2), encoding="utf-8"
     )
     Path("public/data/source_status.json").write_text(
         json.dumps(
             {
                 "generated_at_utc": utc_now(),
-                "collector_version": "2.6.0-fast",
+                "collector_version": "2.7.0-input-repair",
                 "sources": statuses,
             },
             ensure_ascii=False,
@@ -362,13 +278,8 @@ def main() -> None:
         encoding="utf-8",
     )
 
-    ok_count = sum(1 for item in statuses if item["ok"])
-    elapsed = round(time.perf_counter() - started_all, 2)
-
-    log(
-        f"COLLECTION COMPLETE: {ok_count}/{len(statuses)} "
-        f"sources, elapsed={elapsed}s"
-    )
+    ok = sum(item["ok"] for item in statuses)
+    log(f"COMPLETE {ok}/{len(statuses)} in {time.perf_counter()-started:.1f}s")
 
 
 if __name__ == "__main__":

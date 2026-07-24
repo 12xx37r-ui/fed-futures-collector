@@ -1,7 +1,7 @@
 {
   "engine_version": "2.5.0-full-architecture",
   "generated_at_utc": "2026-07-24T03:31:57.892759+00:00",
-  "next_fomc": null,
+  "next_fomc": "2026-07-29",
   "probabilities": {
     "cut": 24.91,
     "hold": 50.17,
@@ -27,7 +27,7 @@
   },
   "weight_optimizer": {
     "active": false,
-    "reason": "no history",
+    "reason": "need 40 labeled snapshots; have 0",
     "weights": {
       "market": 0.5,
       "inflation": 0.18,
@@ -335,7 +335,6 @@
     "feature_checks_total": 5
   },
   "warnings": [
-    "FOMC 일정 자동파싱 실패",
-    "자동가중치 최적화 비활성: no history"
+    "자동가중치 최적화 비활성: need 40 labeled snapshots; have 0"
   ]
 }
