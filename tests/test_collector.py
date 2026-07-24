@@ -1,13 +1,19 @@
 import unittest
-from collector import parse_fred_bulk_csv
+
+from collector import parse_fred_series_csv
 
 
-class FredBulkTests(unittest.TestCase):
-    def test_parses_multiple_series(self):
-        text = "DATE,DFF,UNRATE\n2026-01-01,3.50,.\n2026-02-01,3.60,4.1\n"
-        result = parse_fred_bulk_csv(text, ["DFF", "UNRATE"], "test")
-        self.assertEqual(result["DFF"]["latest"]["value"], 3.6)
-        self.assertEqual(result["UNRATE"]["latest"]["value"], 4.1)
+class CollectorTests(unittest.TestCase):
+    def test_fred_observation_date_header(self):
+        text = "observation_date,DGS10\n2026-07-01,4.48\n2026-07-02,.\n"
+        result = parse_fred_series_csv(text, "DGS10", "test")
+        self.assertEqual(result["latest"]["date"], "2026-07-01")
+        self.assertEqual(result["latest"]["value"], 4.48)
+
+    def test_fred_legacy_date_header(self):
+        text = "DATE,UNRATE\n2026-06-01,4.1\n"
+        result = parse_fred_series_csv(text, "UNRATE", "test")
+        self.assertEqual(result["latest"]["value"], 4.1)
 
 
 if __name__ == "__main__":

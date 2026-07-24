@@ -80,38 +80,56 @@ def yahoo_chart(symbol: str, range_: str = "5d") -> dict[str, Any]:
     return {"symbol": symbol, "price": float(price), "exchange": meta.get("exchangeName"), "currency": meta.get("currency"), "observations": observations, "source_url": url}
 
 
-def parse_fred_bulk_csv(text: str, series_ids: list[str], source_url: str) -> dict[str, dict[str, Any]]:
-    reader = csv.DictReader(io.StringIO(text))
+def parse_fred_series_csv(text: str, series_id: str, source_url: str) -> dict[str, Any]:
+    """Parse FRED graph CSV.
+
+    FRED currently labels the date column ``observation_date``; older code
+    assumed ``DATE`` and therefore rejected otherwise valid responses.
+    """
+    reader = csv.DictReader(io.StringIO(text.lstrip("\ufeff")))
     columns = reader.fieldnames or []
-    date_col = next((x for x in columns if x.upper() in {"DATE", "OBSERVATION_DATE"}), None)
-    if not date_col:
-        raise ValueError(f"FRED CSV missing date column: {columns}")
-    rows_by_series = {sid: [] for sid in series_ids}
+    date_col = next(
+        (column for column in columns if column.strip().lower() in {"date", "observation_date"}),
+        None,
+    )
+    value_col = next(
+        (column for column in columns if column.strip().upper() == series_id.upper()),
+        None,
+    )
+    if not date_col or not value_col:
+        preview = text[:180].replace("\n", " ")
+        raise ValueError(
+            f"unexpected FRED CSV columns={columns}; preview={preview!r}"
+        )
+
+    rows = []
     for row in reader:
-        day = row.get(date_col)
-        if not day:
+        day = (row.get(date_col) or "").strip()
+        raw_value = (row.get(value_col) or "").strip()
+        if not day or raw_value in {"", ".", "NA", "NaN"}:
             continue
-        for sid in series_ids:
-            raw = row.get(sid)
-            if raw in (None, "", "."):
-                continue
-            try:
-                rows_by_series[sid].append({"date": day, "value": float(raw)})
-            except ValueError:
-                continue
-    result = {}
-    for sid, rows in rows_by_series.items():
-        if rows:
-            result[sid] = {"series_id": sid, "latest": rows[-1], "observations": rows[-900:], "source_url": source_url, "stale": False}
-    return result
+        try:
+            rows.append({"date": day, "value": float(raw_value)})
+        except ValueError:
+            continue
+    if not rows:
+        raise ValueError(f"FRED returned no numeric observations for {series_id}")
+    return {
+        "series_id": series_id,
+        "latest": rows[-1],
+        "observations": rows[-900:],
+        "source_url": source_url,
+        "stale": False,
+    }
 
 
-def fred_bulk(series_ids: list[str]) -> dict[str, dict[str, Any]]:
-    joined = ",".join(series_ids)
-    url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={joined}"
-    response = request(url, official=True, timeout=FRED_BULK_TIMEOUT, retries=1)
-    return parse_fred_bulk_csv(response.text, series_ids, url)
-
+def fred_series_csv(series_id: str) -> dict[str, Any]:
+    # The graph download endpoint is public and does not require an API key.
+    # One series per request is intentional: fredgraph.csv does not provide a
+    # reliable comma-separated bulk contract for unattended GitHub runners.
+    url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={quote(series_id)}"
+    response = request(url, official=True, timeout=(4, 10), retries=2)
+    return parse_fred_series_csv(response.text, series_id, url)
 
 def json_endpoint(url: str) -> dict[str, Any]:
     return {"payload": request(url, official=True).json(), "source_url": url}
@@ -174,39 +192,52 @@ def load_previous_raw() -> dict[str, Any]:
 
 def collect_fred(raw: dict[str, Any], statuses: list[dict[str, Any]], previous_raw: dict[str, Any]) -> None:
     ids = list(FRED_SERIES.keys())
-    log(f"[4/6] FRED bulk request: {len(ids)} series")
-    started = time.perf_counter()
-    try:
-        values = fred_bulk(ids)
-        bulk_error = None
-    except Exception as exc:
-        values = {}
-        bulk_error = f"{type(exc).__name__}: {exc}"
-    elapsed = round((time.perf_counter()-started)*1000)
-
+    log(f"[4/6] FRED parallel requests: {len(ids)} series")
     previous_fred = previous_raw.get("fred", {}) if isinstance(previous_raw, dict) else {}
     live_count = 0
     cached_count = 0
-    for sid, key in FRED_SERIES.items():
-        value = values.get(sid)
-        if value:
-            raw["fred"][key] = value
-            live_count += 1
-            statuses.append({"name": f"fred:{sid}", "ok": True, "stale": False, "elapsed_ms": elapsed, "error": None})
-            continue
-        cached = previous_fred.get(key)
-        if cached:
-            cached = dict(cached)
-            cached["stale"] = True
-            cached["fallback_reason"] = bulk_error or "series missing from bulk CSV"
-            raw["fred"][key] = cached
-            cached_count += 1
-            statuses.append({"name": f"fred:{sid}", "ok": True, "stale": True, "elapsed_ms": elapsed, "error": cached["fallback_reason"]})
-        else:
-            raw["fred"][key] = None
-            statuses.append({"name": f"fred:{sid}", "ok": False, "stale": False, "elapsed_ms": elapsed, "error": bulk_error or "series missing from bulk CSV"})
-    log(f"[FRED] live={live_count}, cache={cached_count}, missing={len(ids)-live_count-cached_count}, elapsed={elapsed/1000:.1f}s")
+    missing_count = 0
+    started = time.perf_counter()
 
+    # Six workers keeps total runtime low without hitting FRED too aggressively.
+    with ThreadPoolExecutor(max_workers=6) as executor:
+        futures = {
+            executor.submit(safe_collect, f"fred:{sid}", fred_series_csv, sid): (sid, key)
+            for sid, key in FRED_SERIES.items()
+        }
+        for future in as_completed(futures):
+            sid, key = futures[future]
+            value, status = future.result()
+            if value:
+                raw["fred"][key] = value
+                live_count += 1
+                status["stale"] = False
+                statuses.append(status)
+                log(f"[FRED] {sid} live=True")
+                continue
+
+            cached = previous_fred.get(key)
+            if cached:
+                cached = dict(cached)
+                cached["stale"] = True
+                cached["fallback_reason"] = status.get("error") or "live request failed"
+                raw["fred"][key] = cached
+                cached_count += 1
+                statuses.append({
+                    "name": f"fred:{sid}", "ok": True, "stale": True,
+                    "elapsed_ms": status.get("elapsed_ms", 0),
+                    "error": cached["fallback_reason"],
+                })
+                log(f"[FRED] {sid} live=False cache=True")
+            else:
+                raw["fred"][key] = None
+                missing_count += 1
+                status["stale"] = False
+                statuses.append(status)
+                log(f"[FRED] {sid} live=False error={status.get('error')}")
+
+    elapsed = time.perf_counter() - started
+    log(f"[FRED] live={live_count}, cache={cached_count}, missing={missing_count}, elapsed={elapsed:.1f}s")
 
 def main() -> None:
     started = time.perf_counter()
@@ -214,7 +245,7 @@ def main() -> None:
     out.mkdir(parents=True, exist_ok=True)
     previous_raw = load_previous_raw()
     statuses = []
-    raw = {"generated_at_utc": utc_now(), "collector_version": "3.0.0-fast-bulk-fred", "futures": {}, "fred": {}, "nyfed": {}, "fed": {}}
+    raw = {"generated_at_utc": utc_now(), "collector_version": "3.1.0-fred-date-parser-parallel", "futures": {}, "fred": {}, "nyfed": {}, "fed": {}}
 
     log("[1/6] ZQ continuous")
     value, status = safe_collect("yahoo:ZQ=F", yahoo_chart, "ZQ=F", "1mo")
@@ -250,7 +281,7 @@ def main() -> None:
             log(f"[FED] {key} ok={status['ok']}")
 
     Path("public/data/raw.json").write_text(json.dumps(raw, ensure_ascii=False, indent=2), encoding="utf-8")
-    Path("public/data/source_status.json").write_text(json.dumps({"generated_at_utc": utc_now(), "collector_version": "3.0.0-fast-bulk-fred", "sources": statuses}, ensure_ascii=False, indent=2), encoding="utf-8")
+    Path("public/data/source_status.json").write_text(json.dumps({"generated_at_utc": utc_now(), "collector_version": "3.1.0-fred-date-parser-parallel", "sources": statuses}, ensure_ascii=False, indent=2), encoding="utf-8")
     ok = sum(bool(item.get("ok")) for item in statuses)
     stale = sum(bool(item.get("stale")) for item in statuses)
     log(f"COMPLETE {ok}/{len(statuses)} (stale={stale}) in {time.perf_counter()-started:.1f}s")
