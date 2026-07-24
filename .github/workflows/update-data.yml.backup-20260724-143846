@@ -29,9 +29,8 @@ jobs:
         timeout-minutes: 10
         env:
           PYTHONUNBUFFERED: "1"
-          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: |
-          echo "RUNNING FED ENGINE V3.3"
+          echo "RUNNING FED ENGINE V3.2"
           python run.py
 
       - name: Run tests

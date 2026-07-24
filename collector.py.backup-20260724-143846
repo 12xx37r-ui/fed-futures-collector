@@ -3,7 +3,6 @@ from __future__ import annotations
 import csv
 import io
 import json
-import os
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
@@ -124,54 +123,37 @@ def parse_fred_series_csv(text: str, series_id: str, source_url: str) -> dict[st
     }
 
 
-
 def fred_series_csv(series_id: str) -> dict[str, Any]:
-    api_key = os.environ.get("FRED_API_KEY", "").strip()
-    if not api_key:
-        raise RuntimeError("FRED_API_KEY is missing from GitHub Actions Secrets.")
+    """Download one FRED series with runner-friendly timeout and controlled retry.
 
-    url = "https://api.stlouisfed.org/fred/series/observations"
-    params = {
-        "series_id": series_id,
-        "api_key": api_key,
-        "file_type": "json",
-        "sort_order": "asc",
-    }
+    GitHub-hosted runners can occasionally wait a long time for FRED's first
+    response byte. Two explicit attempts are used instead of nested urllib3
+    retries so the maximum runtime remains predictable.
+    """
+    url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={quote(series_id)}"
+    last_error: Exception | None = None
 
-    with make_session(total_retries=1) as session:
-        response = session.get(
-            url,
-            params=params,
-            timeout=(5, 20),
-            allow_redirects=True,
-        )
-        response.raise_for_status()
-        payload = response.json()
-
-    if payload.get("error_message"):
-        raise RuntimeError(f"FRED API error: {payload['error_message']}")
-
-    rows = []
-    for item in payload.get("observations") or []:
-        day = str(item.get("date") or "").strip()
-        raw_value = str(item.get("value") or "").strip()
-        if not day or raw_value in {"", ".", "NA", "NaN"}:
-            continue
+    for attempt in range(1, 3):
         try:
-            rows.append({"date": day, "value": float(raw_value)})
-        except ValueError:
-            continue
+            response = request(
+                url,
+                official=True,
+                timeout=(5, 30),
+                retries=0,
+            )
+            return parse_fred_series_csv(response.text, series_id, url)
+        except Exception as exc:
+            last_error = exc
+            if attempt < 2:
+                delay = 2.0 * attempt
+                log(
+                    f"[FRED] {series_id} attempt={attempt}/2 failed; "
+                    f"retrying in {delay:.0f}s: {type(exc).__name__}: {exc}"
+                )
+                time.sleep(delay)
 
-    if not rows:
-        raise ValueError(f"FRED API returned no numeric observations for {series_id}")
-
-    return {
-        "series_id": series_id,
-        "latest": rows[-1],
-        "observations": rows[-900:],
-        "source_url": response.url,
-        "stale": False,
-    }
+    assert last_error is not None
+    raise last_error
 
 def json_endpoint(url: str) -> dict[str, Any]:
     return {"payload": request(url, official=True).json(), "source_url": url}
@@ -234,7 +216,7 @@ def load_previous_raw() -> dict[str, Any]:
 
 def collect_fred(raw: dict[str, Any], statuses: list[dict[str, Any]], previous_raw: dict[str, Any]) -> None:
     ids = list(FRED_SERIES.keys())
-    log(f"[4/6] FRED official API requests: {len(ids)} series")
+    log(f"[4/6] FRED parallel requests: {len(ids)} series")
     previous_fred = previous_raw.get("fred", {}) if isinstance(previous_raw, dict) else {}
     live_count = 0
     cached_count = 0
@@ -287,7 +269,7 @@ def main() -> None:
     out.mkdir(parents=True, exist_ok=True)
     previous_raw = load_previous_raw()
     statuses = []
-    raw = {"generated_at_utc": utc_now(), "collector_version": "3.3.0-fred-official-api", "futures": {}, "fred": {}, "nyfed": {}, "fed": {}}
+    raw = {"generated_at_utc": utc_now(), "collector_version": "3.2.0-fred-timeout-controlled-retry", "futures": {}, "fred": {}, "nyfed": {}, "fed": {}}
 
     log("[1/6] ZQ continuous")
     value, status = safe_collect("yahoo:ZQ=F", yahoo_chart, "ZQ=F", "1mo")
@@ -323,7 +305,7 @@ def main() -> None:
             log(f"[FED] {key} ok={status['ok']}")
 
     Path("public/data/raw.json").write_text(json.dumps(raw, ensure_ascii=False, indent=2), encoding="utf-8")
-    Path("public/data/source_status.json").write_text(json.dumps({"generated_at_utc": utc_now(), "collector_version": "3.3.0-fred-official-api", "sources": statuses}, ensure_ascii=False, indent=2), encoding="utf-8")
+    Path("public/data/source_status.json").write_text(json.dumps({"generated_at_utc": utc_now(), "collector_version": "3.2.0-fred-timeout-controlled-retry", "sources": statuses}, ensure_ascii=False, indent=2), encoding="utf-8")
     ok = sum(bool(item.get("ok")) for item in statuses)
     stale = sum(bool(item.get("stale")) for item in statuses)
     log(f"COMPLETE {ok}/{len(statuses)} (stale={stale}) in {time.perf_counter()-started:.1f}s")
