@@ -11,7 +11,7 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
 
     steps:
       - name: Checkout repository
@@ -26,10 +26,12 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Collect, calculate, snapshot, evaluate
-        timeout-minutes: 7
+        timeout-minutes: 10
         env:
           PYTHONUNBUFFERED: "1"
-        run: python run.py
+        run: |
+          echo "RUNNING FED ENGINE V2.9"
+          python run.py
 
       - name: Run tests
         run: python -m unittest discover -s tests -v

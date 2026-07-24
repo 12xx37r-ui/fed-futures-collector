@@ -145,6 +145,7 @@ def build_meeting_path(
 
 
 def main() -> None:
+    print("ENGINE_VERSION=2.9.0-fomc-market-live", flush=True)
     raw = json.loads(Path("public/data/raw.json").read_text(encoding="utf-8"))
     status = json.loads(Path("public/data/source_status.json").read_text(encoding="utf-8"))
 
@@ -223,7 +224,7 @@ def main() -> None:
         warnings.append("자동가중치 최적화 비활성: " + opt["reason"])
 
     result = {
-        "engine_version": "2.8.0-market-calculator",
+        "engine_version": "2.9.0-fomc-market-live",
         "generated_at_utc": raw.get("generated_at_utc"),
         "next_fomc": upcoming,
         "fomc_dates": fomc_dates,

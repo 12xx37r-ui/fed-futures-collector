@@ -205,7 +205,7 @@ def main() -> None:
     statuses = []
     raw = {
         "generated_at_utc": utc_now(),
-        "collector_version": "2.7.0-input-repair",
+        "collector_version": "2.9.0-official-inputs",
         "futures": {},
         "fred": {},
         "nyfed": {},
@@ -269,7 +269,7 @@ def main() -> None:
         json.dumps(
             {
                 "generated_at_utc": utc_now(),
-                "collector_version": "2.7.0-input-repair",
+                "collector_version": "2.9.0-official-inputs",
                 "sources": statuses,
             },
             ensure_ascii=False,
