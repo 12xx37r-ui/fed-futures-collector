@@ -1,40 +1,73 @@
 from __future__ import annotations
 
 import re
-from datetime import date, datetime
+from datetime import date
+
 from bs4 import BeautifulSoup
-from dateutil import parser
+
+MONTHS = {
+    "january": 1, "february": 2, "march": 3, "april": 4,
+    "may": 5, "june": 6, "july": 7, "august": 8,
+    "september": 9, "october": 10, "november": 11, "december": 12,
+}
+MONTH_PATTERN = "|".join(MONTHS)
+
+# Scheduled FOMC meetings are normally displayed as date ranges, e.g. July 28-29.
+# Requiring a range prevents "Minutes released January 5" and similar dates
+# from being mistaken for policy-decision dates.
+MEETING_RANGE_RE = re.compile(
+    rf"\b({MONTH_PATTERN})\s+(\d{{1,2}})\s*[-–—]\s*(\d{{1,2}})\*?",
+    re.IGNORECASE,
+)
+YEAR_SECTION_RE = re.compile(
+    r"\b(20\d{2})\s+FOMC\s+Meetings\b(.*?)(?=\b20\d{2}\s+FOMC\s+Meetings\b|$)",
+    re.IGNORECASE | re.DOTALL,
+)
 
 
 def parse_fomc_dates(html: str) -> list[str]:
-    soup = BeautifulSoup(html or "", "html.parser")
-    text = " ".join(soup.stripped_strings)
-    years = re.findall(r"\b20\d{2}\b", text)
-    current_year = int(years[0]) if years else date.today().year
+    """Extract scheduled FOMC decision dates from the official calendar page.
 
-    months = {
-        "January": 1, "February": 2, "March": 3, "April": 4,
-        "May": 5, "June": 6, "July": 7, "August": 8,
-        "September": 9, "October": 10, "November": 11, "December": 12,
-    }
-    found = []
-    pattern = re.compile(
-        r"(January|February|March|April|May|June|July|August|September|October|November|December)"
-        r"\s+(\d{1,2})(?:-(\d{1,2}))?"
-    )
-    for match in pattern.finditer(text):
-        month_name, day1, day2 = match.groups()
-        day = int(day2 or day1)
-        try:
-            found.append(date(current_year, months[month_name], day).isoformat())
-        except ValueError:
-            pass
-    return sorted(set(found))
+    Only scheduled date ranges are accepted. The final day of each range is
+    treated as the decision date. At most one scheduled meeting per month is
+    retained, preventing minutes-release dates and duplicated links from
+    entering the market-path calculation.
+    """
+    if not html:
+        return []
+
+    text = " ".join(BeautifulSoup(html, "html.parser").stripped_strings)
+    text = re.sub(r"\s+", " ", text)
+
+    by_month: dict[tuple[int, int], str] = {}
+
+    for section in YEAR_SECTION_RE.finditer(text):
+        year = int(section.group(1))
+        body = section.group(2)
+
+        for match in MEETING_RANGE_RE.finditer(body):
+            month_name, _first_day, final_day = match.groups()
+            month = MONTHS[month_name.lower()]
+            try:
+                decision = date(year, month, int(final_day))
+            except ValueError:
+                continue
+
+            key = (decision.year, decision.month)
+            # The official schedule should contain one scheduled meeting per
+            # month. Keeping the first range blocks duplicate page elements.
+            by_month.setdefault(key, decision.isoformat())
+
+    return sorted(by_month.values())
 
 
 def next_meeting(dates: list[str], today: date | None = None) -> str | None:
     today = today or date.today()
-    for value in sorted(dates):
-        if date.fromisoformat(value) >= today:
+    for value in sorted(set(dates)):
+        try:
+            parsed = date.fromisoformat(value)
+        except ValueError:
+            continue
+        if parsed >= today:
             return value
     return None
