@@ -1,6 +1,6 @@
 {
-  "engine_version": "2.5.0-full-architecture",
-  "generated_at_utc": "2026-07-24T03:31:57.892759+00:00",
+  "engine_version": "2.7.0-real-rate-export",
+  "generated_at_utc": "2026-07-25T11:24:09.139871+00:00",
   "next_fomc": null,
   "probabilities": {
     "cut": 24.91,
@@ -27,7 +27,7 @@
   },
   "weight_optimizer": {
     "active": false,
-    "reason": "no history",
+    "reason": "need 40 labeled snapshots; have 0",
     "weights": {
       "market": 0.5,
       "inflation": 0.18,
@@ -48,8 +48,8 @@
       {
         "symbol": "ZQQ26.CBT",
         "contract_month": "2026-08",
-        "price": 96.285,
-        "implied_average_rate": 3.715
+        "price": 96.28,
+        "implied_average_rate": 3.72
       },
       {
         "symbol": "ZQU26.CBT",
@@ -60,106 +60,106 @@
       {
         "symbol": "ZQV26.CBT",
         "contract_month": "2026-10",
-        "price": 96.09,
-        "implied_average_rate": 3.91
+        "price": 96.095,
+        "implied_average_rate": 3.905
       },
       {
         "symbol": "ZQX26.CBT",
         "contract_month": "2026-11",
-        "price": 96.025,
-        "implied_average_rate": 3.975
+        "price": 96.03,
+        "implied_average_rate": 3.97
       },
       {
         "symbol": "ZQZ26.CBT",
         "contract_month": "2026-12",
-        "price": 95.95,
-        "implied_average_rate": 4.05
+        "price": 95.96,
+        "implied_average_rate": 4.04
       },
       {
         "symbol": "ZQF27.CBT",
         "contract_month": "2027-01",
-        "price": 95.915,
-        "implied_average_rate": 4.085
+        "price": 95.925,
+        "implied_average_rate": 4.075
       },
       {
         "symbol": "ZQG27.CBT",
         "contract_month": "2027-02",
-        "price": 95.865,
-        "implied_average_rate": 4.135
+        "price": 95.885,
+        "implied_average_rate": 4.115
       },
       {
         "symbol": "ZQH27.CBT",
         "contract_month": "2027-03",
-        "price": 95.835,
-        "implied_average_rate": 4.165
+        "price": 95.855,
+        "implied_average_rate": 4.145
       },
       {
         "symbol": "ZQJ27.CBT",
         "contract_month": "2027-04",
-        "price": 95.795,
-        "implied_average_rate": 4.205
+        "price": 95.82,
+        "implied_average_rate": 4.18
       },
       {
         "symbol": "ZQK27.CBT",
         "contract_month": "2027-05",
-        "price": 95.77,
-        "implied_average_rate": 4.23
+        "price": 95.795,
+        "implied_average_rate": 4.205
       },
       {
         "symbol": "ZQM27.CBT",
         "contract_month": "2027-06",
-        "price": 95.76,
-        "implied_average_rate": 4.24
+        "price": 95.795,
+        "implied_average_rate": 4.205
       },
       {
         "symbol": "ZQN27.CBT",
         "contract_month": "2027-07",
-        "price": 95.77,
-        "implied_average_rate": 4.23
+        "price": 95.8,
+        "implied_average_rate": 4.2
       },
       {
         "symbol": "ZQQ27.CBT",
         "contract_month": "2027-08",
-        "price": 95.78,
-        "implied_average_rate": 4.22
+        "price": 95.81,
+        "implied_average_rate": 4.19
       },
       {
         "symbol": "ZQU27.CBT",
         "contract_month": "2027-09",
-        "price": 95.78,
-        "implied_average_rate": 4.22
+        "price": 95.825,
+        "implied_average_rate": 4.175
       },
       {
         "symbol": "ZQV27.CBT",
         "contract_month": "2027-10",
-        "price": 95.815,
-        "implied_average_rate": 4.185
+        "price": 95.845,
+        "implied_average_rate": 4.155
       },
       {
         "symbol": "ZQX27.CBT",
         "contract_month": "2027-11",
-        "price": 96.005,
-        "implied_average_rate": 3.995
+        "price": 95.865,
+        "implied_average_rate": 4.135
       },
       {
         "symbol": "ZQZ27.CBT",
         "contract_month": "2027-12",
-        "price": 95.9,
-        "implied_average_rate": 4.1
+        "price": 95.885,
+        "implied_average_rate": 4.115
       }
     ],
     "sofr": [
       {
         "symbol": "SR1N26.CME",
         "contract_month": "2026-07",
-        "price": 96.375,
-        "implied_average_rate": 3.625
+        "price": 96.378,
+        "implied_average_rate": 3.622
       },
       {
         "symbol": "SR3N26.CME",
         "contract_month": "2026-07",
-        "price": 96.1925,
-        "implied_average_rate": 3.8075
+        "price": 96.19,
+        "implied_average_rate": 3.81
       },
       {
         "symbol": "SR1Q26.CME",
@@ -170,8 +170,8 @@
       {
         "symbol": "SR3Q26.CME",
         "contract_month": "2026-08",
-        "price": 96.1,
-        "implied_average_rate": 3.9
+        "price": 96.105,
+        "implied_average_rate": 3.895
       },
       {
         "symbol": "SR1U26.CME",
@@ -182,8 +182,8 @@
       {
         "symbol": "SR3U26.CME",
         "contract_month": "2026-09",
-        "price": 96.01,
-        "implied_average_rate": 3.99
+        "price": 96.02,
+        "implied_average_rate": 3.98
       },
       {
         "symbol": "SR1V26.CME",
@@ -194,98 +194,98 @@
       {
         "symbol": "SR3V26.CME",
         "contract_month": "2026-10",
-        "price": 96.04,
-        "implied_average_rate": 3.96
+        "price": 95.945,
+        "implied_average_rate": 4.055
       },
       {
         "symbol": "SR1X26.CME",
         "contract_month": "2026-11",
-        "price": 96.0,
-        "implied_average_rate": 4.0
+        "price": 96.005,
+        "implied_average_rate": 3.995
       },
       {
         "symbol": "SR3X26.CME",
         "contract_month": "2026-11",
-        "price": 96.0,
-        "implied_average_rate": 4.0
+        "price": 95.895,
+        "implied_average_rate": 4.105
       },
       {
         "symbol": "SR1Z26.CME",
         "contract_month": "2026-12",
-        "price": 95.91,
-        "implied_average_rate": 4.09
+        "price": 95.92,
+        "implied_average_rate": 4.08
       },
       {
         "symbol": "SR3Z26.CME",
         "contract_month": "2026-12",
-        "price": 95.835,
-        "implied_average_rate": 4.165
+        "price": 95.855,
+        "implied_average_rate": 4.145
       },
       {
         "symbol": "SR1F27.CME",
         "contract_month": "2027-01",
-        "price": 95.875,
-        "implied_average_rate": 4.125
+        "price": 95.885,
+        "implied_average_rate": 4.115
       },
       {
         "symbol": "SR1G27.CME",
         "contract_month": "2027-02",
-        "price": 95.84,
-        "implied_average_rate": 4.16
+        "price": 95.855,
+        "implied_average_rate": 4.145
       },
       {
         "symbol": "SR1H27.CME",
         "contract_month": "2027-03",
-        "price": 95.82,
-        "implied_average_rate": 4.18
+        "price": 95.83,
+        "implied_average_rate": 4.17
       },
       {
         "symbol": "SR3H27.CME",
         "contract_month": "2027-03",
-        "price": 95.73,
-        "implied_average_rate": 4.27
+        "price": 95.76,
+        "implied_average_rate": 4.24
       },
       {
         "symbol": "SR1J27.CME",
         "contract_month": "2027-04",
-        "price": 95.77,
-        "implied_average_rate": 4.23
+        "price": 95.795,
+        "implied_average_rate": 4.205
       },
       {
         "symbol": "SR1K27.CME",
         "contract_month": "2027-05",
-        "price": 95.75,
-        "implied_average_rate": 4.25
+        "price": 95.765,
+        "implied_average_rate": 4.235
       },
       {
         "symbol": "SR1M27.CME",
         "contract_month": "2027-06",
-        "price": 95.725,
-        "implied_average_rate": 4.275
+        "price": 95.76,
+        "implied_average_rate": 4.24
       },
       {
         "symbol": "SR3M27.CME",
         "contract_month": "2027-06",
-        "price": 95.705,
-        "implied_average_rate": 4.295
+        "price": 95.75,
+        "implied_average_rate": 4.25
       },
       {
         "symbol": "SR1N27.CME",
         "contract_month": "2027-07",
-        "price": 95.74,
-        "implied_average_rate": 4.26
+        "price": 95.765,
+        "implied_average_rate": 4.235
       },
       {
         "symbol": "SR1Q27.CME",
         "contract_month": "2027-08",
-        "price": 95.74,
-        "implied_average_rate": 4.26
+        "price": 95.775,
+        "implied_average_rate": 4.225
       },
       {
         "symbol": "SR3U27.CME",
         "contract_month": "2027-09",
-        "price": 95.745,
-        "implied_average_rate": 4.255
+        "price": 95.8,
+        "implied_average_rate": 4.2
       },
       {
         "symbol": "SR1Z27.CME",
@@ -296,8 +296,8 @@
       {
         "symbol": "SR3Z27.CME",
         "contract_month": "2027-12",
-        "price": 95.82,
-        "implied_average_rate": 4.18
+        "price": 95.87,
+        "implied_average_rate": 4.13
       }
     ]
   },
@@ -306,6 +306,10 @@
     "employment": 0.0,
     "growth": 0.0,
     "financial": 0.0
+  },
+  "real_rate": {
+    "available": false,
+    "reason": "DFII10 observations insufficient"
   },
   "fed_text": {
     "score": 0.0,
@@ -329,13 +333,13 @@
     "score": 52,
     "grade": "LOW",
     "source_ok": 48,
-    "source_total": 139,
+    "source_total": 143,
     "critical_ok": 2,
     "feature_checks_passed": 5,
     "feature_checks_total": 5
   },
   "warnings": [
     "FOMC 일정 자동파싱 실패",
-    "자동가중치 최적화 비활성: no history"
+    "자동가중치 최적화 비활성: need 40 labeled snapshots; have 0"
   ]
 }
