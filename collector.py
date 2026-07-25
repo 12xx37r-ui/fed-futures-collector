@@ -106,26 +106,35 @@ def yahoo_chart(symbol: str, range_: str = "5d") -> dict[str, Any]:
     }
 
 
-def fred_csv(series_id: str) -> dict[str, Any]:
-    url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}"
-    rows = []
-    reader = csv.DictReader(io.StringIO(request(url).text))
 
+def parse_fred_series_csv(text: str, series_id: str, source_url: str) -> dict[str, Any]:
+    """Parse FRED CSV using either the current observation_date header or legacy DATE."""
+    rows: list[dict[str, Any]] = []
+    reader = csv.DictReader(io.StringIO(text))
     for row in reader:
         raw = row.get(series_id)
         if raw in (None, "", "."):
             continue
+        date_value = row.get("observation_date") or row.get("DATE")
+        if not date_value:
+            continue
         try:
-            rows.append({"date": row["DATE"], "value": float(raw)})
-        except (ValueError, KeyError):
+            rows.append({"date": str(date_value), "value": float(raw)})
+        except (TypeError, ValueError):
             continue
 
     return {
         "series_id": series_id,
         "latest": rows[-1] if rows else None,
         "observations": rows[-900:],
-        "source_url": url,
+        "source_url": source_url,
     }
+
+
+def fred_csv(series_id: str) -> dict[str, Any]:
+    url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}"
+    response = request(url)
+    return parse_fred_series_csv(response.text, series_id, url)
 
 
 def json_endpoint(url: str) -> dict[str, Any]:
