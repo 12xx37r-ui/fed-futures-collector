@@ -1,8 +1,13 @@
 from __future__ import annotations
 
+# 무료 소스 우선순위: 공식기관 > 시장 무료경로 > 대체값
 FRED_SERIES = {
     "DGS2": "treasury_2y",
     "DGS10": "treasury_10y",
+    "DFII5": "real_yield_5y",
+    "DFII10": "real_yield_10y",
+    "DFII20": "real_yield_20y",
+    "T10YIE": "breakeven_inflation_10y",
     "DFF": "effr_fred",
     "SOFR": "sofr_fred",
     "CPIAUCSL": "cpi",
@@ -22,9 +27,7 @@ FRED_SERIES = {
 }
 
 NYFED_ENDPOINTS = {
-    # EFFR는 무담보(unsecured) 연방기금시장 금리
-    "effr": "https://markets.newyorkfed.org/api/rates/unsecured/effr/last/30.json",
-    # SOFR는 담보부(secured) 금리
+    "effr": "https://markets.newyorkfed.org/api/rates/secured/effr/last/30.json",
     "sofr": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/30.json",
 }
 
@@ -32,13 +35,15 @@ FED_ENDPOINTS = {
     "press_rss": "https://www.federalreserve.gov/feeds/press_all.xml",
     "speeches_rss": "https://www.federalreserve.gov/feeds/speeches.xml",
     "fomc_calendar": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
-    # 2026-07 현재 최신 공식 SEP. 다음 단계에서 RSS 기반 자동 탐색으로 전환.
-    "sep": "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260617.htm",
+    "sep": "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl.htm",
 }
 
+# Yahoo 심볼 후보. 실제 성공 여부는 source_status.json에 기록한다.
 ZQ_MONTH_CODES = "FGHJKMNQUVXZ"
 SOFR_ROOTS = ("SR1", "SR3")
+FUTURES_YEARS_AHEAD = 2
 
+# 다음 회의 / 중기 / 장기 기본 앙상블 가중치
 BASE_WEIGHTS = {
     "next_meeting": {
         "market": 0.50,
