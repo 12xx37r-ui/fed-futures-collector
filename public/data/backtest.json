@@ -1,6 +1,13 @@
 {
   "labeled_rows": 0,
+  "newly_labeled_rows": 0,
   "direction_accuracy": null,
   "mean_brier": null,
-  "mean_log_loss": null
+  "mean_log_loss": null,
+  "benchmark_brier": null,
+  "brier_skill_score": null,
+  "quality_gate": {
+    "passed": false,
+    "level": "검증 축적 중"
+  }
 }
