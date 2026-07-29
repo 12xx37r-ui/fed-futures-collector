@@ -1,24 +1,40 @@
 {
   "labeled_rows": 0,
   "newly_labeled_rows": 0,
-  "historical_reconstructed_rows": 0,
+  "historical_reconstructed_rows": 42,
   "validation_method": "release_lagged_reconstructed_fomc_walk_forward",
   "real_time_vintage": false,
   "release_lag_backtest": true,
-  "direction_accuracy": null,
-  "mean_brier": null,
-  "mean_log_loss": null,
-  "benchmark_brier": null,
-  "brier_skill_score": null,
+  "direction_accuracy": 0.6190476190476191,
+  "mean_brier": 0.5127070214285714,
+  "mean_log_loss": 0.838293386744679,
+  "benchmark_brier": 0.5645835665156415,
+  "brier_skill_score": 0.09188461755489807,
+  "class_frequency": {
+    "cut": 0.14285714285714285,
+    "hold": 0.6190476190476191,
+    "hike": 0.23809523809523808
+  },
   "quality_gate": {
-    "passed": false,
-    "candidate": false,
-    "level": "실행 후 검증",
+    "passed": true,
+    "candidate": true,
+    "level": "준기관급",
     "requirements": {
       "historical_reconstructed_rows_min": 30,
       "direction_accuracy_min": 0.5,
       "brier_skill_score_min": 0.0,
       "release_lag_backtest_required": true
+    },
+    "observed": {
+      "historical_reconstructed_rows": 42,
+      "direction_accuracy": 0.6190476190476191,
+      "brier_skill_score": 0.09188461755489807,
+      "release_lag_backtest": true,
+      "real_time_vintage": false
     }
-  }
+  },
+  "limitations": [
+    "과거 검증은 당시 원본 빈티지가 아니라 발표시차를 적용한 최신 이력 재구성입니다.",
+    "실시간 스냅숏 라벨은 별도로 계속 누적됩니다."
+  ]
 }

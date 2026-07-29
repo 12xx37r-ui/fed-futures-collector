@@ -26,5 +26,57 @@
       "feature_checks_total": 5
     },
     "actual_direction": null
+  },
+  {
+    "snapshot_key": "2026-07-29T00:58:08.449321+00:00|2026-07-29",
+    "captured_at_utc": "2026-07-29T00:58:12.905760+00:00",
+    "meeting": "2026-07-29",
+    "probabilities": {
+      "cut": 0.0,
+      "hold": 99.0,
+      "hike": 1.0
+    },
+    "features": {
+      "market": -0.004999999999999893,
+      "inflation": 0.0306,
+      "employment": -0.33822,
+      "growth": -0.75853,
+      "financial": -0.24654,
+      "fed_text": 0.0
+    },
+    "confidence": {
+      "score": 49,
+      "grade": "UNVERIFIED",
+      "data_quality_score": 100,
+      "data_quality_grade": "HIGH",
+      "forecast_validation": {
+        "passed": false,
+        "candidate": false,
+        "level": "실행 후 검증",
+        "requirements": {
+          "historical_reconstructed_rows_min": 30,
+          "direction_accuracy_min": 0.5,
+          "brier_skill_score_min": 0.0,
+          "release_lag_backtest_required": true
+        }
+      },
+      "logical_groups_ok": 9,
+      "logical_groups_total": 9,
+      "critical_ok": 5,
+      "critical_total": 5,
+      "stale_fred_series": 0,
+      "groups": {
+        "zq_continuous": true,
+        "zq_curve": true,
+        "sofr_curve": true,
+        "fred": true,
+        "nyfed_effr": true,
+        "nyfed_sofr": true,
+        "fomc_calendar": true,
+        "fed_text": true,
+        "dotplot": true
+      }
+    },
+    "actual_direction": null
   }
 ]
