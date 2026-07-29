@@ -78,6 +78,8 @@ def yahoo_chart(symbol: str, range_: str = "5d") -> dict[str, Any]:
         price = observations[-1]["value"]
     if price is None:
         raise ValueError(f"No usable price for {symbol}")
+    if not observations:
+        raise ValueError(f"No observed close for {symbol}; metadata-only price rejected")
     return {"symbol": symbol, "price": float(price), "exchange": meta.get("exchangeName"), "currency": meta.get("currency"), "observations": observations, "source_url": url}
 
 
@@ -207,17 +209,34 @@ def safe_collect(name: str, fn, *args) -> tuple[Any, dict[str, Any]]:
 
 
 def collect_curve_parallel(symbols, group, statuses):
-    log(f"[{group}] scan started: {len(symbols)} candidates")
+    log(f"[{group}] scan started: {len(symbols)} exchange-qualified candidates")
     usable = []
+    missing = 0
+    errors = []
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         futures = {executor.submit(safe_collect, f"{group}:{s}", yahoo_chart, s, "5d"): s for s in symbols}
         for index, future in enumerate(as_completed(futures), 1):
             value, status = future.result()
-            statuses.append(status)
             if value:
                 usable.append(value)
+                statuses.append(status)
+            elif "404 Client Error" in str(status.get("error")):
+                missing += 1  # an unlisted future month is expected, not a source failure
+            else:
+                errors.append(status)
+                statuses.append(status)
             if index % 10 == 0 or index == len(symbols):
-                log(f"[{group}] {index}/{len(symbols)}, usable={len(usable)}")
+                log(f"[{group}] {index}/{len(symbols)}, usable={len(usable)}, unlisted={missing}, errors={len(errors)}")
+    statuses.append({
+        "name": f"{group}:curve_summary",
+        "ok": bool(usable),
+        "elapsed_ms": 0,
+        "error": None if usable else "no usable contracts",
+        "attempted": len(symbols),
+        "usable": len(usable),
+        "expected_unlisted": missing,
+        "unexpected_errors": len(errors),
+    })
     usable.sort(key=lambda x: x["symbol"])
     return usable
 
@@ -287,7 +306,7 @@ def main() -> None:
     out.mkdir(parents=True, exist_ok=True)
     previous_raw = load_previous_raw()
     statuses = []
-    raw = {"generated_at_utc": utc_now(), "collector_version": "3.3.0-fred-official-api", "futures": {}, "fred": {}, "nyfed": {}, "fed": {}}
+    raw = {"generated_at_utc": utc_now(), "collector_version": "3.5.0-production-guardrails", "futures": {}, "fred": {}, "nyfed": {}, "fed": {}}
 
     log("[1/6] ZQ continuous")
     value, status = safe_collect("yahoo:ZQ=F", yahoo_chart, "ZQ=F", "1mo")
@@ -295,12 +314,12 @@ def main() -> None:
     statuses.append(status)
 
     log("[2/6] ZQ curve")
-    raw["futures"]["zq_curve"] = collect_curve_parallel(contract_candidates("ZQ", (".CBT", "")), "zq", statuses)
+    raw["futures"]["zq_curve"] = collect_curve_parallel(contract_candidates("ZQ", (".CBT",)), "zq", statuses)
 
     log("[3/6] SOFR curve")
     symbols = []
     for root in SOFR_ROOTS:
-        symbols.extend(contract_candidates(root, (".CME", "")))
+        symbols.extend(contract_candidates(root, (".CME",)))
     raw["futures"]["sofr_curve"] = collect_curve_parallel(symbols, "sofr", statuses)
 
     collect_fred(raw, statuses, previous_raw)
@@ -323,7 +342,7 @@ def main() -> None:
             log(f"[FED] {key} ok={status['ok']}")
 
     Path("public/data/raw.json").write_text(json.dumps(raw, ensure_ascii=False, indent=2), encoding="utf-8")
-    Path("public/data/source_status.json").write_text(json.dumps({"generated_at_utc": utc_now(), "collector_version": "3.3.0-fred-official-api", "sources": statuses}, ensure_ascii=False, indent=2), encoding="utf-8")
+    Path("public/data/source_status.json").write_text(json.dumps({"generated_at_utc": utc_now(), "collector_version": "3.5.0-production-guardrails", "sources": statuses}, ensure_ascii=False, indent=2), encoding="utf-8")
     ok = sum(bool(item.get("ok")) for item in statuses)
     stale = sum(bool(item.get("stale")) for item in statuses)
     log(f"COMPLETE {ok}/{len(statuses)} (stale={stale}) in {time.perf_counter()-started:.1f}s")

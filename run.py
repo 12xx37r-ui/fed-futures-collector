@@ -8,3 +8,5 @@ if __name__ == "__main__":
     run_engine()
     snapshot()
     evaluate()
+    # Rebuild latest.json so the just-updated validation gate is embedded.
+    run_engine()

@@ -11,13 +11,13 @@ from .dotplot import load_manual_dotplot, parse_sep_page
 from .ensemble import combine, softmax_three
 from .fed_text import text_score
 from .fomc_calendar import next_meeting, parse_fomc_dates
-from .futures_curve import build_curve, meeting_adjusted_rate, target_probabilities
+from .futures_curve import build_curve, stable_meeting_rate, target_probabilities
 from .macro_model import score as macro_score
 from .optimizer import optimized_weights
 from .utils import latest
 
 
-ENGINE_VERSION = "3.4.0-meeting-path-stabilized"
+ENGINE_VERSION = "3.5.0-production-guardrails"
 
 
 def _normalise_key(value: str) -> str:
@@ -164,14 +164,10 @@ def build_meeting_path(
             pre_rate_source = "effective_or_previous_valid_rate"
 
         monthly_average = float(contract["implied_average_rate"])
-        post_rate = meeting_adjusted_rate(monthly_average, meeting, pre_rate)
+        post_rate, estimate_method, raw_inversion, stability_flags = stable_meeting_rate(
+            monthly_average, meeting, pre_rate
+        )
         change = post_rate - pre_rate
-
-        # Reject impossible or numerically unstable inversions rather than
-        # propagating them through every later meeting.
-        if not (-0.25 <= post_rate <= 15.0) or abs(change) > 1.50:
-            continue
-
         targets = target_probabilities(post_rate, pre_rate)
         path.append({
             "meeting": meeting_text,
@@ -181,6 +177,9 @@ def build_meeting_path(
             "monthly_average_rate": round(monthly_average, 5),
             "expected_post_meeting_rate": round(post_rate, 5),
             "expected_change_bps": round(change * 100, 2),
+            "estimate_method": estimate_method,
+            "raw_calendar_inversion_rate": round(raw_inversion, 5),
+            "stability_flags": stability_flags,
             "target_rate_probabilities": targets,
             "action_probabilities": classify_market_actions(targets, pre_rate),
         })
@@ -264,10 +263,12 @@ def main() -> None:
         "fed_text_score": fed_comm["score"],
         "dotplot_available": (
             dot_manual.get("available")
-            or bool(dot_auto.get("auto_candidates"))
+            or bool(dot_auto.get("validated"))
         ),
     }
-    confidence = calculate(status, feature_status)
+    backtest_path = Path("public/data/backtest.json")
+    backtest = json.loads(backtest_path.read_text(encoding="utf-8")) if backtest_path.exists() else {}
+    confidence = calculate(status, feature_status, backtest)
 
     warnings: list[str] = []
     if not zq_curve:
@@ -290,8 +291,11 @@ def main() -> None:
         confidence["grade"] = "LOW"
     if not meeting_path and upcoming:
         warnings.append("다음 회의 월과 일치하는 정상 ZQ 경로 미확보")
-    if not dot_manual.get("available"):
-        warnings.append("점도표 수동 검증값 미입력")
+    stabilized = [row for row in meeting_path if row.get("stability_flags")]
+    if stabilized:
+        warnings.append(f"월말·불안정 회의 {len(stabilized)}건은 직접 월물곡선으로 안정화")
+    if not dot_manual.get("available") and not dot_auto.get("validated"):
+        warnings.append("공식 점도표 자동 검증 실패·수동 검증값 미입력: 점도표 미사용")
     if not opt["active"]:
         warnings.append("자동가중치 최적화 비활성: " + opt["reason"])
 
@@ -315,6 +319,7 @@ def main() -> None:
         "fed_text": fed_comm,
         "dotplot": {"manual": dot_manual, "automatic": dot_auto},
         "confidence": confidence,
+        "validation": backtest,
         "warnings": warnings,
     }
 
@@ -330,6 +335,7 @@ def main() -> None:
         "market_actions": market_action_probs,
         "probabilities": probabilities,
         "confidence": confidence,
+        "validation": backtest,
         "warnings": warnings,
     }, ensure_ascii=False, indent=2))
 
