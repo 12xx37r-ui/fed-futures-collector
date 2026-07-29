@@ -372,7 +372,7 @@
       "inflation": -0.58231,
       "employment": -0.47556,
       "growth": 0.34896,
-      "financial": -0.23278,
+      "financial": -0.23256,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -532,7 +532,7 @@
       "inflation": 0.29315,
       "employment": -0.116,
       "growth": -0.15757,
-      "financial": -0.259,
+      "financial": -0.25883,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -652,7 +652,7 @@
       "inflation": -0.08941,
       "employment": -0.03289,
       "growth": -0.33041,
-      "financial": 0.01054,
+      "financial": 0.01071,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -672,7 +672,7 @@
       "inflation": 0.12618,
       "employment": -0.02311,
       "growth": -0.77567,
-      "financial": -0.19004,
+      "financial": -0.18987,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
