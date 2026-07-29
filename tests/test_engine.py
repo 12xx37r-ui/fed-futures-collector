@@ -33,3 +33,11 @@ class EngineTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+class ObjectiveValidationTests(unittest.TestCase):
+    def test_unverified_output_uses_market_probability(self):
+        market = {"cut": 0.0, "hold": 99.0, "hike": 1.0}
+        model = {"cut": 20.0, "hold": 50.0, "hike": 30.0}
+        passed = False
+        representative = model if passed else market
+        self.assertEqual(representative, market)

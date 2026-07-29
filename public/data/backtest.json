@@ -1,6 +1,10 @@
 {
   "labeled_rows": 0,
   "newly_labeled_rows": 0,
+  "historical_reconstructed_rows": 0,
+  "validation_method": "release_lagged_reconstructed_fomc_walk_forward",
+  "real_time_vintage": false,
+  "release_lag_backtest": true,
   "direction_accuracy": null,
   "mean_brier": null,
   "mean_log_loss": null,
@@ -8,6 +12,13 @@
   "brier_skill_score": null,
   "quality_gate": {
     "passed": false,
-    "level": "검증 축적 중"
+    "candidate": false,
+    "level": "실행 후 검증",
+    "requirements": {
+      "historical_reconstructed_rows_min": 30,
+      "direction_accuracy_min": 0.5,
+      "brier_skill_score_min": 0.0,
+      "release_lag_backtest_required": true
+    }
   }
 }

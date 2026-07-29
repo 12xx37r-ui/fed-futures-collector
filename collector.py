@@ -120,7 +120,7 @@ def parse_fred_series_csv(text: str, series_id: str, source_url: str) -> dict[st
     return {
         "series_id": series_id,
         "latest": rows[-1],
-        "observations": rows[-900:],
+        "observations": rows[-2500:],
         "source_url": source_url,
         "stale": False,
     }
@@ -170,7 +170,7 @@ def fred_series_csv(series_id: str) -> dict[str, Any]:
     return {
         "series_id": series_id,
         "latest": rows[-1],
-        "observations": rows[-900:],
+        "observations": rows[-2500:],
         "source_url": response.url,
         "stale": False,
     }
@@ -213,6 +213,7 @@ def collect_curve_parallel(symbols, group, statuses):
     usable = []
     missing = 0
     errors = []
+    quality_rejections = []
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         futures = {executor.submit(safe_collect, f"{group}:{s}", yahoo_chart, s, "5d"): s for s in symbols}
         for index, future in enumerate(as_completed(futures), 1):
@@ -222,11 +223,16 @@ def collect_curve_parallel(symbols, group, statuses):
                 statuses.append(status)
             elif "404 Client Error" in str(status.get("error")):
                 missing += 1  # an unlisted future month is expected, not a source failure
+            elif "metadata-only price rejected" in str(status.get("error")) or "No observed close" in str(status.get("error")):
+                status["classification"] = "quality_rejection"
+                status["blocking"] = False
+                quality_rejections.append(status)
+                statuses.append(status)
             else:
                 errors.append(status)
                 statuses.append(status)
             if index % 10 == 0 or index == len(symbols):
-                log(f"[{group}] {index}/{len(symbols)}, usable={len(usable)}, unlisted={missing}, errors={len(errors)}")
+                log(f"[{group}] {index}/{len(symbols)}, usable={len(usable)}, unlisted={missing}, errors={len(errors)}, quality_rejections={len(quality_rejections)}")
     statuses.append({
         "name": f"{group}:curve_summary",
         "ok": bool(usable),
@@ -235,6 +241,7 @@ def collect_curve_parallel(symbols, group, statuses):
         "attempted": len(symbols),
         "usable": len(usable),
         "expected_unlisted": missing,
+        "quality_rejections": len(quality_rejections),
         "unexpected_errors": len(errors),
     })
     usable.sort(key=lambda x: x["symbol"])
@@ -306,10 +313,10 @@ def main() -> None:
     out.mkdir(parents=True, exist_ok=True)
     previous_raw = load_previous_raw()
     statuses = []
-    raw = {"generated_at_utc": utc_now(), "collector_version": "3.5.0-production-guardrails", "futures": {}, "fred": {}, "nyfed": {}, "fed": {}}
+    raw = {"generated_at_utc": utc_now(), "collector_version": "3.6.0-objective-validation", "futures": {}, "fred": {}, "nyfed": {}, "fed": {}}
 
     log("[1/6] ZQ continuous")
-    value, status = safe_collect("yahoo:ZQ=F", yahoo_chart, "ZQ=F", "1mo")
+    value, status = safe_collect("yahoo:ZQ=F", yahoo_chart, "ZQ=F", "5y")
     raw["futures"]["zq_continuous"] = value
     statuses.append(status)
 
@@ -342,7 +349,7 @@ def main() -> None:
             log(f"[FED] {key} ok={status['ok']}")
 
     Path("public/data/raw.json").write_text(json.dumps(raw, ensure_ascii=False, indent=2), encoding="utf-8")
-    Path("public/data/source_status.json").write_text(json.dumps({"generated_at_utc": utc_now(), "collector_version": "3.5.0-production-guardrails", "sources": statuses}, ensure_ascii=False, indent=2), encoding="utf-8")
+    Path("public/data/source_status.json").write_text(json.dumps({"generated_at_utc": utc_now(), "collector_version": "3.6.0-objective-validation", "sources": statuses}, ensure_ascii=False, indent=2), encoding="utf-8")
     ok = sum(bool(item.get("ok")) for item in statuses)
     stale = sum(bool(item.get("stale")) for item in statuses)
     log(f"COMPLETE {ok}/{len(statuses)} (stale={stale}) in {time.perf_counter()-started:.1f}s")

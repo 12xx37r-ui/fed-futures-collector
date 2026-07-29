@@ -17,7 +17,7 @@ from .optimizer import optimized_weights
 from .utils import latest
 
 
-ENGINE_VERSION = "3.5.0-production-guardrails"
+ENGINE_VERSION = "3.6.0-objective-validation"
 
 
 def _normalise_key(value: str) -> str:
@@ -254,7 +254,7 @@ def main() -> None:
 
     opt = optimized_weights()
     combined, weights_used = combine(features, opt["weights"])
-    probabilities = softmax_three(combined)
+    model_probabilities = softmax_three(combined)
 
     feature_status = {
         "zq_curve": zq_curve,
@@ -269,6 +269,16 @@ def main() -> None:
     backtest_path = Path("public/data/backtest.json")
     backtest = json.loads(backtest_path.read_text(encoding="utf-8")) if backtest_path.exists() else {}
     confidence = calculate(status, feature_status, backtest)
+    validation_passed = bool((backtest.get("quality_gate") or {}).get("passed"))
+    if validation_passed:
+        probabilities = model_probabilities
+        representative_probability_source = "validated_hybrid_model"
+    elif market_action_probs:
+        probabilities = market_action_probs
+        representative_probability_source = "market_implied_until_model_validated"
+    else:
+        probabilities = model_probabilities
+        representative_probability_source = "unvalidated_model_fallback_no_market_curve"
 
     warnings: list[str] = []
     if not zq_curve:
@@ -307,6 +317,8 @@ def main() -> None:
         "current_effective_rate": effective_rate,
         "current_effective_rate_source": effective_rate_source,
         "probabilities": probabilities,
+        "representative_probability_source": representative_probability_source,
+        "model_probabilities": model_probabilities,
         "market_implied_target_probabilities": market_probs,
         "market_implied_action_probabilities": market_action_probs,
         "market_path": next_path,
@@ -334,6 +346,8 @@ def main() -> None:
         "effective_rate_source": effective_rate_source,
         "market_actions": market_action_probs,
         "probabilities": probabilities,
+        "model_probabilities": model_probabilities,
+        "representative_probability_source": representative_probability_source,
         "confidence": confidence,
         "validation": backtest,
         "warnings": warnings,
