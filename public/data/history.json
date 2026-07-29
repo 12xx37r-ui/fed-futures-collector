@@ -196,5 +196,64 @@
       }
     },
     "actual_direction": null
+  },
+  {
+    "snapshot_key": "2026-07-29T21:32:32.174472+00:00|2026-07-29",
+    "captured_at_utc": "2026-07-29T21:32:37.096950+00:00",
+    "meeting": "2026-07-29",
+    "probabilities": {
+      "cut": 21.69,
+      "hold": 48.64,
+      "hike": 29.67
+    },
+    "features": {
+      "market": 0.004999999999999893,
+      "inflation": 0.0306,
+      "employment": -0.33822,
+      "growth": -0.75853,
+      "financial": -0.24387,
+      "fed_text": 0.0
+    },
+    "confidence": {
+      "score": 100,
+      "grade": "HIGH",
+      "data_quality_score": 100,
+      "data_quality_grade": "HIGH",
+      "forecast_validation": {
+        "passed": true,
+        "candidate": true,
+        "level": "준기관급",
+        "requirements": {
+          "historical_reconstructed_rows_min": 30,
+          "direction_accuracy_min": 0.5,
+          "brier_skill_score_min": 0.0,
+          "release_lag_backtest_required": true
+        },
+        "observed": {
+          "historical_reconstructed_rows": 42,
+          "direction_accuracy": 0.6190476190476191,
+          "brier_skill_score": 0.09188461755489807,
+          "release_lag_backtest": true,
+          "real_time_vintage": false
+        }
+      },
+      "logical_groups_ok": 9,
+      "logical_groups_total": 9,
+      "critical_ok": 5,
+      "critical_total": 5,
+      "stale_fred_series": 0,
+      "groups": {
+        "zq_continuous": true,
+        "zq_curve": true,
+        "sofr_curve": true,
+        "fred": true,
+        "nyfed_effr": true,
+        "nyfed_sofr": true,
+        "fomc_calendar": true,
+        "fed_text": true,
+        "dotplot": true
+      }
+    },
+    "actual_direction": null
   }
 ]
