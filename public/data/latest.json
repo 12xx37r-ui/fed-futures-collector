@@ -1,6 +1,6 @@
 {
   "engine_version": "3.6.0-objective-validation",
-  "generated_at_utc": "2026-08-02T15:48:14.730463+00:00",
+  "generated_at_utc": "2026-08-02T21:31:12.552018+00:00",
   "next_fomc": "2026-09-16",
   "fomc_dates": [
     "2021-01-27",
@@ -501,8 +501,8 @@
       {
         "symbol": "SR1Q26.CME",
         "contract_month": "2026-08",
-        "price": 96.357,
-        "implied_average_rate": 3.643,
+        "price": 96.3575,
+        "implied_average_rate": 3.6425,
         "observation_count": 1
       },
       {
