@@ -17,7 +17,7 @@ from .optimizer import optimized_weights
 from .utils import latest
 
 
-ENGINE_VERSION = "3.6.0-objective-validation"
+ENGINE_VERSION = "3.7.0-secure-point-in-time-gated"
 
 
 def _normalise_key(value: str) -> str:

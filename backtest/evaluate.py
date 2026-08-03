@@ -71,13 +71,23 @@ def _score_rows(rows: list[dict]) -> dict:
     mean_brier = sum(briers) / len(briers)
     benchmark = sum(benchmark_briers) / len(benchmark_briers)
     skill = 1 - mean_brier / benchmark if benchmark > 0 else None
+    n = len(rows)
+    accuracy = correct / n
+    z = 1.959963984540054
+    denom = 1 + z*z/n
+    accuracy_lb = (accuracy + z*z/(2*n) - z*math.sqrt((accuracy*(1-accuracy)+z*z/(4*n))/n)) / denom
+    class_frequency = {k: sum(r["actual_direction"] == k for r in rows) / n for k in LABELS}
+    majority_accuracy = max(class_frequency.values())
     return {
-        "direction_accuracy": correct / len(rows),
+        "direction_accuracy": accuracy,
+        "direction_accuracy_wilson_lower_95": max(0.0, accuracy_lb),
+        "majority_class_accuracy": majority_accuracy,
+        "direction_skill_vs_majority": accuracy-majority_accuracy,
         "mean_brier": mean_brier,
         "mean_log_loss": sum(losses) / len(losses),
         "benchmark_brier": benchmark,
         "brier_skill_score": skill,
-        "class_frequency": {k: sum(r["actual_direction"] == k for r in rows) / len(rows) for k in LABELS},
+        "class_frequency": class_frequency,
     }
 
 
@@ -97,17 +107,31 @@ def main() -> None:
     samples = len(historical_rows)
     accuracy = scored.get("direction_accuracy")
     skill = scored.get("brier_skill_score")
-    passed = samples >= 30 and accuracy is not None and accuracy >= 0.50 and skill is not None and skill > 0
-    candidate = samples >= 20 and skill is not None and skill > 0
+    accuracy_lb = scored.get("direction_accuracy_wilson_lower_95")
+    direction_skill = scored.get("direction_skill_vs_majority")
+    real_time_vintage = False
+    passed = (
+        samples >= 60 and accuracy is not None and accuracy >= 0.55
+        and accuracy_lb is not None and accuracy_lb > 0.50
+        and direction_skill is not None and direction_skill > 0
+        and skill is not None and skill >= 0.10 and real_time_vintage
+    )
+    candidate = (
+        not passed and samples >= 30 and skill is not None and skill >= 0.05
+        and direction_skill is not None and direction_skill > 0
+    )
 
     result = {
         "labeled_rows": len(live_rows),
         "newly_labeled_rows": newly_labeled,
         "historical_reconstructed_rows": samples,
         "validation_method": "release_lagged_reconstructed_fomc_walk_forward",
-        "real_time_vintage": False,
+        "real_time_vintage": real_time_vintage,
         "release_lag_backtest": True,
         "direction_accuracy": scored.get("direction_accuracy"),
+        "direction_accuracy_wilson_lower_95": accuracy_lb,
+        "majority_class_accuracy": scored.get("majority_class_accuracy"),
+        "direction_skill_vs_majority": direction_skill,
         "mean_brier": scored.get("mean_brier"),
         "mean_log_loss": scored.get("mean_log_loss"),
         "benchmark_brier": scored.get("benchmark_brier"),
@@ -116,19 +140,25 @@ def main() -> None:
         "quality_gate": {
             "passed": passed,
             "candidate": candidate,
-            "level": "준기관급" if passed else ("준기관급 후보" if candidate else "검증 미통과"),
+            "level": "실시간 독립검증 통과" if passed else ("재구성 OOS 후보" if candidate else "검증 미통과"),
             "requirements": {
-                "historical_reconstructed_rows_min": 30,
-                "direction_accuracy_min": 0.50,
-                "brier_skill_score_min": 0.0,
+                "historical_reconstructed_rows_min": 60,
+                "direction_accuracy_min": 0.55,
+                "direction_accuracy_wilson_lower_95_min_exclusive": 0.50,
+                "direction_skill_vs_majority_min_exclusive": 0.0,
+                "brier_skill_score_min": 0.10,
                 "release_lag_backtest_required": True,
+                "real_time_vintage_required": True,
             },
             "observed": {
                 "historical_reconstructed_rows": samples,
                 "direction_accuracy": accuracy,
+                "direction_accuracy_wilson_lower_95": accuracy_lb,
+                "majority_class_accuracy": scored.get("majority_class_accuracy"),
+                "direction_skill_vs_majority": direction_skill,
                 "brier_skill_score": skill,
                 "release_lag_backtest": True,
-                "real_time_vintage": False,
+                "real_time_vintage": real_time_vintage,
             },
         },
         "limitations": [

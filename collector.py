@@ -4,12 +4,13 @@ import csv
 import io
 import json
 import os
+import re
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
-from urllib.parse import quote
+from urllib.parse import parse_qsl, quote, urlencode, urlsplit, urlunsplit
 
 import requests
 from requests.adapters import HTTPAdapter
@@ -27,6 +28,8 @@ FRED_BULK_TIMEOUT = (4, 18)
 MAX_WORKERS = 12
 CURVE_MONTHS_AHEAD = 18
 MONTH_TO_CODE = {1:"F",2:"G",3:"H",4:"J",5:"K",6:"M",7:"N",8:"Q",9:"U",10:"V",11:"X",12:"Z"}
+SECRET_QUERY_KEYS = frozenset({"api_key", "apikey", "token", "access_token", "key"})
+REDACTED = "[REDACTED]"
 
 
 def utc_now() -> str:
@@ -35,6 +38,40 @@ def utc_now() -> str:
 
 def log(message: str) -> None:
     print(message, flush=True)
+
+
+def sanitize_url(url: str | None) -> str | None:
+    """Return a publish-safe URL while preserving a useful source locator."""
+    if not url:
+        return url
+    parts = urlsplit(str(url))
+    query = [
+        (key, REDACTED if key.lower() in SECRET_QUERY_KEYS else value)
+        for key, value in parse_qsl(parts.query, keep_blank_values=True)
+    ]
+    return urlunsplit((parts.scheme, parts.netloc, parts.path, urlencode(query), parts.fragment))
+
+
+def redact_secrets(value: Any) -> Any:
+    """Recursively redact secrets before any payload is persisted or logged."""
+    if isinstance(value, dict):
+        out = {}
+        for key, item in value.items():
+            lowered = str(key).lower()
+            if lowered in SECRET_QUERY_KEYS or lowered in {"authorization", "password", "secret"}:
+                out[key] = REDACTED
+            elif lowered in {"source_url", "url", "request_url"} and isinstance(item, str):
+                out[key] = sanitize_url(item)
+            else:
+                out[key] = redact_secrets(item)
+        return out
+    if isinstance(value, list):
+        return [redact_secrets(item) for item in value]
+    if isinstance(value, tuple):
+        return tuple(redact_secrets(item) for item in value)
+    if isinstance(value, str) and "?" in value:
+        return re.sub(r"https?://[^\s'\"<>]+", lambda m: sanitize_url(m.group(0)) or "", value)
+    return value
 
 
 def make_session(total_retries: int = 1) -> requests.Session:
@@ -160,7 +197,12 @@ def fred_series_csv(series_id: str) -> dict[str, Any]:
         if not day or raw_value in {"", ".", "NA", "NaN"}:
             continue
         try:
-            rows.append({"date": day, "value": float(raw_value)})
+            rows.append({
+                "date": day,
+                "value": float(raw_value),
+                "realtime_start": item.get("realtime_start"),
+                "realtime_end": item.get("realtime_end"),
+            })
         except ValueError:
             continue
 
@@ -171,8 +213,10 @@ def fred_series_csv(series_id: str) -> dict[str, Any]:
         "series_id": series_id,
         "latest": rows[-1],
         "observations": rows[-2500:],
-        "source_url": response.url,
+        "source_url": sanitize_url(response.url),
         "stale": False,
+        "retrieved_at_utc": utc_now(),
+        "point_in_time_snapshot": True,
     }
 
 def json_endpoint(url: str) -> dict[str, Any]:
@@ -205,7 +249,8 @@ def safe_collect(name: str, fn, *args) -> tuple[Any, dict[str, Any]]:
         value = fn(*args)
         return value, {"name": name, "ok": True, "elapsed_ms": round((time.perf_counter()-started)*1000), "error": None}
     except Exception as exc:
-        return None, {"name": name, "ok": False, "elapsed_ms": round((time.perf_counter()-started)*1000), "error": f"{type(exc).__name__}: {exc}"}
+        error = redact_secrets(f"{type(exc).__name__}: {exc}")
+        return None, {"name": name, "ok": False, "elapsed_ms": round((time.perf_counter()-started)*1000), "error": error}
 
 
 def collect_curve_parallel(symbols, group, statuses):
@@ -348,8 +393,18 @@ def main() -> None:
             statuses.append(status)
             log(f"[FED] {key} ok={status['ok']}")
 
+    # The API key remains available to the live request through the environment,
+    # but no credential-bearing URL or error string may cross this persistence boundary.
+    raw = redact_secrets(raw)
+    status_payload = redact_secrets({"generated_at_utc": utc_now(), "collector_version": "3.7.0-secure-objective-validation", "sources": statuses})
+    raw["collector_version"] = "3.7.0-secure-objective-validation"
+    raw["security"] = {"credentials_persisted": False, "redaction": "recursive_url_and_secret_fields"}
     Path("public/data/raw.json").write_text(json.dumps(raw, ensure_ascii=False, indent=2), encoding="utf-8")
-    Path("public/data/source_status.json").write_text(json.dumps({"generated_at_utc": utc_now(), "collector_version": "3.6.0-objective-validation", "sources": statuses}, ensure_ascii=False, indent=2), encoding="utf-8")
+    Path("public/data/source_status.json").write_text(json.dumps(status_payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    vintage_dir = Path("public/data/vintages")
+    vintage_dir.mkdir(parents=True, exist_ok=True)
+    vintage_day = datetime.now(timezone.utc).date().isoformat()
+    (vintage_dir / f"{vintage_day}.json").write_text(json.dumps(raw, ensure_ascii=False, indent=2), encoding="utf-8")
     ok = sum(bool(item.get("ok")) for item in statuses)
     stale = sum(bool(item.get("stale")) for item in statuses)
     log(f"COMPLETE {ok}/{len(statuses)} (stale={stale}) in {time.perf_counter()-started:.1f}s")

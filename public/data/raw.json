@@ -15773,7 +15773,7 @@
           "value": 4.23
         }
       ],
-      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=DGS2&api_key=277a27af6fb5f8d424e40f669165fc01&file_type=json&sort_order=asc",
+      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=DGS2&api_key=%5BREDACTED%5D&file_type=json&sort_order=asc",
       "stale": false
     },
     "treasury_10y": {
@@ -25784,7 +25784,7 @@
           "value": 4.68
         }
       ],
-      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=DGS10&api_key=277a27af6fb5f8d424e40f669165fc01&file_type=json&sort_order=asc",
+      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=DGS10&api_key=%5BREDACTED%5D&file_type=json&sort_order=asc",
       "stale": false
     },
     "effr_fred": {
@@ -35795,7 +35795,7 @@
           "value": 3.63
         }
       ],
-      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=DFF&api_key=277a27af6fb5f8d424e40f669165fc01&file_type=json&sort_order=asc",
+      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=DFF&api_key=%5BREDACTED%5D&file_type=json&sort_order=asc",
       "stale": false
     },
     "sofr_fred": {
@@ -44126,7 +44126,7 @@
           "value": 3.66
         }
       ],
-      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=SOFR&api_key=277a27af6fb5f8d424e40f669165fc01&file_type=json&sort_order=asc",
+      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=SOFR&api_key=%5BREDACTED%5D&file_type=json&sort_order=asc",
       "stale": false
     },
     "cpi": {
@@ -47949,7 +47949,7 @@
           "value": 332.568
         }
       ],
-      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=CPIAUCSL&api_key=277a27af6fb5f8d424e40f669165fc01&file_type=json&sort_order=asc",
+      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=CPIAUCSL&api_key=%5BREDACTED%5D&file_type=json&sort_order=asc",
       "stale": false
     },
     "core_cpi": {
@@ -51292,7 +51292,7 @@
           "value": 336.065
         }
       ],
-      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=CPILFESL&api_key=277a27af6fb5f8d424e40f669165fc01&file_type=json&sort_order=asc",
+      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=CPILFESL&api_key=%5BREDACTED%5D&file_type=json&sort_order=asc",
       "stale": false
     },
     "pce": {
@@ -54543,7 +54543,7 @@
           "value": 131.392
         }
       ],
-      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=PCEPI&api_key=277a27af6fb5f8d424e40f669165fc01&file_type=json&sort_order=asc",
+      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=PCEPI&api_key=%5BREDACTED%5D&file_type=json&sort_order=asc",
       "stale": false
     },
     "core_pce": {
@@ -57794,7 +57794,7 @@
           "value": 130.266
         }
       ],
-      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=PCEPILFE&api_key=277a27af6fb5f8d424e40f669165fc01&file_type=json&sort_order=asc",
+      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=PCEPILFE&api_key=%5BREDACTED%5D&file_type=json&sort_order=asc",
       "stale": false
     },
     "unemployment_rate": {
@@ -61569,7 +61569,7 @@
           "value": 4.2
         }
       ],
-      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=UNRATE&api_key=277a27af6fb5f8d424e40f669165fc01&file_type=json&sort_order=asc",
+      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=UNRATE&api_key=%5BREDACTED%5D&file_type=json&sort_order=asc",
       "stale": false
     },
     "nonfarm_payrolls": {
@@ -65780,7 +65780,7 @@
           "value": 158984.0
         }
       ],
-      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=PAYEMS&api_key=277a27af6fb5f8d424e40f669165fc01&file_type=json&sort_order=asc",
+      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=PAYEMS&api_key=%5BREDACTED%5D&file_type=json&sort_order=asc",
       "stale": false
     },
     "average_hourly_earnings": {
@@ -68791,7 +68791,7 @@
           "value": 32.38
         }
       ],
-      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=AHETPI&api_key=277a27af6fb5f8d424e40f669165fc01&file_type=json&sort_order=asc",
+      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=AHETPI&api_key=%5BREDACTED%5D&file_type=json&sort_order=asc",
       "stale": false
     },
     "initial_claims": {
@@ -78802,7 +78802,7 @@
           "value": 197000.0
         }
       ],
-      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=ICSA&api_key=277a27af6fb5f8d424e40f669165fc01&file_type=json&sort_order=asc",
+      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=ICSA&api_key=%5BREDACTED%5D&file_type=json&sort_order=asc",
       "stale": false
     },
     "job_openings": {
@@ -80037,7 +80037,7 @@
           "value": 7594.0
         }
       ],
-      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=JTSJOL&api_key=277a27af6fb5f8d424e40f669165fc01&file_type=json&sort_order=asc",
+      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=JTSJOL&api_key=%5BREDACTED%5D&file_type=json&sort_order=asc",
       "stale": false
     },
     "industrial_production": {
@@ -85208,7 +85208,7 @@
           "value": 102.6395
         }
       ],
-      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=INDPRO&api_key=277a27af6fb5f8d424e40f669165fc01&file_type=json&sort_order=asc",
+      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=INDPRO&api_key=%5BREDACTED%5D&file_type=json&sort_order=asc",
       "stale": false
     },
     "retail_sales": {
@@ -86875,7 +86875,7 @@
           "value": 768553.0
         }
       ],
-      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=RSAFS&api_key=277a27af6fb5f8d424e40f669165fc01&file_type=json&sort_order=asc",
+      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=RSAFS&api_key=%5BREDACTED%5D&file_type=json&sort_order=asc",
       "stale": false
     },
     "nfci": {
@@ -96886,7 +96886,7 @@
           "value": -0.554
         }
       ],
-      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=NFCI&api_key=277a27af6fb5f8d424e40f669165fc01&file_type=json&sort_order=asc",
+      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=NFCI&api_key=%5BREDACTED%5D&file_type=json&sort_order=asc",
       "stale": false
     },
     "hy_oas": {
@@ -100045,7 +100045,7 @@
           "value": 2.84
         }
       ],
-      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=BAMLH0A0HYM2&api_key=277a27af6fb5f8d424e40f669165fc01&file_type=json&sort_order=asc",
+      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=BAMLH0A0HYM2&api_key=%5BREDACTED%5D&file_type=json&sort_order=asc",
       "stale": false
     },
     "vix": {
@@ -110056,7 +110056,7 @@
           "value": 17.09
         }
       ],
-      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=VIXCLS&api_key=277a27af6fb5f8d424e40f669165fc01&file_type=json&sort_order=asc",
+      "source_url": "https://api.stlouisfed.org/fred/series/observations?series_id=VIXCLS&api_key=%5BREDACTED%5D&file_type=json&sort_order=asc",
       "stale": false
     }
   },
