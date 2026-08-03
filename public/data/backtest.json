@@ -1,6 +1,6 @@
 {
-  "labeled_rows": 0,
-  "newly_labeled_rows": 0,
+  "labeled_rows": 4,
+  "newly_labeled_rows": 4,
   "historical_reconstructed_rows": 42,
   "validation_method": "release_lagged_reconstructed_fomc_walk_forward",
   "real_time_vintage": false,
