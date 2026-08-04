@@ -1,22 +1,22 @@
 {
   "labeled_rows": 4,
   "newly_labeled_rows": 0,
-  "historical_reconstructed_rows": 42,
+  "historical_reconstructed_rows": 43,
   "validation_method": "release_lagged_reconstructed_fomc_walk_forward",
   "real_time_vintage": false,
   "release_lag_backtest": true,
-  "direction_accuracy": 0.6190476190476191,
-  "direction_accuracy_wilson_lower_95": 0.4681404026715268,
-  "majority_class_accuracy": 0.6190476190476191,
-  "direction_skill_vs_majority": 0.0,
-  "mean_brier": 0.512695145952381,
-  "mean_log_loss": 0.8382784074904512,
-  "benchmark_brier": 0.5645835665156415,
-  "brier_skill_score": 0.09190565159997965,
+  "direction_accuracy": 0.6046511627906976,
+  "direction_accuracy_wilson_lower_95": 0.45579063062873904,
+  "majority_class_accuracy": 0.627906976744186,
+  "direction_skill_vs_majority": -0.023255813953488413,
+  "mean_brier": 0.518498291860465,
+  "mean_log_loss": 0.8437085755654304,
+  "benchmark_brier": 0.5566544278078914,
+  "brier_skill_score": 0.06854546383055915,
   "class_frequency": {
-    "cut": 0.14285714285714285,
-    "hold": 0.6190476190476191,
-    "hike": 0.23809523809523808
+    "cut": 0.13953488372093023,
+    "hold": 0.627906976744186,
+    "hike": 0.23255813953488372
   },
   "quality_gate": {
     "passed": false,
@@ -32,12 +32,12 @@
       "real_time_vintage_required": true
     },
     "observed": {
-      "historical_reconstructed_rows": 42,
-      "direction_accuracy": 0.6190476190476191,
-      "direction_accuracy_wilson_lower_95": 0.4681404026715268,
-      "majority_class_accuracy": 0.6190476190476191,
-      "direction_skill_vs_majority": 0.0,
-      "brier_skill_score": 0.09190565159997965,
+      "historical_reconstructed_rows": 43,
+      "direction_accuracy": 0.6046511627906976,
+      "direction_accuracy_wilson_lower_95": 0.45579063062873904,
+      "majority_class_accuracy": 0.627906976744186,
+      "direction_skill_vs_majority": -0.023255813953488413,
+      "brier_skill_score": 0.06854546383055915,
       "release_lag_backtest": true,
       "real_time_vintage": false
     }

@@ -838,5 +838,25 @@
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
     "validation_type": "reconstructed_release_lagged_fomc"
+  },
+  {
+    "origin_date": "2026-07-22",
+    "meeting": "2026-07-29",
+    "probabilities": {
+      "cut": 9.05,
+      "hold": 34.24,
+      "hike": 56.71
+    },
+    "features": {
+      "market": -1.0,
+      "inflation": 0.13685,
+      "employment": -0.26489,
+      "growth": -0.75853,
+      "financial": -0.26754,
+      "fed_text": 0.0
+    },
+    "actual_direction": "hold",
+    "actual_change_bps": 0.0,
+    "validation_type": "reconstructed_release_lagged_fomc"
   }
 ]
