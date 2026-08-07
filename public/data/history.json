@@ -1680,5 +1680,70 @@
       }
     },
     "actual_direction": null
+  },
+  {
+    "snapshot_key": "2026-08-07T15:15:24.983228+00:00|2026-09-16",
+    "captured_at_utc": "2026-08-07T15:15:49.522848+00:00",
+    "meeting": "2026-09-16",
+    "probabilities": {
+      "cut": 0.0,
+      "hold": 57.6,
+      "hike": 42.4
+    },
+    "features": {
+      "market": -0.2160000000000002,
+      "inflation": 0.13685,
+      "employment": -0.14333,
+      "growth": -0.75853,
+      "financial": -0.27546,
+      "fed_text": 0.0
+    },
+    "confidence": {
+      "score": 49,
+      "grade": "UNVERIFIED",
+      "data_quality_score": 100,
+      "data_quality_grade": "HIGH",
+      "forecast_validation": {
+        "passed": false,
+        "candidate": false,
+        "level": "검증 미통과",
+        "requirements": {
+          "historical_reconstructed_rows_min": 60,
+          "direction_accuracy_min": 0.55,
+          "direction_accuracy_wilson_lower_95_min_exclusive": 0.5,
+          "direction_skill_vs_majority_min_exclusive": 0.0,
+          "brier_skill_score_min": 0.1,
+          "release_lag_backtest_required": true,
+          "real_time_vintage_required": true
+        },
+        "observed": {
+          "historical_reconstructed_rows": 43,
+          "direction_accuracy": 0.6046511627906976,
+          "direction_accuracy_wilson_lower_95": 0.45579063062873904,
+          "majority_class_accuracy": 0.627906976744186,
+          "direction_skill_vs_majority": -0.023255813953488413,
+          "brier_skill_score": 0.06854546383055915,
+          "release_lag_backtest": true,
+          "real_time_vintage": false
+        }
+      },
+      "logical_groups_ok": 9,
+      "logical_groups_total": 9,
+      "critical_ok": 5,
+      "critical_total": 5,
+      "stale_fred_series": 0,
+      "groups": {
+        "zq_continuous": true,
+        "zq_curve": true,
+        "sofr_curve": true,
+        "fred": true,
+        "nyfed_effr": true,
+        "nyfed_sofr": true,
+        "fomc_calendar": true,
+        "fed_text": true,
+        "dotplot": true
+      }
+    },
+    "actual_direction": null
   }
 ]

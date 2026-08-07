@@ -9,10 +9,10 @@
   "direction_accuracy_wilson_lower_95": 0.45579063062873904,
   "majority_class_accuracy": 0.627906976744186,
   "direction_skill_vs_majority": -0.023255813953488413,
-  "mean_brier": 0.518498291860465,
-  "mean_log_loss": 0.8437085755654304,
+  "mean_brier": 0.5181461004651163,
+  "mean_log_loss": 0.843353165985111,
   "benchmark_brier": 0.5566544278078914,
-  "brier_skill_score": 0.06854546383055915,
+  "brier_skill_score": 0.06917815689425322,
   "class_frequency": {
     "cut": 0.13953488372093023,
     "hold": 0.627906976744186,
@@ -37,7 +37,7 @@
       "direction_accuracy_wilson_lower_95": 0.45579063062873904,
       "majority_class_accuracy": 0.627906976744186,
       "direction_skill_vs_majority": -0.023255813953488413,
-      "brier_skill_score": 0.06854546383055915,
+      "brier_skill_score": 0.06917815689425322,
       "release_lag_backtest": true,
       "real_time_vintage": false
     }
