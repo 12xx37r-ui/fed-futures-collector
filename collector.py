@@ -403,8 +403,8 @@ def main() -> None:
     # The API key remains available to the live request through the environment,
     # but no credential-bearing URL or error string may cross this persistence boundary.
     raw = redact_secrets(raw)
-    status_payload = redact_secrets({"generated_at_utc": utc_now(), "collector_version": "3.7.0-secure-objective-validation", "sources": statuses})
-    raw["collector_version"] = "3.7.0-secure-objective-validation"
+    status_payload = redact_secrets({"generated_at_utc": utc_now(), "collector_version": "3.8.1-policy-regime-validation", "sources": statuses})
+    raw["collector_version"] = "3.8.1-policy-regime-validation"
     raw["security"] = {"credentials_persisted": False, "redaction": "recursive_url_and_secret_fields"}
     Path("public/data/raw.json").write_text(json.dumps(raw, ensure_ascii=False, indent=2), encoding="utf-8")
     Path("public/data/source_status.json").write_text(json.dumps(status_payload, ensure_ascii=False, indent=2), encoding="utf-8")

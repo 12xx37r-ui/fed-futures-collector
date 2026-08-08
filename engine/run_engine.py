@@ -18,7 +18,7 @@ from .policy_regime import policy_inertia_asof
 from .utils import latest
 
 
-ENGINE_VERSION = "3.8.0-policy-regime-validation-isolated"
+ENGINE_VERSION = "3.8.1-policy-regime-validation-output-guard"
 
 
 def _normalise_key(value: str) -> str:
