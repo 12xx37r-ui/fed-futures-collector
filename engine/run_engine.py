@@ -8,7 +8,7 @@ from typing import Any
 
 from .confidence import calculate
 from .dotplot import load_manual_dotplot, parse_sep_page
-from .ensemble import combine, softmax_three
+from .ensemble import combine, policy_probabilities
 from .fed_text import text_score
 from .fomc_calendar import all_fomc_dates, next_meeting, parse_fomc_dates
 from .futures_curve import build_curve, stable_meeting_rate, target_probabilities
@@ -18,7 +18,7 @@ from .policy_regime import policy_inertia_asof
 from .utils import latest
 
 
-ENGINE_VERSION = "3.8.1-policy-regime-validation-output-guard"
+ENGINE_VERSION = "3.9.0-policy-base-rate-calibrated"
 
 
 def _normalise_key(value: str) -> str:
@@ -257,7 +257,14 @@ def main() -> None:
 
     opt = optimized_weights()
     combined, weights_used = combine(features, opt["weights"])
-    model_probabilities = softmax_three(combined)
+
+    # Use only completed historical meetings to calibrate the auxiliary
+    # model's action base-rates.  The representative market-implied path is
+    # unchanged; this affects the self-model cross-check only.
+    backtest_path = Path("public/data/backtest.json")
+    backtest = json.loads(backtest_path.read_text(encoding="utf-8")) if backtest_path.exists() else {}
+    class_prior = backtest.get("class_frequency") if isinstance(backtest.get("class_frequency"), dict) else None
+    model_probabilities = policy_probabilities(combined, class_prior)
 
     feature_status = {
         "zq_curve": zq_curve,
@@ -269,8 +276,6 @@ def main() -> None:
             or bool(dot_auto.get("validated"))
         ),
     }
-    backtest_path = Path("public/data/backtest.json")
-    backtest = json.loads(backtest_path.read_text(encoding="utf-8")) if backtest_path.exists() else {}
     confidence = calculate(status, feature_status, backtest)
     validation_passed = bool((backtest.get("quality_gate") or {}).get("passed"))
     # Safety invariant: Fed Funds futures remain the representative forecast
@@ -327,6 +332,10 @@ def main() -> None:
         "probabilities": probabilities,
         "representative_probability_source": representative_probability_source,
         "model_probabilities": model_probabilities,
+        "model_probability_calibration": {
+            "method": "past_only_fomc_action_base_rate",
+            "class_prior": class_prior or {"cut": 0.15, "hold": 0.70, "hike": 0.15},
+        },
         "market_implied_target_probabilities": market_probs,
         "market_implied_action_probabilities": market_action_probs,
         "market_path": next_path,

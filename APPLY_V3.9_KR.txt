@@ -1,0 +1,17 @@
+V3.9.0 적용 방법
+
+1) 이 ZIP을 압축 해제합니다.
+2) GitHub fed-futures-collector 저장소에서 Add file > Upload files를 누릅니다.
+3) 압축을 푼 fed-futures-collector-main 폴더 '안의 파일/폴더'를 업로드하고 Commit 합니다.
+   - public/data의 기존 JSON은 삭제하지 마세요. 이 패키지는 오래된 생성 JSON을 일부러 포함하지 않습니다.
+4) Actions > Update Fed Policy Engine Full > Run workflow를 실행합니다.
+5) 로그의 'Verify generated latest.json is V3.9.0'와 tests가 모두 초록색인지 확인합니다.
+6) public/data/latest.json에서 engine_version이 '3.9.0-policy-base-rate-calibrated'인지 확인합니다.
+7) confidence.forecast_validation.passed가 true이면 GAS V188은 자동으로 '검증 통과'로 표시합니다.
+   false이면 observed의 direction_skill_vs_majority와 brier_skill_score를 확인합니다.
+8) GAS는 V188 그대로 사용해도 됩니다. 새 엔진 필드를 이미 읽도록 되어 있습니다.
+
+안전 원칙
+- Fed Funds 선물 기반 대표 예상값/확률 경로는 변경하지 않았습니다.
+- 자체 예측모델의 확률 보정과 검증부만 수정했습니다.
+- 검증 통과 기준은 낮추지 않았습니다.

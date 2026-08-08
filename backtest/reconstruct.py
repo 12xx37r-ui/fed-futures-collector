@@ -3,7 +3,7 @@ from __future__ import annotations
 from datetime import date, timedelta
 from typing import Any
 
-from engine.ensemble import combine, softmax_three
+from engine.ensemble import combine, policy_probabilities
 from engine.policy_regime import actual_direction, policy_inertia_asof, policy_rate_asof
 from engine.utils import clamp
 from config import BASE_WEIGHTS
@@ -122,6 +122,10 @@ def features_asof(raw: dict[str, Any], origin: date) -> dict[str, float]:
 def reconstruct(raw: dict[str, Any], fomc_dates: list[str]) -> list[dict[str, Any]]:
     rows = []
     today = date.today()
+    # Past-only Dirichlet prior.  The prediction for each meeting is made
+    # before that meeting's outcome is added, preventing class-frequency
+    # look-ahead while calibrating the naturally high FOMC hold base-rate.
+    prior_counts = {"cut": 1.0, "hold": 3.0, "hike": 1.0}
     for text in sorted(set(fomc_dates)):
         try:
             meeting = date.fromisoformat(text)
@@ -135,7 +139,9 @@ def reconstruct(raw: dict[str, Any], fomc_dates: list[str]) -> list[dict[str, An
         origin = meeting - timedelta(days=7)
         features = features_asof(raw, origin)
         score, _ = combine(features, BASE_WEIGHTS["next_meeting"])
-        probs = softmax_three(score)
+        prior_total = sum(prior_counts.values()) or 1.0
+        prior = {k: prior_counts[k] / prior_total for k in prior_counts}
+        probs = policy_probabilities(score, prior)
         rows.append({
             "origin_date": origin.isoformat(),
             "meeting": meeting.isoformat(),
@@ -143,6 +149,8 @@ def reconstruct(raw: dict[str, Any], fomc_dates: list[str]) -> list[dict[str, An
             "features": features,
             "actual_direction": actual[0],
             "actual_change_bps": actual[1],
-            "validation_type": "release_lagged_policy_regime_fomc",
+            "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+            "class_prior_before_meeting": {k: round(v, 6) for k, v in prior.items()},
         })
+        prior_counts[actual[0]] += 1.0
     return rows
