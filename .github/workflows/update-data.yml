@@ -31,7 +31,7 @@ jobs:
           PYTHONUNBUFFERED: "1"
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: |
-          echo "RUNNING FED ENGINE V3.3"
+          echo "RUNNING FED ENGINE V3.8 POLICY REGIME VALIDATION"
           python run.py
 
       - name: Run tests
