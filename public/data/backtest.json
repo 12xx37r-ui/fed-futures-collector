@@ -1,49 +1,56 @@
 {
-  "labeled_rows": 4,
+  "labeled_rows": 0,
   "newly_labeled_rows": 0,
-  "historical_reconstructed_rows": 43,
-  "validation_method": "release_lagged_reconstructed_fomc_walk_forward",
-  "real_time_vintage": false,
+  "historical_reconstructed_rows": 54,
+  "validation_method": "release_lagged_policy_regime_fomc",
   "release_lag_backtest": true,
-  "direction_accuracy": 0.6046511627906976,
-  "direction_accuracy_wilson_lower_95": 0.45579063062873904,
-  "majority_class_accuracy": 0.627906976744186,
-  "direction_skill_vs_majority": -0.023255813953488413,
-  "mean_brier": 0.5181461004651163,
-  "mean_log_loss": 0.843353165985111,
-  "benchmark_brier": 0.5566544278078914,
-  "brier_skill_score": 0.06917815689425322,
+  "real_time_vintage": false,
+  "model_validation_score": 93,
+  "direction_accuracy": 0.7962962962962963,
+  "direction_accuracy_wilson_lower_95": 0.6709769331166457,
+  "majority_class_accuracy": 0.6666666666666666,
+  "direction_skill_vs_majority": 0.12962962962962965,
+  "mean_brier": 0.43198257018518516,
+  "mean_log_loss": 0.7380714049959983,
+  "benchmark_brier": 0.518161835813161,
+  "brier_skill_score": 0.16631727709689992,
   "class_frequency": {
-    "cut": 0.13953488372093023,
-    "hold": 0.627906976744186,
-    "hike": 0.23255813953488372
+    "cut": 0.12962962962962962,
+    "hold": 0.6666666666666666,
+    "hike": 0.2037037037037037
   },
   "quality_gate": {
     "passed": false,
-    "candidate": false,
-    "level": "검증 미통과",
+    "candidate": true,
+    "level": "검증 후보·표본확대 중",
     "requirements": {
       "historical_reconstructed_rows_min": 60,
-      "direction_accuracy_min": 0.55,
+      "direction_accuracy_min": 0.6,
       "direction_accuracy_wilson_lower_95_min_exclusive": 0.5,
       "direction_skill_vs_majority_min_exclusive": 0.0,
       "brier_skill_score_min": 0.1,
-      "release_lag_backtest_required": true,
-      "real_time_vintage_required": true
+      "release_lag_backtest_required": true
     },
     "observed": {
-      "historical_reconstructed_rows": 43,
-      "direction_accuracy": 0.6046511627906976,
-      "direction_accuracy_wilson_lower_95": 0.45579063062873904,
-      "majority_class_accuracy": 0.627906976744186,
-      "direction_skill_vs_majority": -0.023255813953488413,
-      "brier_skill_score": 0.06917815689425322,
-      "release_lag_backtest": true,
-      "real_time_vintage": false
+      "historical_reconstructed_rows": 54,
+      "direction_accuracy": 0.7962962962962963,
+      "direction_accuracy_wilson_lower_95": 0.6709769331166457,
+      "majority_class_accuracy": 0.6666666666666666,
+      "direction_skill_vs_majority": 0.12962962962962965,
+      "brier_skill_score": 0.16631727709689992,
+      "release_lag_backtest": true
     }
   },
+  "live_vintage_gate": {
+    "passed": false,
+    "level": "실시간 스냅숏 누적 중",
+    "samples": 0,
+    "direction_accuracy": null,
+    "direction_accuracy_wilson_lower_95": null,
+    "brier_skill_score": null
+  },
   "limitations": [
-    "과거 검증은 당시 원본 빈티지가 아니라 발표시차를 적용한 최신 이력 재구성입니다.",
-    "실시간 스냅숏 라벨은 별도로 계속 누적됩니다."
+    "발표시차 OOS는 각 지표의 공개 지연을 적용하지만 수정 전 원본 빈티지를 완전히 재현한 것은 아닙니다.",
+    "실시간 스냅숏 검증은 별도로 누적하며 충분한 표본이 쌓이기 전에는 시장 내재확률을 대표값으로 유지합니다."
   ]
 }

@@ -1,13 +1,203 @@
 [
   {
+    "origin_date": "2019-10-23",
+    "meeting": "2019-10-30",
+    "probabilities": {
+      "cut": 30.5,
+      "hold": 48.33,
+      "hike": 21.17
+    },
+    "features": {
+      "policy_inertia": 0.0,
+      "market": 0.5,
+      "inflation": 0.37522,
+      "employment": -0.55,
+      "growth": 0.03384,
+      "financial": 0.12544,
+      "fed_text": 0.0
+    },
+    "actual_direction": "cut",
+    "actual_change_bps": -27.0,
+    "validation_type": "release_lagged_policy_regime_fomc"
+  },
+  {
+    "origin_date": "2019-12-04",
+    "meeting": "2019-12-11",
+    "probabilities": {
+      "cut": 54.28,
+      "hold": 35.81,
+      "hike": 9.91
+    },
+    "features": {
+      "policy_inertia": 1.0,
+      "market": 0.04,
+      "inflation": 0.34173,
+      "employment": -0.50222,
+      "growth": 0.37676,
+      "financial": 0.13911,
+      "fed_text": 0.0
+    },
+    "actual_direction": "hold",
+    "actual_change_bps": 0.0,
+    "validation_type": "release_lagged_policy_regime_fomc"
+  },
+  {
+    "origin_date": "2020-01-22",
+    "meeting": "2020-01-29",
+    "probabilities": {
+      "cut": 25.34,
+      "hold": 50.05,
+      "hike": 24.61
+    },
+    "features": {
+      "policy_inertia": 0.0,
+      "market": 0.04,
+      "inflation": 0.29461,
+      "employment": -0.50156,
+      "growth": 0.00203,
+      "financial": 0.08439,
+      "fed_text": 0.0
+    },
+    "actual_direction": "hold",
+    "actual_change_bps": 4.0,
+    "validation_type": "release_lagged_policy_regime_fomc"
+  },
+  {
+    "origin_date": "2020-04-22",
+    "meeting": "2020-04-29",
+    "probabilities": {
+      "cut": 59.24,
+      "hold": 32.57,
+      "hike": 8.19
+    },
+    "features": {
+      "policy_inertia": 1.0,
+      "market": -0.3,
+      "inflation": 0.54037,
+      "employment": 0.75,
+      "growth": 1.0,
+      "financial": 0.73156,
+      "fed_text": 0.0
+    },
+    "actual_direction": "hold",
+    "actual_change_bps": 1.0,
+    "validation_type": "release_lagged_policy_regime_fomc"
+  },
+  {
+    "origin_date": "2020-06-03",
+    "meeting": "2020-06-10",
+    "probabilities": {
+      "cut": 34.53,
+      "hold": 46.67,
+      "hike": 18.81
+    },
+    "features": {
+      "policy_inertia": 0.0,
+      "market": -0.22,
+      "inflation": 1.0,
+      "employment": 1.0,
+      "growth": 1.0,
+      "financial": 0.40156,
+      "fed_text": 0.0
+    },
+    "actual_direction": "hold",
+    "actual_change_bps": 2.0,
+    "validation_type": "release_lagged_policy_regime_fomc"
+  },
+  {
+    "origin_date": "2020-07-22",
+    "meeting": "2020-07-29",
+    "probabilities": {
+      "cut": 33.78,
+      "hold": 47.0,
+      "hike": 19.23
+    },
+    "features": {
+      "policy_inertia": 0.0,
+      "market": -0.08,
+      "inflation": 1.0,
+      "employment": 1.0,
+      "growth": 0.0,
+      "financial": 0.32089,
+      "fed_text": 0.0
+    },
+    "actual_direction": "hold",
+    "actual_change_bps": 0.0,
+    "validation_type": "release_lagged_policy_regime_fomc"
+  },
+  {
+    "origin_date": "2020-09-09",
+    "meeting": "2020-09-16",
+    "probabilities": {
+      "cut": 24.83,
+      "hold": 50.14,
+      "hike": 25.04
+    },
+    "features": {
+      "policy_inertia": 0.0,
+      "market": -0.1,
+      "inflation": 0.1685,
+      "employment": 0.33333,
+      "growth": -1.0,
+      "financial": 0.41189,
+      "fed_text": 0.0
+    },
+    "actual_direction": "hold",
+    "actual_change_bps": 0.0,
+    "validation_type": "release_lagged_policy_regime_fomc"
+  },
+  {
+    "origin_date": "2020-10-29",
+    "meeting": "2020-11-05",
+    "probabilities": {
+      "cut": 22.91,
+      "hold": 49.3,
+      "hike": 27.79
+    },
+    "features": {
+      "policy_inertia": 0.0,
+      "market": -0.14,
+      "inflation": -0.33224,
+      "employment": 0.33333,
+      "growth": -1.0,
+      "financial": 0.55756,
+      "fed_text": 0.0
+    },
+    "actual_direction": "hold",
+    "actual_change_bps": 0.0,
+    "validation_type": "release_lagged_policy_regime_fomc"
+  },
+  {
+    "origin_date": "2020-12-09",
+    "meeting": "2020-12-16",
+    "probabilities": {
+      "cut": 24.5,
+      "hold": 50.01,
+      "hike": 25.48
+    },
+    "features": {
+      "policy_inertia": 0.0,
+      "market": -0.1,
+      "inflation": 0.1518,
+      "employment": 0.33333,
+      "growth": -1.0,
+      "financial": 0.21889,
+      "fed_text": 0.0
+    },
+    "actual_direction": "hold",
+    "actual_change_bps": 0.0,
+    "validation_type": "release_lagged_policy_regime_fomc"
+  },
+  {
     "origin_date": "2021-01-20",
     "meeting": "2021-01-27",
     "probabilities": {
-      "cut": 27.44,
-      "hold": 49.42,
-      "hike": 23.15
+      "cut": 26.98,
+      "hold": 49.56,
+      "hike": 23.46
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": -0.1,
       "inflation": 0.33871,
       "employment": 0.33333,
@@ -17,17 +207,18 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2021-03-10",
     "meeting": "2021-03-17",
     "probabilities": {
-      "cut": 22.45,
-      "hold": 49.06,
-      "hike": 28.48
+      "cut": 24.17,
+      "hold": 49.88,
+      "hike": 25.95
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": -0.2,
       "inflation": 0.23631,
       "employment": 0.33333,
@@ -37,17 +228,18 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2021-04-21",
     "meeting": "2021-04-28",
     "probabilities": {
-      "cut": 23.38,
-      "hold": 49.53,
-      "hike": 27.1
+      "cut": 24.53,
+      "hold": 50.02,
+      "hike": 25.45
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": -0.16,
       "inflation": 0.06009,
       "employment": 0.33333,
@@ -57,17 +249,18 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": -1.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2021-06-09",
     "meeting": "2021-06-16",
     "probabilities": {
-      "cut": 19.61,
-      "hold": 47.28,
-      "hike": 33.1
+      "cut": 22.14,
+      "hold": 48.9,
+      "hike": 28.96
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": -0.16,
       "inflation": -0.63734,
       "employment": 0.33333,
@@ -77,17 +270,18 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 4.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2021-07-21",
     "meeting": "2021-07-28",
     "probabilities": {
-      "cut": 15.85,
-      "hold": 43.95,
-      "hike": 40.19
+      "cut": 19.86,
+      "hold": 47.46,
+      "hike": 32.68
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": -0.2,
       "inflation": -1.0,
       "employment": 0.33333,
@@ -97,17 +291,18 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2021-09-15",
     "meeting": "2021-09-22",
     "probabilities": {
-      "cut": 18.2,
-      "hold": 46.17,
-      "hike": 35.64
+      "cut": 21.53,
+      "hold": 48.55,
+      "hike": 29.92
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": -0.26,
       "inflation": -0.69408,
       "employment": 0.27778,
@@ -117,17 +312,18 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2021-10-27",
     "meeting": "2021-11-03",
     "probabilities": {
-      "cut": 14.23,
-      "hold": 42.13,
-      "hike": 43.64
+      "cut": 20.33,
+      "hold": 47.79,
+      "hike": 31.88
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": -0.78,
       "inflation": -0.14334,
       "employment": 0.03,
@@ -137,17 +333,18 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2021-12-08",
     "meeting": "2021-12-15",
     "probabilities": {
-      "cut": 7.93,
-      "hold": 32.03,
-      "hike": 60.04
+      "cut": 15.97,
+      "hold": 44.07,
+      "hike": 39.96
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": -1.0,
       "inflation": -0.43594,
       "employment": -0.36333,
@@ -157,17 +354,18 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2022-01-19",
     "meeting": "2022-01-26",
     "probabilities": {
-      "cut": 5.65,
-      "hold": 26.71,
-      "hike": 67.65
+      "cut": 13.65,
+      "hold": 41.41,
+      "hike": 44.94
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": -1.0,
       "inflation": -1.0,
       "employment": -0.32222,
@@ -177,17 +375,18 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2022-03-09",
     "meeting": "2022-03-16",
     "probabilities": {
-      "cut": 6.23,
-      "hold": 28.18,
-      "hike": 65.59
+      "cut": 14.32,
+      "hold": 42.23,
+      "hike": 43.45
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": -1.0,
       "inflation": -1.0,
       "employment": -0.46222,
@@ -197,17 +396,18 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 25.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2022-04-27",
     "meeting": "2022-05-04",
     "probabilities": {
-      "cut": 6.16,
-      "hold": 28.01,
-      "hike": 65.83
+      "cut": 4.7,
+      "hold": 24.09,
+      "hike": 71.22
     },
     "features": {
+      "policy_inertia": -1.0,
       "market": -1.0,
       "inflation": -0.83805,
       "employment": -0.51111,
@@ -217,17 +417,18 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 50.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2022-06-08",
     "meeting": "2022-06-15",
     "probabilities": {
-      "cut": 6.11,
-      "hold": 27.87,
-      "hike": 66.02
+      "cut": 4.66,
+      "hold": 23.98,
+      "hike": 71.36
     },
     "features": {
+      "policy_inertia": -1.0,
       "market": -1.0,
       "inflation": -0.69743,
       "employment": -0.57556,
@@ -237,17 +438,18 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 75.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2022-07-20",
     "meeting": "2022-07-27",
     "probabilities": {
-      "cut": 6.34,
-      "hold": 28.45,
-      "hike": 65.21
+      "cut": 4.75,
+      "hold": 24.23,
+      "hike": 71.03
     },
     "features": {
+      "policy_inertia": -1.0,
       "market": -1.0,
       "inflation": -0.8801,
       "employment": -0.53222,
@@ -257,17 +459,18 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 75.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2022-09-14",
     "meeting": "2022-09-21",
     "probabilities": {
-      "cut": 7.21,
-      "hold": 30.46,
-      "hike": 62.33
+      "cut": 5.13,
+      "hold": 25.31,
+      "hike": 69.56
     },
     "features": {
+      "policy_inertia": -1.0,
       "market": -1.0,
       "inflation": -0.79094,
       "employment": -0.56222,
@@ -277,17 +480,18 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 75.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2022-10-26",
     "meeting": "2022-11-02",
     "probabilities": {
-      "cut": 7.05,
-      "hold": 30.1,
-      "hike": 62.85
+      "cut": 5.05,
+      "hold": 25.09,
+      "hike": 69.87
     },
     "features": {
+      "policy_inertia": -1.0,
       "market": -1.0,
       "inflation": -0.80552,
       "employment": -0.60333,
@@ -297,17 +501,18 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 75.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2022-12-07",
     "meeting": "2022-12-14",
     "probabilities": {
-      "cut": 5.94,
-      "hold": 27.47,
-      "hike": 66.59
+      "cut": 4.53,
+      "hold": 23.59,
+      "hike": 71.88
     },
     "features": {
+      "policy_inertia": -1.0,
       "market": -1.0,
       "inflation": -0.93116,
       "employment": -0.54222,
@@ -317,17 +522,39 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 50.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
+  },
+  {
+    "origin_date": "2023-01-25",
+    "meeting": "2023-02-01",
+    "probabilities": {
+      "cut": 11.48,
+      "hold": 38.38,
+      "hike": 50.14
+    },
+    "features": {
+      "policy_inertia": -1.0,
+      "market": 0.42,
+      "inflation": -0.39992,
+      "employment": -0.58667,
+      "growth": 1.0,
+      "financial": -0.09289,
+      "fed_text": 0.0
+    },
+    "actual_direction": "hike",
+    "actual_change_bps": 25.0,
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2023-03-15",
     "meeting": "2023-03-22",
     "probabilities": {
-      "cut": 36.71,
-      "hold": 45.67,
-      "hike": 17.62
+      "cut": 12.19,
+      "hold": 39.42,
+      "hike": 48.39
     },
     "features": {
+      "policy_inertia": -1.0,
       "market": 0.76,
       "inflation": -0.49295,
       "employment": -0.47222,
@@ -337,17 +564,18 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 25.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2023-04-26",
     "meeting": "2023-05-03",
     "probabilities": {
-      "cut": 38.47,
-      "hold": 44.82,
-      "hike": 16.71
+      "cut": 12.15,
+      "hold": 39.37,
+      "hike": 48.48
     },
     "features": {
+      "policy_inertia": -1.0,
       "market": 1.0,
       "inflation": -0.63642,
       "employment": -0.52333,
@@ -357,17 +585,18 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 25.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2023-06-07",
     "meeting": "2023-06-14",
     "probabilities": {
-      "cut": 43.69,
-      "hold": 42.1,
-      "hike": 14.21
+      "cut": 13.39,
+      "hold": 41.06,
+      "hike": 45.55
     },
     "features": {
+      "policy_inertia": -1.0,
       "market": 1.0,
       "inflation": -0.58231,
       "employment": -0.47556,
@@ -377,17 +606,18 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": -1.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2023-07-19",
     "meeting": "2023-07-26",
     "probabilities": {
-      "cut": 35.72,
-      "hold": 46.13,
-      "hike": 18.15
+      "cut": 27.93,
+      "hold": 49.25,
+      "hike": 22.82
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": 0.68,
       "inflation": -0.31859,
       "employment": -0.47222,
@@ -397,17 +627,18 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 25.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2023-09-13",
     "meeting": "2023-09-20",
     "probabilities": {
-      "cut": 39.48,
-      "hold": 44.32,
-      "hike": 16.21
+      "cut": 13.01,
+      "hold": 40.56,
+      "hike": 46.43
     },
     "features": {
+      "policy_inertia": -1.0,
       "market": 0.7,
       "inflation": -0.00027,
       "employment": -0.46111,
@@ -417,17 +648,39 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
+  },
+  {
+    "origin_date": "2023-10-25",
+    "meeting": "2023-11-01",
+    "probabilities": {
+      "cut": 28.4,
+      "hold": 49.1,
+      "hike": 22.51
+    },
+    "features": {
+      "policy_inertia": 0.0,
+      "market": 0.62,
+      "inflation": 0.13929,
+      "employment": -0.54444,
+      "growth": -0.71506,
+      "financial": -0.15454,
+      "fed_text": 0.0
+    },
+    "actual_direction": "hold",
+    "actual_change_bps": 0.0,
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2023-12-06",
     "meeting": "2023-12-13",
     "probabilities": {
-      "cut": 49.29,
-      "hold": 38.89,
-      "hike": 11.82
+      "cut": 33.8,
+      "hold": 46.99,
+      "hike": 19.22
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": 1.0,
       "inflation": 0.06937,
       "employment": -0.46244,
@@ -437,17 +690,18 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2024-01-24",
     "meeting": "2024-01-31",
     "probabilities": {
-      "cut": 52.24,
-      "hold": 37.09,
-      "hike": 10.67
+      "cut": 35.38,
+      "hold": 46.28,
+      "hike": 18.33
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": 1.0,
       "inflation": 0.12394,
       "employment": -0.49333,
@@ -457,17 +711,18 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2024-03-13",
     "meeting": "2024-03-20",
     "probabilities": {
-      "cut": 50.7,
-      "hold": 38.04,
-      "hike": 11.26
+      "cut": 34.42,
+      "hold": 46.72,
+      "hike": 18.87
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": 1.0,
       "inflation": -0.16886,
       "employment": -0.44556,
@@ -477,17 +732,18 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2024-04-24",
     "meeting": "2024-05-01",
     "probabilities": {
-      "cut": 41.71,
-      "hold": 43.17,
-      "hike": 15.13
+      "cut": 29.87,
+      "hold": 48.57,
+      "hike": 21.56
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": 0.94,
       "inflation": -0.57622,
       "employment": -0.44889,
@@ -497,17 +753,18 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2024-06-05",
     "meeting": "2024-06-12",
     "probabilities": {
-      "cut": 43.49,
-      "hold": 42.21,
-      "hike": 14.3
+      "cut": 30.62,
+      "hold": 48.28,
+      "hike": 21.09
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": 1.0,
       "inflation": -0.32351,
       "employment": -0.33556,
@@ -517,17 +774,18 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2024-07-24",
     "meeting": "2024-07-31",
     "probabilities": {
-      "cut": 53.32,
-      "hold": 36.42,
-      "hike": 10.26
+      "cut": 36.05,
+      "hold": 45.98,
+      "hike": 17.97
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": 1.0,
       "inflation": 0.29315,
       "employment": -0.116,
@@ -537,17 +795,18 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2024-09-11",
     "meeting": "2024-09-18",
     "probabilities": {
-      "cut": 54.81,
-      "hold": 35.47,
-      "hike": 9.72
+      "cut": 37.03,
+      "hold": 45.52,
+      "hike": 17.45
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": 1.0,
       "inflation": 0.39405,
       "employment": -0.08156,
@@ -557,17 +816,18 @@
     },
     "actual_direction": "cut",
     "actual_change_bps": -50.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2024-10-31",
     "meeting": "2024-11-07",
     "probabilities": {
-      "cut": 51.66,
-      "hold": 37.45,
-      "hike": 10.89
+      "cut": 63.74,
+      "hold": 29.48,
+      "hike": 6.78
     },
     "features": {
+      "policy_inertia": 1.0,
       "market": 1.0,
       "inflation": 0.07126,
       "employment": -0.15467,
@@ -577,17 +837,18 @@
     },
     "actual_direction": "cut",
     "actual_change_bps": -25.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2024-12-11",
     "meeting": "2024-12-18",
     "probabilities": {
-      "cut": 44.77,
-      "hold": 41.5,
-      "hike": 13.73
+      "cut": 60.55,
+      "hold": 31.68,
+      "hike": 7.77
     },
     "features": {
+      "policy_inertia": 1.0,
       "market": 0.86,
       "inflation": -0.09628,
       "employment": -0.21356,
@@ -597,17 +858,18 @@
     },
     "actual_direction": "cut",
     "actual_change_bps": -25.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2025-01-22",
     "meeting": "2025-01-29",
     "probabilities": {
-      "cut": 23.65,
-      "hold": 49.65,
-      "hike": 26.7
+      "cut": 50.63,
+      "hold": 38.08,
+      "hike": 11.29
     },
     "features": {
+      "policy_inertia": 1.0,
       "market": 0.08,
       "inflation": 0.07082,
       "employment": -0.306,
@@ -617,17 +879,18 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2025-03-12",
     "meeting": "2025-03-19",
     "probabilities": {
-      "cut": 44.13,
-      "hold": 41.86,
-      "hike": 14.01
+      "cut": 32.11,
+      "hold": 47.7,
+      "hike": 20.2
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": 0.78,
       "inflation": -0.02078,
       "employment": -0.14622,
@@ -637,17 +900,18 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2025-04-30",
     "meeting": "2025-05-07",
     "probabilities": {
-      "cut": 49.95,
-      "hold": 38.49,
-      "hike": 11.56
+      "cut": 34.27,
+      "hold": 46.78,
+      "hike": 18.95
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": 1.0,
       "inflation": -0.08941,
       "employment": -0.03289,
@@ -657,17 +921,18 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2025-06-11",
     "meeting": "2025-06-18",
     "probabilities": {
-      "cut": 39.36,
-      "hold": 44.38,
-      "hike": 16.26
+      "cut": 30.19,
+      "hold": 48.45,
+      "hike": 21.36
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": 0.64,
       "inflation": 0.12618,
       "employment": -0.02311,
@@ -677,17 +942,18 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2025-07-23",
     "meeting": "2025-07-30",
     "probabilities": {
-      "cut": 53.82,
-      "hold": 36.1,
-      "hike": 10.08
+      "cut": 36.3,
+      "hold": 45.86,
+      "hike": 17.84
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": 1.0,
       "inflation": 0.13433,
       "employment": -0.09733,
@@ -697,17 +963,18 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2025-09-10",
     "meeting": "2025-09-17",
     "probabilities": {
-      "cut": 51.79,
-      "hold": 37.37,
-      "hike": 10.84
+      "cut": 35.19,
+      "hold": 46.37,
+      "hike": 18.44
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": 1.0,
       "inflation": 0.04461,
       "employment": 0.09289,
@@ -717,17 +984,18 @@
     },
     "actual_direction": "cut",
     "actual_change_bps": -24.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2025-10-22",
     "meeting": "2025-10-29",
     "probabilities": {
-      "cut": 50.25,
-      "hold": 38.31,
-      "hike": 11.44
+      "cut": 63.02,
+      "hold": 29.99,
+      "hike": 6.99
     },
     "features": {
+      "policy_inertia": 1.0,
       "market": 1.0,
       "inflation": -0.0134,
       "employment": 0.01,
@@ -737,17 +1005,18 @@
     },
     "actual_direction": "cut",
     "actual_change_bps": -25.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2025-12-03",
     "meeting": "2025-12-10",
     "probabilities": {
-      "cut": 47.41,
-      "hold": 40.0,
-      "hike": 12.59
+      "cut": 62.51,
+      "hold": 30.34,
+      "hike": 7.15
     },
     "features": {
+      "policy_inertia": 1.0,
       "market": 0.76,
       "inflation": -0.00154,
       "employment": 0.13267,
@@ -757,17 +1026,18 @@
     },
     "actual_direction": "cut",
     "actual_change_bps": -25.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2026-01-21",
     "meeting": "2026-01-28",
     "probabilities": {
-      "cut": 28.25,
-      "hold": 49.15,
-      "hike": 22.61
+      "cut": 54.35,
+      "hold": 35.76,
+      "hike": 9.88
     },
     "features": {
+      "policy_inertia": 1.0,
       "market": 0.08,
       "inflation": 0.07358,
       "employment": 0.064,
@@ -777,17 +1047,18 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2026-03-11",
     "meeting": "2026-03-18",
     "probabilities": {
-      "cut": 27.86,
-      "hold": 49.28,
-      "hike": 22.86
+      "cut": 26.0,
+      "hold": 49.86,
+      "hike": 24.13
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": 0.14,
       "inflation": -0.12852,
       "employment": 0.03867,
@@ -797,17 +1068,18 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2026-04-22",
     "meeting": "2026-04-29",
     "probabilities": {
-      "cut": 17.3,
-      "hold": 45.38,
-      "hike": 37.31
+      "cut": 20.99,
+      "hold": 48.22,
+      "hike": 30.79
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": -0.28,
       "inflation": -0.25001,
       "employment": -0.16311,
@@ -817,46 +1089,48 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2026-06-10",
     "meeting": "2026-06-17",
     "probabilities": {
-      "cut": 7.92,
-      "hold": 32.0,
-      "hike": 60.09
+      "cut": 15.78,
+      "hold": 43.88,
+      "hike": 40.34
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": -1.0,
       "inflation": -0.16897,
-      "employment": -0.24444,
+      "employment": -0.28844,
       "growth": -0.90795,
       "financial": -0.20304,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   },
   {
     "origin_date": "2026-07-22",
     "meeting": "2026-07-29",
     "probabilities": {
-      "cut": 9.21,
-      "hold": 34.55,
-      "hike": 56.24
+      "cut": 16.89,
+      "hold": 44.99,
+      "hike": 38.12
     },
     "features": {
+      "policy_inertia": 0.0,
       "market": -1.0,
       "inflation": 0.13685,
-      "employment": -0.19622,
+      "employment": -0.26489,
       "growth": -0.75853,
       "financial": -0.26571,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "reconstructed_release_lagged_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc"
   }
 ]

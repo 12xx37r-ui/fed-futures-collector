@@ -12,16 +12,47 @@ def _validation_gate(backtest: dict) -> dict:
         "candidate": False,
         "level": "검증 미통과",
         "requirements": {
-            "historical_reconstructed_rows_min": 30,
-            "direction_accuracy_min": 0.50,
-            "brier_skill_score_min": 0.0,
+            "historical_reconstructed_rows_min": 60,
+            "direction_accuracy_min": 0.60,
+            "direction_accuracy_wilson_lower_95_min_exclusive": 0.50,
+            "direction_skill_vs_majority_min_exclusive": 0.0,
+            "brier_skill_score_min": 0.10,
         },
         "observed": {
             "historical_reconstructed_rows": int(backtest.get("historical_reconstructed_rows") or 0),
             "direction_accuracy": backtest.get("direction_accuracy"),
+            "direction_accuracy_wilson_lower_95": backtest.get("direction_accuracy_wilson_lower_95"),
+            "direction_skill_vs_majority": backtest.get("direction_skill_vs_majority"),
             "brier_skill_score": backtest.get("brier_skill_score"),
         },
     }
+
+
+def _model_validation_score(backtest: dict, validation: dict) -> int:
+    value = backtest.get("model_validation_score")
+    try:
+        return max(0, min(100, round(float(value))))
+    except (TypeError, ValueError):
+        pass
+
+    # Backward-compatible diagnostic when an older backtest.json is present.
+    observed = validation.get("observed") or {}
+    samples = int(observed.get("historical_reconstructed_rows") or 0)
+    accuracy = observed.get("direction_accuracy")
+    wilson = observed.get("direction_accuracy_wilson_lower_95")
+    brier_skill = observed.get("brier_skill_score")
+    direction_skill = observed.get("direction_skill_vs_majority")
+
+    def clamp01(x: float) -> float:
+        return max(0.0, min(1.0, x))
+
+    sample_part = 20 * clamp01(samples / 60.0)
+    accuracy_part = 25 * clamp01(((float(accuracy) if accuracy is not None else 0.0) - 0.50) / 0.20)
+    wilson_part = 20 * clamp01(((float(wilson) if wilson is not None else 0.0) - 0.45) / 0.15)
+    brier_part = 20 * clamp01((float(brier_skill) if brier_skill is not None else 0.0) / 0.20)
+    direction_part = 15 * clamp01((float(direction_skill) if direction_skill is not None else 0.0) / 0.15)
+    return round(sample_part + accuracy_part + wilson_part + brier_part + direction_part)
+
 
 def calculate(status: dict, features: dict, backtest: dict | None = None) -> dict:
     sources = status.get("sources", [])
@@ -45,18 +76,32 @@ def calculate(status: dict, features: dict, backtest: dict | None = None) -> dic
     data_score = round(max(0, source_score + critical_score + 15 - stale_penalty))
     data_grade = "HIGH" if data_score >= 85 else "MEDIUM" if data_score >= 70 else "LOW" if data_score >= 50 else "FAIL"
 
-    validation = _validation_gate(backtest or {})
-    # Preserve score compatibility, but never equate source completeness with forecast validation.
-    if validation["passed"]:
-        score, grade = data_score, data_grade
-    elif validation["candidate"]:
-        score, grade = min(data_score, 69), "CANDIDATE"
+    backtest = backtest or {}
+    validation = _validation_gate(backtest)
+    model_score = _model_validation_score(backtest, validation)
+    if validation.get("passed"):
+        model_grade = "VALIDATED"
+    elif validation.get("candidate"):
+        model_grade = "CANDIDATE"
     else:
-        score, grade = min(data_score, 49), "UNVERIFIED"
+        model_grade = "UNVERIFIED"
+
+    # `score`/`grade` are retained only as a conservative compatibility field
+    # for older consumers.  New consumers must use the explicit data-quality
+    # and model-validation fields below.
+    if validation.get("passed"):
+        legacy_score, legacy_grade = data_score, data_grade
+    elif validation.get("candidate"):
+        legacy_score, legacy_grade = min(data_score, 69), "CANDIDATE"
+    else:
+        legacy_score, legacy_grade = min(data_score, 49), "UNVERIFIED"
 
     return {
-        "score": score,
-        "grade": grade,
+        "score": legacy_score,
+        "grade": legacy_grade,
+        "model_validation_score": model_score,
+        "model_validation_grade": model_grade,
+        "model_validation_level": validation.get("level") or "검증 미통과",
         "data_quality_score": data_score,
         "data_quality_grade": data_grade,
         "forecast_validation": validation,

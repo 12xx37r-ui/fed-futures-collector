@@ -31,6 +31,13 @@ MONTH_TO_CODE = {1:"F",2:"G",3:"H",4:"J",5:"K",6:"M",7:"N",8:"Q",9:"U",10:"V",11
 SECRET_QUERY_KEYS = frozenset({"api_key", "apikey", "token", "access_token", "key"})
 REDACTED = "[REDACTED]"
 
+# Daily policy/market series need a longer history for meeting-by-meeting validation.
+# Monthly macro series remain capped at 2,500 observations to avoid bloating raw.json.
+FRED_LONG_HISTORY_SERIES = frozenset({"DFF", "DFEDTARU", "DFEDTARL", "DGS2", "VIXCLS", "NFCI"})
+
+def fred_retention_limit(series_id: str) -> int:
+    return 6000 if series_id in FRED_LONG_HISTORY_SERIES else 2500
+
 
 def utc_now() -> str:
     return datetime.now(timezone.utc).isoformat()
@@ -157,7 +164,7 @@ def parse_fred_series_csv(text: str, series_id: str, source_url: str) -> dict[st
     return {
         "series_id": series_id,
         "latest": rows[-1],
-        "observations": rows[-2500:],
+        "observations": rows[-fred_retention_limit(series_id):],
         "source_url": source_url,
         "stale": False,
     }
@@ -212,7 +219,7 @@ def fred_series_csv(series_id: str) -> dict[str, Any]:
     return {
         "series_id": series_id,
         "latest": rows[-1],
-        "observations": rows[-2500:],
+        "observations": rows[-fred_retention_limit(series_id):],
         "source_url": sanitize_url(response.url),
         "stale": False,
         "retrieved_at_utc": utc_now(),

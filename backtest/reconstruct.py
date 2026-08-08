@@ -1,14 +1,13 @@
 from __future__ import annotations
 
-import math
 from datetime import date, timedelta
 from typing import Any
 
 from engine.ensemble import combine, softmax_three
+from engine.policy_regime import actual_direction, policy_inertia_asof, policy_rate_asof
 from engine.utils import clamp
 from config import BASE_WEIGHTS
 
-LABELS = ("cut", "hold", "hike")
 LAGS_DAYS = {
     "core_cpi": 45,
     "core_pce": 45,
@@ -22,6 +21,8 @@ LAGS_DAYS = {
     "vix": 1,
     "treasury_2y": 1,
     "effr_fred": 1,
+    "target_upper": 1,
+    "target_lower": 1,
 }
 
 
@@ -62,9 +63,9 @@ def _annualized(fred: dict, key: str, origin: date, periods: int) -> float | Non
 
 def features_asof(raw: dict[str, Any], origin: date) -> dict[str, float]:
     f = raw.get("fred") or {}
-    dff = _latest(f, "effr_fred", origin)
+    policy_rate = policy_rate_asof(raw, origin - timedelta(days=1))
     dgs2 = _latest(f, "treasury_2y", origin)
-    market = clamp((dff - dgs2) / 0.50) if dff is not None and dgs2 is not None else 0.0
+    market = clamp((policy_rate - dgs2) / 0.50) if policy_rate is not None and dgs2 is not None else 0.0
 
     inflation_parts = []
     for key in ("core_cpi", "core_pce"):
@@ -107,24 +108,15 @@ def features_asof(raw: dict[str, Any], origin: date) -> dict[str, float]:
     financial = sum(financial_parts) / len(financial_parts) if financial_parts else 0.0
 
     return {
+        "policy_inertia": round(policy_inertia_asof(raw, origin), 5),
         "market": round(market, 5),
         "inflation": round(inflation, 5),
         "employment": round(employment, 5),
         "growth": round(growth, 5),
         "financial": round(financial, 5),
+        # Historical Fed text is not reconstructed from today's RSS archive.
         "fed_text": 0.0,
     }
-
-
-def _actual_direction(raw: dict[str, Any], meeting: date) -> tuple[str, float] | None:
-    pts = _points((raw.get("fred") or {}).get("effr_fred"), meeting + timedelta(days=10))
-    pre = [v for d, v in pts if meeting - timedelta(days=7) <= d < meeting]
-    post = [v for d, v in pts if meeting < d <= meeting + timedelta(days=7)]
-    if not pre or not post:
-        return None
-    change = post[-1] - pre[-1]
-    direction = "hike" if change > 0.125 else "cut" if change < -0.125 else "hold"
-    return direction, round(change * 100, 2)
 
 
 def reconstruct(raw: dict[str, Any], fomc_dates: list[str]) -> list[dict[str, Any]]:
@@ -137,7 +129,7 @@ def reconstruct(raw: dict[str, Any], fomc_dates: list[str]) -> list[dict[str, An
             continue
         if meeting >= today - timedelta(days=5):
             continue
-        actual = _actual_direction(raw, meeting)
+        actual = actual_direction(raw, meeting)
         if not actual:
             continue
         origin = meeting - timedelta(days=7)
@@ -151,6 +143,6 @@ def reconstruct(raw: dict[str, Any], fomc_dates: list[str]) -> list[dict[str, An
             "features": features,
             "actual_direction": actual[0],
             "actual_change_bps": actual[1],
-            "validation_type": "reconstructed_release_lagged_fomc",
+            "validation_type": "release_lagged_policy_regime_fomc",
         })
     return rows

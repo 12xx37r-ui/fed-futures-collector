@@ -4,6 +4,8 @@ FRED_SERIES = {
     "DGS2": "treasury_2y",
     "DGS10": "treasury_10y",
     "DFF": "effr_fred",
+    "DFEDTARU": "target_upper",
+    "DFEDTARL": "target_lower",
     "SOFR": "sofr_fred",
     "CPIAUCSL": "cpi",
     "CPILFESL": "core_cpi",
@@ -41,20 +43,26 @@ SOFR_ROOTS = ("SR1", "SR3")
 
 BASE_WEIGHTS = {
     "next_meeting": {
-        "market": 0.50,
-        "inflation": 0.18,
-        "employment": 0.12,
-        "growth": 0.07,
-        "financial": 0.05,
-        "fed_text": 0.08,
+        # Policy decisions are serially persistent.  The immediately preceding
+        # policy move is therefore an explicit feature instead of being hidden
+        # inside a generic macro score.  Market pricing remains important, but
+        # it no longer dominates the auxiliary model.
+        "policy_inertia": 0.50,
+        "market": 0.21,
+        "inflation": 0.11,
+        "employment": 0.07,
+        "growth": 0.04,
+        "financial": 0.04,
+        "fed_text": 0.03,
     },
     "medium": {
-        "market": 0.35,
-        "inflation": 0.22,
-        "employment": 0.15,
-        "growth": 0.12,
-        "financial": 0.08,
-        "fed_text": 0.08,
+        "policy_inertia": 0.30,
+        "market": 0.25,
+        "inflation": 0.17,
+        "employment": 0.10,
+        "growth": 0.08,
+        "financial": 0.05,
+        "fed_text": 0.05,
     },
 }
 

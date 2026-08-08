@@ -21,6 +21,8 @@ def main() -> None:
             "captured_at_utc": datetime.now(timezone.utc).isoformat(),
             "meeting": latest.get("next_fomc"),
             "probabilities": latest.get("probabilities"),
+            "model_probabilities": latest.get("model_probabilities"),
+            "representative_probability_source": latest.get("representative_probability_source"),
             "features": latest.get("features"),
             "confidence": latest.get("confidence"),
             "actual_direction": None,

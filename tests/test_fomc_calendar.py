@@ -3,10 +3,20 @@ import unittest
 from datetime import date
 from pathlib import Path
 
-from engine.fomc_calendar import next_meeting, parse_fomc_dates
+from engine.fomc_calendar import all_fomc_dates, next_meeting, parse_fomc_dates
 
 
 class FomcCalendarTests(unittest.TestCase):
+
+    def test_cross_month_meeting_is_parsed(self):
+        html = """<div>2024 FOMC Meetings</div><div>Jan/Feb 31-1</div><div>Apr/May 30-1</div>"""
+        dates = parse_fomc_dates(html)
+        self.assertIn("2024-02-01", dates)
+        self.assertIn("2024-05-01", dates)
+
+    def test_historical_regular_dates_are_merged(self):
+        self.assertIn("2019-07-31", all_fomc_dates(""))
+
     def test_official_saved_page(self):
         raw_path = Path("public/data/raw.json")
         if not raw_path.exists():

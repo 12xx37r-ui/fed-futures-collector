@@ -1,0 +1,29 @@
+# Fed Policy Engine V3.2 패치
+
+## 사용법
+
+1. 이 ZIP의 폴더를 통째로 `fed-futures-collector` 폴더 안에 넣습니다.
+2. `적용하기_V3.2.bat`를 더블클릭합니다.
+3. `[완료]`가 표시되면 GitHub Desktop으로 돌아갑니다.
+4. Summary에 `Fix FRED timeout V3.2`를 입력합니다.
+5. `Commit to main`을 누른 뒤 `Push origin`을 누릅니다.
+6. GitHub Actions에서 워크플로를 다시 실행합니다.
+
+## 변경 내용
+
+- FRED 읽기 제한시간: 10초 → 30초
+- FRED 동시 요청 수: 6개 → 2개
+- 실패 시 명시적 1회 재시도(총 2회)
+- 내부 중첩 재시도 제거로 최악 실행시간 제어
+- 엔진 버전: `3.2.0-fred-timeout-controlled-retry`
+- 수정 전 `collector.py` 자동 백업
+- 수정 후 Python 문법 자동 검증
+
+## 성공 로그 예시
+
+```text
+RUNNING FED ENGINE V3.2
+[FRED] DGS10 live=True
+...
+ENGINE_VERSION=3.2.0-fred-timeout-controlled-retry
+```

@@ -6,7 +6,7 @@ import numpy as np
 from sklearn.linear_model import LogisticRegression
 from config import BASE_WEIGHTS, MIN_SNAPSHOTS_FOR_OPTIMIZATION
 
-FEATURES = ["market", "inflation", "employment", "growth", "financial", "fed_text"]
+FEATURES = ["policy_inertia", "market", "inflation", "employment", "growth", "financial", "fed_text"]
 
 
 def optimized_weights(history_path: str = "public/data/history.json") -> dict:

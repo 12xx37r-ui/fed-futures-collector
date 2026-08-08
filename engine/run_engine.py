@@ -10,14 +10,15 @@ from .confidence import calculate
 from .dotplot import load_manual_dotplot, parse_sep_page
 from .ensemble import combine, softmax_three
 from .fed_text import text_score
-from .fomc_calendar import next_meeting, parse_fomc_dates
+from .fomc_calendar import all_fomc_dates, next_meeting, parse_fomc_dates
 from .futures_curve import build_curve, stable_meeting_rate, target_probabilities
 from .macro_model import score as macro_score
 from .optimizer import optimized_weights
+from .policy_regime import policy_inertia_asof
 from .utils import latest
 
 
-ENGINE_VERSION = "3.7.0-secure-point-in-time-gated"
+ENGINE_VERSION = "3.8.0-policy-regime-validation-isolated"
 
 
 def _normalise_key(value: str) -> str:
@@ -208,8 +209,9 @@ def main() -> None:
     calendar_html = (
         raw.get("fed", {}).get("fomc_calendar") or {}
     ).get("text", "")
-    fomc_dates = parse_fomc_dates(calendar_html)
-    upcoming = next_meeting(fomc_dates)
+    live_fomc_dates = parse_fomc_dates(calendar_html)
+    fomc_dates = all_fomc_dates(calendar_html)
+    upcoming = next_meeting(live_fomc_dates) or next_meeting(fomc_dates)
 
     fed_comm = text_score(
         (raw.get("fed", {}).get("press_rss") or {}).get("text", ""),
@@ -244,6 +246,7 @@ def main() -> None:
         )
 
     features = {
+        "policy_inertia": policy_inertia_asof(raw, date.today()),
         "market": market_score,
         "inflation": macro["inflation"],
         "employment": macro["employment"],
@@ -270,15 +273,20 @@ def main() -> None:
     backtest = json.loads(backtest_path.read_text(encoding="utf-8")) if backtest_path.exists() else {}
     confidence = calculate(status, feature_status, backtest)
     validation_passed = bool((backtest.get("quality_gate") or {}).get("passed"))
-    if validation_passed:
-        probabilities = model_probabilities
-        representative_probability_source = "validated_hybrid_model"
-    elif market_action_probs:
+    # Safety invariant: Fed Funds futures remain the representative forecast
+    # whenever a valid market-implied path exists.  The auxiliary model is
+    # exposed separately for cross-checking and never silently replaces the
+    # working market path merely because a reconstructed gate passes.
+    if market_action_probs:
         probabilities = market_action_probs
-        representative_probability_source = "market_implied_until_model_validated"
+        representative_probability_source = "market_implied_primary"
     else:
         probabilities = model_probabilities
-        representative_probability_source = "unvalidated_model_fallback_no_market_curve"
+        representative_probability_source = (
+            "validated_auxiliary_model_fallback_no_market_curve"
+            if validation_passed else
+            "unvalidated_auxiliary_model_fallback_no_market_curve"
+        )
 
     warnings: list[str] = []
     if not zq_curve:
@@ -291,14 +299,14 @@ def main() -> None:
         warnings.append("EFFR·대체 익일금리 모두 미확보: 시장확률 계산 불가")
     elif effective_rate_source == "sofr_proxy":
         warnings.append("EFFR 미확보로 SOFR를 현재금리 대체값으로 사용")
-        confidence["score"] = max(0, confidence["score"] - 8)
-        confidence["grade"] = (
-            "LOW" if confidence["score"] < 70 else confidence["grade"]
+        confidence["data_quality_score"] = max(0, int(confidence.get("data_quality_score") or 0) - 8)
+        confidence["data_quality_grade"] = (
+            "LOW" if confidence["data_quality_score"] < 70 else confidence.get("data_quality_grade", "MEDIUM")
         )
     elif effective_rate_source == "zq_current_month_proxy":
         warnings.append("EFFR·SOFR 미확보로 당월 ZQ 평균금리를 대체값으로 사용")
-        confidence["score"] = max(0, confidence["score"] - 15)
-        confidence["grade"] = "LOW"
+        confidence["data_quality_score"] = max(0, int(confidence.get("data_quality_score") or 0) - 15)
+        confidence["data_quality_grade"] = "LOW"
     if not meeting_path and upcoming:
         warnings.append("다음 회의 월과 일치하는 정상 ZQ 경로 미확보")
     stabilized = [row for row in meeting_path if row.get("stability_flags")]
