@@ -1,6 +1,6 @@
 {
-  "engine_version": "3.8.1-policy-regime-validation-output-guard",
-  "generated_at_utc": "2026-08-08T07:04:41.461989+00:00",
+  "engine_version": "3.9.0-policy-base-rate-calibrated",
+  "generated_at_utc": "2026-08-08T07:18:12.335172+00:00",
   "next_fomc": "2026-09-16",
   "fomc_dates": [
     "2015-01-28",
@@ -116,9 +116,17 @@
   },
   "representative_probability_source": "market_implied_primary",
   "model_probabilities": {
-    "cut": 22.2,
-    "hold": 48.93,
-    "hike": 28.87
+    "cut": 8.33,
+    "hold": 65.96,
+    "hike": 25.71
+  },
+  "model_probability_calibration": {
+    "method": "past_only_fomc_action_base_rate",
+    "class_prior": {
+      "cut": 0.09782608695652174,
+      "hold": 0.6847826086956522,
+      "hike": 0.21739130434782608
+    }
   },
   "market_implied_target_probabilities": {
     "3.63": 57.6,
@@ -708,7 +716,7 @@
   "confidence": {
     "score": 49,
     "grade": "UNVERIFIED",
-    "model_validation_score": 61,
+    "model_validation_score": 75,
     "model_validation_grade": "UNVERIFIED",
     "model_validation_level": "검증 미통과",
     "data_quality_score": 100,
@@ -731,7 +739,7 @@
         "direction_accuracy_wilson_lower_95": 0.5840668992376272,
         "majority_class_accuracy": 0.6847826086956522,
         "direction_skill_vs_majority": 0.0,
-        "brier_skill_score": -0.005898656174848194,
+        "brier_skill_score": 0.14462767047754932,
         "release_lag_backtest": true
       }
     },
@@ -756,18 +764,19 @@
     "labeled_rows": 0,
     "newly_labeled_rows": 0,
     "historical_reconstructed_rows": 92,
-    "validation_method": "release_lagged_policy_regime_fomc",
+    "validation_method": "release_lagged_policy_regime_fomc_base_rate_calibrated",
     "release_lag_backtest": true,
+    "probability_calibration": "past_only_fomc_action_base_rate",
     "real_time_vintage": false,
-    "model_validation_score": 61,
+    "model_validation_score": 75,
     "direction_accuracy": 0.6847826086956522,
     "direction_accuracy_wilson_lower_95": 0.5840668992376272,
     "majority_class_accuracy": 0.6847826086956522,
     "direction_skill_vs_majority": 0.0,
-    "mean_brier": 0.4903057463043478,
-    "mean_log_loss": 0.8058946408984637,
+    "mean_brier": 0.41693461445652175,
+    "mean_log_loss": 0.6755941965201913,
     "benchmark_brier": 0.4874305610158022,
-    "brier_skill_score": -0.005898656174848194,
+    "brier_skill_score": 0.14462767047754932,
     "class_frequency": {
       "cut": 0.09782608695652174,
       "hold": 0.6847826086956522,
@@ -791,7 +800,7 @@
         "direction_accuracy_wilson_lower_95": 0.5840668992376272,
         "majority_class_accuracy": 0.6847826086956522,
         "direction_skill_vs_majority": 0.0,
-        "brier_skill_score": -0.005898656174848194,
+        "brier_skill_score": 0.14462767047754932,
         "release_lag_backtest": true
       }
     },

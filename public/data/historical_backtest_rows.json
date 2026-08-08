@@ -3,9 +3,9 @@
     "origin_date": "2015-01-21",
     "meeting": "2015-01-28",
     "probabilities": {
-      "cut": 22.44,
-      "hold": 49.06,
-      "hike": 28.5
+      "cut": 17.53,
+      "hold": 58.83,
+      "hike": 23.64
     },
     "features": {
       "policy_inertia": 0.0,
@@ -18,15 +18,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.2,
+      "hold": 0.6,
+      "hike": 0.2
+    }
   },
   {
     "origin_date": "2015-03-11",
     "meeting": "2015-03-18",
     "probabilities": {
-      "cut": 22.5,
-      "hold": 49.09,
-      "hike": 28.42
+      "cut": 14.7,
+      "hold": 65.61,
+      "hike": 19.69
     },
     "features": {
       "policy_inertia": 0.0,
@@ -39,15 +44,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.166667,
+      "hold": 0.666667,
+      "hike": 0.166667
+    }
   },
   {
     "origin_date": "2015-04-22",
     "meeting": "2015-04-29",
     "probabilities": {
-      "cut": 21.97,
-      "hold": 48.81,
-      "hike": 29.22
+      "cut": 12.28,
+      "hold": 70.18,
+      "hike": 17.54
     },
     "features": {
       "policy_inertia": 0.0,
@@ -60,15 +70,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.142857,
+      "hold": 0.714286,
+      "hike": 0.142857
+    }
   },
   {
     "origin_date": "2015-06-10",
     "meeting": "2015-06-17",
     "probabilities": {
-      "cut": 19.62,
-      "hold": 47.29,
-      "hike": 33.09
+      "cut": 9.44,
+      "hold": 72.4,
+      "hike": 18.15
     },
     "features": {
       "policy_inertia": 0.0,
@@ -81,15 +96,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.125,
+      "hold": 0.75,
+      "hike": 0.125
+    }
   },
   {
     "origin_date": "2015-07-22",
     "meeting": "2015-07-29",
     "probabilities": {
-      "cut": 20.17,
-      "hold": 47.68,
-      "hike": 32.15
+      "cut": 8.7,
+      "hold": 75.73,
+      "hike": 15.57
     },
     "features": {
       "policy_inertia": 0.0,
@@ -102,15 +122,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.111111,
+      "hold": 0.777778,
+      "hike": 0.111111
+    }
   },
   {
     "origin_date": "2015-09-10",
     "meeting": "2015-09-17",
     "probabilities": {
-      "cut": 19.93,
-      "hold": 47.51,
-      "hike": 32.56
+      "cut": 7.74,
+      "hold": 77.96,
+      "hike": 14.3
     },
     "features": {
       "policy_inertia": 0.0,
@@ -123,15 +148,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.1,
+      "hold": 0.8,
+      "hike": 0.1
+    }
   },
   {
     "origin_date": "2015-10-21",
     "meeting": "2015-10-28",
     "probabilities": {
-      "cut": 20.0,
-      "hold": 47.56,
-      "hike": 32.43
+      "cut": 7.08,
+      "hold": 79.96,
+      "hike": 12.96
     },
     "features": {
       "policy_inertia": 0.0,
@@ -144,15 +174,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.090909,
+      "hold": 0.818182,
+      "hike": 0.090909
+    }
   },
   {
     "origin_date": "2015-12-09",
     "meeting": "2015-12-16",
     "probabilities": {
-      "cut": 21.43,
-      "hold": 48.49,
-      "hike": 30.08
+      "cut": 7.02,
+      "hold": 82.26,
+      "hike": 10.72
     },
     "features": {
       "policy_inertia": 0.0,
@@ -165,15 +200,20 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 25.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.083333,
+      "hold": 0.833333,
+      "hike": 0.083333
+    }
   },
   {
     "origin_date": "2016-01-20",
     "meeting": "2016-01-27",
     "probabilities": {
-      "cut": 8.28,
-      "hold": 32.74,
-      "hike": 58.98
+      "cut": 2.03,
+      "hold": 50.84,
+      "hike": 47.14
     },
     "features": {
       "policy_inertia": -1.0,
@@ -186,15 +226,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.076923,
+      "hold": 0.769231,
+      "hike": 0.153846
+    }
   },
   {
     "origin_date": "2016-03-09",
     "meeting": "2016-03-16",
     "probabilities": {
-      "cut": 20.66,
-      "hold": 48.01,
-      "hike": 31.34
+      "cut": 5.64,
+      "hold": 75.38,
+      "hike": 18.98
     },
     "features": {
       "policy_inertia": 0.0,
@@ -207,15 +252,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.071429,
+      "hold": 0.785714,
+      "hike": 0.142857
+    }
   },
   {
     "origin_date": "2016-04-20",
     "meeting": "2016-04-27",
     "probabilities": {
-      "cut": 21.57,
-      "hold": 48.57,
-      "hike": 29.86
+      "cut": 5.56,
+      "hold": 77.74,
+      "hike": 16.7
     },
     "features": {
       "policy_inertia": 0.0,
@@ -228,15 +278,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.066667,
+      "hold": 0.8,
+      "hike": 0.133333
+    }
   },
   {
     "origin_date": "2016-06-08",
     "meeting": "2016-06-15",
     "probabilities": {
-      "cut": 20.43,
-      "hold": 47.85,
-      "hike": 31.72
+      "cut": 4.89,
+      "hold": 78.15,
+      "hike": 16.95
     },
     "features": {
       "policy_inertia": 0.0,
@@ -249,15 +304,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.0625,
+      "hold": 0.8125,
+      "hike": 0.125
+    }
   },
   {
     "origin_date": "2016-07-20",
     "meeting": "2016-07-27",
     "probabilities": {
-      "cut": 20.52,
-      "hold": 47.92,
-      "hike": 31.56
+      "cut": 4.64,
+      "hold": 79.47,
+      "hike": 15.89
     },
     "features": {
       "policy_inertia": 0.0,
@@ -270,15 +330,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.058824,
+      "hold": 0.823529,
+      "hike": 0.117647
+    }
   },
   {
     "origin_date": "2016-09-14",
     "meeting": "2016-09-21",
     "probabilities": {
-      "cut": 20.2,
-      "hold": 47.7,
-      "hike": 32.1
+      "cut": 4.31,
+      "hold": 80.32,
+      "hike": 15.37
     },
     "features": {
       "policy_inertia": 0.0,
@@ -291,15 +356,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.055556,
+      "hold": 0.833333,
+      "hike": 0.111111
+    }
   },
   {
     "origin_date": "2016-10-26",
     "meeting": "2016-11-02",
     "probabilities": {
-      "cut": 19.9,
-      "hold": 47.49,
-      "hike": 32.62
+      "cut": 4.02,
+      "hold": 81.07,
+      "hike": 14.91
     },
     "features": {
       "policy_inertia": 0.0,
@@ -312,15 +382,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.052632,
+      "hold": 0.842105,
+      "hike": 0.105263
+    }
   },
   {
     "origin_date": "2016-12-07",
     "meeting": "2016-12-14",
     "probabilities": {
-      "cut": 19.35,
-      "hold": 47.09,
-      "hike": 33.57
+      "cut": 3.7,
+      "hold": 81.54,
+      "hike": 14.75
     },
     "features": {
       "policy_inertia": 0.0,
@@ -333,15 +408,20 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 25.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.05,
+      "hold": 0.85,
+      "hike": 0.1
+    }
   },
   {
     "origin_date": "2017-01-25",
     "meeting": "2017-02-01",
     "probabilities": {
-      "cut": 7.25,
-      "hold": 30.56,
-      "hike": 62.2
+      "cut": 1.09,
+      "hold": 50.82,
+      "hike": 48.09
     },
     "features": {
       "policy_inertia": -1.0,
@@ -354,15 +434,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.047619,
+      "hold": 0.809524,
+      "hike": 0.142857
+    }
   },
   {
     "origin_date": "2017-03-08",
     "meeting": "2017-03-15",
     "probabilities": {
-      "cut": 18.58,
-      "hold": 46.48,
-      "hike": 34.94
+      "cut": 3.14,
+      "hold": 76.08,
+      "hike": 20.77
     },
     "features": {
       "policy_inertia": 0.0,
@@ -375,15 +460,20 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 25.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.045455,
+      "hold": 0.818182,
+      "hike": 0.136364
+    }
   },
   {
     "origin_date": "2017-04-26",
     "meeting": "2017-05-03",
     "probabilities": {
-      "cut": 7.76,
-      "hold": 31.67,
-      "hike": 60.57
+      "cut": 1.0,
+      "hold": 47.0,
+      "hike": 52.0
     },
     "features": {
       "policy_inertia": -1.0,
@@ -396,15 +486,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.043478,
+      "hold": 0.782609,
+      "hike": 0.173913
+    }
   },
   {
     "origin_date": "2017-06-07",
     "meeting": "2017-06-14",
     "probabilities": {
-      "cut": 20.42,
-      "hold": 47.85,
-      "hike": 31.73
+      "cut": 3.19,
+      "hold": 74.63,
+      "hike": 22.17
     },
     "features": {
       "policy_inertia": 0.0,
@@ -417,15 +512,20 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 25.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.041667,
+      "hold": 0.791667,
+      "hike": 0.166667
+    }
   },
   {
     "origin_date": "2017-07-19",
     "meeting": "2017-07-26",
     "probabilities": {
-      "cut": 9.13,
-      "hold": 34.39,
-      "hike": 56.48
+      "cut": 1.06,
+      "hold": 47.28,
+      "hike": 51.66
     },
     "features": {
       "policy_inertia": -1.0,
@@ -438,15 +538,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.04,
+      "hold": 0.76,
+      "hike": 0.2
+    }
   },
   {
     "origin_date": "2017-09-13",
     "meeting": "2017-09-20",
     "probabilities": {
-      "cut": 24.64,
-      "hold": 50.07,
-      "hike": 25.29
+      "cut": 3.79,
+      "hold": 76.66,
+      "hike": 19.55
     },
     "features": {
       "policy_inertia": 0.0,
@@ -459,15 +564,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.038462,
+      "hold": 0.769231,
+      "hike": 0.192308
+    }
   },
   {
     "origin_date": "2017-10-25",
     "meeting": "2017-11-01",
     "probabilities": {
-      "cut": 19.7,
-      "hold": 47.34,
-      "hike": 32.96
+      "cut": 2.68,
+      "hold": 71.77,
+      "hike": 25.55
     },
     "features": {
       "policy_inertia": 0.0,
@@ -480,15 +590,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.037037,
+      "hold": 0.777778,
+      "hike": 0.185185
+    }
   },
   {
     "origin_date": "2017-12-06",
     "meeting": "2017-12-13",
     "probabilities": {
-      "cut": 17.8,
-      "hold": 45.83,
-      "hike": 36.37
+      "cut": 2.27,
+      "hold": 69.95,
+      "hike": 27.78
     },
     "features": {
       "policy_inertia": 0.0,
@@ -501,15 +616,20 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 25.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.035714,
+      "hold": 0.785714,
+      "hike": 0.178571
+    }
   },
   {
     "origin_date": "2018-01-24",
     "meeting": "2018-01-31",
     "probabilities": {
-      "cut": 6.17,
-      "hold": 28.04,
-      "hike": 65.78
+      "cut": 0.55,
+      "hold": 36.41,
+      "hike": 63.05
     },
     "features": {
       "policy_inertia": -1.0,
@@ -522,15 +642,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.034483,
+      "hold": 0.758621,
+      "hike": 0.206897
+    }
   },
   {
     "origin_date": "2018-03-14",
     "meeting": "2018-03-21",
     "probabilities": {
-      "cut": 17.9,
-      "hold": 45.92,
-      "hike": 36.18
+      "cut": 2.11,
+      "hold": 67.42,
+      "hike": 30.47
     },
     "features": {
       "policy_inertia": 0.0,
@@ -543,15 +668,20 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 25.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.033333,
+      "hold": 0.766667,
+      "hike": 0.2
+    }
   },
   {
     "origin_date": "2018-04-25",
     "meeting": "2018-05-02",
     "probabilities": {
-      "cut": 6.29,
-      "hold": 28.33,
-      "hike": 65.38
+      "cut": 0.5,
+      "hold": 34.37,
+      "hike": 65.14
     },
     "features": {
       "policy_inertia": -1.0,
@@ -564,15 +694,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.032258,
+      "hold": 0.741935,
+      "hike": 0.225806
+    }
   },
   {
     "origin_date": "2018-06-06",
     "meeting": "2018-06-13",
     "probabilities": {
-      "cut": 17.33,
-      "hold": 45.41,
-      "hike": 37.26
+      "cut": 1.87,
+      "hold": 64.13,
+      "hike": 34.01
     },
     "features": {
       "policy_inertia": 0.0,
@@ -585,15 +720,20 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 25.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.03125,
+      "hold": 0.75,
+      "hike": 0.21875
+    }
   },
   {
     "origin_date": "2018-07-25",
     "meeting": "2018-08-01",
     "probabilities": {
-      "cut": 6.44,
-      "hold": 28.69,
-      "hike": 64.86
+      "cut": 0.46,
+      "hold": 32.9,
+      "hike": 66.63
     },
     "features": {
       "policy_inertia": -1.0,
@@ -606,15 +746,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.030303,
+      "hold": 0.727273,
+      "hike": 0.242424
+    }
   },
   {
     "origin_date": "2018-09-19",
     "meeting": "2018-09-26",
     "probabilities": {
-      "cut": 18.66,
-      "hold": 46.55,
-      "hike": 34.79
+      "cut": 1.93,
+      "hold": 64.49,
+      "hike": 33.58
     },
     "features": {
       "policy_inertia": 0.0,
@@ -627,15 +772,20 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 25.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.029412,
+      "hold": 0.735294,
+      "hike": 0.235294
+    }
   },
   {
     "origin_date": "2018-11-01",
     "meeting": "2018-11-08",
     "probabilities": {
-      "cut": 7.04,
-      "hold": 30.09,
-      "hike": 62.87
+      "cut": 0.48,
+      "hold": 33.27,
+      "hike": 66.26
     },
     "features": {
       "policy_inertia": -1.0,
@@ -648,15 +798,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.028571,
+      "hold": 0.714286,
+      "hike": 0.257143
+    }
   },
   {
     "origin_date": "2018-12-12",
     "meeting": "2018-12-19",
     "probabilities": {
-      "cut": 18.94,
-      "hold": 46.77,
-      "hike": 34.28
+      "cut": 1.84,
+      "hold": 63.32,
+      "hike": 34.84
     },
     "features": {
       "policy_inertia": 0.0,
@@ -669,15 +824,20 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 25.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.027778,
+      "hold": 0.722222,
+      "hike": 0.25
+    }
   },
   {
     "origin_date": "2019-01-23",
     "meeting": "2019-01-30",
     "probabilities": {
-      "cut": 9.22,
-      "hold": 34.56,
-      "hike": 56.22
+      "cut": 0.63,
+      "hold": 38.53,
+      "hike": 60.84
     },
     "features": {
       "policy_inertia": -1.0,
@@ -690,15 +850,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.027027,
+      "hold": 0.702703,
+      "hike": 0.27027
+    }
   },
   {
     "origin_date": "2019-03-13",
     "meeting": "2019-03-20",
     "probabilities": {
-      "cut": 24.75,
-      "hold": 50.11,
-      "hike": 25.15
+      "cut": 2.6,
+      "hold": 70.83,
+      "hike": 26.57
     },
     "features": {
       "policy_inertia": 0.0,
@@ -711,15 +876,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.026316,
+      "hold": 0.710526,
+      "hike": 0.263158
+    }
   },
   {
     "origin_date": "2019-04-24",
     "meeting": "2019-05-01",
     "probabilities": {
-      "cut": 25.59,
-      "hold": 49.98,
-      "hike": 24.43
+      "cut": 2.67,
+      "hold": 72.12,
+      "hike": 25.2
     },
     "features": {
       "policy_inertia": 0.0,
@@ -732,15 +902,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.025641,
+      "hold": 0.717949,
+      "hike": 0.25641
+    }
   },
   {
     "origin_date": "2019-06-12",
     "meeting": "2019-06-19",
     "probabilities": {
-      "cut": 35.33,
-      "hold": 46.31,
-      "hike": 18.36
+      "cut": 4.39,
+      "hold": 76.26,
+      "hike": 19.35
     },
     "features": {
       "policy_inertia": 0.0,
@@ -753,15 +928,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.025,
+      "hold": 0.725,
+      "hike": 0.25
+    }
   },
   {
     "origin_date": "2019-07-24",
     "meeting": "2019-07-31",
     "probabilities": {
-      "cut": 35.97,
-      "hold": 46.01,
-      "hike": 18.02
+      "cut": 4.41,
+      "hold": 77.03,
+      "hike": 18.57
     },
     "features": {
       "policy_inertia": 0.0,
@@ -774,15 +954,20 @@
     },
     "actual_direction": "cut",
     "actual_change_bps": -25.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.02439,
+      "hold": 0.731707,
+      "hike": 0.243902
+    }
   },
   {
     "origin_date": "2019-09-11",
     "meeting": "2019-09-18",
     "probabilities": {
-      "cut": 63.48,
-      "hold": 29.67,
-      "hike": 6.85
+      "cut": 25.35,
+      "hold": 66.81,
+      "hike": 7.85
     },
     "features": {
       "policy_inertia": 1.0,
@@ -795,15 +980,20 @@
     },
     "actual_direction": "cut",
     "actual_change_bps": -25.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.047619,
+      "hold": 0.714286,
+      "hike": 0.238095
+    }
   },
   {
     "origin_date": "2019-10-23",
     "meeting": "2019-10-30",
     "probabilities": {
-      "cut": 59.6,
-      "hold": 32.33,
-      "hike": 8.07
+      "cut": 29.66,
+      "hold": 62.22,
+      "hike": 8.13
     },
     "features": {
       "policy_inertia": 1.0,
@@ -816,15 +1006,20 @@
     },
     "actual_direction": "cut",
     "actual_change_bps": -25.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.069767,
+      "hold": 0.697674,
+      "hike": 0.232558
+    }
   },
   {
     "origin_date": "2019-12-04",
     "meeting": "2019-12-11",
     "probabilities": {
-      "cut": 56.1,
-      "hold": 34.64,
-      "hike": 9.26
+      "cut": 32.27,
+      "hold": 59.24,
+      "hike": 8.49
     },
     "features": {
       "policy_inertia": 1.0,
@@ -837,15 +1032,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.090909,
+      "hold": 0.681818,
+      "hike": 0.227273
+    }
   },
   {
     "origin_date": "2020-01-22",
     "meeting": "2020-01-29",
     "probabilities": {
-      "cut": 26.83,
-      "hold": 49.61,
-      "hike": 23.56
+      "cut": 9.88,
+      "hold": 69.14,
+      "hike": 20.98
     },
     "features": {
       "policy_inertia": 0.0,
@@ -858,15 +1058,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.088889,
+      "hold": 0.688889,
+      "hike": 0.222222
+    }
   },
   {
     "origin_date": "2020-04-22",
     "meeting": "2020-04-29",
     "probabilities": {
-      "cut": 60.99,
-      "hold": 31.38,
-      "hike": 7.63
+      "cut": 36.2,
+      "hold": 57.07,
+      "hike": 6.73
     },
     "features": {
       "policy_inertia": 1.0,
@@ -879,15 +1084,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.086957,
+      "hold": 0.695652,
+      "hike": 0.217391
+    }
   },
   {
     "origin_date": "2020-06-03",
     "meeting": "2020-06-10",
     "probabilities": {
-      "cut": 36.03,
-      "hold": 45.99,
-      "hike": 17.98
+      "cut": 14.61,
+      "hold": 70.06,
+      "hike": 15.33
     },
     "features": {
       "policy_inertia": 0.0,
@@ -900,15 +1110,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.085106,
+      "hold": 0.702128,
+      "hike": 0.212766
+    }
   },
   {
     "origin_date": "2020-07-22",
     "meeting": "2020-07-29",
     "probabilities": {
-      "cut": 34.35,
-      "hold": 46.75,
-      "hike": 18.91
+      "cut": 13.3,
+      "hold": 70.93,
+      "hike": 15.77
     },
     "features": {
       "policy_inertia": 0.0,
@@ -921,15 +1136,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.083333,
+      "hold": 0.708333,
+      "hike": 0.208333
+    }
   },
   {
     "origin_date": "2020-09-09",
     "meeting": "2020-09-16",
     "probabilities": {
-      "cut": 25.47,
-      "hold": 50.02,
-      "hike": 24.51
+      "cut": 8.42,
+      "hold": 71.51,
+      "hike": 20.07
     },
     "features": {
       "policy_inertia": 0.0,
@@ -942,15 +1162,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.081633,
+      "hold": 0.714286,
+      "hike": 0.204082
+    }
   },
   {
     "origin_date": "2020-10-29",
     "meeting": "2020-11-05",
     "probabilities": {
-      "cut": 23.39,
-      "hold": 49.53,
-      "hike": 27.07
+      "cut": 7.33,
+      "hold": 70.67,
+      "hike": 22.0
     },
     "features": {
       "policy_inertia": 0.0,
@@ -963,15 +1188,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.08,
+      "hold": 0.72,
+      "hike": 0.2
+    }
   },
   {
     "origin_date": "2020-12-09",
     "meeting": "2020-12-16",
     "probabilities": {
-      "cut": 25.03,
-      "hold": 50.14,
-      "hike": 24.83
+      "cut": 7.89,
+      "hold": 72.57,
+      "hike": 19.54
     },
     "features": {
       "policy_inertia": 0.0,
@@ -984,15 +1214,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.078431,
+      "hold": 0.72549,
+      "hike": 0.196078
+    }
   },
   {
     "origin_date": "2021-01-20",
     "meeting": "2021-01-27",
     "probabilities": {
-      "cut": 27.69,
-      "hold": 49.33,
-      "hike": 22.97
+      "cut": 8.94,
+      "hold": 73.37,
+      "hike": 17.69
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1005,15 +1240,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.076923,
+      "hold": 0.730769,
+      "hike": 0.192308
+    }
   },
   {
     "origin_date": "2021-03-10",
     "meeting": "2021-03-17",
     "probabilities": {
-      "cut": 24.96,
-      "hold": 50.16,
-      "hike": 24.88
+      "cut": 7.56,
+      "hold": 73.59,
+      "hike": 18.84
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1026,15 +1266,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.075472,
+      "hold": 0.735849,
+      "hike": 0.188679
+    }
   },
   {
     "origin_date": "2021-04-21",
     "meeting": "2021-04-28",
     "probabilities": {
-      "cut": 25.45,
-      "hold": 50.02,
-      "hike": 24.52
+      "cut": 7.63,
+      "hold": 74.15,
+      "hike": 18.22
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1047,15 +1292,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.074074,
+      "hold": 0.740741,
+      "hike": 0.185185
+    }
   },
   {
     "origin_date": "2021-06-09",
     "meeting": "2021-06-16",
     "probabilities": {
-      "cut": 23.03,
-      "hold": 49.36,
-      "hike": 27.61
+      "cut": 6.54,
+      "hold": 72.96,
+      "hike": 20.5
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1068,15 +1318,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.072727,
+      "hold": 0.745455,
+      "hike": 0.181818
+    }
   },
   {
     "origin_date": "2021-07-21",
     "meeting": "2021-07-28",
     "probabilities": {
-      "cut": 20.19,
-      "hold": 47.69,
-      "hike": 32.12
+      "cut": 5.4,
+      "hold": 70.48,
+      "hike": 24.12
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1089,15 +1344,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.071429,
+      "hold": 0.75,
+      "hike": 0.178571
+    }
   },
   {
     "origin_date": "2021-09-15",
     "meeting": "2021-09-22",
     "probabilities": {
-      "cut": 22.14,
-      "hold": 48.9,
-      "hike": 28.96
+      "cut": 5.99,
+      "hold": 73.05,
+      "hike": 20.96
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1110,15 +1370,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.070175,
+      "hold": 0.754386,
+      "hike": 0.175439
+    }
   },
   {
     "origin_date": "2021-10-27",
     "meeting": "2021-11-03",
     "probabilities": {
-      "cut": 20.93,
-      "hold": 48.18,
-      "hike": 30.89
+      "cut": 5.47,
+      "hold": 72.26,
+      "hike": 22.26
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1131,15 +1396,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.068966,
+      "hold": 0.758621,
+      "hike": 0.172414
+    }
   },
   {
     "origin_date": "2021-12-08",
     "meeting": "2021-12-15",
     "probabilities": {
-      "cut": 15.97,
-      "hold": 44.07,
-      "hike": 39.96
+      "cut": 3.82,
+      "hold": 66.1,
+      "hike": 30.08
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1152,15 +1422,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.067797,
+      "hold": 0.762712,
+      "hike": 0.169492
+    }
   },
   {
     "origin_date": "2022-01-19",
     "meeting": "2022-01-26",
     "probabilities": {
-      "cut": 13.65,
-      "hold": 41.41,
-      "hike": 44.94
+      "cut": 3.11,
+      "hold": 62.45,
+      "hike": 34.44
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1173,15 +1448,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.066667,
+      "hold": 0.766667,
+      "hike": 0.166667
+    }
   },
   {
     "origin_date": "2022-03-09",
     "meeting": "2022-03-16",
     "probabilities": {
-      "cut": 14.32,
-      "hold": 42.23,
-      "hike": 43.45
+      "cut": 3.25,
+      "hold": 64.23,
+      "hike": 32.52
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1194,15 +1474,20 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 25.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.065574,
+      "hold": 0.770492,
+      "hike": 0.163934
+    }
   },
   {
     "origin_date": "2022-04-27",
     "meeting": "2022-05-04",
     "probabilities": {
-      "cut": 4.7,
-      "hold": 24.09,
-      "hike": 71.22
+      "cut": 0.8,
+      "hold": 33.54,
+      "hike": 65.66
     },
     "features": {
       "policy_inertia": -1.0,
@@ -1215,15 +1500,20 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 50.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.064516,
+      "hold": 0.758065,
+      "hike": 0.177419
+    }
   },
   {
     "origin_date": "2022-06-08",
     "meeting": "2022-06-15",
     "probabilities": {
-      "cut": 4.66,
-      "hold": 23.98,
-      "hike": 71.36
+      "cut": 0.75,
+      "hold": 31.49,
+      "hike": 67.77
     },
     "features": {
       "policy_inertia": -1.0,
@@ -1236,15 +1526,20 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 75.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.063492,
+      "hold": 0.746032,
+      "hike": 0.190476
+    }
   },
   {
     "origin_date": "2022-07-20",
     "meeting": "2022-07-27",
     "probabilities": {
-      "cut": 4.75,
-      "hold": 24.23,
-      "hike": 71.03
+      "cut": 0.72,
+      "hold": 30.17,
+      "hike": 69.11
     },
     "features": {
       "policy_inertia": -1.0,
@@ -1257,15 +1552,20 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 75.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.0625,
+      "hold": 0.734375,
+      "hike": 0.203125
+    }
   },
   {
     "origin_date": "2022-09-14",
     "meeting": "2022-09-21",
     "probabilities": {
-      "cut": 5.13,
-      "hold": 25.31,
-      "hike": 69.56
+      "cut": 0.76,
+      "hold": 30.23,
+      "hike": 69.01
     },
     "features": {
       "policy_inertia": -1.0,
@@ -1278,15 +1578,20 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 75.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.061538,
+      "hold": 0.723077,
+      "hike": 0.215385
+    }
   },
   {
     "origin_date": "2022-10-26",
     "meeting": "2022-11-02",
     "probabilities": {
-      "cut": 5.05,
-      "hold": 25.09,
-      "hike": 69.87
+      "cut": 0.71,
+      "hold": 28.48,
+      "hike": 70.81
     },
     "features": {
       "policy_inertia": -1.0,
@@ -1299,15 +1604,20 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 75.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.060606,
+      "hold": 0.712121,
+      "hike": 0.227273
+    }
   },
   {
     "origin_date": "2022-12-07",
     "meeting": "2022-12-14",
     "probabilities": {
-      "cut": 4.7,
-      "hold": 24.1,
-      "hike": 71.2
+      "cut": 0.62,
+      "hold": 25.85,
+      "hike": 73.53
     },
     "features": {
       "policy_inertia": -1.0,
@@ -1320,15 +1630,20 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 50.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.059701,
+      "hold": 0.701493,
+      "hike": 0.238806
+    }
   },
   {
     "origin_date": "2023-01-25",
     "meeting": "2023-02-01",
     "probabilities": {
-      "cut": 11.93,
-      "hold": 39.05,
-      "hike": 49.02
+      "cut": 2.06,
+      "hold": 46.84,
+      "hike": 51.11
     },
     "features": {
       "policy_inertia": -1.0,
@@ -1341,15 +1656,20 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 25.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.058824,
+      "hold": 0.691176,
+      "hike": 0.25
+    }
   },
   {
     "origin_date": "2023-03-15",
     "meeting": "2023-03-22",
     "probabilities": {
-      "cut": 12.65,
-      "hold": 40.07,
-      "hike": 47.28
+      "cut": 2.17,
+      "hold": 47.2,
+      "hike": 50.64
     },
     "features": {
       "policy_inertia": -1.0,
@@ -1362,15 +1682,20 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 25.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.057971,
+      "hold": 0.681159,
+      "hike": 0.26087
+    }
   },
   {
     "origin_date": "2023-04-26",
     "meeting": "2023-05-03",
     "probabilities": {
-      "cut": 12.15,
-      "hold": 39.37,
-      "hike": 48.48
+      "cut": 1.99,
+      "hold": 44.72,
+      "hike": 53.3
     },
     "features": {
       "policy_inertia": -1.0,
@@ -1383,15 +1708,20 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 25.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.057143,
+      "hold": 0.671429,
+      "hike": 0.271429
+    }
   },
   {
     "origin_date": "2023-06-07",
     "meeting": "2023-06-14",
     "probabilities": {
-      "cut": 13.39,
-      "hold": 41.06,
-      "hike": 45.55
+      "cut": 2.22,
+      "hold": 46.39,
+      "hike": 51.39
     },
     "features": {
       "policy_inertia": -1.0,
@@ -1404,15 +1734,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.056338,
+      "hold": 0.661972,
+      "hike": 0.28169
+    }
   },
   {
     "origin_date": "2023-07-19",
     "meeting": "2023-07-26",
     "probabilities": {
-      "cut": 28.87,
-      "hold": 48.93,
-      "hike": 22.2
+      "cut": 6.96,
+      "hold": 67.99,
+      "hike": 25.05
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1425,15 +1760,20 @@
     },
     "actual_direction": "hike",
     "actual_change_bps": 25.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.055556,
+      "hold": 0.666667,
+      "hike": 0.277778
+    }
   },
   {
     "origin_date": "2023-09-13",
     "meeting": "2023-09-20",
     "probabilities": {
-      "cut": 13.49,
-      "hold": 41.19,
-      "hike": 45.32
+      "cut": 2.17,
+      "hold": 45.98,
+      "hike": 51.85
     },
     "features": {
       "policy_inertia": -1.0,
@@ -1446,15 +1786,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.054795,
+      "hold": 0.657534,
+      "hike": 0.287671
+    }
   },
   {
     "origin_date": "2023-10-25",
     "meeting": "2023-11-01",
     "probabilities": {
-      "cut": 29.35,
-      "hold": 48.76,
-      "hike": 21.89
+      "cut": 6.95,
+      "hold": 67.74,
+      "hike": 25.31
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1467,15 +1812,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.054054,
+      "hold": 0.662162,
+      "hike": 0.283784
+    }
   },
   {
     "origin_date": "2023-12-06",
     "meeting": "2023-12-13",
     "probabilities": {
-      "cut": 33.8,
-      "hold": 46.99,
-      "hike": 19.22
+      "cut": 8.6,
+      "hold": 69.12,
+      "hike": 22.28
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1488,15 +1838,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.053333,
+      "hold": 0.666667,
+      "hike": 0.28
+    }
   },
   {
     "origin_date": "2024-01-24",
     "meeting": "2024-01-31",
     "probabilities": {
-      "cut": 35.38,
-      "hold": 46.28,
-      "hike": 18.33
+      "cut": 9.14,
+      "hold": 69.75,
+      "hike": 21.1
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1509,15 +1864,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.052632,
+      "hold": 0.671053,
+      "hike": 0.276316
+    }
   },
   {
     "origin_date": "2024-03-13",
     "meeting": "2024-03-20",
     "probabilities": {
-      "cut": 34.42,
-      "hold": 46.72,
-      "hike": 18.87
+      "cut": 8.62,
+      "hold": 70.04,
+      "hike": 21.34
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1530,15 +1890,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.051948,
+      "hold": 0.675325,
+      "hike": 0.272727
+    }
   },
   {
     "origin_date": "2024-04-24",
     "meeting": "2024-05-01",
     "probabilities": {
-      "cut": 30.51,
-      "hold": 48.33,
-      "hike": 21.16
+      "cut": 7.0,
+      "hold": 69.72,
+      "hike": 23.27
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1551,15 +1916,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.051282,
+      "hold": 0.679487,
+      "hike": 0.269231
+    }
   },
   {
     "origin_date": "2024-06-05",
     "meeting": "2024-06-12",
     "probabilities": {
-      "cut": 30.62,
-      "hold": 48.28,
-      "hike": 21.09
+      "cut": 6.95,
+      "hold": 70.14,
+      "hike": 22.9
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1572,15 +1942,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.050633,
+      "hold": 0.683544,
+      "hike": 0.265823
+    }
   },
   {
     "origin_date": "2024-07-24",
     "meeting": "2024-07-31",
     "probabilities": {
-      "cut": 36.05,
-      "hold": 45.98,
-      "hike": 17.97
+      "cut": 8.94,
+      "hold": 71.39,
+      "hike": 19.67
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1593,15 +1968,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.05,
+      "hold": 0.6875,
+      "hike": 0.2625
+    }
   },
   {
     "origin_date": "2024-09-11",
     "meeting": "2024-09-18",
     "probabilities": {
-      "cut": 37.03,
-      "hold": 45.52,
-      "hike": 17.45
+      "cut": 9.24,
+      "hold": 71.83,
+      "hike": 18.93
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1614,15 +1994,20 @@
     },
     "actual_direction": "cut",
     "actual_change_bps": -50.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.049383,
+      "hold": 0.691358,
+      "hike": 0.259259
+    }
   },
   {
     "origin_date": "2024-10-31",
     "meeting": "2024-11-07",
     "probabilities": {
-      "cut": 63.74,
-      "hold": 29.48,
-      "hike": 6.78
+      "cut": 31.26,
+      "hold": 60.77,
+      "hike": 7.97
     },
     "features": {
       "policy_inertia": 1.0,
@@ -1635,15 +2020,20 @@
     },
     "actual_direction": "cut",
     "actual_change_bps": -25.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.060976,
+      "hold": 0.682927,
+      "hike": 0.256098
+    }
   },
   {
     "origin_date": "2024-12-11",
     "meeting": "2024-12-18",
     "probabilities": {
-      "cut": 61.59,
-      "hold": 30.97,
-      "hike": 7.44
+      "cut": 32.91,
+      "hold": 58.89,
+      "hike": 8.2
     },
     "features": {
       "policy_inertia": 1.0,
@@ -1656,15 +2046,20 @@
     },
     "actual_direction": "cut",
     "actual_change_bps": -25.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.072289,
+      "hold": 0.674699,
+      "hike": 0.253012
+    }
   },
   {
     "origin_date": "2025-01-22",
     "meeting": "2025-01-29",
     "probabilities": {
-      "cut": 51.74,
-      "hold": 37.4,
-      "hike": 10.86
+      "cut": 26.39,
+      "hold": 62.36,
+      "hike": 11.25
     },
     "features": {
       "policy_inertia": 1.0,
@@ -1677,15 +2072,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.083333,
+      "hold": 0.666667,
+      "hike": 0.25
+    }
   },
   {
     "origin_date": "2025-03-12",
     "meeting": "2025-03-19",
     "probabilities": {
-      "cut": 33.11,
-      "hold": 47.28,
-      "hike": 19.61
+      "cut": 12.55,
+      "hold": 67.88,
+      "hike": 19.56
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1698,15 +2098,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.082353,
+      "hold": 0.670588,
+      "hike": 0.247059
+    }
   },
   {
     "origin_date": "2025-04-30",
     "meeting": "2025-05-07",
     "probabilities": {
-      "cut": 34.27,
-      "hold": 46.78,
-      "hike": 18.95
+      "cut": 13.08,
+      "hold": 68.21,
+      "hike": 18.71
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1719,15 +2124,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.081395,
+      "hold": 0.674419,
+      "hike": 0.244186
+    }
   },
   {
     "origin_date": "2025-06-11",
     "meeting": "2025-06-18",
     "probabilities": {
-      "cut": 31.17,
-      "hold": 48.07,
-      "hike": 20.76
+      "cut": 11.18,
+      "hold": 68.63,
+      "hike": 20.19
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1740,15 +2150,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.08046,
+      "hold": 0.678161,
+      "hike": 0.241379
+    }
   },
   {
     "origin_date": "2025-07-23",
     "meeting": "2025-07-30",
     "probabilities": {
-      "cut": 36.3,
-      "hold": 45.86,
-      "hike": 17.84
+      "cut": 13.98,
+      "hold": 68.77,
+      "hike": 17.25
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1761,15 +2176,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.079545,
+      "hold": 0.681818,
+      "hike": 0.238636
+    }
   },
   {
     "origin_date": "2025-09-10",
     "meeting": "2025-09-17",
     "probabilities": {
-      "cut": 35.19,
-      "hold": 46.37,
-      "hike": 18.44
+      "cut": 13.16,
+      "hold": 69.23,
+      "hike": 17.61
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1782,15 +2202,20 @@
     },
     "actual_direction": "cut",
     "actual_change_bps": -25.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.078652,
+      "hold": 0.685393,
+      "hike": 0.235955
+    }
   },
   {
     "origin_date": "2025-10-22",
     "meeting": "2025-10-29",
     "probabilities": {
-      "cut": 63.02,
-      "hold": 29.99,
-      "hike": 6.99
+      "cut": 39.42,
+      "hold": 53.95,
+      "hike": 6.63
     },
     "features": {
       "policy_inertia": 1.0,
@@ -1803,15 +2228,20 @@
     },
     "actual_direction": "cut",
     "actual_change_bps": -25.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.088889,
+      "hold": 0.677778,
+      "hike": 0.233333
+    }
   },
   {
     "origin_date": "2025-12-03",
     "meeting": "2025-12-10",
     "probabilities": {
-      "cut": 62.17,
-      "hold": 30.57,
-      "hike": 7.25
+      "cut": 41.25,
+      "hold": 52.19,
+      "hike": 6.56
     },
     "features": {
       "policy_inertia": 1.0,
@@ -1824,15 +2254,20 @@
     },
     "actual_direction": "cut",
     "actual_change_bps": -25.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.098901,
+      "hold": 0.67033,
+      "hike": 0.230769
+    }
   },
   {
     "origin_date": "2026-01-21",
     "meeting": "2026-01-28",
     "probabilities": {
-      "cut": 53.99,
-      "hold": 35.99,
-      "hike": 10.02
+      "cut": 34.58,
+      "hold": 56.58,
+      "hike": 8.84
     },
     "features": {
       "policy_inertia": 1.0,
@@ -1845,15 +2280,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.108696,
+      "hold": 0.663043,
+      "hike": 0.228261
+    }
   },
   {
     "origin_date": "2026-03-11",
     "meeting": "2026-03-18",
     "probabilities": {
-      "cut": 25.71,
-      "hold": 49.95,
-      "hike": 24.34
+      "cut": 11.23,
+      "hold": 66.73,
+      "hike": 22.03
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1866,15 +2306,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.107527,
+      "hold": 0.666667,
+      "hike": 0.225806
+    }
   },
   {
     "origin_date": "2026-04-22",
     "meeting": "2026-04-29",
     "probabilities": {
-      "cut": 20.79,
-      "hold": 48.09,
-      "hike": 31.12
+      "cut": 8.27,
+      "hold": 62.96,
+      "hike": 28.76
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1887,15 +2332,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.106383,
+      "hold": 0.670213,
+      "hike": 0.223404
+    }
   },
   {
     "origin_date": "2026-06-10",
     "meeting": "2026-06-17",
     "probabilities": {
-      "cut": 15.87,
-      "hold": 43.97,
-      "hike": 40.16
+      "cut": 5.68,
+      "hold": 56.22,
+      "hike": 38.1
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1908,15 +2358,20 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.105263,
+      "hold": 0.673684,
+      "hike": 0.221053
+    }
   },
   {
     "origin_date": "2026-07-22",
     "meeting": "2026-07-29",
     "probabilities": {
-      "cut": 17.03,
-      "hold": 45.12,
-      "hike": 37.85
+      "cut": 6.19,
+      "hold": 58.52,
+      "hike": 35.29
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1929,6 +2384,11 @@
     },
     "actual_direction": "hold",
     "actual_change_bps": 0.0,
-    "validation_type": "release_lagged_policy_regime_fomc"
+    "validation_type": "release_lagged_policy_regime_fomc_base_rate_calibrated",
+    "class_prior_before_meeting": {
+      "cut": 0.104167,
+      "hold": 0.677083,
+      "hike": 0.21875
+    }
   }
 ]
