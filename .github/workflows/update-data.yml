@@ -31,10 +31,10 @@ jobs:
           PYTHONUNBUFFERED: "1"
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: |
-          echo "RUNNING FED ENGINE V3.8.1 POLICY REGIME VALIDATION"
+          echo "RUNNING FED ENGINE V3.9.0 POLICY BASE-RATE CALIBRATION"
           python run.py
 
-      - name: Verify generated latest.json is V3.8.1
+      - name: Verify generated latest.json is V3.9.0
         run: |
           python - <<'PY'
           import json
@@ -44,7 +44,7 @@ jobs:
               raise SystemExit("public/data/latest.json was not generated")
           data = json.loads(p.read_text(encoding="utf-8"))
           version = str(data.get("engine_version") or "")
-          if not version.startswith("3.8.1"):
+          if not version.startswith("3.9.0"):
               raise SystemExit(f"Unexpected engine_version in latest.json: {version!r}")
           confidence = data.get("confidence") or {}
           required = ("data_quality_score", "model_validation_score", "forecast_validation")
