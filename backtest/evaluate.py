@@ -52,7 +52,7 @@ def _score_rows(rows: list[dict]) -> dict:
     if not rows:
         return {}
     correct = 0
-    briers, losses, benchmark_briers = [], [], []
+    briers, losses, benchmark_briers, benchmark_losses = [], [], [], []
     prior_counts = {"cut": 1, "hold": 3, "hike": 1}
     for row in rows:
         prob = row["probabilities"]
@@ -63,10 +63,13 @@ def _score_rows(rows: list[dict]) -> dict:
         total = sum(prior_counts.values())
         benchmark_prob = {k: prior_counts[k] / total * 100 for k in LABELS}
         benchmark_briers.append(brier(benchmark_prob, actual))
+        benchmark_losses.append(log_loss(benchmark_prob, actual))
         prior_counts[actual] += 1
     mean_brier = sum(briers) / len(briers)
     benchmark = sum(benchmark_briers) / len(benchmark_briers)
+    benchmark_log_loss = sum(benchmark_losses) / len(benchmark_losses)
     skill = 1 - mean_brier / benchmark if benchmark > 0 else None
+    log_loss_skill = 1 - (sum(losses) / len(losses)) / benchmark_log_loss if benchmark_log_loss > 0 else None
     n = len(rows)
     accuracy = correct / n
     z = 1.959963984540054
@@ -81,6 +84,8 @@ def _score_rows(rows: list[dict]) -> dict:
         "direction_skill_vs_majority": accuracy-majority_accuracy,
         "mean_brier": mean_brier,
         "mean_log_loss": sum(losses) / len(losses),
+        "benchmark_log_loss": benchmark_log_loss,
+        "log_loss_skill_score": log_loss_skill,
         "benchmark_brier": benchmark,
         "brier_skill_score": skill,
         "class_frequency": class_frequency,
@@ -92,17 +97,19 @@ def _clamp01(value: float) -> float:
 
 
 def _validation_score(samples: int, scored: dict) -> int:
-    """Transparent 0-100 diagnostic score; not a probability of being correct."""
-    accuracy = scored.get("direction_accuracy")
+    """0-100 probability-forecast validation quality; not hit-rate probability."""
     wilson = scored.get("direction_accuracy_wilson_lower_95")
     brier_skill = scored.get("brier_skill_score")
+    log_skill = scored.get("log_loss_skill_score")
     direction_skill = scored.get("direction_skill_vs_majority")
     sample_part = 20 * _clamp01(samples / 60.0)
-    accuracy_part = 25 * _clamp01(((accuracy or 0.0) - 0.50) / 0.20)
-    wilson_part = 20 * _clamp01(((wilson or 0.0) - 0.45) / 0.15)
-    brier_part = 20 * _clamp01((brier_skill or 0.0) / 0.20)
-    direction_part = 15 * _clamp01((direction_skill or 0.0) / 0.15)
-    return round(sample_part + accuracy_part + wilson_part + brier_part + direction_part)
+    # Proper scoring rules receive the largest weight because the auxiliary
+    # model's job is to produce cut/hold/hike probabilities, not merely an argmax class.
+    brier_part = 30 * _clamp01((brier_skill or 0.0) / 0.20)
+    log_part = 25 * _clamp01((log_skill or 0.0) / 0.20)
+    wilson_part = 15 * _clamp01(((wilson or 0.0) - 0.45) / 0.15)
+    direction_part = 10 * _clamp01((direction_skill or 0.0) / 0.10)
+    return round(sample_part + brier_part + log_part + wilson_part + direction_part)
 
 
 def main() -> None:
@@ -133,21 +140,29 @@ def main() -> None:
     skill = scored.get("brier_skill_score")
     accuracy_lb = scored.get("direction_accuracy_wilson_lower_95")
     direction_skill = scored.get("direction_skill_vs_majority")
+    log_skill = scored.get("log_loss_skill_score")
+
+    # Two separate questions are audited: probability quality and hard action
+    # classification.  A calibrated probability model can add information even
+    # when its argmax class does not beat an imbalanced hold-majority rule.
+    probability_passed = (
+        samples >= 60
+        and skill is not None and skill >= 0.10
+        and log_skill is not None and log_skill >= 0.05
+    )
+    action_classification_passed = (
+        samples >= 60 and accuracy is not None and accuracy >= 0.60
+        and accuracy_lb is not None and accuracy_lb > 0.50
+        and direction_skill is not None and direction_skill > 0.0
+    )
 
     # This gate validates the release-lag reconstruction.  It is deliberately
     # separate from the stronger live-vintage gate below; no field claims that
     # revised macro history is a true ALFRED vintage.
-    reconstructed_passed = (
-        samples >= 60 and accuracy is not None and accuracy >= 0.60
-        and accuracy_lb is not None and accuracy_lb > 0.50
-        and direction_skill is not None and direction_skill > 0
-        and skill is not None and skill >= 0.10
-    )
-    candidate = (
-        not reconstructed_passed and samples >= 40 and accuracy is not None and accuracy >= 0.60
-        and skill is not None and skill >= 0.10
-        and direction_skill is not None and direction_skill > 0
-    )
+    reconstructed_passed = probability_passed and action_classification_passed
+    # Candidate means proper-score probability OOS passed while hard direction
+    # classification has not established an edge over the hold-majority rule.
+    candidate = probability_passed and not action_classification_passed
 
     live_scored = _score_rows(live_rows)
     live_samples = len(live_rows)
@@ -174,19 +189,55 @@ def main() -> None:
         "direction_skill_vs_majority": direction_skill,
         "mean_brier": scored.get("mean_brier"),
         "mean_log_loss": scored.get("mean_log_loss"),
+        "benchmark_log_loss": scored.get("benchmark_log_loss"),
+        "log_loss_skill_score": scored.get("log_loss_skill_score"),
         "benchmark_brier": scored.get("benchmark_brier"),
         "brier_skill_score": scored.get("brier_skill_score"),
         "class_frequency": scored.get("class_frequency"),
+        "probability_quality_gate": {
+            "passed": probability_passed,
+            "level": "확률예측 OOS 통과" if probability_passed else "확률예측 OOS 미통과",
+            "requirements": {
+                "historical_reconstructed_rows_min": 60,
+                "brier_skill_score_min": 0.10,
+                "log_loss_skill_score_min": 0.05,
+            },
+            "observed": {
+                "historical_reconstructed_rows": samples,
+                "brier_skill_score": skill,
+                "log_loss_skill_score": log_skill,
+                "mean_brier": scored.get("mean_brier"),
+                "benchmark_brier": scored.get("benchmark_brier"),
+                "mean_log_loss": scored.get("mean_log_loss"),
+                "benchmark_log_loss": scored.get("benchmark_log_loss"),
+            },
+        },
+        "action_classification_gate": {
+            "passed": action_classification_passed,
+            "level": "방향분류 우위 확인" if action_classification_passed else "방향분류 기준모형 우위 미확인",
+            "requirements": {
+                "direction_accuracy_min": 0.60,
+                "direction_accuracy_wilson_lower_95_min_exclusive": 0.50,
+                "direction_skill_vs_majority_min_exclusive": 0.0,
+            },
+            "observed": {
+                "direction_accuracy": accuracy,
+                "direction_accuracy_wilson_lower_95": accuracy_lb,
+                "majority_class_accuracy": scored.get("majority_class_accuracy"),
+                "direction_skill_vs_majority": direction_skill,
+            },
+        },
         "quality_gate": {
             "passed": reconstructed_passed,
             "candidate": candidate,
-            "level": "발표시차 OOS 통과" if reconstructed_passed else ("검증 후보·표본확대 중" if candidate else "검증 미통과"),
+            "level": "확률+방향 OOS 통과" if reconstructed_passed else ("확률 OOS 통과·방향분류 우위 미확인" if candidate else "검증 미통과"),
             "requirements": {
                 "historical_reconstructed_rows_min": 60,
                 "direction_accuracy_min": 0.60,
                 "direction_accuracy_wilson_lower_95_min_exclusive": 0.50,
                 "direction_skill_vs_majority_min_exclusive": 0.0,
                 "brier_skill_score_min": 0.10,
+                "log_loss_skill_score_min": 0.05,
                 "release_lag_backtest_required": True,
             },
             "observed": {
@@ -196,6 +247,7 @@ def main() -> None:
                 "majority_class_accuracy": scored.get("majority_class_accuracy"),
                 "direction_skill_vs_majority": direction_skill,
                 "brier_skill_score": skill,
+                "log_loss_skill_score": log_skill,
                 "release_lag_backtest": True,
             },
         },

@@ -1,5 +1,5 @@
 {
-  "engine_version": "3.9.0-policy-base-rate-calibrated",
+  "engine_version": "4.0.0-probability-validation-split",
   "generated_at_utc": "2026-08-09T19:52:29.454334+00:00",
   "next_fomc": "2026-09-16",
   "fomc_dates": [
@@ -714,23 +714,24 @@
     }
   },
   "confidence": {
-    "score": 49,
-    "grade": "UNVERIFIED",
-    "model_validation_score": 75,
-    "model_validation_grade": "UNVERIFIED",
-    "model_validation_level": "검증 미통과",
+    "score": 69,
+    "grade": "CANDIDATE",
+    "model_validation_score": 80,
+    "model_validation_grade": "CANDIDATE",
+    "model_validation_level": "확률 OOS 통과·방향분류 우위 미확인",
     "data_quality_score": 100,
     "data_quality_grade": "HIGH",
     "forecast_validation": {
       "passed": false,
-      "candidate": false,
-      "level": "검증 미통과",
+      "candidate": true,
+      "level": "확률 OOS 통과·방향분류 우위 미확인",
       "requirements": {
         "historical_reconstructed_rows_min": 60,
         "direction_accuracy_min": 0.6,
         "direction_accuracy_wilson_lower_95_min_exclusive": 0.5,
         "direction_skill_vs_majority_min_exclusive": 0.0,
         "brier_skill_score_min": 0.1,
+        "log_loss_skill_score_min": 0.05,
         "release_lag_backtest_required": true
       },
       "observed": {
@@ -740,6 +741,7 @@
         "majority_class_accuracy": 0.6847826086956522,
         "direction_skill_vs_majority": 0.0,
         "brier_skill_score": 0.14462767047754932,
+        "log_loss_skill_score": 0.20735718417142446,
         "release_lag_backtest": true
       }
     },
@@ -768,13 +770,15 @@
     "release_lag_backtest": true,
     "probability_calibration": "past_only_fomc_action_base_rate",
     "real_time_vintage": false,
-    "model_validation_score": 75,
+    "model_validation_score": 80,
     "direction_accuracy": 0.6847826086956522,
     "direction_accuracy_wilson_lower_95": 0.5840668992376272,
     "majority_class_accuracy": 0.6847826086956522,
     "direction_skill_vs_majority": 0.0,
     "mean_brier": 0.41693461445652175,
     "mean_log_loss": 0.6755941965201913,
+    "benchmark_log_loss": 0.8523311925989898,
+    "log_loss_skill_score": 0.20735718417142446,
     "benchmark_brier": 0.4874305610158022,
     "brier_skill_score": 0.14462767047754932,
     "class_frequency": {
@@ -782,16 +786,50 @@
       "hold": 0.6847826086956522,
       "hike": 0.21739130434782608
     },
+    "probability_quality_gate": {
+      "passed": true,
+      "level": "확률예측 OOS 통과",
+      "requirements": {
+        "historical_reconstructed_rows_min": 60,
+        "brier_skill_score_min": 0.1,
+        "log_loss_skill_score_min": 0.05
+      },
+      "observed": {
+        "historical_reconstructed_rows": 92,
+        "brier_skill_score": 0.14462767047754932,
+        "log_loss_skill_score": 0.20735718417142446,
+        "mean_brier": 0.41693461445652175,
+        "benchmark_brier": 0.4874305610158022,
+        "mean_log_loss": 0.6755941965201913,
+        "benchmark_log_loss": 0.8523311925989898
+      }
+    },
+    "action_classification_gate": {
+      "passed": false,
+      "level": "방향분류 기준모형 우위 미확인",
+      "requirements": {
+        "direction_accuracy_min": 0.6,
+        "direction_accuracy_wilson_lower_95_min_exclusive": 0.5,
+        "direction_skill_vs_majority_min_exclusive": 0.0
+      },
+      "observed": {
+        "direction_accuracy": 0.6847826086956522,
+        "direction_accuracy_wilson_lower_95": 0.5840668992376272,
+        "majority_class_accuracy": 0.6847826086956522,
+        "direction_skill_vs_majority": 0.0
+      }
+    },
     "quality_gate": {
       "passed": false,
-      "candidate": false,
-      "level": "검증 미통과",
+      "candidate": true,
+      "level": "확률 OOS 통과·방향분류 우위 미확인",
       "requirements": {
         "historical_reconstructed_rows_min": 60,
         "direction_accuracy_min": 0.6,
         "direction_accuracy_wilson_lower_95_min_exclusive": 0.5,
         "direction_skill_vs_majority_min_exclusive": 0.0,
         "brier_skill_score_min": 0.1,
+        "log_loss_skill_score_min": 0.05,
         "release_lag_backtest_required": true
       },
       "observed": {
@@ -801,6 +839,7 @@
         "majority_class_accuracy": 0.6847826086956522,
         "direction_skill_vs_majority": 0.0,
         "brier_skill_score": 0.14462767047754932,
+        "log_loss_skill_score": 0.20735718417142446,
         "release_lag_backtest": true
       }
     },

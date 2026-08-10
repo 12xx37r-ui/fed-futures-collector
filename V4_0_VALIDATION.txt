@@ -1,0 +1,13 @@
+FED ENGINE V4.0 VALIDATION
+- pytest: 20 passed
+- Python compile: passed
+- Historical reconstructed FOMC rows: 92
+- Probability OOS gate: PASS
+  * Brier skill vs prior-frequency benchmark: +14.46%
+  * Log-loss skill vs benchmark: +20.74%
+- Hard action classification gate: NOT PASSED
+  * direction accuracy 68.48%
+  * majority-class accuracy 68.48%
+  * direction skill vs majority 0.00
+- UI meaning: probability OOS passed; direction-classification edge not established.
+- validation quality score: 80/100 (not an accuracy probability)

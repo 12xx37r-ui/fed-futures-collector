@@ -18,7 +18,7 @@ from .policy_regime import policy_inertia_asof
 from .utils import latest
 
 
-ENGINE_VERSION = "3.9.0-policy-base-rate-calibrated"
+ENGINE_VERSION = "4.0.0-probability-validation-split"
 
 
 def _normalise_key(value: str) -> str:
