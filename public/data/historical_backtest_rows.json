@@ -13,7 +13,7 @@
       "inflation": 0.61162,
       "employment": 0.24667,
       "growth": 0.05651,
-      "financial": 0.21372,
+      "financial": 0.21128,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -39,7 +39,7 @@
       "inflation": 0.74451,
       "employment": 0.29,
       "growth": 0.70979,
-      "financial": 0.16039,
+      "financial": 0.15972,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -57,7 +57,7 @@
     "probabilities": {
       "cut": 12.28,
       "hold": 70.18,
-      "hike": 17.54
+      "hike": 17.53
     },
     "features": {
       "policy_inertia": 0.0,
@@ -65,7 +65,7 @@
       "inflation": 0.51816,
       "employment": 0.22667,
       "growth": 0.31698,
-      "financial": 0.09772,
+      "financial": 0.09861,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -117,7 +117,7 @@
       "inflation": 0.34802,
       "employment": 0.18333,
       "growth": 0.24705,
-      "financial": 0.085,
+      "financial": 0.08433,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -143,7 +143,7 @@
       "inflation": 0.43192,
       "employment": 0.10778,
       "growth": -0.30559,
-      "financial": 0.34583,
+      "financial": 0.34294,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -169,7 +169,7 @@
       "inflation": 0.43538,
       "employment": 0.03333,
       "growth": 0.05059,
-      "financial": 0.16828,
+      "financial": 0.16561,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -195,7 +195,7 @@
       "inflation": 0.49437,
       "employment": 0.06111,
       "growth": 0.94084,
-      "financial": 0.19578,
+      "financial": 0.194,
       "fed_text": 0.0
     },
     "actual_direction": "hike",
@@ -211,9 +211,9 @@
     "origin_date": "2016-01-20",
     "meeting": "2016-01-27",
     "probabilities": {
-      "cut": 2.03,
-      "hold": 50.84,
-      "hike": 47.14
+      "cut": 2.02,
+      "hold": 50.83,
+      "hike": 47.15
     },
     "features": {
       "policy_inertia": -1.0,
@@ -221,7 +221,7 @@
       "inflation": 0.52254,
       "employment": 0.09667,
       "growth": 0.44086,
-      "financial": 0.36483,
+      "financial": 0.36061,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -237,9 +237,9 @@
     "origin_date": "2016-03-09",
     "meeting": "2016-03-16",
     "probabilities": {
-      "cut": 5.64,
+      "cut": 5.63,
       "hold": 75.38,
-      "hike": 18.98
+      "hike": 18.99
     },
     "features": {
       "policy_inertia": 0.0,
@@ -247,7 +247,7 @@
       "inflation": 0.43933,
       "employment": 0.01889,
       "growth": 0.50833,
-      "financial": 0.24494,
+      "financial": 0.23872,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -264,7 +264,7 @@
     "meeting": "2016-04-27",
     "probabilities": {
       "cut": 5.56,
-      "hold": 77.74,
+      "hold": 77.73,
       "hike": 16.7
     },
     "features": {
@@ -273,7 +273,7 @@
       "inflation": 0.29349,
       "employment": 0.02667,
       "growth": 0.61889,
-      "financial": 0.13578,
+      "financial": 0.13422,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -291,7 +291,7 @@
     "probabilities": {
       "cut": 4.89,
       "hold": 78.15,
-      "hike": 16.95
+      "hike": 16.96
     },
     "features": {
       "policy_inertia": 0.0,
@@ -299,7 +299,7 @@
       "inflation": 0.18237,
       "employment": -0.02489,
       "growth": 0.20702,
-      "financial": 0.1515,
+      "financial": 0.1495,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -325,7 +325,7 @@
       "inflation": 0.20442,
       "employment": -0.02778,
       "growth": -0.58548,
-      "financial": 0.12172,
+      "financial": 0.12039,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -351,7 +351,7 @@
       "inflation": 0.37003,
       "employment": -0.02111,
       "growth": -0.35335,
-      "financial": 0.21839,
+      "financial": 0.21906,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -377,7 +377,7 @@
       "inflation": 0.34093,
       "employment": 0.02667,
       "growth": 0.10274,
-      "financial": 0.14389,
+      "financial": 0.14367,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -507,7 +507,7 @@
       "inflation": 0.5689,
       "employment": -0.17333,
       "growth": -0.29534,
-      "financial": 0.05172,
+      "financial": 0.05194,
       "fed_text": 0.0
     },
     "actual_direction": "hike",
@@ -533,7 +533,7 @@
       "inflation": 0.50413,
       "employment": -0.18111,
       "growth": -0.37585,
-      "financial": 0.03661,
+      "financial": 0.03728,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -559,7 +559,7 @@
       "inflation": 0.60525,
       "employment": -0.02667,
       "growth": 0.28227,
-      "financial": 0.05167,
+      "financial": 0.05189,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -585,7 +585,7 @@
       "inflation": 0.51286,
       "employment": -0.21111,
       "growth": -0.13189,
-      "financial": 0.05556,
+      "financial": 0.05578,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -611,7 +611,7 @@
       "inflation": 0.26897,
       "employment": -0.23089,
       "growth": -0.72184,
-      "financial": 0.05394,
+      "financial": 0.05439,
       "fed_text": 0.0
     },
     "actual_direction": "hike",
@@ -629,7 +629,7 @@
     "probabilities": {
       "cut": 0.55,
       "hold": 36.41,
-      "hike": 63.05
+      "hike": 63.04
     },
     "features": {
       "policy_inertia": -1.0,
@@ -637,7 +637,7 @@
       "inflation": 0.29574,
       "employment": -0.33333,
       "growth": -1.0,
-      "financial": 0.03678,
+      "financial": 0.03744,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -663,7 +663,7 @@
       "inflation": 0.20601,
       "employment": -0.34,
       "growth": -0.32785,
-      "financial": 0.11094,
+      "financial": 0.11139,
       "fed_text": 0.0
     },
     "actual_direction": "hike",
@@ -681,7 +681,7 @@
     "probabilities": {
       "cut": 0.5,
       "hold": 34.37,
-      "hike": 65.14
+      "hike": 65.13
     },
     "features": {
       "policy_inertia": -1.0,
@@ -689,7 +689,7 @@
       "inflation": -0.00357,
       "employment": -0.34111,
       "growth": -0.03928,
-      "financial": 0.10611,
+      "financial": 0.10656,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -741,7 +741,7 @@
       "inflation": 0.40484,
       "employment": -0.44444,
       "growth": -0.60881,
-      "financial": -0.01972,
+      "financial": -0.02017,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -767,7 +767,7 @@
       "inflation": 0.65063,
       "employment": -0.50333,
       "growth": -0.47129,
-      "financial": -0.05539,
+      "financial": -0.05583,
       "fed_text": 0.0
     },
     "actual_direction": "hike",
@@ -784,7 +784,7 @@
     "meeting": "2018-11-08",
     "probabilities": {
       "cut": 0.48,
-      "hold": 33.27,
+      "hold": 33.26,
       "hike": 66.26
     },
     "features": {
@@ -793,7 +793,7 @@
       "inflation": 0.52862,
       "employment": -0.41978,
       "growth": -0.15916,
-      "financial": 0.08328,
+      "financial": 0.08239,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -810,7 +810,7 @@
     "meeting": "2018-12-19",
     "probabilities": {
       "cut": 1.84,
-      "hold": 63.32,
+      "hold": 63.31,
       "hike": 34.84
     },
     "features": {
@@ -819,7 +819,7 @@
       "inflation": 0.44613,
       "employment": -0.30333,
       "growth": -0.21071,
-      "financial": 0.13044,
+      "financial": 0.12911,
       "fed_text": 0.0
     },
     "actual_direction": "hike",
@@ -836,7 +836,7 @@
     "meeting": "2019-01-30",
     "probabilities": {
       "cut": 0.63,
-      "hold": 38.53,
+      "hold": 38.52,
       "hike": 60.84
     },
     "features": {
@@ -845,7 +845,7 @@
       "inflation": 0.20991,
       "employment": -0.39622,
       "growth": 0.49602,
-      "financial": 0.14844,
+      "financial": 0.14644,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -871,7 +871,7 @@
       "inflation": 0.18812,
       "employment": -0.43,
       "growth": 0.87257,
-      "financial": 0.02406,
+      "financial": 0.0225,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -889,7 +889,7 @@
     "probabilities": {
       "cut": 2.67,
       "hold": 72.12,
-      "hike": 25.2
+      "hike": 25.21
     },
     "features": {
       "policy_inertia": 0.0,
@@ -897,7 +897,7 @@
       "inflation": 0.4005,
       "employment": -0.51733,
       "growth": 0.0,
-      "financial": 0.00911,
+      "financial": 0.00733,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -913,7 +913,7 @@
     "origin_date": "2019-06-12",
     "meeting": "2019-06-19",
     "probabilities": {
-      "cut": 4.39,
+      "cut": 4.38,
       "hold": 76.26,
       "hike": 19.35
     },
@@ -923,7 +923,7 @@
       "inflation": 0.42559,
       "employment": -0.49556,
       "growth": 0.0,
-      "financial": 0.13828,
+      "financial": 0.13694,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -940,7 +940,7 @@
     "meeting": "2019-07-31",
     "probabilities": {
       "cut": 4.41,
-      "hold": 77.03,
+      "hold": 77.02,
       "hike": 18.57
     },
     "features": {
@@ -949,7 +949,7 @@
       "inflation": 0.37216,
       "employment": -0.53556,
       "growth": -0.01672,
-      "financial": 0.08194,
+      "financial": 0.08017,
       "fed_text": 0.0
     },
     "actual_direction": "cut",
@@ -965,7 +965,7 @@
     "origin_date": "2019-09-11",
     "meeting": "2019-09-18",
     "probabilities": {
-      "cut": 25.35,
+      "cut": 25.34,
       "hold": 66.81,
       "hike": 7.85
     },
@@ -975,7 +975,7 @@
       "inflation": 0.4029,
       "employment": -0.52222,
       "growth": -0.22032,
-      "financial": 0.13711,
+      "financial": 0.13556,
       "fed_text": 0.0
     },
     "actual_direction": "cut",
@@ -991,7 +991,7 @@
     "origin_date": "2019-10-23",
     "meeting": "2019-10-30",
     "probabilities": {
-      "cut": 29.66,
+      "cut": 29.65,
       "hold": 62.22,
       "hike": 8.13
     },
@@ -1001,7 +1001,7 @@
       "inflation": 0.37522,
       "employment": -0.55,
       "growth": 0.03384,
-      "financial": 0.12544,
+      "financial": 0.12389,
       "fed_text": 0.0
     },
     "actual_direction": "cut",
@@ -1018,7 +1018,7 @@
     "meeting": "2019-12-11",
     "probabilities": {
       "cut": 32.27,
-      "hold": 59.24,
+      "hold": 59.25,
       "hike": 8.49
     },
     "features": {
@@ -1027,7 +1027,7 @@
       "inflation": 0.34173,
       "employment": -0.50222,
       "growth": 0.37676,
-      "financial": 0.13911,
+      "financial": 0.13711,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1043,9 +1043,9 @@
     "origin_date": "2020-01-22",
     "meeting": "2020-01-29",
     "probabilities": {
-      "cut": 9.88,
+      "cut": 9.87,
       "hold": 69.14,
-      "hike": 20.98
+      "hike": 20.99
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1053,7 +1053,7 @@
       "inflation": 0.29461,
       "employment": -0.50156,
       "growth": 0.00203,
-      "financial": 0.08439,
+      "financial": 0.08239,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1079,7 +1079,7 @@
       "inflation": 0.54037,
       "employment": 0.75,
       "growth": 1.0,
-      "financial": 0.73156,
+      "financial": 0.73289,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1105,7 +1105,7 @@
       "inflation": 1.0,
       "employment": 1.0,
       "growth": 1.0,
-      "financial": 0.40156,
+      "financial": 0.40111,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1131,7 +1131,7 @@
       "inflation": 1.0,
       "employment": 1.0,
       "growth": 0.0,
-      "financial": 0.32089,
+      "financial": 0.32022,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1157,7 +1157,7 @@
       "inflation": 0.1685,
       "employment": 0.33333,
       "growth": -1.0,
-      "financial": 0.41189,
+      "financial": 0.41078,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1183,7 +1183,7 @@
       "inflation": -0.33224,
       "employment": 0.33333,
       "growth": -1.0,
-      "financial": 0.55756,
+      "financial": 0.55667,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1209,7 +1209,7 @@
       "inflation": 0.1518,
       "employment": 0.33333,
       "growth": -1.0,
-      "financial": 0.21889,
+      "financial": 0.21756,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1235,7 +1235,7 @@
       "inflation": 0.33871,
       "employment": 0.33333,
       "growth": -0.14804,
-      "financial": 0.25111,
+      "financial": 0.25,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1253,7 +1253,7 @@
     "probabilities": {
       "cut": 7.56,
       "hold": 73.59,
-      "hike": 18.84
+      "hike": 18.85
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1261,7 +1261,7 @@
       "inflation": 0.23631,
       "employment": 0.33333,
       "growth": -1.0,
-      "financial": 0.26139,
+      "financial": 0.26028,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1287,7 +1287,7 @@
       "inflation": 0.06009,
       "employment": 0.33333,
       "growth": -0.35919,
-      "financial": 0.164,
+      "financial": 0.16289,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1313,7 +1313,7 @@
       "inflation": -0.63734,
       "employment": 0.33333,
       "growth": -0.21978,
-      "financial": 0.1305,
+      "financial": 0.12939,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1339,7 +1339,7 @@
       "inflation": -1.0,
       "employment": 0.33333,
       "growth": -0.85328,
-      "financial": 0.17928,
+      "financial": 0.17794,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1365,7 +1365,7 @@
       "inflation": -0.69408,
       "employment": 0.27778,
       "growth": 0.03558,
-      "financial": 0.18056,
+      "financial": 0.17922,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1383,7 +1383,7 @@
     "probabilities": {
       "cut": 5.47,
       "hold": 72.26,
-      "hike": 22.26
+      "hike": 22.27
     },
     "features": {
       "policy_inertia": 0.0,
@@ -1391,7 +1391,7 @@
       "inflation": -0.14334,
       "employment": 0.03,
       "growth": 0.79814,
-      "financial": 0.123,
+      "financial": 0.12189,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1417,7 +1417,7 @@
       "inflation": -0.43594,
       "employment": -0.36333,
       "growth": -0.32377,
-      "financial": 0.24261,
+      "financial": 0.24172,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1443,7 +1443,7 @@
       "inflation": -1.0,
       "employment": -0.32222,
       "growth": -1.0,
-      "financial": 0.25517,
+      "financial": 0.2545,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1495,7 +1495,7 @@
       "inflation": -0.83805,
       "employment": -0.51111,
       "growth": -0.67937,
-      "financial": 0.38867,
+      "financial": 0.38911,
       "fed_text": 0.0
     },
     "actual_direction": "hike",
@@ -1513,7 +1513,7 @@
     "probabilities": {
       "cut": 0.75,
       "hold": 31.49,
-      "hike": 67.77
+      "hike": 67.76
     },
     "features": {
       "policy_inertia": -1.0,
@@ -1521,7 +1521,7 @@
       "inflation": -0.69743,
       "employment": -0.57556,
       "growth": -0.86032,
-      "financial": 0.21822,
+      "financial": 0.21911,
       "fed_text": 0.0
     },
     "actual_direction": "hike",
@@ -1539,7 +1539,7 @@
     "probabilities": {
       "cut": 0.72,
       "hold": 30.17,
-      "hike": 69.11
+      "hike": 69.1
     },
     "features": {
       "policy_inertia": -1.0,
@@ -1547,7 +1547,7 @@
       "inflation": -0.8801,
       "employment": -0.53222,
       "growth": -0.20377,
-      "financial": 0.16622,
+      "financial": 0.16756,
       "fed_text": 0.0
     },
     "actual_direction": "hike",
@@ -1573,7 +1573,7 @@
       "inflation": -0.79094,
       "employment": -0.56222,
       "growth": 0.42426,
-      "financial": 0.11794,
+      "financial": 0.11883,
       "fed_text": 0.0
     },
     "actual_direction": "hike",
@@ -1590,7 +1590,7 @@
     "meeting": "2022-11-02",
     "probabilities": {
       "cut": 0.71,
-      "hold": 28.48,
+      "hold": 28.49,
       "hike": 70.81
     },
     "features": {
@@ -1599,7 +1599,7 @@
       "inflation": -0.80552,
       "employment": -0.60333,
       "growth": 0.44445,
-      "financial": 0.049,
+      "financial": 0.05078,
       "fed_text": 0.0
     },
     "actual_direction": "hike",
@@ -1625,7 +1625,7 @@
       "inflation": -0.93116,
       "employment": -0.54222,
       "growth": -0.27657,
-      "financial": -0.06028,
+      "financial": -0.05961,
       "fed_text": 0.0
     },
     "actual_direction": "hike",
@@ -1651,7 +1651,7 @@
       "inflation": -0.39992,
       "employment": -0.58667,
       "growth": 1.0,
-      "financial": -0.09289,
+      "financial": -0.09244,
       "fed_text": 0.0
     },
     "actual_direction": "hike",
@@ -1677,7 +1677,7 @@
       "inflation": -0.49295,
       "employment": -0.47222,
       "growth": -0.0578,
-      "financial": -0.02383,
+      "financial": -0.02361,
       "fed_text": 0.0
     },
     "actual_direction": "hike",
@@ -1695,7 +1695,7 @@
     "probabilities": {
       "cut": 1.99,
       "hold": 44.72,
-      "hike": 53.3
+      "hike": 53.29
     },
     "features": {
       "policy_inertia": -1.0,
@@ -1703,7 +1703,7 @@
       "inflation": -0.63642,
       "employment": -0.52333,
       "growth": -0.86238,
-      "financial": -0.034,
+      "financial": -0.03333,
       "fed_text": 0.0
     },
     "actual_direction": "hike",
@@ -1729,7 +1729,7 @@
       "inflation": -0.58231,
       "employment": -0.47556,
       "growth": 0.34896,
-      "financial": -0.23256,
+      "financial": -0.23278,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1755,7 +1755,7 @@
       "inflation": -0.31859,
       "employment": -0.47222,
       "growth": 0.0,
-      "financial": -0.28722,
+      "financial": -0.28744,
       "fed_text": 0.0
     },
     "actual_direction": "hike",
@@ -1781,7 +1781,7 @@
       "inflation": -0.00027,
       "employment": -0.46111,
       "growth": -0.04544,
-      "financial": -0.26413,
+      "financial": -0.26446,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1823,7 +1823,7 @@
     "origin_date": "2023-12-06",
     "meeting": "2023-12-13",
     "probabilities": {
-      "cut": 8.6,
+      "cut": 8.59,
       "hold": 69.12,
       "hike": 22.28
     },
@@ -1833,7 +1833,7 @@
       "inflation": 0.06937,
       "employment": -0.46244,
       "growth": 0.00918,
-      "financial": -0.23046,
+      "financial": -0.23063,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1859,7 +1859,7 @@
       "inflation": 0.12394,
       "employment": -0.49333,
       "growth": 0.64463,
-      "financial": -0.23621,
+      "financial": -0.23654,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1885,7 +1885,7 @@
       "inflation": -0.16886,
       "employment": -0.44556,
       "growth": 0.97772,
-      "financial": -0.288,
+      "financial": -0.2885,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1911,7 +1911,7 @@
       "inflation": -0.57622,
       "employment": -0.44889,
       "growth": 0.27803,
-      "financial": -0.29771,
+      "financial": -0.29838,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1937,7 +1937,7 @@
       "inflation": -0.32351,
       "employment": -0.33556,
       "growth": -0.54477,
-      "financial": -0.31508,
+      "financial": -0.31575,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1963,7 +1963,7 @@
       "inflation": 0.29315,
       "employment": -0.116,
       "growth": -0.15757,
-      "financial": -0.25883,
+      "financial": -0.25917,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -1979,7 +1979,7 @@
     "origin_date": "2024-09-11",
     "meeting": "2024-09-18",
     "probabilities": {
-      "cut": 9.24,
+      "cut": 9.23,
       "hold": 71.83,
       "hike": 18.93
     },
@@ -1989,7 +1989,7 @@
       "inflation": 0.39405,
       "employment": -0.08156,
       "growth": -0.24361,
-      "financial": -0.07008,
+      "financial": -0.07042,
       "fed_text": 0.0
     },
     "actual_direction": "cut",
@@ -2015,7 +2015,7 @@
       "inflation": 0.07126,
       "employment": -0.15467,
       "growth": 0.02311,
-      "financial": -0.18721,
+      "financial": -0.18788,
       "fed_text": 0.0
     },
     "actual_direction": "cut",
@@ -2041,7 +2041,7 @@
       "inflation": -0.09628,
       "employment": -0.21356,
       "growth": -0.05127,
-      "financial": -0.281,
+      "financial": -0.28183,
       "fed_text": 0.0
     },
     "actual_direction": "cut",
@@ -2067,7 +2067,7 @@
       "inflation": 0.07082,
       "employment": -0.306,
       "growth": -0.55959,
-      "financial": -0.29583,
+      "financial": -0.2965,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -2093,7 +2093,7 @@
       "inflation": -0.02078,
       "employment": -0.14622,
       "growth": -0.11029,
-      "financial": -0.0505,
+      "financial": -0.05117,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -2119,7 +2119,7 @@
       "inflation": -0.08941,
       "employment": -0.03289,
       "growth": -0.33041,
-      "financial": 0.01071,
+      "financial": 0.01038,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -2145,7 +2145,7 @@
       "inflation": 0.12618,
       "employment": -0.02311,
       "growth": -0.77567,
-      "financial": -0.18987,
+      "financial": -0.19054,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -2171,7 +2171,7 @@
       "inflation": 0.13433,
       "employment": -0.09733,
       "growth": 0.29986,
-      "financial": -0.1985,
+      "financial": -0.19917,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -2197,7 +2197,7 @@
       "inflation": 0.04461,
       "employment": 0.09289,
       "growth": -0.30233,
-      "financial": -0.186,
+      "financial": -0.18667,
       "fed_text": 0.0
     },
     "actual_direction": "cut",
@@ -2214,7 +2214,7 @@
     "meeting": "2025-10-29",
     "probabilities": {
       "cut": 39.42,
-      "hold": 53.95,
+      "hold": 53.96,
       "hike": 6.63
     },
     "features": {
@@ -2223,7 +2223,7 @@
       "inflation": -0.0134,
       "employment": 0.01,
       "growth": -0.42491,
-      "financial": -0.13021,
+      "financial": -0.13121,
       "fed_text": 0.0
     },
     "actual_direction": "cut",
@@ -2239,7 +2239,7 @@
     "origin_date": "2025-12-03",
     "meeting": "2025-12-10",
     "probabilities": {
-      "cut": 41.25,
+      "cut": 41.24,
       "hold": 52.19,
       "hike": 6.56
     },
@@ -2249,7 +2249,7 @@
       "inflation": -0.00154,
       "employment": 0.13267,
       "growth": 0.37821,
-      "financial": -0.15521,
+      "financial": -0.15621,
       "fed_text": 0.0
     },
     "actual_direction": "cut",
@@ -2275,7 +2275,7 @@
       "inflation": 0.07358,
       "employment": 0.064,
       "growth": 0.22959,
-      "financial": -0.14721,
+      "financial": -0.14854,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -2301,7 +2301,7 @@
       "inflation": -0.12852,
       "employment": 0.03867,
       "growth": 0.181,
-      "financial": -0.04679,
+      "financial": -0.04779,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -2319,7 +2319,7 @@
     "probabilities": {
       "cut": 8.27,
       "hold": 62.96,
-      "hike": 28.76
+      "hike": 28.77
     },
     "features": {
       "policy_inertia": 0.0,
@@ -2327,7 +2327,7 @@
       "inflation": -0.25001,
       "employment": -0.16311,
       "growth": -0.3986,
-      "financial": -0.15292,
+      "financial": -0.15375,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -2344,7 +2344,7 @@
     "meeting": "2026-06-17",
     "probabilities": {
       "cut": 5.68,
-      "hold": 56.22,
+      "hold": 56.21,
       "hike": 38.1
     },
     "features": {
@@ -2353,7 +2353,7 @@
       "inflation": -0.16897,
       "employment": -0.24444,
       "growth": -0.90795,
-      "financial": -0.20304,
+      "financial": -0.20421,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
@@ -2379,7 +2379,7 @@
       "inflation": 0.13685,
       "employment": -0.19622,
       "growth": -0.75853,
-      "financial": -0.26571,
+      "financial": -0.26704,
       "fed_text": 0.0
     },
     "actual_direction": "hold",
