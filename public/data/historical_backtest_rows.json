@@ -2161,16 +2161,16 @@
     "origin_date": "2025-07-23",
     "meeting": "2025-07-30",
     "probabilities": {
-      "cut": 13.98,
-      "hold": 68.77,
-      "hike": 17.25
+      "cut": 14.03,
+      "hold": 68.76,
+      "hike": 17.21
     },
     "features": {
       "policy_inertia": 0.0,
       "market": 1.0,
       "inflation": 0.13433,
       "employment": -0.09733,
-      "growth": 0.29986,
+      "growth": 0.33691,
       "financial": -0.19917,
       "fed_text": 0.0
     },
@@ -2187,16 +2187,16 @@
     "origin_date": "2025-09-10",
     "meeting": "2025-09-17",
     "probabilities": {
-      "cut": 13.16,
+      "cut": 13.2,
       "hold": 69.23,
-      "hike": 17.61
+      "hike": 17.57
     },
     "features": {
       "policy_inertia": 0.0,
       "market": 1.0,
       "inflation": 0.04461,
       "employment": 0.09289,
-      "growth": -0.30233,
+      "growth": -0.27118,
       "financial": -0.18667,
       "fed_text": 0.0
     },
@@ -2239,16 +2239,16 @@
     "origin_date": "2025-12-03",
     "meeting": "2025-12-10",
     "probabilities": {
-      "cut": 41.24,
-      "hold": 52.19,
-      "hike": 6.56
+      "cut": 41.16,
+      "hold": 52.25,
+      "hike": 6.58
     },
     "features": {
       "policy_inertia": 1.0,
       "market": 0.73,
       "inflation": -0.00154,
       "employment": 0.13267,
-      "growth": 0.37821,
+      "growth": 0.3473,
       "financial": -0.15621,
       "fed_text": 0.0
     },
