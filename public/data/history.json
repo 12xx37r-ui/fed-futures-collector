@@ -3687,5 +3687,80 @@
       }
     },
     "actual_direction": null
+  },
+  {
+    "snapshot_key": "2026-08-14T09:45:01.148424+00:00|2026-09-16",
+    "captured_at_utc": "2026-08-14T09:45:07.579680+00:00",
+    "meeting": "2026-09-16",
+    "probabilities": {
+      "cut": 0.0,
+      "hold": 68.0,
+      "hike": 32.0
+    },
+    "model_probabilities": {
+      "cut": 8.77,
+      "hold": 66.81,
+      "hike": 24.41
+    },
+    "representative_probability_source": "market_implied_primary",
+    "features": {
+      "policy_inertia": 0.0,
+      "market": -0.16000000000000014,
+      "inflation": 0.24598,
+      "employment": -0.11,
+      "growth": -0.75853,
+      "financial": -0.29213,
+      "fed_text": 0.0
+    },
+    "confidence": {
+      "score": 69,
+      "grade": "CANDIDATE",
+      "model_validation_score": 80,
+      "model_validation_grade": "CANDIDATE",
+      "model_validation_level": "확률 OOS 통과·방향분류 우위 미확인",
+      "data_quality_score": 100,
+      "data_quality_grade": "HIGH",
+      "forecast_validation": {
+        "passed": false,
+        "candidate": true,
+        "level": "확률 OOS 통과·방향분류 우위 미확인",
+        "requirements": {
+          "historical_reconstructed_rows_min": 60,
+          "direction_accuracy_min": 0.6,
+          "direction_accuracy_wilson_lower_95_min_exclusive": 0.5,
+          "direction_skill_vs_majority_min_exclusive": 0.0,
+          "brier_skill_score_min": 0.1,
+          "log_loss_skill_score_min": 0.05,
+          "release_lag_backtest_required": true
+        },
+        "observed": {
+          "historical_reconstructed_rows": 92,
+          "direction_accuracy": 0.6847826086956522,
+          "direction_accuracy_wilson_lower_95": 0.5840668992376272,
+          "majority_class_accuracy": 0.6847826086956522,
+          "direction_skill_vs_majority": 0.0,
+          "brier_skill_score": 0.14460215759045492,
+          "log_loss_skill_score": 0.2073134216993041,
+          "release_lag_backtest": true
+        }
+      },
+      "logical_groups_ok": 9,
+      "logical_groups_total": 9,
+      "critical_ok": 5,
+      "critical_total": 5,
+      "stale_fred_series": 0,
+      "groups": {
+        "zq_continuous": true,
+        "zq_curve": true,
+        "sofr_curve": true,
+        "fred": true,
+        "nyfed_effr": true,
+        "nyfed_sofr": true,
+        "fomc_calendar": true,
+        "fed_text": true,
+        "dotplot": true
+      }
+    },
+    "actual_direction": null
   }
 ]
