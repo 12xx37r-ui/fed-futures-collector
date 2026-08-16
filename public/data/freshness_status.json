@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "patch_version": "V218-live-refetch-contract",
-  "generated_at_utc": "2026-08-16T09:01:46.565642+00:00",
-  "engine_generated_at_utc": "2026-08-16T09:01:23.288819+00:00",
+  "generated_at_utc": "2026-08-16T13:01:33.532441+00:00",
+  "engine_generated_at_utc": "2026-08-16T13:00:44.586252+00:00",
   "compatibility": {
     "existing_keys_removed": false,
     "existing_field_semantics_changed": false,
