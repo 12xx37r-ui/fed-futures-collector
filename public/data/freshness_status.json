@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "patch_version": "V218-live-refetch-contract",
-  "generated_at_utc": "2026-08-16T05:58:52.767957+00:00",
-  "engine_generated_at_utc": "2026-08-16T05:58:30.588696+00:00",
+  "generated_at_utc": "2026-08-16T07:49:46.445364+00:00",
+  "engine_generated_at_utc": "2026-08-16T07:49:25.362515+00:00",
   "compatibility": {
     "existing_keys_removed": false,
     "existing_field_semantics_changed": false,
@@ -26,7 +26,7 @@
     {
       "name": "sofr:SR1Z27.CME",
       "ok": false,
-      "elapsed_ms": 674,
+      "elapsed_ms": 749,
       "error": "ValueError: No observed close for SR1Z27.CME; metadata-only price rejected",
       "classification": "quality_rejection",
       "blocking": false
