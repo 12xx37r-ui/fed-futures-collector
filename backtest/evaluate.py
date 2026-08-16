@@ -54,10 +54,15 @@ def _score_rows(rows: list[dict]) -> dict:
     correct = 0
     briers, losses, benchmark_briers, benchmark_losses = [], [], [], []
     prior_counts = {"cut": 1, "hold": 3, "hike": 1}
+    confusion = {actual: {pred: 0 for pred in LABELS} for actual in LABELS}
+    predicted_counts = {k: 0 for k in LABELS}
     for row in rows:
         prob = row["probabilities"]
         actual = row["actual_direction"]
-        correct += max(prob, key=prob.get) == actual
+        predicted = max(prob, key=prob.get)
+        correct += predicted == actual
+        confusion[actual][predicted] += 1
+        predicted_counts[predicted] += 1
         briers.append(brier(prob, actual))
         losses.append(log_loss(prob, actual))
         total = sum(prior_counts.values())
@@ -76,7 +81,20 @@ def _score_rows(rows: list[dict]) -> dict:
     denom = 1 + z*z/n
     accuracy_lb = (accuracy + z*z/(2*n) - z*math.sqrt((accuracy*(1-accuracy)+z*z/(4*n))/n)) / denom
     class_frequency = {k: sum(r["actual_direction"] == k for r in rows) / n for k in LABELS}
+    predicted_frequency = {k: predicted_counts[k] / n for k in LABELS}
     majority_accuracy = max(class_frequency.values())
+    recalls = {}
+    precisions = {}
+    for k in LABELS:
+        actual_total = sum(confusion[k].values())
+        pred_total = sum(confusion[a][k] for a in LABELS)
+        recalls[k] = confusion[k][k] / actual_total if actual_total else None
+        precisions[k] = confusion[k][k] / pred_total if pred_total else None
+    valid_recalls = [v for v in recalls.values() if v is not None]
+    balanced_accuracy = sum(valid_recalls) / len(valid_recalls) if valid_recalls else None
+    non_hold_actual = sum(sum(confusion[k].values()) for k in ("cut", "hike"))
+    non_hold_correct = confusion["cut"]["cut"] + confusion["hike"]["hike"]
+    non_hold_recall = non_hold_correct / non_hold_actual if non_hold_actual else None
     return {
         "direction_accuracy": accuracy,
         "direction_accuracy_wilson_lower_95": max(0.0, accuracy_lb),
@@ -89,6 +107,12 @@ def _score_rows(rows: list[dict]) -> dict:
         "benchmark_brier": benchmark,
         "brier_skill_score": skill,
         "class_frequency": class_frequency,
+        "predicted_class_frequency": predicted_frequency,
+        "confusion_matrix": confusion,
+        "recall_by_class": recalls,
+        "precision_by_class": precisions,
+        "balanced_accuracy": balanced_accuracy,
+        "non_hold_recall": non_hold_recall,
     }
 
 
@@ -194,6 +218,38 @@ def main() -> None:
         "benchmark_brier": scored.get("benchmark_brier"),
         "brier_skill_score": scored.get("brier_skill_score"),
         "class_frequency": scored.get("class_frequency"),
+        "direction_diagnostics": {
+            "reason_code": (
+                "ARGMAX_EQUALS_MAJORITY_BASELINE"
+                if direction_skill is not None and abs(direction_skill) < 1e-12
+                else ("ARGMAX_BELOW_MAJORITY_BASELINE" if direction_skill is not None and direction_skill < 0 else "ARGMAX_ABOVE_MAJORITY_BASELINE")
+            ),
+            "explanation": (
+                "모델의 argmax 방향 정확도가 최빈 클래스(대부분 동결) 기준모형과 동일해 방향분류의 추가 우위가 아직 확인되지 않았습니다."
+                if direction_skill is not None and abs(direction_skill) < 1e-12
+                else "방향분류 우위는 전체 정확도뿐 아니라 클래스 불균형을 고려한 기준모형 대비 개선으로 판정합니다."
+            ),
+            "confusion_matrix": scored.get("confusion_matrix"),
+            "predicted_class_frequency": scored.get("predicted_class_frequency"),
+            "actual_class_frequency": scored.get("class_frequency"),
+            "recall_by_class": scored.get("recall_by_class"),
+            "precision_by_class": scored.get("precision_by_class"),
+            "balanced_accuracy": scored.get("balanced_accuracy"),
+            "non_hold_recall": scored.get("non_hold_recall"),
+            "objective_next_targets": {
+                "direction_skill_vs_majority_min_exclusive": 0.0,
+                "balanced_accuracy_min": 0.55,
+                "non_hold_recall_min": 0.45,
+                "direction_accuracy_wilson_lower_95_min_exclusive": 0.50,
+            },
+            "safe_improvement_paths": [
+                "확률 calibration은 proper scoring rule 기준으로 유지",
+                "동결 편향을 줄이는 후보 threshold/decision rule은 과거시점 walk-forward에서만 선택",
+                "cut/hike 희소 클래스 성능은 balanced accuracy와 non-hold recall로 별도 검증",
+                "시장 내재확률은 대표값으로 유지하고 자체모델은 검증된 보조 신호로만 사용",
+            ],
+            "score_inflation_forbidden": True,
+        },
         "probability_quality_gate": {
             "passed": probability_passed,
             "level": "확률예측 OOS 통과" if probability_passed else "확률예측 OOS 미통과",
