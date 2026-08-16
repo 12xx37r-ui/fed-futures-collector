@@ -92,7 +92,7 @@ _PROVIDER_LAST = {}
 _PROVIDER_MIN_INTERVAL = {
     "query1.finance.yahoo.com": 0.18,
     "query2.finance.yahoo.com": 0.18,
-    "api.stlouisfed.org": 0.30,
+    "api.stlouisfed.org": 0.60,
     "www.newyorkfed.org": 0.20,
     "www.federalreserve.gov": 0.20,
 }
