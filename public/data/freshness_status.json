@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "patch_version": "V217-additive-freshness-contract",
+  "generated_at_utc": "2026-08-16T04:48:21.481615+00:00",
+  "engine_generated_at_utc": "2026-08-16T04:48:12.901791+00:00",
+  "compatibility": {
+    "existing_keys_removed": false,
+    "existing_field_semantics_changed": false,
+    "new_network_calls": 0,
+    "model_formulas_changed": false
+  },
+  "source_summary": {
+    "total": 72,
+    "failed": 1,
+    "stale": 0
+  },
+  "market_summary": {
+    "rows": 43,
+    "live": 0,
+    "cache": 43,
+    "unavailable": 0
+  },
+  "failed_sources": [
+    {
+      "name": "sofr:SR1Z27.CME",
+      "ok": false,
+      "elapsed_ms": 44,
+      "error": "ValueError: No observed close for SR1Z27.CME; metadata-only price rejected",
+      "classification": "quality_rejection",
+      "blocking": false
+    }
+  ],
+  "stale_sources": []
+}
