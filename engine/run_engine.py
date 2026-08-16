@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 import re
-from datetime import date
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -19,6 +19,43 @@ from .utils import latest
 
 
 ENGINE_VERSION = "4.0.0-probability-validation-split"
+
+
+def _market_freshness(raw: dict[str, Any]) -> dict[str, Any]:
+    rows = []
+    for key in ("zq_continuous", "zq_curve", "sofr_curve"):
+        block = (raw.get("futures") or {}).get(key)
+        candidates = block if isinstance(block, list) else [block] if isinstance(block, dict) else []
+        for item in candidates:
+            if not isinstance(item, dict):
+                continue
+            text = str(item.get("market_time_utc") or "").strip()
+            age_minutes = None
+            if text:
+                try:
+                    dt = datetime.fromisoformat(text.replace("Z", "+00:00"))
+                    if dt.tzinfo is None:
+                        dt = dt.replace(tzinfo=timezone.utc)
+                    age_minutes = max(0.0, (datetime.now(timezone.utc) - dt.astimezone(timezone.utc)).total_seconds() / 60.0)
+                except Exception:
+                    age_minutes = None
+            rows.append({
+                "group": key,
+                "symbol": item.get("symbol"),
+                "market_time_utc": item.get("market_time_utc"),
+                "age_minutes": round(age_minutes, 2) if age_minutes is not None else None,
+                "status": "LIVE" if age_minutes is not None and age_minutes <= 180 else "CACHE" if item.get("price") is not None else "UNAVAILABLE",
+                "market_state": item.get("market_state"),
+            })
+    usable = [x for x in rows if x.get("status") != "UNAVAILABLE"]
+    return {
+        "contract": "V217-additive-freshness-contract",
+        "new_network_calls": 0,
+        "existing_pricing_semantics_changed": False,
+        "market_rows_checked": len(rows),
+        "market_rows_usable": len(usable),
+        "items": rows,
+    }
 
 
 def _normalise_key(value: str) -> str:
@@ -350,6 +387,8 @@ def main() -> None:
         "confidence": confidence,
         "validation": backtest,
         "warnings": warnings,
+        # V217: additive source/market freshness contract. No existing field changes.
+        "freshness": _market_freshness(raw),
     }
 
     Path("public/data/latest.json").write_text(

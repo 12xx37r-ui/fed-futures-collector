@@ -124,7 +124,28 @@ def yahoo_chart(symbol: str, range_: str = "5d") -> dict[str, Any]:
         raise ValueError(f"No usable price for {symbol}")
     if not observations:
         raise ValueError(f"No observed close for {symbol}; metadata-only price rejected")
-    return {"symbol": symbol, "price": float(price), "exchange": meta.get("exchangeName"), "currency": meta.get("currency"), "observations": observations, "source_url": url}
+
+    market_time_utc = None
+    raw_market_time = meta.get("regularMarketTime")
+    try:
+        if raw_market_time not in (None, ""):
+            market_time_utc = datetime.fromtimestamp(int(raw_market_time), timezone.utc).isoformat()
+    except (TypeError, ValueError, OSError):
+        market_time_utc = None
+
+    return {
+        "symbol": symbol,
+        "price": float(price),
+        "exchange": meta.get("exchangeName"),
+        "currency": meta.get("currency"),
+        "observations": observations,
+        "source_url": url,
+        # V217 additive freshness metadata; existing pricing keys are unchanged.
+        "market_time_utc": market_time_utc,
+        "regular_market_price": float(price),
+        "exchange_timezone": meta.get("exchangeTimezoneName"),
+        "market_state": meta.get("marketState"),
+    }
 
 
 def parse_fred_series_csv(text: str, series_id: str, source_url: str) -> dict[str, Any]:
