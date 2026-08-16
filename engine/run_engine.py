@@ -49,8 +49,10 @@ def _market_freshness(raw: dict[str, Any]) -> dict[str, Any]:
             })
     usable = [x for x in rows if x.get("status") != "UNAVAILABLE"]
     return {
-        "contract": "V217-additive-freshness-contract",
+        "contract": "V218-live-refetch-contract",
         "new_network_calls": 0,
+        "network_refetch_each_workflow": True,
+        "http_cache_bypass": True,
         "existing_pricing_semantics_changed": False,
         "market_rows_checked": len(rows),
         "market_rows_usable": len(usable),

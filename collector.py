@@ -21,6 +21,8 @@ from config import FED_ENDPOINTS, FRED_SERIES, NYFED_ENDPOINTS, SOFR_ROOTS
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126 Safari/537.36",
     "Accept": "application/json,text/plain,text/csv,application/xml,text/xml,text/html,*/*",
+    "Cache-Control": "no-cache, no-store, max-age=0",
+    "Pragma": "no-cache",
 }
 FAST_TIMEOUT = (3, 6)
 OFFICIAL_TIMEOUT = (4, 15)
@@ -106,8 +108,13 @@ def request(url: str, official: bool = False, timeout=None, retries: int = 1) ->
 
 
 def yahoo_chart(symbol: str, range_: str = "5d") -> dict[str, Any]:
-    url = "https://query1.finance.yahoo.com/v8/finance/chart/" + quote(symbol, safe="") + f"?range={range_}&interval=1d"
-    payload = request(url).json()
+    # V218: every workflow execution reaches Yahoo with a unique request URL.
+    # The 1d history remains unchanged for model/backtest compatibility; Yahoo
+    # chart metadata provides the current market price/time used by the curve.
+    nonce = int(time.time())
+    url = ("https://query1.finance.yahoo.com/v8/finance/chart/" + quote(symbol, safe="")
+           + f"?range={range_}&interval=1d&events=history&_ts={nonce}")
+    payload = request(url, retries=2).json()
     result = payload.get("chart", {}).get("result")
     if not result:
         raise ValueError(f"No Yahoo result for {symbol}")
@@ -145,6 +152,8 @@ def yahoo_chart(symbol: str, range_: str = "5d") -> dict[str, Any]:
         "regular_market_price": float(price),
         "exchange_timezone": meta.get("exchangeTimezoneName"),
         "market_state": meta.get("marketState"),
+        "retrieved_at_utc": utc_now(),
+        "refetch_policy": "network_each_workflow_no_cache",
     }
 
 
