@@ -228,6 +228,27 @@ def build_meeting_path(
     return path
 
 
+def _model_action_from_validated_rule(probabilities: dict, backtest: dict) -> dict:
+    rule = backtest.get("class_balanced_decision_rule") if isinstance(backtest, dict) else None
+    if not isinstance(rule, dict) or not rule.get("passed"):
+        return {"available": False, "reason": "validated class-balanced decision rule unavailable"}
+    try:
+        ratio = float(rule.get("selected_hold_ratio_threshold"))
+        hold = float(probabilities.get("hold", 0.0))
+        challenger = max(("cut", "hike"), key=lambda k: float(probabilities.get(k, 0.0)))
+        action = challenger if float(probabilities.get(challenger, 0.0)) >= hold * ratio else "hold"
+    except Exception:
+        return {"available": False, "reason": "decision rule parse failure"}
+    return {
+        "available": True,
+        "action": action,
+        "hold_ratio_threshold": ratio,
+        "validation": rule.get("validation"),
+        "representative_forecast_changed": False,
+        "note": "시장내재 확률과 자체모델 확률은 변경하지 않고 검증된 hard-action 보조분류만 제공합니다.",
+    }
+
+
 def main() -> None:
     print(f"ENGINE_VERSION={ENGINE_VERSION}", flush=True)
 
@@ -304,6 +325,7 @@ def main() -> None:
     backtest = json.loads(backtest_path.read_text(encoding="utf-8")) if backtest_path.exists() else {}
     class_prior = backtest.get("class_frequency") if isinstance(backtest.get("class_frequency"), dict) else None
     model_probabilities = policy_probabilities(combined, class_prior)
+    model_action_classification = _model_action_from_validated_rule(model_probabilities, backtest)
 
     feature_status = {
         "zq_curve": zq_curve,
@@ -371,6 +393,7 @@ def main() -> None:
         "probabilities": probabilities,
         "representative_probability_source": representative_probability_source,
         "model_probabilities": model_probabilities,
+        "model_action_classification": model_action_classification,
         "model_probability_calibration": {
             "method": "past_only_fomc_action_base_rate",
             "class_prior": class_prior or {"cut": 0.15, "hold": 0.70, "hike": 0.15},

@@ -116,6 +116,96 @@ def _score_rows(rows: list[dict]) -> dict:
     }
 
 
+
+
+def _classify_with_hold_ratio(prob: dict, ratio: float) -> str:
+    """Class-balanced hard action rule; probability calibration remains untouched."""
+    challenger = max(("cut", "hike"), key=lambda k: float(prob.get(k, 0.0)))
+    return challenger if float(prob.get(challenger, 0.0)) >= float(prob.get("hold", 0.0)) * ratio else "hold"
+
+
+def _score_hard_rule(rows: list[dict], ratio: float) -> dict:
+    if not rows:
+        return {}
+    confusion = {actual: {pred: 0 for pred in LABELS} for actual in LABELS}
+    correct = 0
+    for row in rows:
+        actual = row["actual_direction"]
+        predicted = _classify_with_hold_ratio(row["probabilities"], ratio)
+        confusion[actual][predicted] += 1
+        correct += int(predicted == actual)
+    n = len(rows)
+    accuracy = correct / n
+    z = 1.959963984540054
+    denom = 1 + z*z/n
+    lb = (accuracy + z*z/(2*n) - z*math.sqrt((accuracy*(1-accuracy)+z*z/(4*n))/n)) / denom
+    actual_frequency = {k: sum(confusion[k].values()) / n for k in LABELS}
+    majority_accuracy = max(actual_frequency.values())
+    recalls = {}
+    for k in LABELS:
+        total = sum(confusion[k].values())
+        recalls[k] = confusion[k][k] / total if total else None
+    valid = [v for v in recalls.values() if v is not None]
+    balanced = sum(valid) / len(valid) if valid else None
+    non_hold_total = sum(sum(confusion[k].values()) for k in ("cut", "hike"))
+    non_hold_recall = (confusion["cut"]["cut"] + confusion["hike"]["hike"]) / non_hold_total if non_hold_total else None
+    return {
+        "samples": n,
+        "hold_ratio_threshold": ratio,
+        "direction_accuracy": accuracy,
+        "direction_accuracy_wilson_lower_95": max(0.0, lb),
+        "majority_class_accuracy": majority_accuracy,
+        "direction_skill_vs_majority": accuracy - majority_accuracy,
+        "balanced_accuracy": balanced,
+        "non_hold_recall": non_hold_recall,
+        "recall_by_class": recalls,
+        "confusion_matrix": confusion,
+    }
+
+
+def _chronological_decision_rule_validation(rows: list[dict]) -> dict:
+    """Tune on the earlier 60%, validate once on the later 40% (no validation leakage)."""
+    if len(rows) < 60:
+        return {"passed": False, "reason": "need >= 60 reconstructed meetings"}
+    split = max(36, int(len(rows) * 0.60))
+    split = min(split, len(rows) - 24)
+    train, validation = rows[:split], rows[split:]
+    candidates = [round(x / 100.0, 2) for x in range(30, 101, 5)]
+    ranked = []
+    for ratio in candidates:
+        score = _score_hard_rule(train, ratio)
+        # Primary objective is class balance; ordinary accuracy is a tie-breaker.
+        objective = float(score.get("balanced_accuracy") or 0.0) + 0.25 * float(score.get("direction_accuracy") or 0.0)
+        ranked.append((objective, ratio, score))
+    ranked.sort(key=lambda x: (x[0], x[2].get("direction_skill_vs_majority") or -9), reverse=True)
+    _, selected, train_score = ranked[0]
+    validation_score = _score_hard_rule(validation, selected)
+    passed = (
+        int(validation_score.get("samples") or 0) >= 24
+        and float(validation_score.get("direction_accuracy") or 0.0) >= 0.60
+        and float(validation_score.get("direction_accuracy_wilson_lower_95") or 0.0) > 0.50
+        and float(validation_score.get("direction_skill_vs_majority") or 0.0) > 0.0
+        and float(validation_score.get("balanced_accuracy") or 0.0) >= 0.55
+        and float(validation_score.get("non_hold_recall") or 0.0) >= 0.45
+    )
+    return {
+        "passed": passed,
+        "method": "chronological_60_40_train_validation_hold_ratio",
+        "probabilities_changed": False,
+        "selected_hold_ratio_threshold": selected,
+        "train": train_score,
+        "validation": validation_score,
+        "requirements": {
+            "validation_samples_min": 24,
+            "direction_accuracy_min": 0.60,
+            "direction_accuracy_wilson_lower_95_min_exclusive": 0.50,
+            "direction_skill_vs_majority_min_exclusive": 0.0,
+            "balanced_accuracy_min": 0.55,
+            "non_hold_recall_min": 0.45,
+        },
+        "note": "확률값은 그대로 두고 hard action decision rule만 과거 구간에서 선택한 뒤 이후 구간에서 별도 검증합니다.",
+    }
+
 def _clamp01(value: float) -> float:
     return max(0.0, min(1.0, value))
 
@@ -158,6 +248,7 @@ def main() -> None:
     calendar_html = ((raw.get("fed") or {}).get("fomc_calendar") or {}).get("text", "")
     historical_rows = reconstruct(raw, all_fomc_dates(calendar_html))
     scored = _score_rows(historical_rows)
+    decision_rule_validation = _chronological_decision_rule_validation(historical_rows)
 
     samples = len(historical_rows)
     accuracy = scored.get("direction_accuracy")
@@ -218,6 +309,7 @@ def main() -> None:
         "benchmark_brier": scored.get("benchmark_brier"),
         "brier_skill_score": scored.get("brier_skill_score"),
         "class_frequency": scored.get("class_frequency"),
+        "class_balanced_decision_rule": decision_rule_validation,
         "direction_diagnostics": {
             "reason_code": (
                 "ARGMAX_EQUALS_MAJORITY_BASELINE"
@@ -244,7 +336,7 @@ def main() -> None:
             },
             "safe_improvement_paths": [
                 "확률 calibration은 proper scoring rule 기준으로 유지",
-                "동결 편향을 줄이는 후보 threshold/decision rule은 과거시점 walk-forward에서만 선택",
+                "동결 편향 threshold는 앞 60%에서만 선택하고 뒤 40%에서 별도 검증하며, 통과 전에는 확률모델을 변경하지 않음",
                 "cut/hike 희소 클래스 성능은 balanced accuracy와 non-hold recall로 별도 검증",
                 "시장 내재확률은 대표값으로 유지하고 자체모델은 검증된 보조 신호로만 사용",
             ],
