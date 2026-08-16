@@ -22,6 +22,62 @@
     "hold": 0.6847826086956522,
     "hike": 0.21739130434782608
   },
+  "direction_diagnostics": {
+    "reason_code": "ARGMAX_EQUALS_MAJORITY_BASELINE",
+    "explanation": "모델의 argmax 방향 정확도가 최빈 클래스(대부분 동결) 기준모형과 동일해 방향분류의 추가 우위가 아직 확인되지 않았습니다.",
+    "confusion_matrix": {
+      "cut": {
+        "cut": 0,
+        "hold": 9,
+        "hike": 0
+      },
+      "hold": {
+        "cut": 0,
+        "hold": 54,
+        "hike": 9
+      },
+      "hike": {
+        "cut": 0,
+        "hold": 11,
+        "hike": 9
+      }
+    },
+    "predicted_class_frequency": {
+      "cut": 0.0,
+      "hold": 0.8043478260869565,
+      "hike": 0.1956521739130435
+    },
+    "actual_class_frequency": {
+      "cut": 0.09782608695652174,
+      "hold": 0.6847826086956522,
+      "hike": 0.21739130434782608
+    },
+    "recall_by_class": {
+      "cut": 0.0,
+      "hold": 0.8571428571428571,
+      "hike": 0.45
+    },
+    "precision_by_class": {
+      "cut": null,
+      "hold": 0.7297297297297297,
+      "hike": 0.5
+    },
+    "balanced_accuracy": 0.4357142857142857,
+    "non_hold_recall": 0.3103448275862069,
+    "objective_next_targets": {
+      "direction_skill_vs_majority_min_exclusive": 0.0,
+      "balanced_accuracy_min": 0.55,
+      "non_hold_recall_min": 0.45,
+      "direction_accuracy_wilson_lower_95_min_exclusive": 0.5
+    },
+    "safe_improvement_paths": [
+      "확률 calibration은 proper scoring rule 기준으로 유지",
+      "동결 편향을 줄이는 후보 threshold/decision rule은 과거시점 walk-forward에서만 선택",
+      "cut/hike 희소 클래스 성능은 balanced accuracy와 non-hold recall로 별도 검증",
+      "시장 내재확률은 대표값으로 유지하고 자체모델은 검증된 보조 신호로만 사용"
+    ],
+    "score_inflation_forbidden": true
+  },
   "probability_quality_gate": {
     "passed": true,
     "level": "확률예측 OOS 통과",
