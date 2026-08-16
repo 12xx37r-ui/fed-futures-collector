@@ -9,6 +9,7 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
+from threading import Lock
 from typing import Any
 from urllib.parse import parse_qsl, quote, urlencode, urlsplit, urlunsplit
 
@@ -27,7 +28,7 @@ HEADERS = {
 FAST_TIMEOUT = (3, 6)
 OFFICIAL_TIMEOUT = (4, 15)
 FRED_BULK_TIMEOUT = (4, 18)
-MAX_WORKERS = 12
+MAX_WORKERS = 4
 CURVE_MONTHS_AHEAD = 18
 MONTH_TO_CODE = {1:"F",2:"G",3:"H",4:"J",5:"K",6:"M",7:"N",8:"Q",9:"U",10:"V",11:"X",12:"Z"}
 SECRET_QUERY_KEYS = frozenset({"api_key", "apikey", "token", "access_token", "key"})
@@ -83,15 +84,39 @@ def redact_secrets(value: Any) -> Any:
     return value
 
 
+
+# V220: process-wide provider pacing prevents bursty parallel requests from
+# tripping public API rate limits while still refetching on every workflow.
+_PROVIDER_LOCK = Lock()
+_PROVIDER_LAST = {}
+_PROVIDER_MIN_INTERVAL = {
+    "query1.finance.yahoo.com": 0.18,
+    "query2.finance.yahoo.com": 0.18,
+    "api.stlouisfed.org": 0.30,
+    "www.newyorkfed.org": 0.20,
+    "www.federalreserve.gov": 0.20,
+}
+
+def _pace(url: str) -> None:
+    host = urlsplit(url).netloc.lower()
+    gap = _PROVIDER_MIN_INTERVAL.get(host, 0.08)
+    with _PROVIDER_LOCK:
+        now = time.monotonic()
+        wait = gap - (now - _PROVIDER_LAST.get(host, 0.0))
+        if wait > 0:
+            time.sleep(wait)
+        _PROVIDER_LAST[host] = time.monotonic()
+
 def make_session(total_retries: int = 1) -> requests.Session:
     session = requests.Session()
     retry = Retry(
         total=total_retries,
         connect=total_retries,
         read=total_retries,
-        backoff_factor=0.35,
+        backoff_factor=0.8,
         status_forcelist=(429, 500, 502, 503, 504),
         allowed_methods=frozenset(["GET"]),
+        respect_retry_after_header=True,
     )
     adapter = HTTPAdapter(max_retries=retry, pool_connections=20, pool_maxsize=20)
     session.mount("https://", adapter)
@@ -102,6 +127,7 @@ def make_session(total_retries: int = 1) -> requests.Session:
 def request(url: str, official: bool = False, timeout=None, retries: int = 1) -> requests.Response:
     timeout = timeout or (OFFICIAL_TIMEOUT if official else FAST_TIMEOUT)
     with make_session(retries) as session:
+        _pace(url)
         response = session.get(url, timeout=timeout, allow_redirects=True)
         response.raise_for_status()
         return response
@@ -215,6 +241,7 @@ def fred_series_csv(series_id: str) -> dict[str, Any]:
     }
 
     with make_session(total_retries=1) as session:
+        _pace(url)
         response = session.get(
             url,
             params=params,
