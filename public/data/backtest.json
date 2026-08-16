@@ -22,6 +22,85 @@
     "hold": 0.6847826086956522,
     "hike": 0.21739130434782608
   },
+  "class_balanced_decision_rule": {
+    "passed": true,
+    "method": "chronological_60_40_train_validation_hold_ratio",
+    "probabilities_changed": false,
+    "selected_hold_ratio_threshold": 0.35,
+    "train": {
+      "samples": 55,
+      "hold_ratio_threshold": 0.35,
+      "direction_accuracy": 0.6363636363636364,
+      "direction_accuracy_wilson_lower_95": 0.5042276149984126,
+      "majority_class_accuracy": 0.7818181818181819,
+      "direction_skill_vs_majority": -0.1454545454545455,
+      "balanced_accuracy": 0.6244616709732989,
+      "non_hold_recall": 0.5833333333333334,
+      "recall_by_class": {
+        "cut": 0.6666666666666666,
+        "hold": 0.6511627906976745,
+        "hike": 0.5555555555555556
+      },
+      "confusion_matrix": {
+        "cut": {
+          "cut": 2,
+          "hold": 1,
+          "hike": 0
+        },
+        "hold": {
+          "cut": 2,
+          "hold": 28,
+          "hike": 13
+        },
+        "hike": {
+          "cut": 0,
+          "hold": 4,
+          "hike": 5
+        }
+      }
+    },
+    "validation": {
+      "samples": 37,
+      "hold_ratio_threshold": 0.35,
+      "direction_accuracy": 0.7027027027027027,
+      "direction_accuracy_wilson_lower_95": 0.5421686408886435,
+      "majority_class_accuracy": 0.5405405405405406,
+      "direction_skill_vs_majority": 0.16216216216216217,
+      "balanced_accuracy": 0.7388888888888889,
+      "non_hold_recall": 0.8823529411764706,
+      "recall_by_class": {
+        "cut": 0.6666666666666666,
+        "hold": 0.55,
+        "hike": 1.0
+      },
+      "confusion_matrix": {
+        "cut": {
+          "cut": 4,
+          "hold": 2,
+          "hike": 0
+        },
+        "hold": {
+          "cut": 2,
+          "hold": 11,
+          "hike": 7
+        },
+        "hike": {
+          "cut": 0,
+          "hold": 0,
+          "hike": 11
+        }
+      }
+    },
+    "requirements": {
+      "validation_samples_min": 24,
+      "direction_accuracy_min": 0.6,
+      "direction_accuracy_wilson_lower_95_min_exclusive": 0.5,
+      "direction_skill_vs_majority_min_exclusive": 0.0,
+      "balanced_accuracy_min": 0.55,
+      "non_hold_recall_min": 0.45
+    },
+    "note": "확률값은 그대로 두고 hard action decision rule만 과거 구간에서 선택한 뒤 이후 구간에서 별도 검증합니다."
+  },
   "direction_diagnostics": {
     "reason_code": "ARGMAX_EQUALS_MAJORITY_BASELINE",
     "explanation": "모델의 argmax 방향 정확도가 최빈 클래스(대부분 동결) 기준모형과 동일해 방향분류의 추가 우위가 아직 확인되지 않았습니다.",
@@ -72,7 +151,7 @@
     },
     "safe_improvement_paths": [
       "확률 calibration은 proper scoring rule 기준으로 유지",
-      "동결 편향을 줄이는 후보 threshold/decision rule은 과거시점 walk-forward에서만 선택",
+      "동결 편향 threshold는 앞 60%에서만 선택하고 뒤 40%에서 별도 검증하며, 통과 전에는 확률모델을 변경하지 않음",
       "cut/hike 희소 클래스 성능은 balanced accuracy와 non-hold recall로 별도 검증",
       "시장 내재확률은 대표값으로 유지하고 자체모델은 검증된 보조 신호로만 사용"
     ],
