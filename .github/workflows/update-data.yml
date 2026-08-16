@@ -57,6 +57,9 @@ jobs:
       - name: Run tests
         run: python -m unittest discover -s tests -v
 
+      - name: Build additive freshness status
+        run: python freshness_audit_v217.py
+
       - name: Commit generated data
         run: |
           git config user.name "github-actions[bot]"
