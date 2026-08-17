@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "patch_version": "V218-live-refetch-contract",
-  "generated_at_utc": "2026-08-17T09:01:57.916372+00:00",
-  "engine_generated_at_utc": "2026-08-17T09:01:23.168990+00:00",
+  "generated_at_utc": "2026-08-17T13:02:38.224750+00:00",
+  "engine_generated_at_utc": "2026-08-17T13:00:54.076201+00:00",
   "compatibility": {
     "existing_keys_removed": false,
     "existing_field_semantics_changed": false,
@@ -18,15 +18,15 @@
   },
   "market_summary": {
     "rows": 43,
-    "live": 30,
-    "cache": 13,
+    "live": 36,
+    "cache": 7,
     "unavailable": 0
   },
   "failed_sources": [
     {
       "name": "sofr:SR1Z27.CME",
       "ok": false,
-      "elapsed_ms": 722,
+      "elapsed_ms": 696,
       "error": "ValueError: No observed close for SR1Z27.CME; metadata-only price rejected",
       "classification": "quality_rejection",
       "blocking": false

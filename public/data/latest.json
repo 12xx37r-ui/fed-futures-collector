@@ -1,6 +1,6 @@
 {
   "engine_version": "4.0.0-probability-validation-split",
-  "generated_at_utc": "2026-08-17T09:01:23.168990+00:00",
+  "generated_at_utc": "2026-08-17T13:00:54.076201+00:00",
   "next_fomc": "2026-09-16",
   "fomc_dates": [
     "2015-01-28",
@@ -111,14 +111,14 @@
   "current_effective_rate_source": "nyfed_effr",
   "probabilities": {
     "cut": 0.0,
-    "hold": 70.0,
-    "hike": 30.0
+    "hold": 72.0,
+    "hike": 28.0
   },
   "representative_probability_source": "market_implied_primary",
   "model_probabilities": {
-    "cut": 9.08,
-    "hold": 67.37,
-    "hike": 23.55
+    "cut": 9.14,
+    "hold": 67.46,
+    "hike": 23.4
   },
   "model_action_classification": {
     "available": true,
@@ -168,94 +168,94 @@
     }
   },
   "market_implied_target_probabilities": {
-    "3.63": 70.0,
-    "3.88": 30.0
+    "3.63": 72.0,
+    "3.88": 28.0
   },
   "market_implied_action_probabilities": {
     "cut": 0.0,
-    "hold": 70.0,
-    "hike": 30.0
+    "hold": 72.0,
+    "hike": 28.0
   },
   "market_path": {
     "meeting": "2026-09-16",
     "contract_symbol": "ZQU26.CBT",
-    "pre_meeting_rate": 3.6325,
+    "pre_meeting_rate": 3.63,
     "pre_meeting_rate_source": "previous_month_zq_average",
-    "monthly_average_rate": 3.67,
-    "expected_post_meeting_rate": 3.7075,
-    "expected_change_bps": 7.5,
+    "monthly_average_rate": 3.665,
+    "expected_post_meeting_rate": 3.7,
+    "expected_change_bps": 7.0,
     "estimate_method": "calendar_weighted_inversion",
-    "raw_calendar_inversion_rate": 3.7075,
+    "raw_calendar_inversion_rate": 3.7,
     "stability_flags": [],
     "target_rate_probabilities": {
-      "3.63": 70.0,
-      "3.88": 30.0
+      "3.63": 72.0,
+      "3.88": 28.0
     },
     "action_probabilities": {
       "cut": 0.0,
-      "hold": 70.0,
-      "hike": 30.0
+      "hold": 72.0,
+      "hike": 28.0
     }
   },
   "meeting_path": [
     {
       "meeting": "2026-09-16",
       "contract_symbol": "ZQU26.CBT",
-      "pre_meeting_rate": 3.6325,
+      "pre_meeting_rate": 3.63,
       "pre_meeting_rate_source": "previous_month_zq_average",
-      "monthly_average_rate": 3.67,
-      "expected_post_meeting_rate": 3.7075,
-      "expected_change_bps": 7.5,
+      "monthly_average_rate": 3.665,
+      "expected_post_meeting_rate": 3.7,
+      "expected_change_bps": 7.0,
       "estimate_method": "calendar_weighted_inversion",
-      "raw_calendar_inversion_rate": 3.7075,
+      "raw_calendar_inversion_rate": 3.7,
       "stability_flags": [],
       "target_rate_probabilities": {
-        "3.63": 70.0,
-        "3.88": 30.0
+        "3.63": 72.0,
+        "3.88": 28.0
       },
       "action_probabilities": {
         "cut": 0.0,
-        "hold": 70.0,
-        "hike": 30.0
+        "hold": 72.0,
+        "hike": 28.0
       }
     },
     {
       "meeting": "2026-10-28",
       "contract_symbol": "ZQV26.CBT",
-      "pre_meeting_rate": 3.67,
+      "pre_meeting_rate": 3.665,
       "pre_meeting_rate_source": "previous_month_zq_average",
       "monthly_average_rate": 3.715,
       "expected_post_meeting_rate": 3.715,
-      "expected_change_bps": 4.5,
+      "expected_change_bps": 5.0,
       "estimate_method": "monthly_curve_proxy",
-      "raw_calendar_inversion_rate": 4.01875,
+      "raw_calendar_inversion_rate": 4.0525,
       "stability_flags": [
         "late_month_meeting"
       ],
       "target_rate_probabilities": {
-        "3.67": 82.0,
-        "3.92": 18.0
+        "3.67": 80.0,
+        "3.92": 20.0
       },
       "action_probabilities": {
         "cut": 0.0,
-        "hold": 82.0,
-        "hike": 18.0
+        "hold": 80.0,
+        "hike": 20.0
       }
     },
     {
       "meeting": "2026-12-09",
       "contract_symbol": "ZQZ26.CBT",
-      "pre_meeting_rate": 3.755,
+      "pre_meeting_rate": 3.76,
       "pre_meeting_rate_source": "previous_month_zq_average",
-      "monthly_average_rate": 3.825,
-      "expected_post_meeting_rate": 3.84935,
+      "monthly_average_rate": 3.83,
+      "expected_post_meeting_rate": 3.85435,
       "expected_change_bps": 9.43,
       "estimate_method": "calendar_weighted_inversion",
-      "raw_calendar_inversion_rate": 3.84935,
+      "raw_calendar_inversion_rate": 3.85435,
       "stability_flags": [],
       "target_rate_probabilities": {
-        "3.75": 62.26,
-        "4.00": 37.74
+        "3.76": 62.26,
+        "4.01": 37.74
       },
       "action_probabilities": {
         "cut": 0.0,
@@ -266,40 +266,40 @@
     {
       "meeting": "2027-01-27",
       "contract_symbol": "ZQF27.CBT",
-      "pre_meeting_rate": 3.825,
+      "pre_meeting_rate": 3.83,
       "pre_meeting_rate_source": "previous_month_zq_average",
-      "monthly_average_rate": 3.855,
-      "expected_post_meeting_rate": 3.855,
-      "expected_change_bps": 3.0,
+      "monthly_average_rate": 3.865,
+      "expected_post_meeting_rate": 3.865,
+      "expected_change_bps": 3.5,
       "estimate_method": "monthly_curve_proxy",
-      "raw_calendar_inversion_rate": 4.011,
+      "raw_calendar_inversion_rate": 4.047,
       "stability_flags": [
         "late_month_meeting"
       ],
       "target_rate_probabilities": {
-        "3.83": 88.0,
-        "4.08": 12.0
+        "3.83": 86.0,
+        "4.08": 14.0
       },
       "action_probabilities": {
         "cut": 0.0,
-        "hold": 88.0,
-        "hike": 12.0
+        "hold": 86.0,
+        "hike": 14.0
       }
     },
     {
       "meeting": "2027-03-17",
       "contract_symbol": "ZQH27.CBT",
-      "pre_meeting_rate": 3.89,
+      "pre_meeting_rate": 3.905,
       "pre_meeting_rate_source": "previous_month_zq_average",
-      "monthly_average_rate": 3.915,
-      "expected_post_meeting_rate": 3.94167,
+      "monthly_average_rate": 3.93,
+      "expected_post_meeting_rate": 3.95667,
       "expected_change_bps": 5.17,
       "estimate_method": "calendar_weighted_inversion",
-      "raw_calendar_inversion_rate": 3.94167,
+      "raw_calendar_inversion_rate": 3.95667,
       "stability_flags": [],
       "target_rate_probabilities": {
-        "3.89": 79.33,
-        "4.14": 20.67
+        "3.90": 79.33,
+        "4.15": 20.67
       },
       "action_probabilities": {
         "cut": 0.0,
@@ -310,19 +310,19 @@
     {
       "meeting": "2027-04-28",
       "contract_symbol": "ZQJ27.CBT",
-      "pre_meeting_rate": 3.915,
+      "pre_meeting_rate": 3.93,
       "pre_meeting_rate_source": "previous_month_zq_average",
-      "monthly_average_rate": 3.95,
-      "expected_post_meeting_rate": 3.95,
+      "monthly_average_rate": 3.965,
+      "expected_post_meeting_rate": 3.965,
       "expected_change_bps": 3.5,
       "estimate_method": "monthly_curve_proxy",
-      "raw_calendar_inversion_rate": 4.265,
+      "raw_calendar_inversion_rate": 4.28,
       "stability_flags": [
         "late_month_meeting"
       ],
       "target_rate_probabilities": {
-        "3.92": 86.0,
-        "4.17": 14.0
+        "3.93": 86.0,
+        "4.18": 14.0
       },
       "action_probabilities": {
         "cut": 0.0,
@@ -333,17 +333,17 @@
     {
       "meeting": "2027-06-09",
       "contract_symbol": "ZQM27.CBT",
-      "pre_meeting_rate": 3.965,
+      "pre_meeting_rate": 3.99,
       "pre_meeting_rate_source": "previous_month_zq_average",
-      "monthly_average_rate": 3.98,
-      "expected_post_meeting_rate": 3.98545,
+      "monthly_average_rate": 4.005,
+      "expected_post_meeting_rate": 4.01045,
       "expected_change_bps": 2.05,
       "estimate_method": "calendar_weighted_inversion",
-      "raw_calendar_inversion_rate": 3.98545,
+      "raw_calendar_inversion_rate": 4.01045,
       "stability_flags": [],
       "target_rate_probabilities": {
-        "3.96": 91.82,
-        "4.21": 8.18
+        "3.99": 91.82,
+        "4.24": 8.18
       },
       "action_probabilities": {
         "cut": 0.0,
@@ -354,19 +354,19 @@
     {
       "meeting": "2027-07-28",
       "contract_symbol": "ZQN27.CBT",
-      "pre_meeting_rate": 3.98,
+      "pre_meeting_rate": 4.005,
       "pre_meeting_rate_source": "previous_month_zq_average",
-      "monthly_average_rate": 3.99,
-      "expected_post_meeting_rate": 3.99,
+      "monthly_average_rate": 4.015,
+      "expected_post_meeting_rate": 4.015,
       "expected_change_bps": 1.0,
       "estimate_method": "monthly_curve_proxy",
-      "raw_calendar_inversion_rate": 4.0575,
+      "raw_calendar_inversion_rate": 4.0825,
       "stability_flags": [
         "late_month_meeting"
       ],
       "target_rate_probabilities": {
-        "3.98": 96.0,
-        "4.23": 4.0
+        "4.00": 96.0,
+        "4.25": 4.0
       },
       "action_probabilities": {
         "cut": 0.0,
@@ -377,44 +377,44 @@
     {
       "meeting": "2027-09-15",
       "contract_symbol": "ZQU27.CBT",
-      "pre_meeting_rate": 3.98,
+      "pre_meeting_rate": 4.015,
       "pre_meeting_rate_source": "previous_month_zq_average",
-      "monthly_average_rate": 4.0,
-      "expected_post_meeting_rate": 4.0175,
-      "expected_change_bps": 3.75,
+      "monthly_average_rate": 4.01,
+      "expected_post_meeting_rate": 4.00563,
+      "expected_change_bps": -0.94,
       "estimate_method": "calendar_weighted_inversion",
-      "raw_calendar_inversion_rate": 4.0175,
+      "raw_calendar_inversion_rate": 4.00563,
       "stability_flags": [],
       "target_rate_probabilities": {
-        "3.98": 85.0,
-        "4.23": 15.0
+        "3.76": 3.75,
+        "4.01": 96.25
       },
       "action_probabilities": {
-        "cut": 0.0,
-        "hold": 85.0,
-        "hike": 15.0
+        "cut": 3.75,
+        "hold": 96.25,
+        "hike": 0.0
       }
     },
     {
       "meeting": "2027-10-27",
       "contract_symbol": "ZQV27.CBT",
-      "pre_meeting_rate": 4.0,
+      "pre_meeting_rate": 4.01,
       "pre_meeting_rate_source": "previous_month_zq_average",
-      "monthly_average_rate": 3.97,
-      "expected_post_meeting_rate": 3.97,
-      "expected_change_bps": -3.0,
+      "monthly_average_rate": 4.005,
+      "expected_post_meeting_rate": 4.005,
+      "expected_change_bps": -0.5,
       "estimate_method": "monthly_curve_proxy",
-      "raw_calendar_inversion_rate": 3.814,
+      "raw_calendar_inversion_rate": 3.979,
       "stability_flags": [
         "late_month_meeting"
       ],
       "target_rate_probabilities": {
-        "3.75": 12.0,
-        "4.00": 88.0
+        "3.76": 2.0,
+        "4.01": 98.0
       },
       "action_probabilities": {
-        "cut": 12.0,
-        "hold": 88.0,
+        "cut": 2.0,
+        "hold": 98.0,
         "hike": 0.0
       }
     },
@@ -442,7 +442,7 @@
   ],
   "features": {
     "policy_inertia": 0.0,
-    "market": -0.15500000000000025,
+    "market": -0.14000000000000057,
     "inflation": 0.24598,
     "employment": -0.11,
     "growth": -0.34803,
@@ -476,15 +476,15 @@
       {
         "symbol": "ZQQ26.CBT",
         "contract_month": "2026-08",
-        "price": 96.3675,
-        "implied_average_rate": 3.6325,
-        "observation_count": 3
+        "price": 96.37,
+        "implied_average_rate": 3.63,
+        "observation_count": 4
       },
       {
         "symbol": "ZQU26.CBT",
         "contract_month": "2026-09",
-        "price": 96.33,
-        "implied_average_rate": 3.67,
+        "price": 96.335,
+        "implied_average_rate": 3.665,
         "observation_count": 4
       },
       {
@@ -497,86 +497,86 @@
       {
         "symbol": "ZQX26.CBT",
         "contract_month": "2026-11",
-        "price": 96.245,
-        "implied_average_rate": 3.755,
+        "price": 96.24,
+        "implied_average_rate": 3.76,
         "observation_count": 4
       },
       {
         "symbol": "ZQZ26.CBT",
         "contract_month": "2026-12",
-        "price": 96.175,
-        "implied_average_rate": 3.825,
+        "price": 96.17,
+        "implied_average_rate": 3.83,
         "observation_count": 4
       },
       {
         "symbol": "ZQF27.CBT",
         "contract_month": "2027-01",
-        "price": 96.145,
-        "implied_average_rate": 3.855,
+        "price": 96.135,
+        "implied_average_rate": 3.865,
         "observation_count": 4
       },
       {
         "symbol": "ZQG27.CBT",
         "contract_month": "2027-02",
-        "price": 96.11,
-        "implied_average_rate": 3.89,
+        "price": 96.095,
+        "implied_average_rate": 3.905,
         "observation_count": 4
       },
       {
         "symbol": "ZQH27.CBT",
         "contract_month": "2027-03",
-        "price": 96.085,
-        "implied_average_rate": 3.915,
+        "price": 96.07,
+        "implied_average_rate": 3.93,
         "observation_count": 4
       },
       {
         "symbol": "ZQJ27.CBT",
         "contract_month": "2027-04",
-        "price": 96.05,
-        "implied_average_rate": 3.95,
-        "observation_count": 4
-      },
-      {
-        "symbol": "ZQK27.CBT",
-        "contract_month": "2027-05",
         "price": 96.035,
         "implied_average_rate": 3.965,
         "observation_count": 4
       },
       {
-        "symbol": "ZQM27.CBT",
-        "contract_month": "2027-06",
-        "price": 96.02,
-        "implied_average_rate": 3.98,
-        "observation_count": 4
-      },
-      {
-        "symbol": "ZQN27.CBT",
-        "contract_month": "2027-07",
+        "symbol": "ZQK27.CBT",
+        "contract_month": "2027-05",
         "price": 96.01,
         "implied_average_rate": 3.99,
         "observation_count": 4
       },
       {
+        "symbol": "ZQM27.CBT",
+        "contract_month": "2027-06",
+        "price": 95.995,
+        "implied_average_rate": 4.005,
+        "observation_count": 4
+      },
+      {
+        "symbol": "ZQN27.CBT",
+        "contract_month": "2027-07",
+        "price": 95.985,
+        "implied_average_rate": 4.015,
+        "observation_count": 4
+      },
+      {
         "symbol": "ZQQ27.CBT",
         "contract_month": "2027-08",
-        "price": 96.02,
-        "implied_average_rate": 3.98,
+        "price": 95.985,
+        "implied_average_rate": 4.015,
         "observation_count": 4
       },
       {
         "symbol": "ZQU27.CBT",
         "contract_month": "2027-09",
-        "price": 96.0,
-        "implied_average_rate": 4.0,
-        "observation_count": 3
+        "price": 95.99,
+        "implied_average_rate": 4.01,
+        "observation_count": 4
       },
       {
         "symbol": "ZQV27.CBT",
         "contract_month": "2027-10",
-        "price": 96.03,
-        "implied_average_rate": 3.97,
-        "observation_count": 3
+        "price": 95.995,
+        "implied_average_rate": 4.005,
+        "observation_count": 4
       },
       {
         "symbol": "ZQX27.CBT",
@@ -597,85 +597,85 @@
       {
         "symbol": "SR1Q26.CME",
         "contract_month": "2026-08",
-        "price": 96.365,
-        "implied_average_rate": 3.635,
+        "price": 96.3625,
+        "implied_average_rate": 3.6375,
         "observation_count": 1
       },
       {
         "symbol": "SR1U26.CME",
         "contract_month": "2026-09",
-        "price": 96.33,
-        "implied_average_rate": 3.67,
+        "price": 96.325,
+        "implied_average_rate": 3.675,
         "observation_count": 1
       },
       {
         "symbol": "SR1V26.CME",
         "contract_month": "2026-10",
-        "price": 96.27,
-        "implied_average_rate": 3.73,
+        "price": 96.265,
+        "implied_average_rate": 3.735,
         "observation_count": 1
       },
       {
         "symbol": "SR1X26.CME",
         "contract_month": "2026-11",
-        "price": 96.22,
-        "implied_average_rate": 3.78,
+        "price": 96.215,
+        "implied_average_rate": 3.785,
         "observation_count": 1
       },
       {
         "symbol": "SR1Z26.CME",
         "contract_month": "2026-12",
-        "price": 96.14,
-        "implied_average_rate": 3.86,
+        "price": 96.13,
+        "implied_average_rate": 3.87,
         "observation_count": 1
       },
       {
         "symbol": "SR1F27.CME",
         "contract_month": "2027-01",
-        "price": 96.115,
-        "implied_average_rate": 3.885,
+        "price": 96.1,
+        "implied_average_rate": 3.9,
         "observation_count": 1
       },
       {
         "symbol": "SR1G27.CME",
         "contract_month": "2027-02",
-        "price": 96.09,
-        "implied_average_rate": 3.91,
+        "price": 96.075,
+        "implied_average_rate": 3.925,
         "observation_count": 1
       },
       {
         "symbol": "SR1H27.CME",
         "contract_month": "2027-03",
-        "price": 96.06,
-        "implied_average_rate": 3.94,
+        "price": 96.045,
+        "implied_average_rate": 3.955,
         "observation_count": 1
       },
       {
         "symbol": "SR1J27.CME",
         "contract_month": "2027-04",
-        "price": 96.035,
-        "implied_average_rate": 3.965,
+        "price": 96.015,
+        "implied_average_rate": 3.985,
         "observation_count": 1
       },
       {
         "symbol": "SR1K27.CME",
         "contract_month": "2027-05",
-        "price": 96.01,
-        "implied_average_rate": 3.99,
-        "observation_count": 1
-      },
-      {
-        "symbol": "SR1M27.CME",
-        "contract_month": "2027-06",
         "price": 95.99,
         "implied_average_rate": 4.01,
         "observation_count": 1
       },
       {
+        "symbol": "SR1M27.CME",
+        "contract_month": "2027-06",
+        "price": 95.965,
+        "implied_average_rate": 4.035,
+        "observation_count": 1
+      },
+      {
         "symbol": "SR1N27.CME",
         "contract_month": "2027-07",
-        "price": 95.96,
-        "implied_average_rate": 4.04,
+        "price": 95.975,
+        "implied_average_rate": 4.025,
         "observation_count": 1
       },
       {
@@ -702,8 +702,8 @@
       {
         "symbol": "SR3Z27.CME",
         "contract_month": "2027-12",
-        "price": 95.99,
-        "implied_average_rate": 4.01,
+        "price": 95.955,
+        "implied_average_rate": 4.045,
         "observation_count": 1
       }
     ]
@@ -1051,120 +1051,120 @@
       {
         "group": "zq_continuous",
         "symbol": "ZQ=F",
-        "market_time_utc": "2026-08-17T08:03:21+00:00",
-        "age_minutes": 58.61,
+        "market_time_utc": "2026-08-17T12:50:22+00:00",
+        "age_minutes": 12.26,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQF27.CBT",
-        "market_time_utc": "2026-08-17T08:50:34+00:00",
-        "age_minutes": 11.39,
+        "market_time_utc": "2026-08-17T12:50:02+00:00",
+        "age_minutes": 12.6,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQG27.CBT",
-        "market_time_utc": "2026-08-17T08:33:31+00:00",
-        "age_minutes": 28.44,
+        "market_time_utc": "2026-08-17T12:50:02+00:00",
+        "age_minutes": 12.6,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQH27.CBT",
-        "market_time_utc": "2026-08-17T08:28:15+00:00",
-        "age_minutes": 33.71,
+        "market_time_utc": "2026-08-17T12:36:29+00:00",
+        "age_minutes": 26.15,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQJ27.CBT",
-        "market_time_utc": "2026-08-17T08:51:17+00:00",
-        "age_minutes": 10.67,
+        "market_time_utc": "2026-08-17T12:42:14+00:00",
+        "age_minutes": 20.4,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQK27.CBT",
-        "market_time_utc": "2026-08-17T08:33:31+00:00",
-        "age_minutes": 28.44,
+        "market_time_utc": "2026-08-17T12:49:32+00:00",
+        "age_minutes": 13.1,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQM27.CBT",
-        "market_time_utc": "2026-08-17T08:33:32+00:00",
-        "age_minutes": 28.42,
+        "market_time_utc": "2026-08-17T12:42:10+00:00",
+        "age_minutes": 20.46,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQN27.CBT",
-        "market_time_utc": "2026-08-17T08:46:56+00:00",
-        "age_minutes": 15.02,
+        "market_time_utc": "2026-08-17T12:50:43+00:00",
+        "age_minutes": 11.91,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQQ26.CBT",
-        "market_time_utc": "2026-08-14T19:50:56+00:00",
-        "age_minutes": 3671.02,
-        "status": "CACHE",
+        "market_time_utc": "2026-08-17T10:58:25+00:00",
+        "age_minutes": 124.21,
+        "status": "LIVE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQQ27.CBT",
-        "market_time_utc": "2026-08-17T07:36:40+00:00",
-        "age_minutes": 85.29,
+        "market_time_utc": "2026-08-17T12:47:38+00:00",
+        "age_minutes": 15.0,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQU26.CBT",
-        "market_time_utc": "2026-08-17T07:56:07+00:00",
-        "age_minutes": 65.84,
+        "market_time_utc": "2026-08-17T12:47:26+00:00",
+        "age_minutes": 15.2,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQU27.CBT",
-        "market_time_utc": "2026-08-14T19:03:29+00:00",
-        "age_minutes": 3718.47,
-        "status": "CACHE",
+        "market_time_utc": "2026-08-17T12:37:27+00:00",
+        "age_minutes": 25.18,
+        "status": "LIVE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQV26.CBT",
-        "market_time_utc": "2026-08-17T08:03:21+00:00",
-        "age_minutes": 58.61,
+        "market_time_utc": "2026-08-17T12:50:22+00:00",
+        "age_minutes": 12.26,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQV27.CBT",
-        "market_time_utc": "2026-08-14T15:20:21+00:00",
-        "age_minutes": 3941.61,
-        "status": "CACHE",
+        "market_time_utc": "2026-08-17T12:28:02+00:00",
+        "age_minutes": 34.6,
+        "status": "LIVE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQX26.CBT",
-        "market_time_utc": "2026-08-17T07:48:31+00:00",
-        "age_minutes": 73.44,
+        "market_time_utc": "2026-08-17T12:47:26+00:00",
+        "age_minutes": 15.2,
         "status": "LIVE",
         "market_state": null
       },
@@ -1172,15 +1172,15 @@
         "group": "zq_curve",
         "symbol": "ZQX27.CBT",
         "market_time_utc": "2026-08-14T17:10:01+00:00",
-        "age_minutes": 3831.94,
+        "age_minutes": 4072.61,
         "status": "CACHE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQZ26.CBT",
-        "market_time_utc": "2026-08-17T07:58:02+00:00",
-        "age_minutes": 63.92,
+        "market_time_utc": "2026-08-17T12:26:41+00:00",
+        "age_minutes": 35.95,
         "status": "LIVE",
         "market_state": null
       },
@@ -1188,71 +1188,71 @@
         "group": "zq_curve",
         "symbol": "ZQZ27.CBT",
         "market_time_utc": "2026-07-23T11:46:06+00:00",
-        "age_minutes": 35835.86,
+        "age_minutes": 36076.53,
         "status": "CACHE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1F27.CME",
-        "market_time_utc": "2026-08-17T08:32:07+00:00",
-        "age_minutes": 29.84,
+        "market_time_utc": "2026-08-17T12:49:44+00:00",
+        "age_minutes": 12.9,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1G27.CME",
-        "market_time_utc": "2026-08-17T08:22:50+00:00",
-        "age_minutes": 39.12,
+        "market_time_utc": "2026-08-17T12:48:34+00:00",
+        "age_minutes": 14.06,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1H27.CME",
-        "market_time_utc": "2026-08-17T08:47:36+00:00",
-        "age_minutes": 14.36,
+        "market_time_utc": "2026-08-17T12:31:43+00:00",
+        "age_minutes": 30.91,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1J27.CME",
-        "market_time_utc": "2026-08-17T08:32:48+00:00",
-        "age_minutes": 29.16,
+        "market_time_utc": "2026-08-17T12:40:05+00:00",
+        "age_minutes": 22.55,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1K27.CME",
-        "market_time_utc": "2026-08-17T08:50:26+00:00",
-        "age_minutes": 11.52,
+        "market_time_utc": "2026-08-17T12:42:13+00:00",
+        "age_minutes": 20.41,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1M27.CME",
-        "market_time_utc": "2026-08-17T07:49:54+00:00",
-        "age_minutes": 72.06,
+        "market_time_utc": "2026-08-17T12:42:14+00:00",
+        "age_minutes": 20.4,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1N27.CME",
-        "market_time_utc": "2026-08-14T19:45:05+00:00",
-        "age_minutes": 3676.87,
-        "status": "CACHE",
+        "market_time_utc": "2026-08-17T11:47:35+00:00",
+        "age_minutes": 75.05,
+        "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1Q26.CME",
-        "market_time_utc": "2026-08-17T08:17:53+00:00",
-        "age_minutes": 44.07,
+        "market_time_utc": "2026-08-17T12:47:34+00:00",
+        "age_minutes": 15.06,
         "status": "LIVE",
         "market_state": null
       },
@@ -1260,15 +1260,15 @@
         "group": "sofr_curve",
         "symbol": "SR1Q27.CME",
         "market_time_utc": "2026-08-17T01:27:32+00:00",
-        "age_minutes": 454.42,
+        "age_minutes": 695.1,
         "status": "CACHE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1U26.CME",
-        "market_time_utc": "2026-08-17T08:17:53+00:00",
-        "age_minutes": 44.07,
+        "market_time_utc": "2026-08-17T12:42:00+00:00",
+        "age_minutes": 20.63,
         "status": "LIVE",
         "market_state": null
       },
@@ -1276,15 +1276,15 @@
         "group": "sofr_curve",
         "symbol": "SR1U27.CME",
         "market_time_utc": "2026-08-13T14:04:14+00:00",
-        "age_minutes": 5457.72,
+        "age_minutes": 5698.4,
         "status": "CACHE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1V26.CME",
-        "market_time_utc": "2026-08-17T08:32:07+00:00",
-        "age_minutes": 29.84,
+        "market_time_utc": "2026-08-17T12:48:05+00:00",
+        "age_minutes": 14.55,
         "status": "LIVE",
         "market_state": null
       },
@@ -1292,47 +1292,47 @@
         "group": "sofr_curve",
         "symbol": "SR1V27.CME",
         "market_time_utc": "2026-08-14T15:38:39+00:00",
-        "age_minutes": 3923.31,
+        "age_minutes": 4163.98,
         "status": "CACHE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1X26.CME",
-        "market_time_utc": "2026-08-17T08:44:45+00:00",
-        "age_minutes": 17.21,
+        "market_time_utc": "2026-08-17T12:47:56+00:00",
+        "age_minutes": 14.7,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1Z26.CME",
-        "market_time_utc": "2026-08-17T07:58:02+00:00",
-        "age_minutes": 63.92,
+        "market_time_utc": "2026-08-17T12:48:05+00:00",
+        "age_minutes": 14.55,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR3F27.CME",
-        "market_time_utc": "2026-08-13T16:08:53+00:00",
-        "age_minutes": 5333.07,
-        "status": "CACHE",
+        "market_time_utc": "2026-08-17T10:41:08+00:00",
+        "age_minutes": 141.5,
+        "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR3H27.CME",
-        "market_time_utc": "2026-08-17T08:48:26+00:00",
-        "age_minutes": 13.52,
+        "market_time_utc": "2026-08-17T12:49:37+00:00",
+        "age_minutes": 13.01,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR3M27.CME",
-        "market_time_utc": "2026-08-17T08:48:26+00:00",
-        "age_minutes": 13.52,
+        "market_time_utc": "2026-08-17T12:50:51+00:00",
+        "age_minutes": 11.78,
         "status": "LIVE",
         "market_state": null
       },
@@ -1340,55 +1340,55 @@
         "group": "sofr_curve",
         "symbol": "SR3Q26.CME",
         "market_time_utc": "2026-08-14T15:38:38+00:00",
-        "age_minutes": 3923.32,
+        "age_minutes": 4164.0,
         "status": "CACHE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR3U26.CME",
-        "market_time_utc": "2026-08-17T08:50:55+00:00",
-        "age_minutes": 11.04,
+        "market_time_utc": "2026-08-17T12:50:42+00:00",
+        "age_minutes": 11.93,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR3U27.CME",
-        "market_time_utc": "2026-08-17T08:48:08+00:00",
-        "age_minutes": 13.82,
+        "market_time_utc": "2026-08-17T12:48:56+00:00",
+        "age_minutes": 13.7,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR3V26.CME",
-        "market_time_utc": "2026-08-14T14:19:52+00:00",
-        "age_minutes": 4002.09,
-        "status": "CACHE",
+        "market_time_utc": "2026-08-17T10:41:08+00:00",
+        "age_minutes": 141.5,
+        "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR3X26.CME",
         "market_time_utc": "2026-08-14T14:19:52+00:00",
-        "age_minutes": 4002.09,
+        "age_minutes": 4242.76,
         "status": "CACHE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR3Z26.CME",
-        "market_time_utc": "2026-08-17T08:48:49+00:00",
-        "age_minutes": 13.14,
+        "market_time_utc": "2026-08-17T12:49:11+00:00",
+        "age_minutes": 13.45,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR3Z27.CME",
-        "market_time_utc": "2026-08-17T08:50:12+00:00",
-        "age_minutes": 11.76,
+        "market_time_utc": "2026-08-17T12:50:51+00:00",
+        "age_minutes": 11.78,
         "status": "LIVE",
         "market_state": null
       }
