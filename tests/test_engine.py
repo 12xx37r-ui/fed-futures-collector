@@ -85,3 +85,40 @@ class FinalImprovementTests(unittest.TestCase):
         self.assertEqual(q['observation_count'],4)
         self.assertEqual(q['live_ratio'],1.0)
         self.assertEqual(q['grade'],'HIGH')
+
+class FinalRegimeAuditTests(unittest.TestCase):
+    def test_small_regime_sample_is_not_presented_as_skill(self):
+        from engine.us_macro_context import _m2_regime_audit
+        from datetime import date as _date
+        import calendar as _calendar
+
+        def add_months(d, n):
+            idx=d.year*12+d.month-1+n
+            y,m0=divmod(idx,12); m=m0+1
+            return _date(y,m,min(d.day,_calendar.monthrange(y,m)[1]))
+
+        start=_date(2020,1,1)
+        rows=[]
+        cpi=[]
+        target=[]
+        recession=[]
+        level=15000.0
+        for i in range(64):
+            d=add_months(start,i).isoformat()
+            level*=1.004
+            rows.append({'date':d,'value':level})
+            cpi.append({'date':d,'value':100+i*0.25})
+            target.append({'date':d,'value':4.0})
+            # Only the last two eligible origins are recession observations.
+            recession.append({'date':d,'value':1.0 if i>=59 else 0.0})
+        raw={'fred':{
+            'cpi':{'observations':cpi},
+            'target_upper':{'observations':target},
+            'recession_indicator':{'observations':recession},
+        }}
+        audit=_m2_regime_audit(raw,rows,3)
+        rec=audit['regimes']['recession']
+        self.assertLess(rec['samples'],10)
+        self.assertEqual(rec['sample_status'],'INSUFFICIENT_SAMPLE')
+        self.assertIsNone(rec['skill_pct'])
+        self.assertIsNotNone(rec['raw_skill_pct'])

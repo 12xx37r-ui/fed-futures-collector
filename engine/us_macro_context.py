@@ -504,8 +504,18 @@ def _m2_regime_audit(raw: dict[str, Any], rows: list[dict[str, Any]], horizon: i
         if not pairs: continue
         rm=_rmse([a for a,_ in pairs]); br=_rmse([b for _,b in pairs])
         skill=(1-rm/br)*100 if br>0 else None
-        out[lab]={"samples":len(pairs),"rmse_pct":round(rm,4),"baseline_rmse_pct":round(br,4),"skill_pct":round(skill,2) if skill is not None else None}
-    return {"available": bool(out), "horizon":"3m", "regimes":out, "note":"audit-only; regime results do not alter the forecast"}
+        samples=len(pairs)
+        sufficient=samples>=10
+        out[lab]={
+            "samples":samples,
+            "sample_status":"SUFFICIENT" if sufficient else "INSUFFICIENT_SAMPLE",
+            "rmse_pct":round(rm,4),
+            "baseline_rmse_pct":round(br,4),
+            "skill_pct":round(skill,2) if sufficient and skill is not None else None,
+            "raw_skill_pct":round(skill,2) if skill is not None else None,
+            "minimum_samples_for_interpretation":10,
+        }
+    return {"available": bool(out), "horizon":"3m", "regimes":out, "note":"audit-only; regimes with <10 samples are marked INSUFFICIENT_SAMPLE and their skill_pct is withheld; regime results do not alter the forecast"}
 
 
 def _m2_payload(raw: dict[str, Any]) -> dict[str, Any]:

@@ -280,7 +280,8 @@ def _policy_rate_outlook(meeting_path: list[dict[str, Any]], current_rate: float
                     age = max(0.0, (datetime.now(timezone.utc) - mt.astimezone(timezone.utc)).total_seconds()/60.0)
                 except Exception:
                     pass
-                observation_count = len(source_row.get("observations") or [])
+                raw_observations = source_row.get("observations") or []
+                observation_count = int(source_row.get("observation_count") or len(raw_observations))
                 is_live = age is not None and age <= 180
                 live_ratio = 1.0 if is_live else 0.0
                 freshness_score = 100 if age is not None and age <= 180 else 75 if age is not None and age <= 1440 else 50 if age is not None and age <= 10080 else 25
