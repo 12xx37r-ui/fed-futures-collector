@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at_utc": "2026-08-18T08:05:47.635205+00:00",
+  "generated_at_utc": "2026-08-18T11:46:32.667114+00:00",
   "status": "UPDATED",
   "symbols_attempted": [
     "ZQ=F",
@@ -16,6 +16,7 @@
     "SR1U26.CME",
     "SR1V26.CME",
     "ZQ=F",
+    "ZQQ26.CBT",
     "ZQU26.CBT",
     "ZQV26.CBT"
   ],
