@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at_utc": "2026-08-18T21:05:33.200232+00:00",
+  "generated_at_utc": "2026-08-18T21:58:00.633998+00:00",
   "engine": "US Fed policy engine",
   "entries": [
     {
@@ -8,7 +8,7 @@
       "label": "Fed policy rate 1m",
       "horizon": "1m",
       "current": 3.63,
-      "forecast": 3.72,
+      "forecast": 3.71,
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
@@ -17,7 +17,7 @@
         "grade": "HIGH",
         "observation_count": 4,
         "live_ratio": 1.0,
-        "max_age_minutes": 29.7
+        "max_age_minutes": 62.9
       },
       "quality_gate": {
         "passed": true,
@@ -30,7 +30,7 @@
       "label": "Fed policy rate 3m",
       "horizon": "3m",
       "current": 3.63,
-      "forecast": 3.725,
+      "forecast": 3.72,
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
@@ -39,7 +39,7 @@
         "grade": "HIGH",
         "observation_count": 4,
         "live_ratio": 1.0,
-        "max_age_minutes": 21.9
+        "max_age_minutes": 59.1
       },
       "quality_gate": {
         "passed": true,
@@ -61,7 +61,7 @@
         "grade": "HIGH",
         "observation_count": 4,
         "live_ratio": 1.0,
-        "max_age_minutes": 15.5
+        "max_age_minutes": 68.0
       },
       "quality_gate": {
         "passed": true,
@@ -83,7 +83,7 @@
         "grade": "HIGH",
         "observation_count": 4,
         "live_ratio": 1.0,
-        "max_age_minutes": 18.2
+        "max_age_minutes": 70.7
       },
       "quality_gate": {
         "passed": true,
@@ -131,41 +131,41 @@
       "id": "dxy_1m",
       "label": "DXY 1m",
       "horizon": "1m",
-      "current": 99.664,
-      "forecast": 99.664,
+      "current": 99.653,
+      "forecast": 99.653,
       "status": "ABSTAIN",
       "usable": false,
       "basis": "price_ensemble",
       "validation": {
-        "rmse_pct": 1.777961132910514,
-        "baseline_rmse_pct": 1.777961132910514,
+        "rmse_pct": 1.7788532407421798,
+        "baseline_rmse_pct": 1.7788532407421798,
         "skill_pct": 0.0,
         "backtests": 760,
-        "direction_accuracy": 47.94721407624634,
-        "direction_cases": 682,
+        "direction_accuracy": 47.95918367346938,
+        "direction_cases": 686,
         "fallback_used": true
       },
-      "reason": "abstain: no validated edge; direction accuracy 47.9%"
+      "reason": "abstain: no validated edge; direction accuracy 48.0%"
     },
     {
       "id": "dxy_3m",
       "label": "DXY 3m",
       "horizon": "3m",
-      "current": 99.664,
-      "forecast": 99.664,
+      "current": 99.653,
+      "forecast": 99.653,
       "status": "ABSTAIN",
       "usable": false,
       "basis": "price_ensemble",
       "validation": {
-        "rmse_pct": 3.264648875838739,
-        "baseline_rmse_pct": 3.264648875838739,
+        "rmse_pct": 3.2626878535811876,
+        "baseline_rmse_pct": 3.2626878535811876,
         "skill_pct": 0.0,
         "backtests": 760,
-        "direction_accuracy": 36.48255813953488,
+        "direction_accuracy": 36.04651162790697,
         "direction_cases": 688,
         "fallback_used": true
       },
-      "reason": "abstain: no validated edge; direction accuracy 36.5%"
+      "reason": "abstain: no validated edge; direction accuracy 36.0%"
     },
     {
       "id": "real_rate_10y_1m",
