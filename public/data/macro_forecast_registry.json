@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at_utc": "2026-08-18T17:56:54.565010+00:00",
+  "generated_at_utc": "2026-08-18T18:26:06.397204+00:00",
   "engine": "US Fed policy engine",
   "entries": [
     {
@@ -8,88 +8,88 @@
       "label": "Fed policy rate 1m",
       "horizon": "1m",
       "current": 3.63,
-      "forecast": 3.71,
+      "forecast": 3.708,
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
       "path_confidence": {
-        "score": 35,
-        "grade": "LOW",
-        "observation_count": 0,
-        "live_ratio": 0.0,
-        "max_age_minutes": null
+        "score": 100,
+        "grade": "HIGH",
+        "observation_count": 4,
+        "live_ratio": 1.0,
+        "max_age_minutes": 39.9
       },
       "quality_gate": {
         "passed": true,
         "type": "market_implied_not_model_forecast"
       },
-      "reason": "market-implied path; confidence LOW"
+      "reason": "market-implied path; confidence HIGH"
     },
     {
       "id": "fed_policy_3m",
       "label": "Fed policy rate 3m",
       "horizon": "3m",
       "current": 3.63,
-      "forecast": 3.72,
+      "forecast": 3.725,
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
       "path_confidence": {
-        "score": 35,
-        "grade": "LOW",
-        "observation_count": 0,
-        "live_ratio": 0.0,
-        "max_age_minutes": null
+        "score": 100,
+        "grade": "HIGH",
+        "observation_count": 4,
+        "live_ratio": 1.0,
+        "max_age_minutes": 17.2
       },
       "quality_gate": {
         "passed": true,
         "type": "market_implied_not_model_forecast"
       },
-      "reason": "market-implied path; confidence LOW"
+      "reason": "market-implied path; confidence HIGH"
     },
     {
       "id": "fed_policy_6m",
       "label": "Fed policy rate 6m",
       "horizon": "6m",
       "current": 3.63,
-      "forecast": 3.87,
+      "forecast": 3.865,
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
       "path_confidence": {
-        "score": 35,
-        "grade": "LOW",
-        "observation_count": 0,
-        "live_ratio": 0.0,
-        "max_age_minutes": null
+        "score": 100,
+        "grade": "HIGH",
+        "observation_count": 4,
+        "live_ratio": 1.0,
+        "max_age_minutes": 25.6
       },
       "quality_gate": {
         "passed": true,
         "type": "market_implied_not_model_forecast"
       },
-      "reason": "market-implied path; confidence LOW"
+      "reason": "market-implied path; confidence HIGH"
     },
     {
       "id": "fed_policy_12m",
       "label": "Fed policy rate 12m",
       "horizon": "12m",
       "current": 3.63,
-      "forecast": 4.015,
+      "forecast": 4.01,
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
       "path_confidence": {
-        "score": 35,
-        "grade": "LOW",
-        "observation_count": 0,
-        "live_ratio": 0.0,
-        "max_age_minutes": null
+        "score": 100,
+        "grade": "HIGH",
+        "observation_count": 4,
+        "live_ratio": 1.0,
+        "max_age_minutes": 13.3
       },
       "quality_gate": {
         "passed": true,
         "type": "market_implied_not_model_forecast"
       },
-      "reason": "market-implied path; confidence LOW"
+      "reason": "market-implied path; confidence HIGH"
     },
     {
       "id": "us_m2_1m",
@@ -131,14 +131,14 @@
       "id": "dxy_1m",
       "label": "DXY 1m",
       "horizon": "1m",
-      "current": 99.65,
-      "forecast": 99.65,
+      "current": 99.64,
+      "forecast": 99.64,
       "status": "ABSTAIN",
       "usable": false,
       "basis": "price_ensemble",
       "validation": {
-        "rmse_pct": 1.7779752249876688,
-        "baseline_rmse_pct": 1.7779752249876688,
+        "rmse_pct": 1.7779853849703606,
+        "baseline_rmse_pct": 1.7779853849703606,
         "skill_pct": 0.0,
         "backtests": 760,
         "direction_accuracy": 47.94721407624634,
@@ -151,14 +151,14 @@
       "id": "dxy_3m",
       "label": "DXY 3m",
       "horizon": "3m",
-      "current": 99.65,
-      "forecast": 99.65,
+      "current": 99.64,
+      "forecast": 99.64,
       "status": "ABSTAIN",
       "usable": false,
       "basis": "price_ensemble",
       "validation": {
-        "rmse_pct": 3.264644999568656,
-        "baseline_rmse_pct": 3.264644999568656,
+        "rmse_pct": 3.264642278180468,
+        "baseline_rmse_pct": 3.264642278180468,
         "skill_pct": 0.0,
         "backtests": 760,
         "direction_accuracy": 36.48255813953488,
