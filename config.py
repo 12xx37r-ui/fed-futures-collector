@@ -21,6 +21,7 @@ FRED_SERIES = {
     "NFCI": "nfci",
     "BAMLH0A0HYM2": "hy_oas",
     "VIXCLS": "vix",
+    "M2SL": "m2",
 }
 
 NYFED_ENDPOINTS = {

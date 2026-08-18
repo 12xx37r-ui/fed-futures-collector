@@ -4,10 +4,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 import requests
+from engine.us_macro_context import refresh_dxy_context
 
 ROOT=Path(__file__).resolve().parent
 LATEST=ROOT/"public"/"data"/"latest.json"
 STATUS=ROOT/"public"/"data"/"fast_market_refresh_status.json"
+US_CONTEXT=ROOT/"public"/"data"/"us_liquidity_dxy.json"
 TIMEOUT=(3,8)
 FULL_GUARD_MINUTES=120
 YAHOO_MIN_INTERVAL_SECONDS=0.35
@@ -45,6 +47,38 @@ def market_quote(session,symbol):
             if p is None or ts is None: raise ValueError("price/time unavailable")
             return {"symbol":symbol,"price":p,"market_time_utc":datetime.fromtimestamp(int(ts),tz=timezone.utc).isoformat(),
                     "retrieved_at_utc":now_iso(),"source":"Yahoo Finance chart metadata"}
+        except Exception as e:
+            last=e
+            if a<1: time.sleep(1.0+random.random())
+    return {"symbol":symbol,"error":f"{type(last).__name__}: {str(last)[:120]}"}
+
+
+
+def dxy_history(session):
+    symbol="DX-Y.NYB"
+    url=f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}"
+    last=None
+    for a in range(2):
+        try:
+            r=session.get(url,params={"range":"5y","interval":"1d","events":"history","_ts":int(time.time())},timeout=TIMEOUT,headers={"Cache-Control":"no-cache","Pragma":"no-cache"})
+            if r.status_code==429:
+                ra=r.headers.get("Retry-After")
+                try: wait=float(ra) if ra is not None else None
+                except Exception: wait=None
+                time.sleep(min(15.0, wait if wait is not None and wait>=0 else 1.5*(2**a)+random.random()))
+                continue
+            r.raise_for_status()
+            node=((((r.json() or {}).get("chart") or {}).get("result") or [None])[0] or {})
+            meta=node.get("meta") or {}; ts=node.get("timestamp") or []
+            closes=(((node.get("indicators") or {}).get("quote") or [{}])[0].get("close") or [])
+            obs=[]
+            for t,v in zip(ts,closes):
+                if v is not None:
+                    obs.append({"date":datetime.fromtimestamp(int(t),tz=timezone.utc).date().isoformat(),"value":float(v)})
+            p=n(meta.get("regularMarketPrice")); mts=meta.get("regularMarketTime")
+            if p is None or len(obs)<300: raise ValueError("DXY price/history unavailable")
+            return {"symbol":symbol,"price":p,"observations":obs,"market_time_utc":datetime.fromtimestamp(int(mts),tz=timezone.utc).isoformat() if mts else None,
+                    "retrieved_at_utc":now_iso(),"source_url":url,"stale":False}
         except Exception as e:
             last=e
             if a<1: time.sleep(1.0+random.random())
@@ -94,6 +128,8 @@ def main():
     if not symbols: symbols=["ZQ=F"]
     prev=((p.get("fast_market_snapshot") or {}).get("quotes") or {})
     s=requests.Session(); s.headers.update({"User-Agent":"fed-futures-fast-refresh/1.0","Accept":"application/json"})
+    dxy_raw=dxy_history(s)
+    time.sleep(YAHOO_MIN_INTERVAL_SECONDS)
     attempted=[]
     for i,sym in enumerate(symbols):
         if i: time.sleep(YAHOO_MIN_INTERVAL_SECONDS)
@@ -106,13 +142,25 @@ def main():
         new_dt=parse_dt(q.get("market_time_utc"))
         if old_dt is None or (new_dt is not None and new_dt > old_dt):
             newer[q["symbol"]]=q
-    if not newer:
-        print(json.dumps({"status":"NO_CHANGE","symbols_attempted":symbols,"network_calls":len(symbols)}, ensure_ascii=False))
+    dxy_updated=False
+    if "price" in dxy_raw:
+        ctx=read(US_CONTEXT)
+        if ctx:
+            try:
+                ctx=refresh_dxy_context(ctx,dxy_raw)
+                write(US_CONTEXT,ctx)
+                p["us_macro_context"]=ctx
+                dxy_updated=True
+            except Exception:
+                dxy_updated=False
+    if not newer and not dxy_updated:
+        print(json.dumps({"status":"NO_CHANGE","symbols_attempted":symbols,"network_calls":len(symbols)+1}, ensure_ascii=False))
         return
     merged=dict(prev) if isinstance(prev,dict) else {}
     merged.update(newer)
-    p["fast_market_snapshot"]={"version":"V230","generated_at_utc":now_iso(),"scope":"nearest ZQ/SOFR only",
-        "quotes":merged,"full_engine_recomputed":False,"representative_probabilities_changed":False}
+    if newer:
+        p["fast_market_snapshot"]={"version":"V230","generated_at_utc":now_iso(),"scope":"nearest ZQ/SOFR only",
+            "quotes":merged,"full_engine_recomputed":False,"representative_probabilities_changed":False}
     items=((p.get("freshness") or {}).get("items") or [])
     if isinstance(items,list):
         for item in items:
@@ -124,6 +172,6 @@ def main():
     write(LATEST,p)
     write(STATUS,{"schema_version":"1.0","generated_at_utc":now_iso(),"status":"UPDATED",
                   "symbols_attempted":symbols,"symbols_updated":sorted(newer),
-                  "network_calls":len(symbols),"max_symbols_per_run":7,
+                  "network_calls":len(symbols)+1,"max_symbols_per_run":8,"dxy_updated":dxy_updated,
                   "model_formulas_changed":False,"probabilities_recomputed":False})
 if __name__=="__main__": main()

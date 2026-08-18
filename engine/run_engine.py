@@ -16,6 +16,7 @@ from .macro_model import score as macro_score
 from .optimizer import optimized_weights
 from .policy_regime import policy_inertia_asof
 from .utils import latest
+from .us_macro_context import write_us_macro_context
 
 
 ENGINE_VERSION = "4.0.0-probability-validation-split"
@@ -256,6 +257,7 @@ def main() -> None:
     status = json.loads(
         Path("public/data/source_status.json").read_text(encoding="utf-8")
     )
+    us_macro_context = write_us_macro_context(raw)
 
     zq_curve = build_curve(
         raw.get("futures", {}).get("zq_curve", []),
@@ -414,6 +416,7 @@ def main() -> None:
         "warnings": warnings,
         # V217: additive source/market freshness contract. No existing field changes.
         "freshness": _market_freshness(raw),
+        "us_macro_context": us_macro_context,
     }
 
     Path("public/data/latest.json").write_text(

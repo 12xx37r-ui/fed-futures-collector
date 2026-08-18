@@ -416,13 +416,51 @@ def collect_fred(raw: dict[str, Any], statuses: list[dict[str, Any]], previous_r
     elapsed = time.perf_counter() - started
     log(f"[FRED] live={live_count}, cache={cached_count}, missing={missing_count}, elapsed={elapsed:.1f}s")
 
+
+
+def collect_dxy(raw: dict[str, Any], statuses: list[dict[str, Any]], previous_raw: dict[str, Any]) -> None:
+    """Collect DXY once for the Fed-engine downstream liquidity contract."""
+    log("[DXY] 5y daily history")
+    value, status = safe_collect("yahoo:DX-Y.NYB", yahoo_chart, "DX-Y.NYB", "5y")
+    if value:
+        value["stale"] = False
+        raw.setdefault("market", {})["dxy"] = value
+        statuses.append(status)
+        log(f"[DXY] live=True elapsed_ms={status.get('elapsed_ms')}")
+        return
+    cached = ((previous_raw.get("market") or {}).get("dxy") if isinstance(previous_raw, dict) else None)
+    if isinstance(cached, dict) and cached.get("observations"):
+        cached = dict(cached)
+        cached["stale"] = True
+        cached["fallback_reason"] = status.get("error") or "live DXY request failed"
+        raw.setdefault("market", {})["dxy"] = cached
+        statuses.append({"name":"yahoo:DX-Y.NYB","ok":True,"stale":True,"elapsed_ms":status.get("elapsed_ms",0),"error":cached["fallback_reason"]})
+        log("[DXY] live=False lkg=True")
+    else:
+        raw.setdefault("market", {})["dxy"] = None
+        statuses.append(status)
+        log(f"[DXY] live=False error={status.get('error')}")
+
+
+def collect_h6_if_m2_not_live(raw: dict[str, Any], statuses: list[dict[str, Any]]) -> None:
+    """Use Federal Reserve H.6 only when FRED M2SL was not obtained LIVE."""
+    m2 = (raw.get("fred") or {}).get("m2") or {}
+    if isinstance(m2, dict) and m2.get("observations") and not m2.get("stale"):
+        log("[US M2] FRED M2SL live; H.6 network fallback skipped")
+        return
+    url = "https://www.federalreserve.gov/releases/h6/current/default.htm"
+    value, status = safe_collect("fed:h6", text_endpoint, url)
+    raw.setdefault("fed", {})["h6"] = value
+    statuses.append(status)
+    log(f"[US M2] H.6 fallback ok={status.get('ok')} elapsed_ms={status.get('elapsed_ms')}")
+
 def main() -> None:
     started = time.perf_counter()
     out = Path("public/data")
     out.mkdir(parents=True, exist_ok=True)
     previous_raw = load_previous_raw()
     statuses = []
-    raw = {"generated_at_utc": utc_now(), "collector_version": "3.6.0-objective-validation", "futures": {}, "fred": {}, "nyfed": {}, "fed": {}}
+    raw = {"generated_at_utc": utc_now(), "collector_version": "3.6.0-objective-validation", "futures": {}, "fred": {}, "nyfed": {}, "fed": {}, "market": {}}
 
     log("[1/6] ZQ continuous")
     value, status = safe_collect("yahoo:ZQ=F", yahoo_chart, "ZQ=F", "5y")
@@ -439,6 +477,8 @@ def main() -> None:
     raw["futures"]["sofr_curve"] = collect_curve_parallel(symbols, "sofr", statuses)
 
     collect_fred(raw, statuses, previous_raw)
+    collect_h6_if_m2_not_live(raw, statuses)
+    collect_dxy(raw, statuses, previous_raw)
 
     log("[5/6] NY Fed")
     for key, url in NYFED_ENDPOINTS.items():
