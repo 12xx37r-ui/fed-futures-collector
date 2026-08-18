@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "metric": "us_liquidity_dxy",
-  "generated_at_utc": "2026-08-18T16:16:22.527178+00:00",
+  "generated_at_utc": "2026-08-18T16:43:36.389768+00:00",
   "available": true,
   "m2": {
     "available": true,
@@ -44,22 +44,24 @@
     "status": "LIVE",
     "symbol": "DX-Y.NYB",
     "source": "Yahoo Finance DXY delayed market data",
-    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/DX-Y.NYB?range=5y&interval=1d&events=history&_ts=1787069779",
+    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/DX-Y.NYB?range=5y&interval=1d&events=history&_ts=1787071411",
     "observation_date": "2026-08-18",
-    "market_time_utc": "2026-08-18T16:06:16+00:00",
-    "current": 99.6,
-    "forecast_1m": 99.6,
-    "forecast_3m": 99.6,
+    "market_time_utc": "2026-08-18T16:33:29+00:00",
+    "current": 99.622,
+    "forecast_1m": 99.622,
+    "forecast_3m": 99.622,
     "forecast_change_3m_pct": 0.0,
     "forecast_range_80": [
-      95.432784,
-      103.767216
+      95.453856,
+      103.790144
     ],
     "direction_3m": "flat",
     "confidence": 35,
+    "selected_model_1m": "price_ensemble",
+    "selected_model_3m": "price_ensemble",
     "backtest_1m": {
-      "rmse_pct": 1.778026810979969,
-      "baseline_rmse_pct": 1.778026810979969,
+      "rmse_pct": 1.7780038709471848,
+      "baseline_rmse_pct": 1.7780038709471848,
       "skill_pct": 0.0,
       "backtests": 760,
       "direction_accuracy": 47.94721407624634,
@@ -67,16 +69,96 @@
       "fallback_used": true
     },
     "backtest_3m": {
-      "rmse_pct": 3.2646317879421916,
-      "baseline_rmse_pct": 3.2646317879421916,
+      "rmse_pct": 3.2646374792564985,
+      "baseline_rmse_pct": 3.2646374792564985,
       "skill_pct": 0.0,
       "backtests": 760,
       "direction_accuracy": 36.48255813953488,
       "direction_cases": 688,
       "fallback_used": true
     },
-    "model": "walk-forward inverse-RMSE ensemble of 20d/60d/120d damped trends and 1y mean reversion; persistence safety fallback",
-    "limitation": "DXY price is Yahoo Finance delayed data; forecast is a statistical direction estimate, not an ICE real-time quote or guaranteed target."
+    "price_model_audit": {
+      "1m": {
+        "rmse_pct": 1.7780038709471848,
+        "baseline_rmse_pct": 1.7780038709471848,
+        "skill_pct": 0.0,
+        "backtests": 760,
+        "direction_accuracy": 47.94721407624634,
+        "direction_cases": 682,
+        "fallback_used": true
+      },
+      "3m": {
+        "rmse_pct": 3.2646374792564985,
+        "baseline_rmse_pct": 3.2646374792564985,
+        "skill_pct": 0.0,
+        "backtests": 760,
+        "direction_accuracy": 36.48255813953488,
+        "direction_cases": 688,
+        "fallback_used": true
+      }
+    },
+    "macro_model_audit": {
+      "1m": {
+        "available": true,
+        "forecast_return_pct": -0.5770660175742383,
+        "rmse_pct": 1.5853113059429444,
+        "baseline_rmse_pct": 1.4097792545506627,
+        "skill_pct": 0.0,
+        "direction_accuracy": 34.54545454545455,
+        "direction_cases": 55,
+        "backtests": 62,
+        "quality_gate": {
+          "passed": false,
+          "requirements": {
+            "skill_pct_min": 2.0,
+            "direction_accuracy_min": 52.0,
+            "samples_min": 36
+          }
+        },
+        "features": [
+          "DXY 21d momentum",
+          "DXY 63d momentum",
+          "US 2Y yield",
+          "US 2Y 21d change",
+          "10Y-2Y curve",
+          "NFCI",
+          "HY OAS",
+          "VIX"
+        ],
+        "model": "expanding walk-forward ridge regression on existing Fed-engine market/financial inputs"
+      },
+      "3m": {
+        "available": true,
+        "forecast_return_pct": -3.0335843981637245,
+        "rmse_pct": 2.4624015130141608,
+        "baseline_rmse_pct": 1.4754285574270285,
+        "skill_pct": 0.0,
+        "direction_accuracy": 23.684210526315788,
+        "direction_cases": 38,
+        "backtests": 45,
+        "quality_gate": {
+          "passed": false,
+          "requirements": {
+            "skill_pct_min": 2.0,
+            "direction_accuracy_min": 52.0,
+            "samples_min": 36
+          }
+        },
+        "features": [
+          "DXY 21d momentum",
+          "DXY 63d momentum",
+          "US 2Y yield",
+          "US 2Y 21d change",
+          "10Y-2Y curve",
+          "NFCI",
+          "HY OAS",
+          "VIX"
+        ],
+        "model": "expanding walk-forward ridge regression on existing Fed-engine market/financial inputs"
+      }
+    },
+    "model": "validated selection between price-only ensemble and macro-aware ridge model; persistence remains the hard safety benchmark",
+    "limitation": "DXY price is Yahoo Finance delayed data. Macro candidate uses only already-collected US market/financial inputs; no additional API is called. Forecast is not a guaranteed target."
   },
   "methodology": "US M2 and DXY are calculated once in the Fed engine and published for downstream reuse. Each forecast uses walk-forward error weighting with persistence safety fallback.",
   "downstream_contract": "Global engine should reuse these values first and only query independent official fallbacks if this context is unavailable or stale."
