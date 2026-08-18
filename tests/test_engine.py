@@ -1,5 +1,6 @@
 import unittest
 from datetime import date
+from engine.run_engine import _policy_rate_outlook
 from engine.futures_curve import (
     build_curve,
     meeting_adjusted_rate,
@@ -22,6 +23,18 @@ class EngineTests(unittest.TestCase):
     def test_probabilities_sum(self):
         probs = target_probabilities(4.25, 4.50)
         self.assertAlmostEqual(sum(probs.values()), 100.0, places=1)
+
+
+    def test_policy_rate_outlook_summarizes_existing_market_path(self):
+        today=date.today()
+        y=today.year + (1 if today.month>9 else 0)
+        m=((today.month+2-1)%12)+1
+        meeting=f'{y:04d}-{m:02d}-15'
+        path=[{'meeting':meeting,'expected_post_meeting_rate':3.75}]
+        out=_policy_rate_outlook(path,4.0)
+        self.assertTrue(out['available'])
+        self.assertIn('3m',out['horizons'])
+        self.assertFalse(out['model_probabilities_changed'])
 
     def test_metadata_only_contract_is_rejected(self):
         curve = build_curve([

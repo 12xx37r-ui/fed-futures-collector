@@ -20,6 +20,10 @@ class RealRateTests(unittest.TestCase):
         self.assertTrue(out["available"])
         self.assertIn("current_pct", out)
         self.assertIn("forecast_3m_pct", out)
+        self.assertIn("baseline_rmse", out["backtest_3m"])
+        self.assertIn("quality_gate", out["backtest_3m"])
+        if not out["backtest_3m"]["quality_gate"]["passed"]:
+            self.assertEqual(out["forecast_3m_pct"], out["current_pct"])
 
 
 if __name__ == "__main__":

@@ -22,6 +22,11 @@ FRED_SERIES = {
     "BAMLH0A0HYM2": "hy_oas",
     "VIXCLS": "vix",
     "M2SL": "m2",
+    "DFII5": "real_yield_5y",
+    "DFII10": "real_yield_10y",
+    "DFII20": "real_yield_20y",
+    "ECBDFR": "ecb_deposit_rate",
+    "IRSTCI01JPM156N": "japan_overnight_rate",
 }
 
 NYFED_ENDPOINTS = {

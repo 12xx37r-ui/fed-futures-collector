@@ -145,36 +145,47 @@ def _series_asof_on_dates(series: dict[str, Any] | None, dates: list[str]) -> li
     return out
 
 
-def _dxy_macro_dataset(raw: dict[str, Any], rows: list[dict[str, Any]]) -> tuple[np.ndarray, np.ndarray]:
-    """Build contemporaneous DXY predictors from already-collected Fed-engine data.
+def _dxy_macro_dataset(raw: dict[str, Any], rows: list[dict[str, Any]]) -> tuple[np.ndarray, np.ndarray, list[str]]:
+    """Build DXY predictors from already-collected Fed-engine inputs.
 
-    No network calls are added. Features are deliberately limited to information
-    available in the existing FRED block plus DXY price momentum.
+    Includes domestic US financial conditions plus relative policy-rate spreads
+    versus the euro area and Japan.  The two foreign-rate series are collected
+    through the existing FRED provider, so no new provider or request path is
+    introduced.
     """
     dates = [str(r["date"]) for r in rows]
     prices = np.array([float(r["value"]) for r in rows], dtype=float)
     fred = raw.get("fred") or {}
-    keys = ["treasury_2y", "treasury_10y", "nfci", "hy_oas", "vix"]
+    keys = [
+        "treasury_2y", "treasury_10y", "effr_fred", "nfci", "hy_oas", "vix",
+        "ecb_deposit_rate", "japan_overnight_rate", "real_yield_10y",
+    ]
     aligned = {k: _series_asof_on_dates(fred.get(k), dates) for k in keys}
+    names = [
+        "DXY 21d momentum", "DXY 63d momentum", "US 2Y yield", "US 2Y 21d change",
+        "10Y-2Y curve", "NFCI", "HY OAS", "VIX", "EFFR-ECB deposit spread",
+        "EFFR-Japan overnight spread", "US2Y-ECB deposit spread",
+        "US2Y-Japan overnight spread", "US 10Y real yield",
+    ]
     feats: list[list[float]] = []
     valid = []
     for i, p in enumerate(prices):
         if i < 63 or p <= 0:
-            feats.append([math.nan] * 8); valid.append(False); continue
-        vals = [aligned[k][i] for k in keys]
-        if any(v is None or not _finite(v) for v in vals):
-            feats.append([math.nan] * 8); valid.append(False); continue
-        dgs2, dgs10, nfci, hy, vix = map(float, vals)
+            feats.append([math.nan] * len(names)); valid.append(False); continue
+        required = [aligned[k][i] for k in keys]
+        if any(v is None or not _finite(v) for v in required):
+            feats.append([math.nan] * len(names)); valid.append(False); continue
+        dgs2, dgs10, dff, nfci, hy, vix, ecb, jp, real10 = map(float, required)
         mom21 = math.log(p / prices[i-21]) * 100.0 if prices[i-21] > 0 else 0.0
         mom63 = math.log(p / prices[i-63]) * 100.0 if prices[i-63] > 0 else 0.0
-        curve = dgs10 - dgs2
-        d2_21 = 0.0
         old2 = aligned["treasury_2y"][i-21] if i >= 21 else None
-        if old2 is not None and _finite(old2):
-            d2_21 = dgs2 - float(old2)
-        feats.append([mom21, mom63, dgs2, d2_21, curve, nfci, hy, vix])
+        d2_21 = dgs2 - float(old2) if old2 is not None and _finite(old2) else 0.0
+        feats.append([
+            mom21, mom63, dgs2, d2_21, dgs10-dgs2, nfci, hy, vix,
+            dff-ecb, dff-jp, dgs2-ecb, dgs2-jp, real10,
+        ])
         valid.append(True)
-    return np.asarray(feats, dtype=float), np.asarray(valid, dtype=bool)
+    return np.asarray(feats, dtype=float), np.asarray(valid, dtype=bool), names
 
 
 def _ridge_fit_predict(x_train: np.ndarray, y_train: np.ndarray, x_now: np.ndarray) -> float | None:
@@ -191,23 +202,26 @@ def _ridge_fit_predict(x_train: np.ndarray, y_train: np.ndarray, x_now: np.ndarr
     return pred if math.isfinite(pred) else None
 
 
-def _dxy_macro_model(raw: dict[str, Any], rows: list[dict[str, Any]], horizon: int) -> dict[str, Any]:
-    if len(rows) < 500:
-        return {"available": False, "reason": "macro-aligned DXY history insufficient"}
-    prices = np.asarray([float(r["value"]) for r in rows], dtype=float)
-    x, valid = _dxy_macro_dataset(raw, rows)
-    origins = list(range(max(315, len(rows)-900-horizon), len(rows)-horizon, 5))
+def _dxy_macro_variant(
+    x: np.ndarray,
+    valid: np.ndarray,
+    prices: np.ndarray,
+    horizon: int,
+    columns: list[int],
+    feature_names: list[str],
+    variant: str,
+) -> dict[str, Any]:
+    origins = list(range(max(315, len(prices)-900-horizon), len(prices)-horizon, 5))
     errs: list[float] = []
     base_errs: list[float] = []
     hits = cases = 0
-    predictions: list[float] = []
     for origin in origins:
         train_idx = [i for i in range(63, origin-horizon+1, 5) if valid[i] and i+horizon < origin+1]
         if len(train_idx) < 80 or not valid[origin]:
             continue
-        xa = x[train_idx]
+        xa = x[np.asarray(train_idx)][:, columns]
         ya = np.asarray([math.log(prices[i+horizon]/prices[i]) * 100.0 for i in train_idx], dtype=float)
-        pred_ret = _ridge_fit_predict(xa, ya, x[origin])
+        pred_ret = _ridge_fit_predict(xa, ya, x[origin, columns])
         if pred_ret is None:
             continue
         cap = 8.0 if horizon <= 21 else 14.0
@@ -216,34 +230,68 @@ def _dxy_macro_model(raw: dict[str, Any], rows: list[dict[str, Any]], horizon: i
         actual = prices[origin+horizon]
         errs.append((pred_level/actual-1.0)*100.0)
         base_errs.append((prices[origin]/actual-1.0)*100.0)
-        predictions.append(pred_ret)
         actual_ret = math.log(actual/prices[origin])*100.0
         if abs(actual_ret) >= 0.35:
             cases += 1
             if (actual_ret >= 0) == (pred_ret >= 0):
                 hits += 1
     if len(errs) < 24:
-        return {"available": False, "reason": "macro walk-forward samples insufficient", "samples": len(errs)}
+        return {"available": False, "reason": "macro walk-forward samples insufficient", "samples": len(errs), "variant": variant}
     model_rmse = _rmse(errs); base_rmse = _rmse(base_errs)
-    skill = max(0.0, (1.0-model_rmse/base_rmse)*100.0) if base_rmse > 0 else 0.0
+    raw_skill = (1.0-model_rmse/base_rmse)*100.0 if base_rmse > 0 else -999.0
+    skill = max(0.0, raw_skill)
     da = hits/cases*100.0 if cases else None
-    # Final fit uses every labeled observation available before the current point.
-    final_idx = [i for i in range(63, len(rows)-horizon, 5) if valid[i]]
-    pred_ret = _ridge_fit_predict(x[final_idx], np.asarray([math.log(prices[i+horizon]/prices[i])*100.0 for i in final_idx]), x[-1]) if valid[-1] else None
+    final_idx = [i for i in range(63, len(prices)-horizon, 5) if valid[i]]
+    pred_ret = _ridge_fit_predict(
+        x[np.asarray(final_idx)][:, columns],
+        np.asarray([math.log(prices[i+horizon]/prices[i])*100.0 for i in final_idx]),
+        x[-1, columns],
+    ) if valid[-1] else None
     if pred_ret is None:
-        return {"available": False, "reason": "macro final fit unavailable", "samples": len(errs)}
+        return {"available": False, "reason": "macro final fit unavailable", "samples": len(errs), "variant": variant}
     cap = 8.0 if horizon <= 21 else 14.0
     pred_ret = _clamp(pred_ret, -cap, cap)
     forecast = prices[-1] * math.exp(pred_ret/100.0)
-    passed = skill >= 2.0 and (da is None or da >= 52.0) and len(errs) >= 36
+    passed = raw_skill >= 2.0 and (da is None or da >= 52.0) and len(errs) >= 36
     return {
         "available": True, "forecast": forecast, "forecast_return_pct": pred_ret,
         "rmse_pct": model_rmse, "baseline_rmse_pct": base_rmse, "skill_pct": skill,
-        "direction_accuracy": da, "direction_cases": cases, "backtests": len(errs),
+        "raw_skill_pct": raw_skill, "direction_accuracy": da, "direction_cases": cases,
+        "backtests": len(errs), "variant": variant,
         "quality_gate": {"passed": passed, "requirements": {"skill_pct_min": 2.0, "direction_accuracy_min": 52.0, "samples_min": 36}},
-        "features": ["DXY 21d momentum", "DXY 63d momentum", "US 2Y yield", "US 2Y 21d change", "10Y-2Y curve", "NFCI", "HY OAS", "VIX"],
-        "model": "expanding walk-forward ridge regression on existing Fed-engine market/financial inputs",
+        "features": [feature_names[i] for i in columns],
+        "model": "expanding walk-forward ridge regression with persistence benchmark",
     }
+
+
+def _dxy_macro_model(raw: dict[str, Any], rows: list[dict[str, Any]], horizon: int) -> dict[str, Any]:
+    if len(rows) < 500:
+        return {"available": False, "reason": "macro-aligned DXY history insufficient"}
+    prices = np.asarray([float(r["value"]) for r in rows], dtype=float)
+    x, valid, names = _dxy_macro_dataset(raw, rows)
+    # Separate economic hypotheses are evaluated independently to reduce the
+    # over-fitting risk of one oversized macro regression.
+    variants = {
+        "domestic_financial": list(range(0, 8)) + [12],
+        "relative_policy_rates": [0, 1, 8, 9, 10, 11, 12],
+        "combined": list(range(len(names))),
+    }
+    audits = {
+        name: _dxy_macro_variant(x, valid, prices, horizon, cols, names, name)
+        for name, cols in variants.items()
+    }
+    usable = [v for v in audits.values() if v.get("available")]
+    if not usable:
+        return {"available": False, "reason": "all macro variants unavailable", "candidate_audit": audits}
+    # Selection is based only on walk-forward RMSE; the chosen model still has
+    # to clear the hard quality gate before it can replace persistence/price.
+    best = min(usable, key=lambda z: float(z.get("rmse_pct") or 999.0))
+    out = dict(best)
+    out["candidate_audit"] = audits
+    out["selected_variant"] = best.get("variant")
+    out["model"] = "validated selection across domestic, relative-rate and combined ridge candidates"
+    return out
+
 
 def _dxy_candidates(values: list[float], horizon: int) -> list[float]:
     cur = values[-1]
@@ -359,7 +407,7 @@ def _dxy_payload(raw: dict[str, Any]) -> dict[str, Any]:
         "price_model_audit": {"1m": slim(price1), "3m": slim(price3)},
         "macro_model_audit": {"1m": slim(macro1), "3m": slim(macro3)},
         "model": "validated selection between price-only ensemble and macro-aware ridge model; persistence remains the hard safety benchmark",
-        "limitation": "DXY price is Yahoo Finance delayed data. Macro candidate uses only already-collected US market/financial inputs; no additional API is called. Forecast is not a guaranteed target.",
+        "limitation": "DXY price is Yahoo Finance delayed data. Macro candidates use the existing FRED/Yahoo collection path, including ECB/Japan rate differentials added to the same FRED batch; no new provider is introduced. Forecast is not a guaranteed target.",
     }
 
 
@@ -452,16 +500,25 @@ def _m2_payload(raw: dict[str, Any]) -> dict[str, Any]:
         "forecast_change_3m_pp": round(forecast_yoy_3m - current_yoy, 6),
         "forecast_3m_level_range_80": [round(f3["forecast"] * (1 - interval / 100.0), 3), round(f3["forecast"] * (1 + interval / 100.0), 3)],
         "confidence": confidence,
+        "yoy_history": [{"date": x["date"], "value": round(float(x["value"]), 6)} for x in yoy[-120:]],
+        "level_history": [{"date": x["date"], "value": round(float(x["value"]), 3)} for x in rows[-132:]],
         "backtest_1m": {k: v for k, v in f1.items() if k not in {"forecast", "model_forecasts", "weights"}},
         "backtest_3m": {k: v for k, v in f3.items() if k not in {"forecast", "model_forecasts", "weights"}},
+        "forecast_quality_gate": {
+            "passed": bool(not f3.get("fallback_used") and float(f3.get("skill_pct") or 0.0) > 0.0 and int(f3.get("backtests") or 0) >= 24),
+            "benchmark": "persistence",
+            "horizon": "3m",
+        },
         "model": "monthly level walk-forward inverse-RMSE ensemble of 3m/6m/12m/damped trends with persistence safety fallback",
     }
 
 
 def build_us_macro_context(raw: dict[str, Any]) -> dict[str, Any]:
+    from .real_rate import build as build_real_rate
     m2 = _m2_payload(raw)
     dxy = _dxy_payload(raw)
-    available = bool(m2.get("available") or dxy.get("available"))
+    real_rate = build_real_rate(raw)
+    available = bool(m2.get("available") or dxy.get("available") or real_rate.get("available"))
     return {
         "schema_version": "1.0",
         "metric": "us_liquidity_dxy",
@@ -469,6 +526,7 @@ def build_us_macro_context(raw: dict[str, Any]) -> dict[str, Any]:
         "available": available,
         "m2": m2,
         "dxy": dxy,
+        "real_rate": real_rate,
         "methodology": "US M2 and DXY are calculated once in the Fed engine and published for downstream reuse. Each forecast uses walk-forward error weighting with persistence safety fallback.",
         "downstream_contract": "Global engine should reuse these values first and only query independent official fallbacks if this context is unavailable or stale.",
     }
@@ -488,5 +546,5 @@ def refresh_dxy_context(existing: dict[str, Any], dxy_raw: dict[str, Any]) -> di
     out = dict(existing or {})
     out["generated_at_utc"] = datetime.now(timezone.utc).isoformat()
     out["dxy"] = new_dxy
-    out["available"] = bool((out.get("m2") or {}).get("available") or new_dxy.get("available"))
+    out["available"] = bool((out.get("m2") or {}).get("available") or new_dxy.get("available") or (out.get("real_rate") or {}).get("available"))
     return out

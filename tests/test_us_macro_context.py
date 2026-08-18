@@ -1,7 +1,8 @@
 import unittest
 from datetime import date, timedelta
 
-from engine.us_macro_context import build_us_macro_context, refresh_dxy_context
+from engine.us_macro_context import build_us_macro_context, refresh_dxy_context, _dxy_macro_model
+from config import FRED_SERIES
 
 
 def monthly_rows(n=72, start=20000.0):
@@ -42,6 +43,33 @@ class UsMacroContextTests(unittest.TestCase):
         self.assertIn(out['dxy']['direction_3m'],{'up','down','flat'})
         self.assertIn('macro_model_audit',out['dxy'])
         self.assertIn('selected_model_3m',out['dxy'])
+        self.assertIn('yoy_history',out['m2'])
+        self.assertIn('forecast_quality_gate',out['m2'])
+        self.assertIn('real_rate',out)
+
+
+
+    def test_dxy_macro_audit_includes_relative_rate_candidates(self):
+        rows=dxy_rows(900)
+        dates=[r['date'] for r in rows]
+        def series(base, drift=0.0):
+            return {'observations':[{'date':d,'value':base+drift*i} for i,d in enumerate(dates)]}
+        raw={'fred':{
+            'treasury_2y':series(4.0,0.0002), 'treasury_10y':series(4.4,0.00015),
+            'effr_fred':series(4.25), 'nfci':series(-0.2,0.00005), 'hy_oas':series(3.3,0.0001),
+            'vix':series(18.0,0.001), 'ecb_deposit_rate':series(2.25),
+            'japan_overnight_rate':series(0.8,0.00002), 'real_yield_10y':series(1.9,0.00005),
+        }}
+        out=_dxy_macro_model(raw,rows,21)
+        self.assertTrue(out['available'])
+        self.assertIn(out['selected_variant'],{'domestic_financial','relative_policy_rates','combined'})
+        self.assertIn('relative_policy_rates',out['candidate_audit'])
+        self.assertIn('EFFR-ECB deposit spread',out['candidate_audit']['relative_policy_rates']['features'])
+
+    def test_relative_rate_and_real_yield_series_are_collected_in_existing_fred_batch(self):
+        self.assertEqual(FRED_SERIES['ECBDFR'], 'ecb_deposit_rate')
+        self.assertEqual(FRED_SERIES['IRSTCI01JPM156N'], 'japan_overnight_rate')
+        self.assertEqual(FRED_SERIES['DFII10'], 'real_yield_10y')
 
     def test_dxy_refresh_preserves_m2(self):
         existing={'available':True,'m2':{'available':True,'current_yoy_pct':5.0},'dxy':{}}

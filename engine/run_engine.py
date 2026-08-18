@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import re
 from datetime import date, datetime, timezone
+import calendar
 from pathlib import Path
 from typing import Any
 
@@ -15,6 +16,7 @@ from .futures_curve import build_curve, stable_meeting_rate, target_probabilitie
 from .macro_model import score as macro_score
 from .optimizer import optimized_weights
 from .policy_regime import policy_inertia_asof
+from .real_rate import build as build_real_rate
 from .utils import latest
 from .us_macro_context import write_us_macro_context
 
@@ -229,6 +231,51 @@ def build_meeting_path(
     return path
 
 
+def _add_months(d: date, months: int) -> date:
+    idx = d.year * 12 + d.month - 1 + months
+    y, m0 = divmod(idx, 12)
+    m = m0 + 1
+    return date(y, m, min(d.day, calendar.monthrange(y, m)[1]))
+
+
+def _policy_rate_outlook(meeting_path: list[dict[str, Any]], current_rate: float | None) -> dict[str, Any]:
+    """Summarize the market-implied FOMC path at standard horizons.
+
+    This does not create a second rate model: it is a compact view of the same
+    ZQ-derived meeting path already used as the representative policy forecast.
+    """
+    if current_rate is None:
+        return {"available": False, "reason": "current effective rate unavailable"}
+    today = date.today()
+    rows = []
+    for row in meeting_path:
+        try:
+            rows.append((date.fromisoformat(str(row.get("meeting"))), row))
+        except Exception:
+            continue
+    rows.sort(key=lambda x: x[0])
+    horizons = {}
+    for label, months in (("1m", 1), ("3m", 3), ("6m", 6), ("12m", 12)):
+        target = _add_months(today, months)
+        eligible = [row for d, row in rows if d <= target]
+        chosen = eligible[-1] if eligible else None
+        expected = float(chosen["expected_post_meeting_rate"]) if chosen else float(current_rate)
+        horizons[label] = {
+            "target_date": target.isoformat(),
+            "expected_rate_pct": round(expected, 5),
+            "change_from_current_bps": round((expected - float(current_rate)) * 100.0, 2),
+            "source_meeting": chosen.get("meeting") if chosen else None,
+            "source": "Fed Funds futures / ZQ meeting path" if chosen else "current effective rate; no meeting before horizon",
+        }
+    return {
+        "available": True,
+        "current_effective_rate_pct": round(float(current_rate), 5),
+        "horizons": horizons,
+        "representative_source": "market-implied ZQ path",
+        "model_probabilities_changed": False,
+    }
+
+
 def _model_action_from_validated_rule(probabilities: dict, backtest: dict) -> dict:
     rule = backtest.get("class_balanced_decision_rule") if isinstance(backtest, dict) else None
     if not isinstance(rule, dict) or not rule.get("passed"):
@@ -258,6 +305,9 @@ def main() -> None:
         Path("public/data/source_status.json").read_text(encoding="utf-8")
     )
     us_macro_context = write_us_macro_context(raw)
+    real_rate = us_macro_context.get("real_rate") if isinstance(us_macro_context, dict) else None
+    if not isinstance(real_rate, dict):
+        real_rate = build_real_rate(raw)
 
     zq_curve = build_curve(
         raw.get("futures", {}).get("zq_curve", []),
@@ -287,6 +337,7 @@ def main() -> None:
     macro = macro_score(raw)
     effective_rate, effective_rate_source = resolve_effective_rate(raw, zq_curve)
     meeting_path = build_meeting_path(fomc_dates, zq_curve, effective_rate)
+    policy_rate_outlook = _policy_rate_outlook(meeting_path, effective_rate)
 
     next_path = next(
         (row for row in meeting_path if row["meeting"] == upcoming),
@@ -404,6 +455,7 @@ def main() -> None:
         "market_implied_action_probabilities": market_action_probs,
         "market_path": next_path,
         "meeting_path": meeting_path,
+        "policy_rate_outlook": policy_rate_outlook,
         "features": features,
         "weights": weights_used,
         "weight_optimizer": opt,
@@ -417,6 +469,7 @@ def main() -> None:
         # V217: additive source/market freshness contract. No existing field changes.
         "freshness": _market_freshness(raw),
         "us_macro_context": us_macro_context,
+        "real_rate": real_rate,
     }
 
     Path("public/data/latest.json").write_text(
