@@ -1,113 +1,113 @@
 {
-  "generated_at_utc": "2026-08-17T21:05:56.617986+00:00",
+  "generated_at_utc": "2026-08-18T01:01:38.048153+00:00",
   "collector_version": "3.9.0-policy-regime-validation",
   "sources": [
     {
       "name": "yahoo:ZQ=F",
       "ok": true,
-      "elapsed_ms": 93,
+      "elapsed_ms": 114,
       "error": null
     },
     {
       "name": "zq:ZQQ26.CBT",
       "ok": true,
-      "elapsed_ms": 158,
+      "elapsed_ms": 201,
       "error": null
     },
     {
       "name": "zq:ZQU26.CBT",
       "ok": true,
-      "elapsed_ms": 310,
+      "elapsed_ms": 316,
       "error": null
     },
     {
       "name": "zq:ZQV26.CBT",
       "ok": true,
-      "elapsed_ms": 545,
+      "elapsed_ms": 537,
       "error": null
     },
     {
       "name": "zq:ZQX26.CBT",
       "ok": true,
-      "elapsed_ms": 674,
-      "error": null
-    },
-    {
-      "name": "zq:ZQF27.CBT",
-      "ok": true,
-      "elapsed_ms": 725,
-      "error": null
-    },
-    {
-      "name": "zq:ZQG27.CBT",
-      "ok": true,
-      "elapsed_ms": 673,
-      "error": null
-    },
-    {
-      "name": "zq:ZQH27.CBT",
-      "ok": true,
-      "elapsed_ms": 721,
+      "elapsed_ms": 742,
       "error": null
     },
     {
       "name": "zq:ZQZ26.CBT",
       "ok": true,
-      "elapsed_ms": 1335,
+      "elapsed_ms": 638,
+      "error": null
+    },
+    {
+      "name": "zq:ZQF27.CBT",
+      "ok": true,
+      "elapsed_ms": 847,
+      "error": null
+    },
+    {
+      "name": "zq:ZQG27.CBT",
+      "ok": true,
+      "elapsed_ms": 749,
+      "error": null
+    },
+    {
+      "name": "zq:ZQH27.CBT",
+      "ok": true,
+      "elapsed_ms": 671,
       "error": null
     },
     {
       "name": "zq:ZQJ27.CBT",
       "ok": true,
-      "elapsed_ms": 540,
+      "elapsed_ms": 713,
       "error": null
     },
     {
       "name": "zq:ZQK27.CBT",
       "ok": true,
-      "elapsed_ms": 541,
-      "error": null
-    },
-    {
-      "name": "zq:ZQM27.CBT",
-      "ok": true,
-      "elapsed_ms": 542,
+      "elapsed_ms": 668,
       "error": null
     },
     {
       "name": "zq:ZQN27.CBT",
       "ok": true,
-      "elapsed_ms": 628,
+      "elapsed_ms": 675,
       "error": null
     },
     {
       "name": "zq:ZQQ27.CBT",
       "ok": true,
-      "elapsed_ms": 791,
+      "elapsed_ms": 710,
       "error": null
     },
     {
       "name": "zq:ZQU27.CBT",
       "ok": true,
-      "elapsed_ms": 710,
+      "elapsed_ms": 690,
+      "error": null
+    },
+    {
+      "name": "zq:ZQM27.CBT",
+      "ok": true,
+      "elapsed_ms": 1358,
       "error": null
     },
     {
       "name": "zq:ZQV27.CBT",
       "ok": true,
-      "elapsed_ms": 844,
+      "elapsed_ms": 598,
       "error": null
     },
     {
       "name": "zq:ZQX27.CBT",
       "ok": true,
-      "elapsed_ms": 722,
+      "elapsed_ms": 639,
       "error": null
     },
     {
       "name": "zq:ZQZ27.CBT",
       "ok": true,
-      "elapsed_ms": 672,
+      "elapsed_ms": 468,
       "error": null
     },
     {
@@ -124,103 +124,103 @@
     {
       "name": "sofr:SR1Q26.CME",
       "ok": true,
-      "elapsed_ms": 210,
+      "elapsed_ms": 296,
       "error": null
     },
     {
       "name": "sofr:SR1U26.CME",
       "ok": true,
-      "elapsed_ms": 398,
+      "elapsed_ms": 360,
       "error": null
     },
     {
       "name": "sofr:SR1V26.CME",
       "ok": true,
-      "elapsed_ms": 573,
+      "elapsed_ms": 556,
       "error": null
     },
     {
       "name": "sofr:SR1X26.CME",
       "ok": true,
-      "elapsed_ms": 817,
+      "elapsed_ms": 729,
       "error": null
     },
     {
       "name": "sofr:SR1Z26.CME",
       "ok": true,
-      "elapsed_ms": 699,
+      "elapsed_ms": 687,
       "error": null
     },
     {
       "name": "sofr:SR1F27.CME",
       "ok": true,
-      "elapsed_ms": 684,
+      "elapsed_ms": 797,
       "error": null
     },
     {
       "name": "sofr:SR1G27.CME",
       "ok": true,
-      "elapsed_ms": 805,
+      "elapsed_ms": 780,
       "error": null
     },
     {
       "name": "sofr:SR1H27.CME",
       "ok": true,
-      "elapsed_ms": 629,
+      "elapsed_ms": 722,
       "error": null
     },
     {
       "name": "sofr:SR1J27.CME",
       "ok": true,
-      "elapsed_ms": 721,
+      "elapsed_ms": 634,
       "error": null
     },
     {
       "name": "sofr:SR1K27.CME",
       "ok": true,
-      "elapsed_ms": 796,
+      "elapsed_ms": 727,
       "error": null
     },
     {
       "name": "sofr:SR1M27.CME",
       "ok": true,
-      "elapsed_ms": 660,
+      "elapsed_ms": 738,
       "error": null
     },
     {
       "name": "sofr:SR1N27.CME",
       "ok": true,
-      "elapsed_ms": 723,
+      "elapsed_ms": 797,
       "error": null
     },
     {
       "name": "sofr:SR1Q27.CME",
       "ok": true,
-      "elapsed_ms": 753,
+      "elapsed_ms": 814,
       "error": null
     },
     {
       "name": "sofr:SR1U27.CME",
       "ok": true,
-      "elapsed_ms": 730,
+      "elapsed_ms": 783,
       "error": null
     },
     {
       "name": "sofr:SR1V27.CME",
       "ok": true,
-      "elapsed_ms": 665,
+      "elapsed_ms": 704,
       "error": null
     },
     {
       "name": "sofr:SR1X27.CME",
       "ok": true,
-      "elapsed_ms": 855,
+      "elapsed_ms": 667,
       "error": null
     },
     {
       "name": "sofr:SR1Z27.CME",
       "ok": false,
-      "elapsed_ms": 1804,
+      "elapsed_ms": 701,
       "error": "ValueError: No observed close for SR1Z27.CME; metadata-only price rejected",
       "classification": "quality_rejection",
       "blocking": false
@@ -228,61 +228,61 @@
     {
       "name": "sofr:SR3Q26.CME",
       "ok": true,
-      "elapsed_ms": 1696,
-      "error": null
-    },
-    {
-      "name": "sofr:SR3Z26.CME",
-      "ok": true,
-      "elapsed_ms": 126,
-      "error": null
-    },
-    {
-      "name": "sofr:SR3F27.CME",
-      "ok": true,
-      "elapsed_ms": 112,
-      "error": null
-    },
-    {
-      "name": "sofr:SR3V26.CME",
-      "ok": true,
-      "elapsed_ms": 1485,
+      "elapsed_ms": 777,
       "error": null
     },
     {
       "name": "sofr:SR3U26.CME",
       "ok": true,
-      "elapsed_ms": 1695,
+      "elapsed_ms": 662,
+      "error": null
+    },
+    {
+      "name": "sofr:SR3V26.CME",
+      "ok": true,
+      "elapsed_ms": 773,
       "error": null
     },
     {
       "name": "sofr:SR3X26.CME",
       "ok": true,
-      "elapsed_ms": 1078,
+      "elapsed_ms": 704,
+      "error": null
+    },
+    {
+      "name": "sofr:SR3Z26.CME",
+      "ok": true,
+      "elapsed_ms": 661,
+      "error": null
+    },
+    {
+      "name": "sofr:SR3F27.CME",
+      "ok": true,
+      "elapsed_ms": 701,
       "error": null
     },
     {
       "name": "sofr:SR3H27.CME",
       "ok": true,
-      "elapsed_ms": 292,
+      "elapsed_ms": 692,
       "error": null
     },
     {
       "name": "sofr:SR3M27.CME",
       "ok": true,
-      "elapsed_ms": 535,
+      "elapsed_ms": 749,
       "error": null
     },
     {
       "name": "sofr:SR3U27.CME",
       "ok": true,
-      "elapsed_ms": 1062,
+      "elapsed_ms": 626,
       "error": null
     },
     {
       "name": "sofr:SR3Z27.CME",
       "ok": true,
-      "elapsed_ms": 1533,
+      "elapsed_ms": 770,
       "error": null
     },
     {
@@ -299,177 +299,177 @@
     {
       "name": "fred:DGS2",
       "ok": true,
-      "elapsed_ms": 412,
-      "error": null,
-      "stale": false
-    },
-    {
-      "name": "fred:DGS10",
-      "ok": true,
-      "elapsed_ms": 882,
+      "elapsed_ms": 1750,
       "error": null,
       "stale": false
     },
     {
       "name": "fred:DFF",
       "ok": true,
-      "elapsed_ms": 1092,
+      "elapsed_ms": 460,
+      "error": null,
+      "stale": false
+    },
+    {
+      "name": "fred:DGS10",
+      "ok": true,
+      "elapsed_ms": 2347,
       "error": null,
       "stale": false
     },
     {
       "name": "fred:DFEDTARU",
       "ok": true,
-      "elapsed_ms": 1135,
+      "elapsed_ms": 443,
       "error": null,
       "stale": false
     },
     {
       "name": "fred:DFEDTARL",
       "ok": true,
-      "elapsed_ms": 1253,
-      "error": null,
-      "stale": false
-    },
-    {
-      "name": "fred:SOFR",
-      "ok": true,
-      "elapsed_ms": 1277,
+      "elapsed_ms": 4327,
       "error": null,
       "stale": false
     },
     {
       "name": "fred:CPIAUCSL",
       "ok": true,
-      "elapsed_ms": 1106,
+      "elapsed_ms": 329,
       "error": null,
       "stale": false
     },
     {
       "name": "fred:CPILFESL",
       "ok": true,
-      "elapsed_ms": 1190,
+      "elapsed_ms": 716,
+      "error": null,
+      "stale": false
+    },
+    {
+      "name": "fred:SOFR",
+      "ok": true,
+      "elapsed_ms": 5501,
       "error": null,
       "stale": false
     },
     {
       "name": "fred:PCEPI",
       "ok": true,
-      "elapsed_ms": 1305,
-      "error": null,
-      "stale": false
-    },
-    {
-      "name": "fred:PCEPILFE",
-      "ok": true,
-      "elapsed_ms": 1286,
+      "elapsed_ms": 458,
       "error": null,
       "stale": false
     },
     {
       "name": "fred:UNRATE",
       "ok": true,
-      "elapsed_ms": 1174,
+      "elapsed_ms": 1559,
       "error": null,
       "stale": false
     },
     {
       "name": "fred:PAYEMS",
       "ok": true,
-      "elapsed_ms": 1108,
+      "elapsed_ms": 489,
       "error": null,
       "stale": false
     },
     {
-      "name": "fred:AHETPI",
+      "name": "fred:PCEPILFE",
       "ok": true,
-      "elapsed_ms": 1141,
+      "elapsed_ms": 2704,
       "error": null,
       "stale": false
     },
     {
       "name": "fred:ICSA",
       "ok": true,
-      "elapsed_ms": 1383,
+      "elapsed_ms": 341,
       "error": null,
       "stale": false
     },
     {
-      "name": "fred:JTSJOL",
+      "name": "fred:AHETPI",
       "ok": true,
-      "elapsed_ms": 1294,
+      "elapsed_ms": 1937,
       "error": null,
       "stale": false
     },
     {
       "name": "fred:INDPRO",
       "ok": true,
-      "elapsed_ms": 1167,
+      "elapsed_ms": 335,
       "error": null,
       "stale": false
     },
     {
       "name": "fred:RSAFS",
       "ok": true,
-      "elapsed_ms": 1077,
+      "elapsed_ms": 668,
       "error": null,
       "stale": false
     },
     {
-      "name": "fred:NFCI",
+      "name": "fred:JTSJOL",
       "ok": true,
-      "elapsed_ms": 998,
+      "elapsed_ms": 2010,
       "error": null,
       "stale": false
     },
     {
       "name": "fred:BAMLH0A0HYM2",
       "ok": true,
-      "elapsed_ms": 1281,
+      "elapsed_ms": 2019,
+      "error": null,
+      "stale": false
+    },
+    {
+      "name": "fred:NFCI",
+      "ok": true,
+      "elapsed_ms": 2090,
       "error": null,
       "stale": false
     },
     {
       "name": "fred:VIXCLS",
       "ok": true,
-      "elapsed_ms": 1364,
+      "elapsed_ms": 363,
       "error": null,
       "stale": false
     },
     {
       "name": "nyfed:effr",
       "ok": true,
-      "elapsed_ms": 631,
+      "elapsed_ms": 358,
       "error": null
     },
     {
       "name": "nyfed:sofr",
       "ok": true,
-      "elapsed_ms": 1345,
+      "elapsed_ms": 161,
       "error": null
     },
     {
       "name": "fed:press_rss",
       "ok": true,
-      "elapsed_ms": 45,
+      "elapsed_ms": 67,
       "error": null
     },
     {
       "name": "fed:speeches_rss",
       "ok": true,
-      "elapsed_ms": 236,
+      "elapsed_ms": 260,
       "error": null
     },
     {
       "name": "fed:fomc_calendar",
       "ok": true,
-      "elapsed_ms": 459,
+      "elapsed_ms": 479,
       "error": null
     },
     {
       "name": "fed:sep",
       "ok": true,
-      "elapsed_ms": 659,
+      "elapsed_ms": 701,
       "error": null
     }
   ]
