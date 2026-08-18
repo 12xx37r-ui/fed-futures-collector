@@ -265,31 +265,32 @@ def _policy_rate_outlook(meeting_path: list[dict[str, Any]], current_rate: float
         # selected meeting and summarize freshness/availability around that point.
         quality = {"score": 35, "grade": "LOW", "observation_count": 0, "live_ratio": 0.0, "max_age_minutes": None}
         if raw is not None and chosen:
-            src_month = str(chosen.get("meeting") or "")[:7]
-            rows_q = []
-            for item in ((raw.get("futures") or {}).get("zq_curve") or []):
-                if not isinstance(item, dict):
-                    continue
-                cm = str(item.get("contract_month") or "")[:7]
-                if cm != src_month:
-                    continue
+            # The collector's raw ZQ rows do not contain ``contract_month``; the
+            # actual source contract is already carried by meeting_path as
+            # ``contract_symbol``.  Match that exact symbol so confidence is
+            # calculated from the same contract that produced the rate path.
+            source_symbol = str(chosen.get("contract_symbol") or "")
+            source_row = next((item for item in ((raw.get("futures") or {}).get("zq_curve") or [])
+                               if isinstance(item, dict) and str(item.get("symbol") or "") == source_symbol), None)
+            if source_row is not None:
                 age = None
                 try:
-                    mt = datetime.fromisoformat(str(item.get("market_time_utc") or "").replace("Z", "+00:00"))
+                    mt = datetime.fromisoformat(str(source_row.get("market_time_utc") or "").replace("Z", "+00:00"))
                     if mt.tzinfo is None: mt = mt.replace(tzinfo=timezone.utc)
                     age = max(0.0, (datetime.now(timezone.utc) - mt.astimezone(timezone.utc)).total_seconds()/60.0)
                 except Exception:
                     pass
-                rows_q.append(age)
-            if rows_q:
-                live = sum(1 for x in rows_q if x is not None and x <= 180)
-                ratio = live / len(rows_q)
-                ages = [x for x in rows_q if x is not None]
-                max_age = max(ages) if ages else None
-                freshness_score = 100 if max_age is not None and max_age <= 180 else 75 if max_age is not None and max_age <= 1440 else 50 if max_age is not None and max_age <= 10080 else 25
-                score = round(0.65*freshness_score + 0.35*(ratio*100))
+                observation_count = len(source_row.get("observations") or [])
+                is_live = age is not None and age <= 180
+                live_ratio = 1.0 if is_live else 0.0
+                freshness_score = 100 if age is not None and age <= 180 else 75 if age is not None and age <= 1440 else 50 if age is not None and age <= 10080 else 25
+                # Observation count is a small secondary quality term: a valid
+                # current quote remains useful even when the short history has
+                # only a few closes.  Cap at four, matching the normal 5d pull.
+                obs_score = min(100.0, observation_count / 4.0 * 100.0)
+                score = round(0.55*freshness_score + 0.30*(live_ratio*100) + 0.15*obs_score)
                 grade = "HIGH" if score >= 80 else "MEDIUM" if score >= 55 else "LOW"
-                quality = {"score": score, "grade": grade, "observation_count": len(rows_q), "live_ratio": round(ratio,3), "max_age_minutes": round(max_age,1) if max_age is not None else None}
+                quality = {"score": score, "grade": grade, "observation_count": observation_count, "live_ratio": round(live_ratio,3), "max_age_minutes": round(age,1) if age is not None else None}
         horizons[label] = {
             "target_date": target.isoformat(),
             "expected_rate_pct": round(expected, 5),

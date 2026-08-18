@@ -77,8 +77,11 @@ class FinalImprovementTests(unittest.TestCase):
     def test_policy_outlook_adds_path_confidence_without_changing_rate(self):
         today=date.today(); m=((today.month+1-1)%12)+1; y=today.year+(1 if today.month+1>12 else 0)
         meeting=f'{y:04d}-{m:02d}-15'
-        raw={'futures':{'zq_curve':[{'contract_month':meeting[:7],'market_time_utc':'2999-01-01T00:00:00+00:00','price':96.0}]}}
-        out=_policy_rate_outlook([{'meeting':meeting,'expected_post_meeting_rate':3.75}],3.63,raw)
+        symbol='ZQTEST.CBT'
+        raw={'futures':{'zq_curve':[{'symbol':symbol,'market_time_utc':'2999-01-01T00:00:00+00:00','price':96.0,'observations':[{'date':'2026-08-17','value':96.0}]*4}]}}
+        out=_policy_rate_outlook([{'meeting':meeting,'contract_symbol':symbol,'expected_post_meeting_rate':3.75}],3.63,raw)
         self.assertEqual(out['horizons']['1m']['expected_rate_pct'],3.75)
-        self.assertIn('path_confidence',out['horizons']['1m'])
-        self.assertIn(out['horizons']['1m']['path_confidence']['grade'],('HIGH','MEDIUM','LOW'))
+        q=out['horizons']['1m']['path_confidence']
+        self.assertEqual(q['observation_count'],4)
+        self.assertEqual(q['live_ratio'],1.0)
+        self.assertEqual(q['grade'],'HIGH')
