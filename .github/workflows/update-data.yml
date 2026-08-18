@@ -55,7 +55,17 @@ jobs:
           missing = [k for k in required if k not in confidence]
           if missing:
               raise SystemExit(f"Missing confidence fields: {missing}")
-          print("latest.json verified:", version)
+          ctx = data.get("us_macro_context") or {}
+          m2 = ctx.get("m2") or {}
+          dxy = ctx.get("dxy") or {}
+          if not m2.get("available"):
+              raise SystemExit("US M2 context unavailable in latest.json")
+          if not dxy.get("available"):
+              raise SystemExit("DXY context unavailable in latest.json")
+          dedicated = Path("public/data/us_liquidity_dxy.json")
+          if not dedicated.exists():
+              raise SystemExit("public/data/us_liquidity_dxy.json was not generated")
+          print("latest.json verified:", version, "US M2/DXY context OK")
           PY2
 
       - name: Run tests
