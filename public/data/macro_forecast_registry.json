@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at_utc": "2026-08-18T17:41:37.152447+00:00",
+  "generated_at_utc": "2026-08-18T17:56:54.565010+00:00",
   "engine": "US Fed policy engine",
   "entries": [
     {
@@ -12,10 +12,18 @@
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
+      "path_confidence": {
+        "score": 35,
+        "grade": "LOW",
+        "observation_count": 0,
+        "live_ratio": 0.0,
+        "max_age_minutes": null
+      },
       "quality_gate": {
         "passed": true,
         "type": "market_implied_not_model_forecast"
-      }
+      },
+      "reason": "market-implied path; confidence LOW"
     },
     {
       "id": "fed_policy_3m",
@@ -26,10 +34,18 @@
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
+      "path_confidence": {
+        "score": 35,
+        "grade": "LOW",
+        "observation_count": 0,
+        "live_ratio": 0.0,
+        "max_age_minutes": null
+      },
       "quality_gate": {
         "passed": true,
         "type": "market_implied_not_model_forecast"
-      }
+      },
+      "reason": "market-implied path; confidence LOW"
     },
     {
       "id": "fed_policy_6m",
@@ -40,10 +56,18 @@
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
+      "path_confidence": {
+        "score": 35,
+        "grade": "LOW",
+        "observation_count": 0,
+        "live_ratio": 0.0,
+        "max_age_minutes": null
+      },
       "quality_gate": {
         "passed": true,
         "type": "market_implied_not_model_forecast"
-      }
+      },
+      "reason": "market-implied path; confidence LOW"
     },
     {
       "id": "fed_policy_12m",
@@ -54,10 +78,18 @@
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
+      "path_confidence": {
+        "score": 35,
+        "grade": "LOW",
+        "observation_count": 0,
+        "live_ratio": 0.0,
+        "max_age_minutes": null
+      },
       "quality_gate": {
         "passed": true,
         "type": "market_implied_not_model_forecast"
-      }
+      },
+      "reason": "market-implied path; confidence LOW"
     },
     {
       "id": "us_m2_1m",
@@ -74,7 +106,8 @@
         "skill_pct": 32.82422750094231,
         "backtests": 72,
         "fallback_used": false
-      }
+      },
+      "reason": "validated: 32.8% skill vs persistence"
     },
     {
       "id": "us_m2_3m",
@@ -91,45 +124,48 @@
         "skill_pct": 39.548910905835186,
         "backtests": 72,
         "fallback_used": false
-      }
+      },
+      "reason": "validated: 39.5% skill vs persistence"
     },
     {
       "id": "dxy_1m",
       "label": "DXY 1m",
       "horizon": "1m",
-      "current": 99.655,
-      "forecast": 99.655,
+      "current": 99.65,
+      "forecast": 99.65,
       "status": "ABSTAIN",
       "usable": false,
       "basis": "price_ensemble",
       "validation": {
-        "rmse_pct": 1.77797017444308,
-        "baseline_rmse_pct": 1.77797017444308,
+        "rmse_pct": 1.7779752249876688,
+        "baseline_rmse_pct": 1.7779752249876688,
         "skill_pct": 0.0,
         "backtests": 760,
         "direction_accuracy": 47.94721407624634,
         "direction_cases": 682,
         "fallback_used": true
-      }
+      },
+      "reason": "abstain: no validated edge; direction accuracy 47.9%"
     },
     {
       "id": "dxy_3m",
       "label": "DXY 3m",
       "horizon": "3m",
-      "current": 99.655,
-      "forecast": 99.655,
+      "current": 99.65,
+      "forecast": 99.65,
       "status": "ABSTAIN",
       "usable": false,
       "basis": "price_ensemble",
       "validation": {
-        "rmse_pct": 3.264646375070503,
-        "baseline_rmse_pct": 3.264646375070503,
+        "rmse_pct": 3.264644999568656,
+        "baseline_rmse_pct": 3.264644999568656,
         "skill_pct": 0.0,
         "backtests": 760,
         "direction_accuracy": 36.48255813953488,
         "direction_cases": 688,
         "fallback_used": true
-      }
+      },
+      "reason": "abstain: no validated edge; direction accuracy 36.5%"
     },
     {
       "id": "real_rate_10y_1m",
@@ -159,7 +195,8 @@
           }
         }
       },
-      "candidate_forecast": 2.386
+      "candidate_forecast": 2.386,
+      "reason": "abstain: RMSE 0.2336 vs persistence 0.2330"
     },
     {
       "id": "real_rate_10y_3m",
@@ -189,7 +226,8 @@
           }
         }
       },
-      "candidate_forecast": 2.4385
+      "candidate_forecast": 2.4385,
+      "reason": "abstain: RMSE 0.3628 vs persistence 0.3448"
     },
     {
       "id": "fed_feature_inflation",
