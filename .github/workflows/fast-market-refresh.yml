@@ -3,14 +3,16 @@ name: Fast Market Refresh V230
 on:
   workflow_dispatch:
   schedule:
-    - cron: "31 */2 * * 1-5"
+    # Full engine runs daily at 21:20 UTC.
+    # Keep fast refresh away from the full-run window: no 20/22 UTC fast slots.
+    - cron: "31 0,2,4,6,8,10,12,14,16,18 * * 1-5"
 
 permissions:
   contents: write
 
 concurrency:
-  group: fed-fast-market-${{ github.ref }}
-  cancel-in-progress: true
+  group: fed-policy-engine-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   refresh:
