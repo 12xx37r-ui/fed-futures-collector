@@ -2317,16 +2317,16 @@
     "origin_date": "2026-04-22",
     "meeting": "2026-04-29",
     "probabilities": {
-      "cut": 8.27,
-      "hold": 62.96,
-      "hike": 28.77
+      "cut": 8.23,
+      "hold": 62.88,
+      "hike": 28.89
     },
     "features": {
       "policy_inertia": 0.0,
       "market": -0.31,
       "inflation": -0.25001,
       "employment": -0.16311,
-      "growth": -0.3986,
+      "growth": -0.45294,
       "financial": -0.15375,
       "fed_text": 0.0
     },
@@ -2343,16 +2343,16 @@
     "origin_date": "2026-06-10",
     "meeting": "2026-06-17",
     "probabilities": {
-      "cut": 5.68,
-      "hold": 56.21,
-      "hike": 38.1
+      "cut": 5.66,
+      "hold": 56.13,
+      "hike": 38.21
     },
     "features": {
       "policy_inertia": 0.0,
       "market": -1.0,
       "inflation": -0.16897,
       "employment": -0.24444,
-      "growth": -0.90795,
+      "growth": -0.94933,
       "financial": -0.20421,
       "fed_text": 0.0
     },
@@ -2370,15 +2370,15 @@
     "meeting": "2026-07-29",
     "probabilities": {
       "cut": 6.19,
-      "hold": 58.52,
-      "hike": 35.29
+      "hold": 58.51,
+      "hike": 35.3
     },
     "features": {
       "policy_inertia": 0.0,
       "market": -1.0,
       "inflation": 0.13685,
       "employment": -0.19622,
-      "growth": -0.75853,
+      "growth": -0.7621,
       "financial": -0.26704,
       "fed_text": 0.0
     },
