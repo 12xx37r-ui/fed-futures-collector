@@ -3,7 +3,7 @@ name: Update Fed Policy Engine Full
 on:
   workflow_dispatch:
   schedule:
-    - cron: "20 */6 * * *"
+    - cron: "20 21 * * *"
 
 permissions:
   contents: write
@@ -40,7 +40,7 @@ jobs:
 
       - name: Verify generated latest.json is V4.0.0
         run: |
-          python - <<'PY'
+          python - <<'PY2'
           import json
           from pathlib import Path
           p = Path("public/data/latest.json")
@@ -56,7 +56,7 @@ jobs:
           if missing:
               raise SystemExit(f"Missing confidence fields: {missing}")
           print("latest.json verified:", version)
-          PY
+          PY2
 
       - name: Run tests
         run: python -m unittest discover -s tests -v
