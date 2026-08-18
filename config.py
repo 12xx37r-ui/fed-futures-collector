@@ -25,6 +25,7 @@ FRED_SERIES = {
     "DFII5": "real_yield_5y",
     "DFII10": "real_yield_10y",
     "DFII20": "real_yield_20y",
+    "T10YIE": "breakeven_10y",
     "ECBDFR": "ecb_deposit_rate",
     "IRSTCI01JPM156N": "japan_overnight_rate",
 }

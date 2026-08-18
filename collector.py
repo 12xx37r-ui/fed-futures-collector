@@ -36,7 +36,7 @@ REDACTED = "[REDACTED]"
 
 # Daily policy/market series need a longer history for meeting-by-meeting validation.
 # Monthly macro series remain capped at 2,500 observations to avoid bloating raw.json.
-FRED_LONG_HISTORY_SERIES = frozenset({"DFF", "DFEDTARU", "DFEDTARL", "DGS2", "VIXCLS", "NFCI", "DFII5", "DFII10", "DFII20", "ECBDFR"})
+FRED_LONG_HISTORY_SERIES = frozenset({"DFF", "DFEDTARU", "DFEDTARL", "DGS2", "VIXCLS", "NFCI", "DFII5", "DFII10", "DFII20", "T10YIE", "ECBDFR"})
 
 def fred_retention_limit(series_id: str) -> int:
     return 6000 if series_id in FRED_LONG_HISTORY_SERIES else 2500

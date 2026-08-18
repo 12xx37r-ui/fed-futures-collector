@@ -527,7 +527,7 @@ def build_us_macro_context(raw: dict[str, Any]) -> dict[str, Any]:
         "m2": m2,
         "dxy": dxy,
         "real_rate": real_rate,
-        "methodology": "US M2 and DXY are calculated once in the Fed engine and published for downstream reuse. Each forecast uses walk-forward error weighting with persistence safety fallback.",
+        "methodology": "US M2, DXY and 10Y real-rate context are calculated once in the Fed engine and published for downstream reuse. Forecasts are promoted only when walk-forward validation beats persistence; otherwise the current level is retained.",
         "downstream_contract": "Global engine should reuse these values first and only query independent official fallbacks if this context is unavailable or stale.",
     }
 
