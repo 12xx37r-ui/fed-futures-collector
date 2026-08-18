@@ -24,7 +24,8 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      - run: python -m pip install requests
+      - name: Install fast-refresh dependencies
+        run: python -m pip install -r requirements.txt
       - name: Refresh nearest policy futures only
         run: python fast_market_refresh.py
       - name: Commit only changed snapshot
