@@ -297,6 +297,33 @@ def _model_action_from_validated_rule(probabilities: dict, backtest: dict) -> di
     }
 
 
+
+def _forecast_registry(result: dict[str, Any]) -> dict[str, Any]:
+    """Compact machine-readable promotion registry for forward outputs."""
+    ctx = result.get("us_macro_context") or {}
+    m2 = ctx.get("m2") or {}
+    dxy = ctx.get("dxy") or {}
+    rr = result.get("real_rate") or ctx.get("real_rate") or {}
+    policy = result.get("policy_rate_outlook") or {}
+    entries: list[dict[str, Any]] = []
+    for horizon in ("1m", "3m", "6m", "12m"):
+        row = (policy.get("horizons") or {}).get(horizon) or {}
+        if row:
+            entries.append({"id":f"fed_policy_{horizon}","label":f"Fed policy rate {horizon}","horizon":horizon,"current":policy.get("current_effective_rate_pct"),"forecast":row.get("expected_rate_pct"),"status":"MARKET_IMPLIED","usable":True,"basis":"Fed Funds futures / ZQ meeting path","quality_gate":{"passed":True,"type":"market_implied_not_model_forecast"}})
+    for horizon, backtest_key, forecast_key in (("1m","backtest_1m","forecast_1m_yoy_pct"),("3m","backtest_3m","forecast_3m_yoy_pct")):
+        bt=m2.get(backtest_key) or {}; usable=bool(not bt.get("fallback_used") and float(bt.get("skill_pct") or 0)>0)
+        if horizon=="3m": usable=usable and bool((m2.get("forecast_quality_gate") or {}).get("passed"))
+        entries.append({"id":f"us_m2_{horizon}","label":f"US M2 YoY {horizon}","horizon":horizon,"current":m2.get("current_yoy_pct"),"forecast":m2.get(forecast_key),"status":"VALIDATED" if usable else "ABSTAIN","usable":usable,"basis":m2.get("model"),"validation":bt})
+    for horizon, bt_key, fc_key in (("1m","backtest_1m","forecast_1m"),("3m","backtest_3m","forecast_3m")):
+        bt=dxy.get(bt_key) or {}; usable=not bool(bt.get("fallback_used")) and float(bt.get("skill_pct") or 0)>=2.0
+        entries.append({"id":f"dxy_{horizon}","label":f"DXY {horizon}","horizon":horizon,"current":dxy.get("current"),"forecast":dxy.get(fc_key),"status":"VALIDATED" if usable else "ABSTAIN","usable":usable,"basis":dxy.get(f"selected_model_{horizon}"),"validation":bt})
+    for horizon, usable_key, fc_key, bt_key in (("1m","forecast_usable_1m","forecast_1m_pct","backtest_1m"),("3m","forecast_usable_3m","forecast_3m_pct","backtest_3m")):
+        usable=bool(rr.get(usable_key))
+        entries.append({"id":f"real_rate_10y_{horizon}","label":f"US 10Y real yield {horizon}","horizon":horizon,"current":rr.get("current_pct"),"forecast":rr.get(fc_key),"status":"VALIDATED" if usable else "ABSTAIN","usable":usable,"basis":rr.get(f"selected_model_{horizon}"),"validation":rr.get(bt_key),"candidate_forecast":rr.get(f"candidate_forecast_{horizon}_pct")})
+    for key,label in (("inflation","Inflation factor"),("employment","Employment factor"),("growth","Growth factor"),("financial","Financial-conditions factor")):
+        entries.append({"id":f"fed_feature_{key}","label":label,"horizon":"current","current":(result.get("features") or {}).get(key),"forecast":None,"status":"CURRENT_ONLY","usable":False,"basis":"Fed policy-model normalized feature; no standalone forward forecast"})
+    return {"schema_version":"1.0","generated_at_utc":result.get("generated_at_utc"),"engine":"US Fed policy engine","entries":entries,"summary":{"validated":sum(1 for x in entries if x.get("status")=="VALIDATED"),"market_implied":sum(1 for x in entries if x.get("status")=="MARKET_IMPLIED"),"abstain":sum(1 for x in entries if x.get("status")=="ABSTAIN"),"current_only":sum(1 for x in entries if x.get("status")=="CURRENT_ONLY")},"policy":"Forward values are promoted only when their own validation gate passes; market-implied policy paths are labeled separately from model forecasts."}
+
 def main() -> None:
     print(f"ENGINE_VERSION={ENGINE_VERSION}", flush=True)
 
@@ -474,6 +501,10 @@ def main() -> None:
 
     Path("public/data/latest.json").write_text(
         json.dumps(result, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    Path("public/data/macro_forecast_registry.json").write_text(
+        json.dumps(_forecast_registry(result), ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
 
