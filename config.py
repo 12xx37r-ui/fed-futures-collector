@@ -12,6 +12,7 @@ FRED_SERIES = {
     "PCEPI": "pce",
     "PCEPILFE": "core_pce",
     "UNRATE": "unemployment_rate",
+    "USREC": "recession_indicator",
     "PAYEMS": "nonfarm_payrolls",
     "AHETPI": "average_hourly_earnings",
     "ICSA": "initial_claims",

@@ -452,6 +452,62 @@ def _m2_from_h6_text(text: str) -> list[dict[str, Any]]:
     return rows
 
 
+
+
+def _m2_regime_audit(raw: dict[str, Any], rows: list[dict[str, Any]], horizon: int = 3) -> dict[str, Any]:
+    """Past-only M2 forecast skill split by macro regime.
+
+    Regimes are audit metadata only; they never change the published forecast.
+    Inflation uses contemporaneous CPI YoY, policy uses the target-upper change
+    over three months, and recession/expansion uses the official FRED USREC
+    indicator when available.
+    """
+    if len(rows) < 48:
+        return {"available": False, "reason": "M2 history insufficient"}
+    fred = raw.get("fred") or {}
+    cpi = _obs(fred.get("cpi"))
+    target = _obs(fred.get("target_upper"))
+    recession = _obs(fred.get("recession_indicator"))
+
+    def asof(series: list[dict[str, Any]], d: str) -> float | None:
+        vals = [float(x["value"]) for x in series if x.get("date") and str(x["date"]) <= d]
+        return vals[-1] if vals else None
+
+    def cpi_yoy(d: str) -> float | None:
+        prior = [x for x in cpi if x.get("date") and str(x["date"]) <= d]
+        if len(prior) < 13: return None
+        cur=float(prior[-1]["value"]); prev=float(prior[-13]["value"]); return (cur/prev-1)*100 if prev else None
+
+    buckets: dict[str, list[tuple[float,float]]] = {}
+    start=max(30, len(rows)-72-horizon)
+    vals=[float(x["value"]) for x in rows]
+    for origin in range(start, len(rows)-horizon):
+        hist=vals[:origin+1]
+        try: fc=_monthly_ensemble(hist,horizon)
+        except Exception: continue
+        pred=float(fc["forecast"]); actual=vals[origin+horizon]; base=hist[-1]
+        if actual<=0: continue
+        d=str(rows[origin]["date"]);
+        inf=cpi_yoy(d)
+        t_now=asof(target,d)
+        d3=str(rows[max(0,origin-3)]["date"]); t_prev=asof(target,d3)
+        rec=asof(recession,d)
+        labels=[]
+        if inf is not None: labels.append("inflation_high" if inf>=3.0 else "inflation_low")
+        if t_now is not None and t_prev is not None:
+            labels.append("tightening" if t_now-t_prev>=0.10 else "easing" if t_now-t_prev<=-0.10 else "policy_steady")
+        if rec is not None: labels.append("recession" if rec>=0.5 else "expansion")
+        me=(pred/actual-1)*100; be=(base/actual-1)*100
+        for lab in labels: buckets.setdefault(lab,[]).append((me,be))
+    out={}
+    for lab,pairs in buckets.items():
+        if not pairs: continue
+        rm=_rmse([a for a,_ in pairs]); br=_rmse([b for _,b in pairs])
+        skill=(1-rm/br)*100 if br>0 else None
+        out[lab]={"samples":len(pairs),"rmse_pct":round(rm,4),"baseline_rmse_pct":round(br,4),"skill_pct":round(skill,2) if skill is not None else None}
+    return {"available": bool(out), "horizon":"3m", "regimes":out, "note":"audit-only; regime results do not alter the forecast"}
+
+
 def _m2_payload(raw: dict[str, Any]) -> dict[str, Any]:
     source_series = (raw.get("fred") or {}).get("m2") or {}
     rows = _obs(source_series)
@@ -509,6 +565,7 @@ def _m2_payload(raw: dict[str, Any]) -> dict[str, Any]:
             "benchmark": "persistence",
             "horizon": "3m",
         },
+        "regime_validation_3m": _m2_regime_audit(raw, rows, 3),
         "model": "monthly level walk-forward inverse-RMSE ensemble of 3m/6m/12m/damped trends with persistence safety fallback",
     }
 

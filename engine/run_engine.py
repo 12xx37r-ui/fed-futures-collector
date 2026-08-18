@@ -238,7 +238,7 @@ def _add_months(d: date, months: int) -> date:
     return date(y, m, min(d.day, calendar.monthrange(y, m)[1]))
 
 
-def _policy_rate_outlook(meeting_path: list[dict[str, Any]], current_rate: float | None) -> dict[str, Any]:
+def _policy_rate_outlook(meeting_path: list[dict[str, Any]], current_rate: float | None, raw: dict[str, Any] | None = None) -> dict[str, Any]:
     """Summarize the market-implied FOMC path at standard horizons.
 
     This does not create a second rate model: it is a compact view of the same
@@ -260,12 +260,43 @@ def _policy_rate_outlook(meeting_path: list[dict[str, Any]], current_rate: float
         eligible = [row for d, row in rows if d <= target]
         chosen = eligible[-1] if eligible else None
         expected = float(chosen["expected_post_meeting_rate"]) if chosen else float(current_rate)
+        # Horizon-specific market-path quality.  This is metadata only and does
+        # not alter pricing semantics.  Prefer the contract month supporting the
+        # selected meeting and summarize freshness/availability around that point.
+        quality = {"score": 35, "grade": "LOW", "observation_count": 0, "live_ratio": 0.0, "max_age_minutes": None}
+        if raw is not None and chosen:
+            src_month = str(chosen.get("meeting") or "")[:7]
+            rows_q = []
+            for item in ((raw.get("futures") or {}).get("zq_curve") or []):
+                if not isinstance(item, dict):
+                    continue
+                cm = str(item.get("contract_month") or "")[:7]
+                if cm != src_month:
+                    continue
+                age = None
+                try:
+                    mt = datetime.fromisoformat(str(item.get("market_time_utc") or "").replace("Z", "+00:00"))
+                    if mt.tzinfo is None: mt = mt.replace(tzinfo=timezone.utc)
+                    age = max(0.0, (datetime.now(timezone.utc) - mt.astimezone(timezone.utc)).total_seconds()/60.0)
+                except Exception:
+                    pass
+                rows_q.append(age)
+            if rows_q:
+                live = sum(1 for x in rows_q if x is not None and x <= 180)
+                ratio = live / len(rows_q)
+                ages = [x for x in rows_q if x is not None]
+                max_age = max(ages) if ages else None
+                freshness_score = 100 if max_age is not None and max_age <= 180 else 75 if max_age is not None and max_age <= 1440 else 50 if max_age is not None and max_age <= 10080 else 25
+                score = round(0.65*freshness_score + 0.35*(ratio*100))
+                grade = "HIGH" if score >= 80 else "MEDIUM" if score >= 55 else "LOW"
+                quality = {"score": score, "grade": grade, "observation_count": len(rows_q), "live_ratio": round(ratio,3), "max_age_minutes": round(max_age,1) if max_age is not None else None}
         horizons[label] = {
             "target_date": target.isoformat(),
             "expected_rate_pct": round(expected, 5),
             "change_from_current_bps": round((expected - float(current_rate)) * 100.0, 2),
             "source_meeting": chosen.get("meeting") if chosen else None,
             "source": "Fed Funds futures / ZQ meeting path" if chosen else "current effective rate; no meeting before horizon",
+            "path_confidence": quality,
         }
     return {
         "available": True,
@@ -309,17 +340,17 @@ def _forecast_registry(result: dict[str, Any]) -> dict[str, Any]:
     for horizon in ("1m", "3m", "6m", "12m"):
         row = (policy.get("horizons") or {}).get(horizon) or {}
         if row:
-            entries.append({"id":f"fed_policy_{horizon}","label":f"Fed policy rate {horizon}","horizon":horizon,"current":policy.get("current_effective_rate_pct"),"forecast":row.get("expected_rate_pct"),"status":"MARKET_IMPLIED","usable":True,"basis":"Fed Funds futures / ZQ meeting path","quality_gate":{"passed":True,"type":"market_implied_not_model_forecast"}})
+            entries.append({"id":f"fed_policy_{horizon}","label":f"Fed policy rate {horizon}","horizon":horizon,"current":policy.get("current_effective_rate_pct"),"forecast":row.get("expected_rate_pct"),"status":"MARKET_IMPLIED","usable":True,"basis":"Fed Funds futures / ZQ meeting path","path_confidence":row.get("path_confidence"),"quality_gate":{"passed":True,"type":"market_implied_not_model_forecast"},"reason":f"market-implied path; confidence {(row.get('path_confidence') or {}).get('grade','UNKNOWN')}"})
     for horizon, backtest_key, forecast_key in (("1m","backtest_1m","forecast_1m_yoy_pct"),("3m","backtest_3m","forecast_3m_yoy_pct")):
         bt=m2.get(backtest_key) or {}; usable=bool(not bt.get("fallback_used") and float(bt.get("skill_pct") or 0)>0)
         if horizon=="3m": usable=usable and bool((m2.get("forecast_quality_gate") or {}).get("passed"))
-        entries.append({"id":f"us_m2_{horizon}","label":f"US M2 YoY {horizon}","horizon":horizon,"current":m2.get("current_yoy_pct"),"forecast":m2.get(forecast_key),"status":"VALIDATED" if usable else "ABSTAIN","usable":usable,"basis":m2.get("model"),"validation":bt})
+        entries.append({"id":f"us_m2_{horizon}","label":f"US M2 YoY {horizon}","horizon":horizon,"current":m2.get("current_yoy_pct"),"forecast":m2.get(forecast_key),"status":"VALIDATED" if usable else "ABSTAIN","usable":usable,"basis":m2.get("model"),"validation":bt,"reason":(f"validated: {float(bt.get('skill_pct') or 0):.1f}% skill vs persistence" if usable else f"abstain: fallback={bool(bt.get('fallback_used'))}, skill={float(bt.get('skill_pct') or 0):.1f}%")})
     for horizon, bt_key, fc_key in (("1m","backtest_1m","forecast_1m"),("3m","backtest_3m","forecast_3m")):
         bt=dxy.get(bt_key) or {}; usable=not bool(bt.get("fallback_used")) and float(bt.get("skill_pct") or 0)>=2.0
-        entries.append({"id":f"dxy_{horizon}","label":f"DXY {horizon}","horizon":horizon,"current":dxy.get("current"),"forecast":dxy.get(fc_key),"status":"VALIDATED" if usable else "ABSTAIN","usable":usable,"basis":dxy.get(f"selected_model_{horizon}"),"validation":bt})
+        entries.append({"id":f"dxy_{horizon}","label":f"DXY {horizon}","horizon":horizon,"current":dxy.get("current"),"forecast":dxy.get(fc_key),"status":"VALIDATED" if usable else "ABSTAIN","usable":usable,"basis":dxy.get(f"selected_model_{horizon}"),"validation":bt,"reason":(f"validated: {float(bt.get('skill_pct') or 0):.1f}% skill vs persistence" if usable else f"abstain: no validated edge; direction accuracy {float(bt.get('direction_accuracy') or 0):.1f}%")})
     for horizon, usable_key, fc_key, bt_key in (("1m","forecast_usable_1m","forecast_1m_pct","backtest_1m"),("3m","forecast_usable_3m","forecast_3m_pct","backtest_3m")):
         usable=bool(rr.get(usable_key))
-        entries.append({"id":f"real_rate_10y_{horizon}","label":f"US 10Y real yield {horizon}","horizon":horizon,"current":rr.get("current_pct"),"forecast":rr.get(fc_key),"status":"VALIDATED" if usable else "ABSTAIN","usable":usable,"basis":rr.get(f"selected_model_{horizon}"),"validation":rr.get(bt_key),"candidate_forecast":rr.get(f"candidate_forecast_{horizon}_pct")})
+        entries.append({"id":f"real_rate_10y_{horizon}","label":f"US 10Y real yield {horizon}","horizon":horizon,"current":rr.get("current_pct"),"forecast":rr.get(fc_key),"status":"VALIDATED" if usable else "ABSTAIN","usable":usable,"basis":rr.get(f"selected_model_{horizon}"),"validation":rr.get(bt_key),"candidate_forecast":rr.get(f"candidate_forecast_{horizon}_pct"),"reason":("validated real-yield forecast" if usable else f"abstain: RMSE {float((rr.get(bt_key) or {}).get('rmse') or 0):.4f} vs persistence {float((rr.get(bt_key) or {}).get('baseline_rmse') or 0):.4f}")})
     for key,label in (("inflation","Inflation factor"),("employment","Employment factor"),("growth","Growth factor"),("financial","Financial-conditions factor")):
         entries.append({"id":f"fed_feature_{key}","label":label,"horizon":"current","current":(result.get("features") or {}).get(key),"forecast":None,"status":"CURRENT_ONLY","usable":False,"basis":"Fed policy-model normalized feature; no standalone forward forecast"})
     return {"schema_version":"1.0","generated_at_utc":result.get("generated_at_utc"),"engine":"US Fed policy engine","entries":entries,"summary":{"validated":sum(1 for x in entries if x.get("status")=="VALIDATED"),"market_implied":sum(1 for x in entries if x.get("status")=="MARKET_IMPLIED"),"abstain":sum(1 for x in entries if x.get("status")=="ABSTAIN"),"current_only":sum(1 for x in entries if x.get("status")=="CURRENT_ONLY")},"policy":"Forward values are promoted only when their own validation gate passes; market-implied policy paths are labeled separately from model forecasts."}
@@ -364,7 +395,7 @@ def main() -> None:
     macro = macro_score(raw)
     effective_rate, effective_rate_source = resolve_effective_rate(raw, zq_curve)
     meeting_path = build_meeting_path(fomc_dates, zq_curve, effective_rate)
-    policy_rate_outlook = _policy_rate_outlook(meeting_path, effective_rate)
+    policy_rate_outlook = _policy_rate_outlook(meeting_path, effective_rate, raw)
 
     next_path = next(
         (row for row in meeting_path if row["meeting"] == upcoming),
