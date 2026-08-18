@@ -40,6 +40,8 @@ class UsMacroContextTests(unittest.TestCase):
         self.assertIn('forecast_3m_yoy_pct',out['m2'])
         self.assertIn('forecast_3m',out['dxy'])
         self.assertIn(out['dxy']['direction_3m'],{'up','down','flat'})
+        self.assertIn('macro_model_audit',out['dxy'])
+        self.assertIn('selected_model_3m',out['dxy'])
 
     def test_dxy_refresh_preserves_m2(self):
         existing={'available':True,'m2':{'available':True,'current_yoy_pct':5.0},'dxy':{}}

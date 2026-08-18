@@ -6,6 +6,9 @@ from pathlib import Path
 from typing import Any
 import json
 
+import numpy as np
+from sklearn.linear_model import Ridge
+
 
 def _finite(v: Any) -> bool:
     try:
@@ -127,6 +130,121 @@ def _monthly_ensemble(values: list[float], horizon: int) -> dict[str, Any]:
     }
 
 
+
+
+def _series_asof_on_dates(series: dict[str, Any] | None, dates: list[str]) -> list[float | None]:
+    rows = _obs(series)
+    out: list[float | None] = []
+    j = 0
+    last: float | None = None
+    for d in dates:
+        while j < len(rows) and rows[j]["date"] <= d:
+            last = float(rows[j]["value"])
+            j += 1
+        out.append(last)
+    return out
+
+
+def _dxy_macro_dataset(raw: dict[str, Any], rows: list[dict[str, Any]]) -> tuple[np.ndarray, np.ndarray]:
+    """Build contemporaneous DXY predictors from already-collected Fed-engine data.
+
+    No network calls are added. Features are deliberately limited to information
+    available in the existing FRED block plus DXY price momentum.
+    """
+    dates = [str(r["date"]) for r in rows]
+    prices = np.array([float(r["value"]) for r in rows], dtype=float)
+    fred = raw.get("fred") or {}
+    keys = ["treasury_2y", "treasury_10y", "nfci", "hy_oas", "vix"]
+    aligned = {k: _series_asof_on_dates(fred.get(k), dates) for k in keys}
+    feats: list[list[float]] = []
+    valid = []
+    for i, p in enumerate(prices):
+        if i < 63 or p <= 0:
+            feats.append([math.nan] * 8); valid.append(False); continue
+        vals = [aligned[k][i] for k in keys]
+        if any(v is None or not _finite(v) for v in vals):
+            feats.append([math.nan] * 8); valid.append(False); continue
+        dgs2, dgs10, nfci, hy, vix = map(float, vals)
+        mom21 = math.log(p / prices[i-21]) * 100.0 if prices[i-21] > 0 else 0.0
+        mom63 = math.log(p / prices[i-63]) * 100.0 if prices[i-63] > 0 else 0.0
+        curve = dgs10 - dgs2
+        d2_21 = 0.0
+        old2 = aligned["treasury_2y"][i-21] if i >= 21 else None
+        if old2 is not None and _finite(old2):
+            d2_21 = dgs2 - float(old2)
+        feats.append([mom21, mom63, dgs2, d2_21, curve, nfci, hy, vix])
+        valid.append(True)
+    return np.asarray(feats, dtype=float), np.asarray(valid, dtype=bool)
+
+
+def _ridge_fit_predict(x_train: np.ndarray, y_train: np.ndarray, x_now: np.ndarray) -> float | None:
+    if len(y_train) < 80:
+        return None
+    mu = np.nanmean(x_train, axis=0)
+    sd = np.nanstd(x_train, axis=0)
+    sd = np.where(sd < 1e-8, 1.0, sd)
+    xt = (x_train - mu) / sd
+    xn = (x_now - mu) / sd
+    model = Ridge(alpha=12.0, fit_intercept=True)
+    model.fit(xt, y_train)
+    pred = float(model.predict(xn.reshape(1, -1))[0])
+    return pred if math.isfinite(pred) else None
+
+
+def _dxy_macro_model(raw: dict[str, Any], rows: list[dict[str, Any]], horizon: int) -> dict[str, Any]:
+    if len(rows) < 500:
+        return {"available": False, "reason": "macro-aligned DXY history insufficient"}
+    prices = np.asarray([float(r["value"]) for r in rows], dtype=float)
+    x, valid = _dxy_macro_dataset(raw, rows)
+    origins = list(range(max(315, len(rows)-900-horizon), len(rows)-horizon, 5))
+    errs: list[float] = []
+    base_errs: list[float] = []
+    hits = cases = 0
+    predictions: list[float] = []
+    for origin in origins:
+        train_idx = [i for i in range(63, origin-horizon+1, 5) if valid[i] and i+horizon < origin+1]
+        if len(train_idx) < 80 or not valid[origin]:
+            continue
+        xa = x[train_idx]
+        ya = np.asarray([math.log(prices[i+horizon]/prices[i]) * 100.0 for i in train_idx], dtype=float)
+        pred_ret = _ridge_fit_predict(xa, ya, x[origin])
+        if pred_ret is None:
+            continue
+        cap = 8.0 if horizon <= 21 else 14.0
+        pred_ret = _clamp(pred_ret, -cap, cap)
+        pred_level = prices[origin] * math.exp(pred_ret/100.0)
+        actual = prices[origin+horizon]
+        errs.append((pred_level/actual-1.0)*100.0)
+        base_errs.append((prices[origin]/actual-1.0)*100.0)
+        predictions.append(pred_ret)
+        actual_ret = math.log(actual/prices[origin])*100.0
+        if abs(actual_ret) >= 0.35:
+            cases += 1
+            if (actual_ret >= 0) == (pred_ret >= 0):
+                hits += 1
+    if len(errs) < 24:
+        return {"available": False, "reason": "macro walk-forward samples insufficient", "samples": len(errs)}
+    model_rmse = _rmse(errs); base_rmse = _rmse(base_errs)
+    skill = max(0.0, (1.0-model_rmse/base_rmse)*100.0) if base_rmse > 0 else 0.0
+    da = hits/cases*100.0 if cases else None
+    # Final fit uses every labeled observation available before the current point.
+    final_idx = [i for i in range(63, len(rows)-horizon, 5) if valid[i]]
+    pred_ret = _ridge_fit_predict(x[final_idx], np.asarray([math.log(prices[i+horizon]/prices[i])*100.0 for i in final_idx]), x[-1]) if valid[-1] else None
+    if pred_ret is None:
+        return {"available": False, "reason": "macro final fit unavailable", "samples": len(errs)}
+    cap = 8.0 if horizon <= 21 else 14.0
+    pred_ret = _clamp(pred_ret, -cap, cap)
+    forecast = prices[-1] * math.exp(pred_ret/100.0)
+    passed = skill >= 2.0 and (da is None or da >= 52.0) and len(errs) >= 36
+    return {
+        "available": True, "forecast": forecast, "forecast_return_pct": pred_ret,
+        "rmse_pct": model_rmse, "baseline_rmse_pct": base_rmse, "skill_pct": skill,
+        "direction_accuracy": da, "direction_cases": cases, "backtests": len(errs),
+        "quality_gate": {"passed": passed, "requirements": {"skill_pct_min": 2.0, "direction_accuracy_min": 52.0, "samples_min": 36}},
+        "features": ["DXY 21d momentum", "DXY 63d momentum", "US 2Y yield", "US 2Y 21d change", "10Y-2Y curve", "NFCI", "HY OAS", "VIX"],
+        "model": "expanding walk-forward ridge regression on existing Fed-engine market/financial inputs",
+    }
+
 def _dxy_candidates(values: list[float], horizon: int) -> list[float]:
     cur = values[-1]
     def log_trend(days: int, damp: float) -> float:
@@ -208,32 +326,40 @@ def _dxy_payload(raw: dict[str, Any]) -> dict[str, Any]:
         return {"available": False, "status": "UNAVAILABLE", "reason": "DXY history insufficient"}
     values = [x["value"] for x in rows]
     current = float(dxy.get("price")) if _finite(dxy.get("price")) else values[-1]
-    values[-1] = current
-    f1 = _dxy_ensemble(values, 21)
-    f3 = _dxy_ensemble(values, 63)
-    c3 = (f3["forecast"] / current - 1.0) * 100.0
-    interval = max(1.0, 1.2816 * float(f3["rmse_pct"]))
-    confidence = round(_clamp(45 + min(25, max(0.0, float(f3.get("skill_pct") or 0.0)) * 2.0) + min(18, (f3.get("direction_accuracy") or 50.0) - 50.0) - min(18, interval * 2.0), 35, 88))
+    values[-1] = current; rows[-1]["value"] = current
+    price1 = _dxy_ensemble(values, 21); price3 = _dxy_ensemble(values, 63)
+    macro1 = _dxy_macro_model(raw, rows, 21); macro3 = _dxy_macro_model(raw, rows, 63)
+
+    def choose(price: dict[str, Any], macro: dict[str, Any]) -> tuple[dict[str, Any], str]:
+        if macro.get("available") and (macro.get("quality_gate") or {}).get("passed"):
+            pskill = float(price.get("skill_pct") or 0.0)
+            mskill = float(macro.get("skill_pct") or 0.0)
+            if price.get("fallback_used") or mskill >= pskill + 1.0:
+                return macro, "macro_ridge"
+        return price, "price_ensemble"
+
+    f1, sel1 = choose(price1, macro1); f3, sel3 = choose(price3, macro3)
+    c3 = (float(f3["forecast"]) / current - 1.0) * 100.0
+    interval = max(1.0, 1.2816 * float(f3.get("rmse_pct") or price3.get("rmse_pct") or 2.0))
+    skill = float(f3.get("skill_pct") or 0.0); da = f3.get("direction_accuracy")
+    confidence = round(_clamp(45 + min(25, max(0.0, skill) * 2.0) + min(18, (float(da) if da is not None else 50.0) - 50.0) - min(18, interval * 2.0), 35, 88))
     direction = "up" if c3 > 0.35 else "down" if c3 < -0.35 else "flat"
+    def slim(x: dict[str, Any]) -> dict[str, Any]:
+        return {k:v for k,v in x.items() if k not in {"forecast","model_forecasts","weights"}}
     return {
-        "available": True,
-        "status": "LKG" if dxy.get("stale") else "LIVE",
-        "symbol": "DX-Y.NYB",
-        "source": "Yahoo Finance DXY delayed market data",
-        "source_url": dxy.get("source_url"),
-        "observation_date": rows[-1]["date"],
-        "market_time_utc": dxy.get("market_time_utc"),
-        "current": round(current, 6),
-        "forecast_1m": round(float(f1["forecast"]), 6),
-        "forecast_3m": round(float(f3["forecast"]), 6),
+        "available": True, "status": "LKG" if dxy.get("stale") else "LIVE", "symbol": "DX-Y.NYB",
+        "source": "Yahoo Finance DXY delayed market data", "source_url": dxy.get("source_url"),
+        "observation_date": rows[-1]["date"], "market_time_utc": dxy.get("market_time_utc"), "current": round(current, 6),
+        "forecast_1m": round(float(f1["forecast"]), 6), "forecast_3m": round(float(f3["forecast"]), 6),
         "forecast_change_3m_pct": round(c3, 6),
-        "forecast_range_80": [round(f3["forecast"] * (1 - interval / 100.0), 6), round(f3["forecast"] * (1 + interval / 100.0), 6)],
-        "direction_3m": direction,
-        "confidence": confidence,
-        "backtest_1m": {k: v for k, v in f1.items() if k not in {"forecast", "model_forecasts", "weights"}},
-        "backtest_3m": {k: v for k, v in f3.items() if k not in {"forecast", "model_forecasts", "weights"}},
-        "model": "walk-forward inverse-RMSE ensemble of 20d/60d/120d damped trends and 1y mean reversion; persistence safety fallback",
-        "limitation": "DXY price is Yahoo Finance delayed data; forecast is a statistical direction estimate, not an ICE real-time quote or guaranteed target.",
+        "forecast_range_80": [round(float(f3["forecast"]) * (1 - interval / 100.0), 6), round(float(f3["forecast"]) * (1 + interval / 100.0), 6)],
+        "direction_3m": direction, "confidence": confidence,
+        "selected_model_1m": sel1, "selected_model_3m": sel3,
+        "backtest_1m": slim(f1), "backtest_3m": slim(f3),
+        "price_model_audit": {"1m": slim(price1), "3m": slim(price3)},
+        "macro_model_audit": {"1m": slim(macro1), "3m": slim(macro3)},
+        "model": "validated selection between price-only ensemble and macro-aware ridge model; persistence remains the hard safety benchmark",
+        "limitation": "DXY price is Yahoo Finance delayed data. Macro candidate uses only already-collected US market/financial inputs; no additional API is called. Forecast is not a guaranteed target.",
     }
 
 
