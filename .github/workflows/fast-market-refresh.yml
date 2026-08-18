@@ -5,7 +5,8 @@ on:
   schedule:
     # Full engine runs daily at 21:20 UTC.
     # Keep fast refresh away from the full-run window: no 20/22 UTC fast slots.
-    - cron: "31 0,2,4,6,8,10,12,14,16,18 * * 1-5"
+    # Staggered provider slot; recent-full guard in fast_market_refresh.py avoids redundant calls.
+    - cron: "37 0,2,4,6,8,10,12,14,16,18 * * 1-5"
 
 permissions:
   contents: write
