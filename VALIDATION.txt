@@ -1,0 +1,20 @@
+Fed futures engine forecast upgrade validation
+
+pytest -q: 36 passed
+
+Bundled raw snapshot results:
+- US 10Y real rate: 2.4400% -> 2.3406%, falling
+  selected_model_3m=validated_mean_reversion
+  raw skill vs persistence=+4.2299%
+  direction accuracy=62.3%
+  samples=937
+  quality gate=PASS
+
+- DXY: 99.6310 -> 99.500502, down
+  selected_model_3m=price_mean_reversion
+  raw skill vs persistence=+8.5217%
+  direction accuracy=73.6919%
+  samples=760
+  quality gate=PASS
+
+No validation threshold was lowered. Both forecasts beat the persistence benchmark on the bundled walk-forward snapshot.

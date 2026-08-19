@@ -201,6 +201,43 @@ def _macro_model(raw: dict[str, Any], dates: list[str], vals: list[float], horiz
     return out
 
 
+
+def _validated_mean_reversion_predict(values: list[float], horizon: int) -> tuple[float, dict[str, float]]:
+    """Conservative 3M real-yield mean-reversion candidate.
+
+    The lookback/strength are deliberately fixed (not tuned per run) so the
+    walk-forward audit remains genuinely out-of-sample. 84 trading days is
+    long enough to smooth short-lived shocks while still reacting to a regime
+    change. The pull is scaled by forecast horizon and capped.
+    """
+    cur = values[-1]
+    lookback = min(84, len(values))
+    anchor = mean(values[-lookback:])
+    strength = 0.40 * min(1.0, max(0.0, horizon / 63.0))
+    change = _clamp((anchor - cur) * strength, -0.45, 0.45)
+    return cur + change, {"anchor": anchor, "strength": strength, "lookback_days": float(lookback)}
+
+
+def _walk_forward_mean_reversion(values: list[float], horizon: int) -> dict[str, Any]:
+    errs: list[float] = []
+    base_errs: list[float] = []
+    hits = cases = 0
+    start = max(252, len(values) - 1000)
+    for i in range(start, len(values) - horizon):
+        hist = values[: i + 1]
+        pred, _ = _validated_mean_reversion_predict(hist, horizon)
+        actual = values[i + horizon]
+        errs.append(pred - actual)
+        base_errs.append(values[i] - actual)
+        actual_change = actual - values[i]
+        pred_change = pred - values[i]
+        if abs(actual_change) >= 0.05:
+            cases += 1
+            hits += int((actual_change >= 0) == (pred_change >= 0))
+    out = _metrics(errs, base_errs, hits, cases, 60)
+    out["model"] = "fixed 84-trading-day mean reversion"
+    return out
+
 def _recent_changes(vals: list[float]) -> dict[str, float | None]:
     cur = vals[-1]
     def ch(n: int) -> float | None:
@@ -230,13 +267,19 @@ def build(raw: dict[str, Any]) -> dict[str, Any]:
     structural3, c3 = _predict(vals, cur5, cur20, 63)
     bt_struct1 = _walk_forward(dates, vals, y5_asof, y20_asof, 21)
     bt_struct3 = _walk_forward(dates, vals, y5_asof, y20_asof, 63)
+    meanrev1, meanrev1_meta = _validated_mean_reversion_predict(vals, 21)
+    meanrev3, meanrev3_meta = _validated_mean_reversion_predict(vals, 63)
+    bt_meanrev1 = _walk_forward_mean_reversion(vals, 21)
+    bt_meanrev3 = _walk_forward_mean_reversion(vals, 63)
     macro1 = _macro_model(raw, dates, vals, 21)
     macro3 = _macro_model(raw, dates, vals, 63)
 
-    def select(structural: float, bt: dict[str, Any], macro: dict[str, Any]) -> tuple[float, str, dict[str, Any]]:
+    def select(structural: float, bt: dict[str, Any], meanrev: float, bt_meanrev: dict[str, Any], macro: dict[str, Any]) -> tuple[float, str, dict[str, Any]]:
         candidates = []
         if (bt.get("quality_gate") or {}).get("passed"):
             candidates.append((float(bt.get("rmse") or 999), structural, "curve_momentum", bt))
+        if (bt_meanrev.get("quality_gate") or {}).get("passed"):
+            candidates.append((float(bt_meanrev.get("rmse") or 999), meanrev, "validated_mean_reversion", bt_meanrev))
         if macro.get("available") and (macro.get("quality_gate") or {}).get("passed"):
             candidates.append((float(macro.get("rmse") or 999), float(macro["forecast"]), "macro_ridge", macro))
         if not candidates:
@@ -244,10 +287,10 @@ def build(raw: dict[str, Any]) -> dict[str, Any]:
         _, forecast, name, audit = min(candidates, key=lambda x: x[0])
         return forecast, name, audit
 
-    p1, model1, selected1 = select(structural1, bt_struct1, macro1)
-    p3, model3, selected3 = select(structural3, bt_struct3, macro3)
+    p1, model1, selected1 = select(structural1, bt_struct1, meanrev1, bt_meanrev1, macro1)
+    p3, model3, selected3 = select(structural3, bt_struct3, meanrev3, bt_meanrev3, macro3)
     # Unvalidated candidate is still published for audit, but never promoted as the final forecast.
-    raw_candidates_3m = [structural3]
+    raw_candidates_3m = [structural3, meanrev3]
     if macro3.get("available") and macro3.get("forecast") is not None:
         raw_candidates_3m.append(float(macro3["forecast"]))
     candidate3 = min(raw_candidates_3m, key=lambda v: abs(v-cur)) if raw_candidates_3m else cur
@@ -283,14 +326,18 @@ def build(raw: dict[str, Any]) -> dict[str, Any]:
         "candidate_forecast_1m_pct": round(float(macro1.get("forecast")) if macro1.get("available") and macro1.get("forecast") is not None else structural1, 4),
         "candidate_forecast_3m_pct": round(candidate3, 4),
         "candidate_direction_3m": _direction(candidate3-cur),
-        "model": "validated selection among persistence, real-curve momentum/mean-reversion, and macro ridge using nominal yields + breakeven inflation + financial conditions",
+        "model": "validated selection among persistence, fixed mean-reversion, real-curve momentum, and macro ridge using nominal yields + breakeven inflation + financial conditions",
         "components_1m": {k: round(v, 4) for k, v in c1.items()},
         "components_3m": {k: round(v, 4) for k, v in c3.items()},
         "backtest_1m": selected1 if model1 != "persistence" else bt_struct1,
         "backtest_3m": selected3 if model3 != "persistence" else bt_struct3,
         "structural_model_audit": {"1m": bt_struct1, "3m": bt_struct3},
+        "mean_reversion_model_audit": {
+            "1m": {**bt_meanrev1, "forecast": round(meanrev1, 4), "parameters": meanrev1_meta},
+            "3m": {**bt_meanrev3, "forecast": round(meanrev3, 4), "parameters": meanrev3_meta},
+        },
         "macro_model_audit": {"1m": macro1, "3m": macro3},
         "forecast_quality_gate": {"passed": gate3, "benchmark": "persistence", "horizon": "3m"},
-        "limitation": "Final forward movement is promoted only when walk-forward skill beats persistence. candidate_forecast_* remains audit-only when the gate fails.",
-        "schema_version": "1.2.0",
+        "limitation": "Final forward movement is promoted only when a fixed, past-only walk-forward model beats persistence and clears the direction gate. Unvalidated candidates remain audit-only.",
+        "schema_version": "1.3.0",
     }

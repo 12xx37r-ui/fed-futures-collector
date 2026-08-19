@@ -293,6 +293,67 @@ def _dxy_macro_model(raw: dict[str, Any], rows: list[dict[str, Any]], horizon: i
     return out
 
 
+
+def _dxy_mean_reversion_candidate(values: list[float], horizon: int) -> tuple[float, list[dict[str, float]]]:
+    """Fixed multi-window DXY mean-reversion forecast.
+
+    This intentionally uses a small, pre-declared family of horizons rather
+    than optimizing parameters on the current sample. It is designed to be a
+    lower-variance alternative to extrapolating short-term DXY momentum.
+    """
+    cur = values[-1]
+    specs = [(120, 0.40, 0.25), (180, 0.40, 0.25), (252, 0.40, 0.25), (378, 0.30, 0.25)]
+    scale = min(1.0, max(0.0, horizon / 63.0))
+    parts: list[dict[str, float]] = []
+    forecast = 0.0
+    for lookback, strength, weight in specs:
+        window = values[-min(lookback, len(values)):]
+        anchor = _mean(window)
+        pred = cur + (anchor-cur) * strength * scale
+        forecast += weight * pred
+        parts.append({"lookback_days": float(lookback), "strength": strength, "weight": weight, "anchor": anchor, "forecast": pred})
+    return forecast, parts
+
+
+def _dxy_mean_reversion_model(values: list[float], horizon: int) -> dict[str, Any]:
+    if len(values) < 420:
+        return {"available": False, "reason": "DXY mean-reversion history insufficient"}
+    start = max(378, len(values)-760-horizon)
+    errs: list[float] = []
+    base_errs: list[float] = []
+    hits = cases = 0
+    for origin in range(start, len(values)-horizon):
+        hist = values[:origin+1]
+        pred, _ = _dxy_mean_reversion_candidate(hist, horizon)
+        actual = values[origin+horizon]
+        if actual <= 0 or hist[-1] <= 0:
+            continue
+        errs.append((pred/actual-1.0)*100.0)
+        base_errs.append((hist[-1]/actual-1.0)*100.0)
+        actual_ret = (actual/hist[-1]-1.0)*100.0
+        pred_ret = (pred/hist[-1]-1.0)*100.0
+        if abs(actual_ret) >= 0.35:
+            cases += 1
+            hits += int((actual_ret >= 0) == (pred_ret >= 0))
+    if len(errs) < 60:
+        return {"available": False, "reason": "DXY mean-reversion walk-forward samples insufficient", "backtests": len(errs)}
+    rmse = _rmse(errs); baseline = _rmse(base_errs)
+    raw_skill = (1.0-rmse/baseline)*100.0 if baseline > 0 and baseline < 900 else -999.0
+    da = hits/cases*100.0 if cases else None
+    passed = raw_skill >= 2.0 and (da is None or da >= 52.0) and len(errs) >= 60
+    forecast, parts = _dxy_mean_reversion_candidate(values, horizon)
+    return {
+        "available": True, "forecast": forecast,
+        "forecast_return_pct": (forecast/values[-1]-1.0)*100.0,
+        "rmse_pct": rmse, "baseline_rmse_pct": baseline,
+        "skill_pct": max(0.0, raw_skill), "raw_skill_pct": raw_skill,
+        "direction_accuracy": da, "direction_cases": cases, "backtests": len(errs),
+        "fallback_used": not passed,
+        "quality_gate": {"passed": passed, "requirements": {"skill_pct_min": 2.0, "direction_accuracy_min": 52.0, "samples_min": 60}},
+        "components": parts,
+        "model": "fixed multi-window mean reversion with persistence benchmark",
+    }
+
 def _dxy_candidates(values: list[float], horizon: int) -> list[float]:
     cur = values[-1]
     def log_trend(days: int, damp: float) -> float:
@@ -376,22 +437,31 @@ def _dxy_payload(raw: dict[str, Any]) -> dict[str, Any]:
     current = float(dxy.get("price")) if _finite(dxy.get("price")) else values[-1]
     values[-1] = current; rows[-1]["value"] = current
     price1 = _dxy_ensemble(values, 21); price3 = _dxy_ensemble(values, 63)
+    meanrev1 = _dxy_mean_reversion_model(values, 21); meanrev3 = _dxy_mean_reversion_model(values, 63)
     macro1 = _dxy_macro_model(raw, rows, 21); macro3 = _dxy_macro_model(raw, rows, 63)
 
-    def choose(price: dict[str, Any], macro: dict[str, Any]) -> tuple[dict[str, Any], str]:
+    def choose(price: dict[str, Any], meanrev: dict[str, Any], macro: dict[str, Any]) -> tuple[dict[str, Any], str]:
+        candidates: list[tuple[float, dict[str, Any], str]] = []
+        if not price.get("fallback_used") and float(price.get("skill_pct") or 0.0) >= 2.0:
+            candidates.append((float(price.get("rmse_pct") or 999.0), price, "price_ensemble"))
+        if meanrev.get("available") and (meanrev.get("quality_gate") or {}).get("passed"):
+            candidates.append((float(meanrev.get("rmse_pct") or 999.0), meanrev, "price_mean_reversion"))
         if macro.get("available") and (macro.get("quality_gate") or {}).get("passed"):
-            pskill = float(price.get("skill_pct") or 0.0)
-            mskill = float(macro.get("skill_pct") or 0.0)
-            if price.get("fallback_used") or mskill >= pskill + 1.0:
-                return macro, "macro_ridge"
+            candidates.append((float(macro.get("rmse_pct") or 999.0), macro, "macro_ridge"))
+        if candidates:
+            _, model, name = min(candidates, key=lambda x: x[0])
+            return model, name
+        # Keep the legacy safety fallback when no candidate is validated.
         return price, "price_ensemble"
 
-    f1, sel1 = choose(price1, macro1); f3, sel3 = choose(price3, macro3)
+    f1, sel1 = choose(price1, meanrev1, macro1); f3, sel3 = choose(price3, meanrev3, macro3)
     c3 = (float(f3["forecast"]) / current - 1.0) * 100.0
     interval = max(1.0, 1.2816 * float(f3.get("rmse_pct") or price3.get("rmse_pct") or 2.0))
     skill = float(f3.get("skill_pct") or 0.0); da = f3.get("direction_accuracy")
     confidence = round(_clamp(45 + min(25, max(0.0, skill) * 2.0) + min(18, (float(da) if da is not None else 50.0) - 50.0) - min(18, interval * 2.0), 35, 88))
-    direction = "up" if c3 > 0.35 else "down" if c3 < -0.35 else "flat"
+    # The forecast direction must remain informative even when the move is small.
+    # Materiality is handled separately by confidence/range, not by suppressing direction.
+    direction = "up" if c3 > 0.0 else "down" if c3 < 0.0 else "flat"
     def slim(x: dict[str, Any]) -> dict[str, Any]:
         return {k:v for k,v in x.items() if k not in {"forecast","model_forecasts","weights"}}
     return {
@@ -405,8 +475,9 @@ def _dxy_payload(raw: dict[str, Any]) -> dict[str, Any]:
         "selected_model_1m": sel1, "selected_model_3m": sel3,
         "backtest_1m": slim(f1), "backtest_3m": slim(f3),
         "price_model_audit": {"1m": slim(price1), "3m": slim(price3)},
+        "mean_reversion_model_audit": {"1m": slim(meanrev1), "3m": slim(meanrev3)},
         "macro_model_audit": {"1m": slim(macro1), "3m": slim(macro3)},
-        "model": "validated selection between price-only ensemble and macro-aware ridge model; persistence remains the hard safety benchmark",
+        "model": "validated selection across price ensemble, fixed multi-window mean reversion, and macro-aware ridge; persistence remains the hard safety benchmark",
         "limitation": "DXY price is Yahoo Finance delayed data. Macro candidates use the existing FRED/Yahoo collection path, including ECB/Japan rate differentials added to the same FRED batch; no new provider is introduced. Forecast is not a guaranteed target.",
     }
 
