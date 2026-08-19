@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at_utc": "2026-08-18T21:58:00.633998+00:00",
+  "generated_at_utc": "2026-08-19T01:01:19.081646+00:00",
   "engine": "US Fed policy engine",
   "entries": [
     {
@@ -17,7 +17,7 @@
         "grade": "HIGH",
         "observation_count": 4,
         "live_ratio": 1.0,
-        "max_age_minutes": 62.9
+        "max_age_minutes": 60.7
       },
       "quality_gate": {
         "passed": true,
@@ -39,7 +39,7 @@
         "grade": "HIGH",
         "observation_count": 4,
         "live_ratio": 1.0,
-        "max_age_minutes": 59.1
+        "max_age_minutes": 48.9
       },
       "quality_gate": {
         "passed": true,
@@ -52,7 +52,7 @@
       "label": "Fed policy rate 6m",
       "horizon": "6m",
       "current": 3.63,
-      "forecast": 3.87,
+      "forecast": 3.86,
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
@@ -61,7 +61,7 @@
         "grade": "HIGH",
         "observation_count": 4,
         "live_ratio": 1.0,
-        "max_age_minutes": 68.0
+        "max_age_minutes": 34.5
       },
       "quality_gate": {
         "passed": true,
@@ -74,7 +74,7 @@
       "label": "Fed policy rate 12m",
       "horizon": "12m",
       "current": 3.63,
-      "forecast": 4.015,
+      "forecast": 4.0,
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
@@ -83,7 +83,7 @@
         "grade": "HIGH",
         "observation_count": 4,
         "live_ratio": 1.0,
-        "max_age_minutes": 70.7
+        "max_age_minutes": 20.5
       },
       "quality_gate": {
         "passed": true,
@@ -131,14 +131,14 @@
       "id": "dxy_1m",
       "label": "DXY 1m",
       "horizon": "1m",
-      "current": 99.653,
-      "forecast": 99.653,
+      "current": 99.631,
+      "forecast": 99.631,
       "status": "ABSTAIN",
       "usable": false,
       "basis": "price_ensemble",
       "validation": {
-        "rmse_pct": 1.7788532407421798,
-        "baseline_rmse_pct": 1.7788532407421798,
+        "rmse_pct": 1.7788674245848222,
+        "baseline_rmse_pct": 1.7788674245848222,
         "skill_pct": 0.0,
         "backtests": 760,
         "direction_accuracy": 47.95918367346938,
@@ -151,14 +151,14 @@
       "id": "dxy_3m",
       "label": "DXY 3m",
       "horizon": "3m",
-      "current": 99.653,
-      "forecast": 99.653,
+      "current": 99.631,
+      "forecast": 99.631,
       "status": "ABSTAIN",
       "usable": false,
       "basis": "price_ensemble",
       "validation": {
-        "rmse_pct": 3.2626878535811876,
-        "baseline_rmse_pct": 3.2626878535811876,
+        "rmse_pct": 3.26267759093345,
+        "baseline_rmse_pct": 3.26267759093345,
         "skill_pct": 0.0,
         "backtests": 760,
         "direction_accuracy": 36.04651162790697,
