@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "metric": "us_liquidity_dxy",
-  "generated_at_utc": "2026-08-20T18:03:43.336635+00:00",
+  "generated_at_utc": "2026-08-20T21:06:07.547126+00:00",
   "available": true,
   "m2": {
     "available": true,
@@ -1131,10 +1131,10 @@
     "status": "LIVE",
     "symbol": "DX-Y.NYB",
     "source": "Yahoo Finance DXY delayed market data",
-    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/DX-Y.NYB?range=5y&interval=1d&events=history&_ts=1787249016",
+    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/DX-Y.NYB?range=5y&interval=1d&events=history&_ts=1787259959",
     "observation_date": "2026-08-20",
-    "market_time_utc": "2026-08-20T17:53:34+00:00",
-    "current": 98.9,
+    "market_time_utc": "2026-08-20T20:55:57+00:00",
+    "current": 98.872,
     "history": [
       {
         "date": "2021-08-20",
@@ -6162,23 +6162,23 @@
       },
       {
         "date": "2026-08-20",
-        "value": 98.9
+        "value": 98.872
       }
     ],
-    "forecast_1m": 98.9,
-    "forecast_3m": 99.050428,
-    "forecast_change_3m_pct": 0.152101,
+    "forecast_1m": 98.872,
+    "forecast_3m": 99.032873,
+    "forecast_change_3m_pct": 0.162708,
     "forecast_range_80": [
-      95.258537,
-      102.842319
+      95.241651,
+      102.824095
     ],
     "direction_3m": "up",
     "confidence": 72,
     "selected_model_1m": "price_ensemble",
     "selected_model_3m": "price_mean_reversion",
     "backtest_1m": {
-      "rmse_pct": 1.7772596541967938,
-      "baseline_rmse_pct": 1.7772596541967938,
+      "rmse_pct": 1.7773085262175585,
+      "baseline_rmse_pct": 1.7773085262175585,
       "skill_pct": 0.0,
       "backtests": 760,
       "direction_accuracy": 47.94721407624634,
@@ -6187,11 +6187,11 @@
     },
     "backtest_3m": {
       "available": true,
-      "forecast_return_pct": 0.15210136871406377,
-      "rmse_pct": 2.987081114814382,
-      "baseline_rmse_pct": 3.2643763456479444,
-      "skill_pct": 8.494585227688333,
-      "raw_skill_pct": 8.494585227688333,
+      "forecast_return_pct": 0.1627080448485696,
+      "rmse_pct": 2.987083306112265,
+      "baseline_rmse_pct": 3.264378936902961,
+      "skill_pct": 8.494590736876184,
+      "raw_skill_pct": 8.494590736876184,
       "direction_accuracy": 73.5080058224163,
       "direction_cases": 687,
       "backtests": 760,
@@ -6209,37 +6209,37 @@
           "lookback_days": 120.0,
           "strength": 0.4,
           "weight": 0.25,
-          "anchor": 99.65725032806397,
-          "forecast": 99.20290013122559
+          "anchor": 99.65701699473063,
+          "forecast": 99.18600679789225
         },
         {
           "lookback_days": 180.0,
           "strength": 0.4,
           "weight": 0.25,
-          "anchor": 99.12905569288466,
-          "forecast": 98.99162227715387
+          "anchor": 99.1289001373291,
+          "forecast": 98.97476005493164
         },
         {
           "lookback_days": 252.0,
           "strength": 0.4,
           "weight": 0.25,
-          "anchor": 98.99154786609469,
-          "forecast": 98.93661914643788
+          "anchor": 98.99143675498357,
+          "forecast": 98.91977470199343
         },
         {
           "lookback_days": 378.0,
           "strength": 0.3,
           "weight": 0.25,
-          "anchor": 99.46857153271873,
-          "forecast": 99.07057145981562
+          "anchor": 99.46849745864465,
+          "forecast": 99.0509492375934
         }
       ],
       "model": "fixed multi-window mean reversion with persistence benchmark"
     },
     "price_model_audit": {
       "1m": {
-        "rmse_pct": 1.7772596541967938,
-        "baseline_rmse_pct": 1.7772596541967938,
+        "rmse_pct": 1.7773085262175585,
+        "baseline_rmse_pct": 1.7773085262175585,
         "skill_pct": 0.0,
         "backtests": 760,
         "direction_accuracy": 47.94721407624634,
@@ -6247,8 +6247,8 @@
         "fallback_used": true
       },
       "3m": {
-        "rmse_pct": 3.2643763456479444,
-        "baseline_rmse_pct": 3.2643763456479444,
+        "rmse_pct": 3.264378936902961,
+        "baseline_rmse_pct": 3.264378936902961,
         "skill_pct": 0.0,
         "backtests": 760,
         "direction_accuracy": 36.3901018922853,
@@ -6259,11 +6259,11 @@
     "mean_reversion_model_audit": {
       "1m": {
         "available": true,
-        "forecast_return_pct": 0.05070045623802866,
-        "rmse_pct": 1.7460695311237555,
-        "baseline_rmse_pct": 1.7772596541967938,
-        "skill_pct": 1.7549558951268862,
-        "raw_skill_pct": 1.7549558951268862,
+        "forecast_return_pct": 0.054236014949538,
+        "rmse_pct": 1.7461138478820921,
+        "baseline_rmse_pct": 1.7773085262175585,
+        "skill_pct": 1.755163938916926,
+        "raw_skill_pct": 1.755163938916926,
         "direction_accuracy": 59.384164222873906,
         "direction_cases": 682,
         "backtests": 760,
@@ -6281,40 +6281,40 @@
             "lookback_days": 120.0,
             "strength": 0.4,
             "weight": 0.25,
-            "anchor": 99.65725032806397,
-            "forecast": 99.00096671040853
+            "anchor": 99.65701699473063,
+            "forecast": 98.97666893263074
           },
           {
             "lookback_days": 180.0,
             "strength": 0.4,
             "weight": 0.25,
-            "anchor": 99.12905569288466,
-            "forecast": 98.9305407590513
+            "anchor": 99.1289001373291,
+            "forecast": 98.90625335164388
           },
           {
             "lookback_days": 252.0,
             "strength": 0.4,
             "weight": 0.25,
-            "anchor": 98.99154786609469,
-            "forecast": 98.91220638214597
+            "anchor": 98.99143675498357,
+            "forecast": 98.88792490066447
           },
           {
             "lookback_days": 378.0,
             "strength": 0.3,
             "weight": 0.25,
-            "anchor": 99.46857153271873,
-            "forecast": 98.95685715327188
+            "anchor": 99.46849745864465,
+            "forecast": 98.93164974586446
           }
         ],
         "model": "fixed multi-window mean reversion with persistence benchmark"
       },
       "3m": {
         "available": true,
-        "forecast_return_pct": 0.15210136871406377,
-        "rmse_pct": 2.987081114814382,
-        "baseline_rmse_pct": 3.2643763456479444,
-        "skill_pct": 8.494585227688333,
-        "raw_skill_pct": 8.494585227688333,
+        "forecast_return_pct": 0.1627080448485696,
+        "rmse_pct": 2.987083306112265,
+        "baseline_rmse_pct": 3.264378936902961,
+        "skill_pct": 8.494590736876184,
+        "raw_skill_pct": 8.494590736876184,
         "direction_accuracy": 73.5080058224163,
         "direction_cases": 687,
         "backtests": 760,
@@ -6332,29 +6332,29 @@
             "lookback_days": 120.0,
             "strength": 0.4,
             "weight": 0.25,
-            "anchor": 99.65725032806397,
-            "forecast": 99.20290013122559
+            "anchor": 99.65701699473063,
+            "forecast": 99.18600679789225
           },
           {
             "lookback_days": 180.0,
             "strength": 0.4,
             "weight": 0.25,
-            "anchor": 99.12905569288466,
-            "forecast": 98.99162227715387
+            "anchor": 99.1289001373291,
+            "forecast": 98.97476005493164
           },
           {
             "lookback_days": 252.0,
             "strength": 0.4,
             "weight": 0.25,
-            "anchor": 98.99154786609469,
-            "forecast": 98.93661914643788
+            "anchor": 98.99143675498357,
+            "forecast": 98.91977470199343
           },
           {
             "lookback_days": 378.0,
             "strength": 0.3,
             "weight": 0.25,
-            "anchor": 99.46857153271873,
-            "forecast": 99.07057145981562
+            "anchor": 99.46849745864465,
+            "forecast": 99.0509492375934
           }
         ],
         "model": "fixed multi-window mean reversion with persistence benchmark"
@@ -6363,7 +6363,7 @@
     "macro_model_audit": {
       "1m": {
         "available": true,
-        "forecast_return_pct": -1.940062798773617,
+        "forecast_return_pct": -1.6649980858208264,
         "rmse_pct": 1.821673528039251,
         "baseline_rmse_pct": 1.4114061906291706,
         "skill_pct": 0.0,
@@ -6395,8 +6395,8 @@
         "candidate_audit": {
           "domestic_financial": {
             "available": true,
-            "forecast": 96.99977031761404,
-            "forecast_return_pct": -1.940062798773617,
+            "forecast": 97.23941208691922,
+            "forecast_return_pct": -1.6649980858208264,
             "rmse_pct": 1.821673528039251,
             "baseline_rmse_pct": 1.4114061906291706,
             "skill_pct": 0.0,
@@ -6428,8 +6428,8 @@
           },
           "relative_policy_rates": {
             "available": true,
-            "forecast": 96.82004083294358,
-            "forecast_return_pct": -2.1255232376414135,
+            "forecast": 97.03409322759148,
+            "forecast_return_pct": -1.8763690964364677,
             "rmse_pct": 2.1083363698296376,
             "baseline_rmse_pct": 1.4114061906291706,
             "skill_pct": 0.0,
@@ -6459,8 +6459,8 @@
           },
           "combined": {
             "available": true,
-            "forecast": 97.28634932306488,
-            "forecast_return_pct": -1.6450554005912421,
+            "forecast": 97.51109309090114,
+            "forecast_return_pct": -1.385993746425654,
             "rmse_pct": 2.145322394407188,
             "baseline_rmse_pct": 1.4114061906291706,
             "skill_pct": 0.0,
@@ -6499,7 +6499,7 @@
       },
       "3m": {
         "available": true,
-        "forecast_return_pct": -6.490969877739353,
+        "forecast_return_pct": -5.940635916068548,
         "rmse_pct": 2.360250406571206,
         "baseline_rmse_pct": 1.5134669812082036,
         "skill_pct": 0.0,
@@ -6531,8 +6531,8 @@
         "candidate_audit": {
           "domestic_financial": {
             "available": true,
-            "forecast": 92.68434125948032,
-            "forecast_return_pct": -6.490969877739353,
+            "forecast": 93.16943573292227,
+            "forecast_return_pct": -5.940635916068548,
             "rmse_pct": 2.360250406571206,
             "baseline_rmse_pct": 1.5134669812082036,
             "skill_pct": 0.0,
@@ -6564,8 +6564,8 @@
           },
           "relative_policy_rates": {
             "available": true,
-            "forecast": 94.03124324529252,
-            "forecast_return_pct": -5.048213663305946,
+            "forecast": 94.35962939714899,
+            "forecast_return_pct": -4.6712757297544485,
             "rmse_pct": 4.469846137671053,
             "baseline_rmse_pct": 1.5134669812082036,
             "skill_pct": 0.0,
@@ -6595,8 +6595,8 @@
           },
           "combined": {
             "available": true,
-            "forecast": 92.84660651543066,
-            "forecast_return_pct": -6.316049952767311,
+            "forecast": 93.17298474052134,
+            "forecast_return_pct": -5.936826791350215,
             "rmse_pct": 4.78815468363309,
             "baseline_rmse_pct": 1.5134669812082036,
             "skill_pct": 0.0,
@@ -6641,20 +6641,16 @@
     "available": true,
     "status": "LIVE",
     "source": "FRED DFII5/DFII10/DFII20 + T10YIE; Federal Reserve H.15",
-    "as_of": "2026-08-18",
-    "current_pct": 2.41,
+    "as_of": "2026-08-19",
+    "current_pct": 2.35,
     "current_curve": {
-      "real_5y_pct": 2.1,
-      "real_10y_pct": 2.41,
-      "real_20y_pct": 2.81,
-      "10y_minus_5y_pctp": 0.31,
-      "20y_minus_10y_pctp": 0.4
+      "real_5y_pct": 2.07,
+      "real_10y_pct": 2.35,
+      "real_20y_pct": 2.72,
+      "10y_minus_5y_pctp": 0.28,
+      "20y_minus_10y_pctp": 0.37
     },
     "history": [
-      {
-        "date": "2021-08-03",
-        "value": -1.19
-      },
       {
         "date": "2021-08-04",
         "value": -1.16
@@ -11690,50 +11686,54 @@
       {
         "date": "2026-08-18",
         "value": 2.41
+      },
+      {
+        "date": "2026-08-19",
+        "value": 2.35
       }
     ],
     "recent_change": {
-      "5d_pctp": -0.02,
-      "1m_pctp": 0.06,
-      "3m_pctp": 0.28
+      "5d_pctp": -0.07,
+      "1m_pctp": -0.02,
+      "3m_pctp": 0.17
     },
-    "forecast_1m_pct": 2.41,
-    "forecast_3m_pct": 2.3207,
+    "forecast_1m_pct": 2.35,
+    "forecast_3m_pct": 2.2829,
     "forecast_change_1m_pctp": 0.0,
-    "forecast_change_3m_pctp": -0.0893,
+    "forecast_change_3m_pctp": -0.0671,
     "direction_1m": "flat",
     "direction_3m": "falling",
     "forecast_usable_1m": false,
     "forecast_usable_3m": true,
     "forecast_3m_range_80_pct": [
-      1.9027,
-      2.7388
+      1.8674,
+      2.6984
     ],
     "confidence": 56,
     "selected_model_1m": "persistence",
     "selected_model_3m": "validated_mean_reversion",
-    "candidate_forecast_1m_pct": 2.2642,
-    "candidate_forecast_3m_pct": 2.4274,
+    "candidate_forecast_1m_pct": 2.2239,
+    "candidate_forecast_3m_pct": 2.3506,
     "candidate_direction_3m": "flat",
     "model": "validated selection among persistence, fixed mean-reversion, real-curve momentum, and macro ridge using nominal yields + breakeven inflation + financial conditions",
     "components_1m": {
-      "trend": 2.4281,
-      "curve": 2.411,
-      "mean_reversion": 2.3923
+      "trend": 2.3557,
+      "curve": 2.3513,
+      "mean_reversion": 2.3347
     },
     "components_3m": {
-      "trend": 2.4643,
-      "curve": 2.413,
-      "mean_reversion": 2.3568
+      "trend": 2.3671,
+      "curve": 2.354,
+      "mean_reversion": 2.3042
     },
     "backtest_1m": {
-      "mae": 0.1771,
-      "rmse": 0.2319,
-      "baseline_rmse": 0.2313,
+      "mae": 0.1764,
+      "rmse": 0.2309,
+      "baseline_rmse": 0.2304,
       "skill_pct": 0.0,
-      "raw_skill_pct": -0.2345,
+      "raw_skill_pct": -0.2217,
       "direction_accuracy": 50.6,
-      "direction_cases": 811,
+      "direction_cases": 810,
       "samples": 979,
       "fallback_used": true,
       "quality_gate": {
@@ -11746,11 +11746,11 @@
       }
     },
     "backtest_3m": {
-      "mae": 0.2514,
-      "rmse": 0.3262,
-      "baseline_rmse": 0.3417,
-      "skill_pct": 4.53,
-      "raw_skill_pct": 4.53,
+      "mae": 0.2505,
+      "rmse": 0.3242,
+      "baseline_rmse": 0.34,
+      "skill_pct": 4.6391,
+      "raw_skill_pct": 4.6391,
       "direction_accuracy": 64.4,
       "direction_cases": 823,
       "samples": 937,
@@ -11767,13 +11767,13 @@
     },
     "structural_model_audit": {
       "1m": {
-        "mae": 0.1771,
-        "rmse": 0.2319,
-        "baseline_rmse": 0.2313,
+        "mae": 0.1764,
+        "rmse": 0.2309,
+        "baseline_rmse": 0.2304,
         "skill_pct": 0.0,
-        "raw_skill_pct": -0.2345,
+        "raw_skill_pct": -0.2217,
         "direction_accuracy": 50.6,
-        "direction_cases": 811,
+        "direction_cases": 810,
         "samples": 979,
         "fallback_used": true,
         "quality_gate": {
@@ -11786,12 +11786,12 @@
         }
       },
       "3m": {
-        "mae": 0.2893,
-        "rmse": 0.3595,
-        "baseline_rmse": 0.3417,
+        "mae": 0.2882,
+        "rmse": 0.3577,
+        "baseline_rmse": 0.34,
         "skill_pct": 0.0,
-        "raw_skill_pct": -5.2085,
-        "direction_accuracy": 42.0,
+        "raw_skill_pct": -5.2164,
+        "direction_accuracy": 42.2,
         "direction_cases": 823,
         "samples": 937,
         "fallback_used": true,
@@ -11807,13 +11807,13 @@
     },
     "mean_reversion_model_audit": {
       "1m": {
-        "mae": 0.1736,
-        "rmse": 0.231,
-        "baseline_rmse": 0.2313,
-        "skill_pct": 0.1379,
-        "raw_skill_pct": 0.1379,
+        "mae": 0.1729,
+        "rmse": 0.2301,
+        "baseline_rmse": 0.2304,
+        "skill_pct": 0.1461,
+        "raw_skill_pct": 0.1461,
         "direction_accuracy": 56.0,
-        "direction_cases": 811,
+        "direction_cases": 810,
         "samples": 979,
         "fallback_used": true,
         "quality_gate": {
@@ -11825,19 +11825,19 @@
           }
         },
         "model": "fixed horizon-specific mean reversion",
-        "forecast": 2.3984,
+        "forecast": 2.3417,
         "parameters": {
-          "anchor": 2.178777777777778,
+          "anchor": 2.183222222222222,
           "strength": 0.049999999999999996,
           "lookback_days": 90.0
         }
       },
       "3m": {
-        "mae": 0.2514,
-        "rmse": 0.3262,
-        "baseline_rmse": 0.3417,
-        "skill_pct": 4.53,
-        "raw_skill_pct": 4.53,
+        "mae": 0.2505,
+        "rmse": 0.3242,
+        "baseline_rmse": 0.34,
+        "skill_pct": 4.6391,
+        "raw_skill_pct": 4.6391,
         "direction_accuracy": 64.4,
         "direction_cases": 823,
         "samples": 937,
@@ -11851,22 +11851,22 @@
           }
         },
         "model": "fixed horizon-specific mean reversion",
-        "forecast": 2.3207,
+        "forecast": 2.2829,
         "parameters": {
-          "anchor": 2.154952380952381,
+          "anchor": 2.158190476190476,
           "strength": 0.35,
           "lookback_days": 105.0
         }
       }
     },
     "short_horizon_selective_audit": {
-      "mae": 0.1724,
-      "rmse": 0.2296,
-      "baseline_rmse": 0.2313,
-      "skill_pct": 0.7533,
-      "raw_skill_pct": 0.7533,
-      "direction_accuracy": 66.1,
-      "direction_cases": 811,
+      "mae": 0.1718,
+      "rmse": 0.2287,
+      "baseline_rmse": 0.2304,
+      "skill_pct": 0.7587,
+      "raw_skill_pct": 0.7587,
+      "direction_accuracy": 66.0,
+      "direction_cases": 810,
       "samples": 979,
       "fallback_used": true,
       "quality_gate": {
@@ -11885,7 +11885,7 @@
         "contrarian_63d": 530,
         "mean_reversion_90d": 121
       },
-      "forecast": 2.4130000000000003,
+      "forecast": 2.349,
       "selection_no_lookahead": true,
       "selection_window_errors": 48
     },
@@ -11893,8 +11893,8 @@
       "1m": {
         "available": true,
         "variant": "rates_inflation",
-        "forecast": 2.264156052920118,
-        "forecast_change_pctp": -0.1458439470798823,
+        "forecast": 2.2238617549651654,
+        "forecast_change_pctp": -0.12613824503483487,
         "features": [
           "10Y real yield 21d change",
           "10Y real yield 63d change",
@@ -11906,13 +11906,13 @@
           "EFFR"
         ],
         "model": "expanding walk-forward ridge on real-yield/nominal/breakeven/financial inputs",
-        "mae": 0.1162,
-        "rmse": 0.1408,
-        "baseline_rmse": 0.1346,
+        "mae": 0.117,
+        "rmse": 0.1407,
+        "baseline_rmse": 0.1347,
         "skill_pct": 0.0,
-        "raw_skill_pct": -4.5703,
-        "direction_accuracy": 47.8,
-        "direction_cases": 46,
+        "raw_skill_pct": -4.4608,
+        "direction_accuracy": 50.0,
+        "direction_cases": 48,
         "samples": 62,
         "fallback_used": true,
         "quality_gate": {
@@ -11927,8 +11927,8 @@
           "rates_inflation": {
             "available": true,
             "variant": "rates_inflation",
-            "forecast": 2.264156052920118,
-            "forecast_change_pctp": -0.1458439470798823,
+            "forecast": 2.2238617549651654,
+            "forecast_change_pctp": -0.12613824503483487,
             "features": [
               "10Y real yield 21d change",
               "10Y real yield 63d change",
@@ -11940,13 +11940,13 @@
               "EFFR"
             ],
             "model": "expanding walk-forward ridge on real-yield/nominal/breakeven/financial inputs",
-            "mae": 0.1162,
-            "rmse": 0.1408,
-            "baseline_rmse": 0.1346,
+            "mae": 0.117,
+            "rmse": 0.1407,
+            "baseline_rmse": 0.1347,
             "skill_pct": 0.0,
-            "raw_skill_pct": -4.5703,
-            "direction_accuracy": 47.8,
-            "direction_cases": 46,
+            "raw_skill_pct": -4.4608,
+            "direction_accuracy": 50.0,
+            "direction_cases": 48,
             "samples": 62,
             "fallback_used": true,
             "quality_gate": {
@@ -11961,8 +11961,8 @@
           "financial_conditions": {
             "available": true,
             "variant": "financial_conditions",
-            "forecast": 2.4185079087907044,
-            "forecast_change_pctp": 0.00850790879070444,
+            "forecast": 2.3667750392699975,
+            "forecast_change_pctp": 0.0167750392699973,
             "features": [
               "10Y real yield 21d change",
               "10Y real yield 63d change",
@@ -11972,13 +11972,13 @@
               "VIX"
             ],
             "model": "expanding walk-forward ridge on real-yield/nominal/breakeven/financial inputs",
-            "mae": 0.1157,
-            "rmse": 0.1421,
-            "baseline_rmse": 0.1346,
+            "mae": 0.1212,
+            "rmse": 0.1446,
+            "baseline_rmse": 0.1347,
             "skill_pct": 0.0,
-            "raw_skill_pct": -5.5475,
-            "direction_accuracy": 43.5,
-            "direction_cases": 46,
+            "raw_skill_pct": -7.3587,
+            "direction_accuracy": 39.6,
+            "direction_cases": 48,
             "samples": 62,
             "fallback_used": true,
             "quality_gate": {
@@ -11993,8 +11993,8 @@
           "combined": {
             "available": true,
             "variant": "combined",
-            "forecast": 2.271340408130298,
-            "forecast_change_pctp": -0.13865959186970206,
+            "forecast": 2.229051330346139,
+            "forecast_change_pctp": -0.120948669653861,
             "features": [
               "10Y real yield 21d change",
               "10Y real yield 63d change",
@@ -12009,13 +12009,13 @@
               "VIX"
             ],
             "model": "expanding walk-forward ridge on real-yield/nominal/breakeven/financial inputs",
-            "mae": 0.1228,
-            "rmse": 0.1488,
-            "baseline_rmse": 0.1346,
+            "mae": 0.124,
+            "rmse": 0.1503,
+            "baseline_rmse": 0.1347,
             "skill_pct": 0.0,
-            "raw_skill_pct": -10.5348,
-            "direction_accuracy": 43.5,
-            "direction_cases": 46,
+            "raw_skill_pct": -11.5483,
+            "direction_accuracy": 41.7,
+            "direction_cases": 48,
             "samples": 62,
             "fallback_used": true,
             "quality_gate": {
@@ -12033,8 +12033,8 @@
       "3m": {
         "available": true,
         "variant": "combined",
-        "forecast": 2.0572669175236835,
-        "forecast_change_pctp": -0.3527330824763168,
+        "forecast": 2.076461266135762,
+        "forecast_change_pctp": -0.2735387338642382,
         "features": [
           "10Y real yield 21d change",
           "10Y real yield 63d change",
@@ -12049,11 +12049,11 @@
           "VIX"
         ],
         "model": "expanding walk-forward ridge on real-yield/nominal/breakeven/financial inputs",
-        "mae": 0.203,
-        "rmse": 0.2492,
-        "baseline_rmse": 0.2365,
+        "mae": 0.1975,
+        "rmse": 0.2466,
+        "baseline_rmse": 0.2327,
         "skill_pct": 0.0,
-        "raw_skill_pct": -5.3504,
+        "raw_skill_pct": -5.9693,
         "direction_accuracy": 58.3,
         "direction_cases": 36,
         "samples": 45,
@@ -12070,8 +12070,8 @@
           "rates_inflation": {
             "available": true,
             "variant": "rates_inflation",
-            "forecast": 2.1100008563730417,
-            "forecast_change_pctp": -0.29999914362695856,
+            "forecast": 2.132169175613947,
+            "forecast_change_pctp": -0.217830824386053,
             "features": [
               "10Y real yield 21d change",
               "10Y real yield 63d change",
@@ -12083,12 +12083,12 @@
               "EFFR"
             ],
             "model": "expanding walk-forward ridge on real-yield/nominal/breakeven/financial inputs",
-            "mae": 0.2038,
-            "rmse": 0.2493,
-            "baseline_rmse": 0.2365,
+            "mae": 0.1984,
+            "rmse": 0.2467,
+            "baseline_rmse": 0.2327,
             "skill_pct": 0.0,
-            "raw_skill_pct": -5.3952,
-            "direction_accuracy": 61.1,
+            "raw_skill_pct": -6.0452,
+            "direction_accuracy": 58.3,
             "direction_cases": 36,
             "samples": 45,
             "fallback_used": true,
@@ -12104,8 +12104,8 @@
           "financial_conditions": {
             "available": true,
             "variant": "financial_conditions",
-            "forecast": 2.3274413554027604,
-            "forecast_change_pctp": -0.08255864459723992,
+            "forecast": 2.3256179792814855,
+            "forecast_change_pctp": -0.02438202071851462,
             "features": [
               "10Y real yield 21d change",
               "10Y real yield 63d change",
@@ -12115,12 +12115,12 @@
               "VIX"
             ],
             "model": "expanding walk-forward ridge on real-yield/nominal/breakeven/financial inputs",
-            "mae": 0.2406,
-            "rmse": 0.2857,
-            "baseline_rmse": 0.2365,
+            "mae": 0.2384,
+            "rmse": 0.2798,
+            "baseline_rmse": 0.2327,
             "skill_pct": 0.0,
-            "raw_skill_pct": -20.7838,
-            "direction_accuracy": 30.6,
+            "raw_skill_pct": -20.2789,
+            "direction_accuracy": 33.3,
             "direction_cases": 36,
             "samples": 45,
             "fallback_used": true,
@@ -12136,8 +12136,8 @@
           "combined": {
             "available": true,
             "variant": "combined",
-            "forecast": 2.0572669175236835,
-            "forecast_change_pctp": -0.3527330824763168,
+            "forecast": 2.076461266135762,
+            "forecast_change_pctp": -0.2735387338642382,
             "features": [
               "10Y real yield 21d change",
               "10Y real yield 63d change",
@@ -12152,11 +12152,11 @@
               "VIX"
             ],
             "model": "expanding walk-forward ridge on real-yield/nominal/breakeven/financial inputs",
-            "mae": 0.203,
-            "rmse": 0.2492,
-            "baseline_rmse": 0.2365,
+            "mae": 0.1975,
+            "rmse": 0.2466,
+            "baseline_rmse": 0.2327,
             "skill_pct": 0.0,
-            "raw_skill_pct": -5.3504,
+            "raw_skill_pct": -5.9693,
             "direction_accuracy": 58.3,
             "direction_cases": 36,
             "samples": 45,

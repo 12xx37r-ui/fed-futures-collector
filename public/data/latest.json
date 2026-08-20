@@ -1,6 +1,6 @@
 {
   "engine_version": "4.0.0-probability-validation-split",
-  "generated_at_utc": "2026-08-20T18:02:45.294687+00:00",
+  "generated_at_utc": "2026-08-20T21:05:31.888488+00:00",
   "next_fomc": "2026-09-16",
   "fomc_dates": [
     "2015-01-28",
@@ -111,14 +111,14 @@
   "current_effective_rate_source": "nyfed_effr",
   "probabilities": {
     "cut": 0.0,
-    "hold": 68.0,
-    "hike": 32.0
+    "hold": 66.0,
+    "hike": 34.0
   },
   "representative_probability_source": "market_implied_primary",
   "model_probabilities": {
-    "cut": 9.21,
-    "hold": 67.58,
-    "hike": 23.21
+    "cut": 9.15,
+    "hold": 67.49,
+    "hike": 23.36
   },
   "model_action_classification": {
     "available": true,
@@ -168,100 +168,99 @@
     }
   },
   "market_implied_target_probabilities": {
-    "3.63": 68.0,
-    "3.88": 32.0
+    "3.63": 66.0,
+    "3.88": 34.0
   },
   "market_implied_action_probabilities": {
     "cut": 0.0,
-    "hold": 68.0,
-    "hike": 32.0
+    "hold": 66.0,
+    "hike": 34.0
   },
   "market_path": {
     "meeting": "2026-09-16",
     "contract_symbol": "ZQU26.CBT",
-    "pre_meeting_rate": 3.63,
+    "pre_meeting_rate": 3.6325,
     "pre_meeting_rate_source": "previous_month_zq_average",
-    "monthly_average_rate": 3.67,
-    "expected_post_meeting_rate": 3.71,
-    "expected_change_bps": 8.0,
+    "monthly_average_rate": 3.675,
+    "expected_post_meeting_rate": 3.7175,
+    "expected_change_bps": 8.5,
     "estimate_method": "calendar_weighted_inversion",
-    "raw_calendar_inversion_rate": 3.71,
+    "raw_calendar_inversion_rate": 3.7175,
     "stability_flags": [],
     "target_rate_probabilities": {
-      "3.63": 68.0,
-      "3.88": 32.0
+      "3.63": 66.0,
+      "3.88": 34.0
     },
     "action_probabilities": {
       "cut": 0.0,
-      "hold": 68.0,
-      "hike": 32.0
+      "hold": 66.0,
+      "hike": 34.0
     }
   },
   "meeting_path": [
     {
       "meeting": "2026-09-16",
       "contract_symbol": "ZQU26.CBT",
-      "pre_meeting_rate": 3.63,
+      "pre_meeting_rate": 3.6325,
       "pre_meeting_rate_source": "previous_month_zq_average",
-      "monthly_average_rate": 3.67,
-      "expected_post_meeting_rate": 3.71,
-      "expected_change_bps": 8.0,
+      "monthly_average_rate": 3.675,
+      "expected_post_meeting_rate": 3.7175,
+      "expected_change_bps": 8.5,
       "estimate_method": "calendar_weighted_inversion",
-      "raw_calendar_inversion_rate": 3.71,
+      "raw_calendar_inversion_rate": 3.7175,
       "stability_flags": [],
       "target_rate_probabilities": {
-        "3.63": 68.0,
-        "3.88": 32.0
+        "3.63": 66.0,
+        "3.88": 34.0
       },
       "action_probabilities": {
         "cut": 0.0,
-        "hold": 68.0,
-        "hike": 32.0
+        "hold": 66.0,
+        "hike": 34.0
       }
     },
     {
       "meeting": "2026-10-28",
       "contract_symbol": "ZQV26.CBT",
-      "pre_meeting_rate": 3.67,
+      "pre_meeting_rate": 3.675,
       "pre_meeting_rate_source": "previous_month_zq_average",
       "monthly_average_rate": 3.725,
       "expected_post_meeting_rate": 3.725,
-      "expected_change_bps": 5.5,
+      "expected_change_bps": 5.0,
       "estimate_method": "monthly_curve_proxy",
-      "raw_calendar_inversion_rate": 4.09625,
+      "raw_calendar_inversion_rate": 4.0625,
       "stability_flags": [
-        "late_month_meeting",
-        "raw_far_from_monthly_curve"
+        "late_month_meeting"
       ],
       "target_rate_probabilities": {
-        "3.67": 78.0,
-        "3.92": 22.0
+        "3.67": 80.0,
+        "3.92": 20.0
       },
       "action_probabilities": {
         "cut": 0.0,
-        "hold": 78.0,
-        "hike": 22.0
+        "hold": 80.0,
+        "hike": 20.0
       }
     },
     {
       "meeting": "2026-12-09",
       "contract_symbol": "ZQZ26.CBT",
-      "pre_meeting_rate": 3.765,
+      "pre_meeting_rate": 3.77,
       "pre_meeting_rate_source": "previous_month_zq_average",
       "monthly_average_rate": 3.84,
-      "expected_post_meeting_rate": 3.86609,
-      "expected_change_bps": 10.11,
+      "expected_post_meeting_rate": 3.86435,
+      "expected_change_bps": 9.43,
       "estimate_method": "calendar_weighted_inversion",
-      "raw_calendar_inversion_rate": 3.86609,
+      "raw_calendar_inversion_rate": 3.86435,
       "stability_flags": [],
       "target_rate_probabilities": {
-        "3.77": 59.57,
-        "4.02": 40.43
+        "3.77": 62.26,
+        "4.02": 37.74
       },
       "action_probabilities": {
         "cut": 0.0,
-        "hold": 59.57,
-        "hike": 40.43
+        "hold": 62.26,
+        "hike": 37.74
       }
     },
     {
@@ -269,38 +268,38 @@
       "contract_symbol": "ZQF27.CBT",
       "pre_meeting_rate": 3.84,
       "pre_meeting_rate_source": "previous_month_zq_average",
-      "monthly_average_rate": 3.865,
-      "expected_post_meeting_rate": 3.865,
-      "expected_change_bps": 2.5,
+      "monthly_average_rate": 3.87,
+      "expected_post_meeting_rate": 3.87,
+      "expected_change_bps": 3.0,
       "estimate_method": "monthly_curve_proxy",
-      "raw_calendar_inversion_rate": 3.995,
+      "raw_calendar_inversion_rate": 4.026,
       "stability_flags": [
         "late_month_meeting"
       ],
       "target_rate_probabilities": {
-        "3.84": 90.0,
-        "4.09": 10.0
+        "3.84": 88.0,
+        "4.09": 12.0
       },
       "action_probabilities": {
         "cut": 0.0,
-        "hold": 90.0,
-        "hike": 10.0
+        "hold": 88.0,
+        "hike": 12.0
       }
     },
     {
       "meeting": "2027-03-17",
       "contract_symbol": "ZQH27.CBT",
-      "pre_meeting_rate": 3.91,
+      "pre_meeting_rate": 3.905,
       "pre_meeting_rate_source": "previous_month_zq_average",
-      "monthly_average_rate": 3.94,
-      "expected_post_meeting_rate": 3.972,
+      "monthly_average_rate": 3.935,
+      "expected_post_meeting_rate": 3.967,
       "expected_change_bps": 6.2,
       "estimate_method": "calendar_weighted_inversion",
-      "raw_calendar_inversion_rate": 3.972,
+      "raw_calendar_inversion_rate": 3.967,
       "stability_flags": [],
       "target_rate_probabilities": {
-        "3.91": 75.2,
-        "4.16": 24.8
+        "3.90": 75.2,
+        "4.15": 24.8
       },
       "action_probabilities": {
         "cut": 0.0,
@@ -311,40 +310,40 @@
     {
       "meeting": "2027-04-28",
       "contract_symbol": "ZQJ27.CBT",
-      "pre_meeting_rate": 3.94,
+      "pre_meeting_rate": 3.935,
       "pre_meeting_rate_source": "previous_month_zq_average",
       "monthly_average_rate": 3.97,
       "expected_post_meeting_rate": 3.97,
-      "expected_change_bps": 3.0,
+      "expected_change_bps": 3.5,
       "estimate_method": "monthly_curve_proxy",
-      "raw_calendar_inversion_rate": 4.24,
+      "raw_calendar_inversion_rate": 4.285,
       "stability_flags": [
         "late_month_meeting"
       ],
       "target_rate_probabilities": {
-        "3.94": 88.0,
-        "4.19": 12.0
+        "3.94": 86.0,
+        "4.19": 14.0
       },
       "action_probabilities": {
         "cut": 0.0,
-        "hold": 88.0,
-        "hike": 12.0
+        "hold": 86.0,
+        "hike": 14.0
       }
     },
     {
       "meeting": "2027-06-09",
       "contract_symbol": "ZQM27.CBT",
-      "pre_meeting_rate": 3.995,
+      "pre_meeting_rate": 3.99,
       "pre_meeting_rate_source": "previous_month_zq_average",
-      "monthly_average_rate": 4.015,
-      "expected_post_meeting_rate": 4.02227,
+      "monthly_average_rate": 4.01,
+      "expected_post_meeting_rate": 4.01727,
       "expected_change_bps": 2.73,
       "estimate_method": "calendar_weighted_inversion",
-      "raw_calendar_inversion_rate": 4.02227,
+      "raw_calendar_inversion_rate": 4.01727,
       "stability_flags": [],
       "target_rate_probabilities": {
-        "4.00": 89.09,
-        "4.25": 10.91
+        "3.99": 89.09,
+        "4.24": 10.91
       },
       "action_probabilities": {
         "cut": 0.0,
@@ -355,45 +354,45 @@
     {
       "meeting": "2027-07-28",
       "contract_symbol": "ZQN27.CBT",
-      "pre_meeting_rate": 4.015,
+      "pre_meeting_rate": 4.01,
       "pre_meeting_rate_source": "previous_month_zq_average",
       "monthly_average_rate": 4.02,
       "expected_post_meeting_rate": 4.02,
-      "expected_change_bps": 0.5,
+      "expected_change_bps": 1.0,
       "estimate_method": "monthly_curve_proxy",
-      "raw_calendar_inversion_rate": 4.05375,
+      "raw_calendar_inversion_rate": 4.0875,
       "stability_flags": [
         "late_month_meeting"
       ],
       "target_rate_probabilities": {
-        "4.01": 98.0,
-        "4.26": 2.0
+        "4.01": 96.0,
+        "4.26": 4.0
       },
       "action_probabilities": {
         "cut": 0.0,
-        "hold": 98.0,
-        "hike": 2.0
+        "hold": 96.0,
+        "hike": 4.0
       }
     },
     {
       "meeting": "2027-09-15",
       "contract_symbol": "ZQU27.CBT",
-      "pre_meeting_rate": 4.02,
+      "pre_meeting_rate": 4.025,
       "pre_meeting_rate_source": "previous_month_zq_average",
       "monthly_average_rate": 4.025,
-      "expected_post_meeting_rate": 4.02938,
-      "expected_change_bps": 0.94,
+      "expected_post_meeting_rate": 4.025,
+      "expected_change_bps": 0.0,
       "estimate_method": "calendar_weighted_inversion",
-      "raw_calendar_inversion_rate": 4.02938,
+      "raw_calendar_inversion_rate": 4.025,
       "stability_flags": [],
       "target_rate_probabilities": {
-        "4.02": 96.25,
-        "4.27": 3.75
+        "4.03": 100.0,
+        "4.28": 0.0
       },
       "action_probabilities": {
         "cut": 0.0,
-        "hold": 96.25,
-        "hike": 3.75
+        "hold": 100.0,
+        "hike": 0.0
       }
     },
     {
@@ -447,8 +446,8 @@
     "horizons": {
       "1m": {
         "target_date": "2026-09-20",
-        "expected_rate_pct": 3.71,
-        "change_from_current_bps": 8.0,
+        "expected_rate_pct": 3.7175,
+        "change_from_current_bps": 8.75,
         "source_meeting": "2026-09-16",
         "source": "Fed Funds futures / ZQ meeting path",
         "path_confidence": {
@@ -456,7 +455,7 @@
           "grade": "HIGH",
           "observation_count": 4,
           "live_ratio": 1.0,
-          "max_age_minutes": 16.1
+          "max_age_minutes": 19.1
         }
       },
       "3m": {
@@ -470,13 +469,13 @@
           "grade": "HIGH",
           "observation_count": 4,
           "live_ratio": 1.0,
-          "max_age_minutes": 17.3
+          "max_age_minutes": 18.0
         }
       },
       "6m": {
         "target_date": "2027-02-20",
-        "expected_rate_pct": 3.865,
-        "change_from_current_bps": 23.5,
+        "expected_rate_pct": 3.87,
+        "change_from_current_bps": 24.0,
         "source_meeting": "2027-01-27",
         "source": "Fed Funds futures / ZQ meeting path",
         "path_confidence": {
@@ -484,7 +483,7 @@
           "grade": "HIGH",
           "observation_count": 4,
           "live_ratio": 1.0,
-          "max_age_minutes": 28.5
+          "max_age_minutes": 17.1
         }
       },
       "12m": {
@@ -498,7 +497,7 @@
           "grade": "HIGH",
           "observation_count": 4,
           "live_ratio": 1.0,
-          "max_age_minutes": 14.1
+          "max_age_minutes": 14.9
         }
       }
     },
@@ -507,7 +506,7 @@
   },
   "features": {
     "policy_inertia": 0.0,
-    "market": -0.16000000000000014,
+    "market": -0.17499999999999982,
     "inflation": 0.24598,
     "employment": -0.12,
     "growth": -0.12577,
@@ -547,15 +546,15 @@
       {
         "symbol": "ZQQ26.CBT",
         "contract_month": "2026-08",
-        "price": 96.37,
-        "implied_average_rate": 3.63,
+        "price": 96.3675,
+        "implied_average_rate": 3.6325,
         "observation_count": 4
       },
       {
         "symbol": "ZQU26.CBT",
         "contract_month": "2026-09",
-        "price": 96.33,
-        "implied_average_rate": 3.67,
+        "price": 96.325,
+        "implied_average_rate": 3.675,
         "observation_count": 4
       },
       {
@@ -568,8 +567,8 @@
       {
         "symbol": "ZQX26.CBT",
         "contract_month": "2026-11",
-        "price": 96.235,
-        "implied_average_rate": 3.765,
+        "price": 96.23,
+        "implied_average_rate": 3.77,
         "observation_count": 4
       },
       {
@@ -582,22 +581,22 @@
       {
         "symbol": "ZQF27.CBT",
         "contract_month": "2027-01",
-        "price": 96.135,
-        "implied_average_rate": 3.865,
+        "price": 96.13,
+        "implied_average_rate": 3.87,
         "observation_count": 4
       },
       {
         "symbol": "ZQG27.CBT",
         "contract_month": "2027-02",
-        "price": 96.09,
-        "implied_average_rate": 3.91,
+        "price": 96.095,
+        "implied_average_rate": 3.905,
         "observation_count": 4
       },
       {
         "symbol": "ZQH27.CBT",
         "contract_month": "2027-03",
-        "price": 96.06,
-        "implied_average_rate": 3.94,
+        "price": 96.065,
+        "implied_average_rate": 3.935,
         "observation_count": 4
       },
       {
@@ -610,15 +609,15 @@
       {
         "symbol": "ZQK27.CBT",
         "contract_month": "2027-05",
-        "price": 96.005,
-        "implied_average_rate": 3.995,
+        "price": 96.01,
+        "implied_average_rate": 3.99,
         "observation_count": 4
       },
       {
         "symbol": "ZQM27.CBT",
         "contract_month": "2027-06",
-        "price": 95.985,
-        "implied_average_rate": 4.015,
+        "price": 95.99,
+        "implied_average_rate": 4.01,
         "observation_count": 4
       },
       {
@@ -631,8 +630,8 @@
       {
         "symbol": "ZQQ27.CBT",
         "contract_month": "2027-08",
-        "price": 95.98,
-        "implied_average_rate": 4.02,
+        "price": 95.975,
+        "implied_average_rate": 4.025,
         "observation_count": 4
       },
       {
@@ -696,8 +695,8 @@
       {
         "symbol": "SR1Z26.CME",
         "contract_month": "2026-12",
-        "price": 96.125,
-        "implied_average_rate": 3.875,
+        "price": 96.13,
+        "implied_average_rate": 3.87,
         "observation_count": 1
       },
       {
@@ -710,22 +709,22 @@
       {
         "symbol": "SR1G27.CME",
         "contract_month": "2027-02",
-        "price": 96.07,
-        "implied_average_rate": 3.93,
+        "price": 96.08,
+        "implied_average_rate": 3.92,
         "observation_count": 1
       },
       {
         "symbol": "SR1H27.CME",
         "contract_month": "2027-03",
-        "price": 96.04,
-        "implied_average_rate": 3.96,
+        "price": 96.045,
+        "implied_average_rate": 3.955,
         "observation_count": 1
       },
       {
         "symbol": "SR1J27.CME",
         "contract_month": "2027-04",
-        "price": 96.01,
-        "implied_average_rate": 3.99,
+        "price": 96.015,
+        "implied_average_rate": 3.985,
         "observation_count": 1
       },
       {
@@ -738,8 +737,8 @@
       {
         "symbol": "SR1M27.CME",
         "contract_month": "2027-06",
-        "price": 95.96,
-        "implied_average_rate": 4.04,
+        "price": 95.965,
+        "implied_average_rate": 4.035,
         "observation_count": 1
       },
       {
@@ -752,15 +751,15 @@
       {
         "symbol": "SR1Q27.CME",
         "contract_month": "2027-08",
-        "price": 95.95,
-        "implied_average_rate": 4.05,
+        "price": 95.945,
+        "implied_average_rate": 4.055,
         "observation_count": 1
       },
       {
         "symbol": "SR3U27.CME",
         "contract_month": "2027-09",
-        "price": 95.925,
-        "implied_average_rate": 4.075,
+        "price": 95.92,
+        "implied_average_rate": 4.08,
         "observation_count": 1
       },
       {
@@ -1135,88 +1134,88 @@
       {
         "group": "zq_continuous",
         "symbol": "ZQ=F",
-        "market_time_utc": "2026-08-20T17:46:28+00:00",
-        "age_minutes": 17.26,
+        "market_time_utc": "2026-08-20T20:48:05+00:00",
+        "age_minutes": 18.05,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQF27.CBT",
-        "market_time_utc": "2026-08-20T17:35:11+00:00",
-        "age_minutes": 28.54,
+        "market_time_utc": "2026-08-20T20:49:00+00:00",
+        "age_minutes": 17.13,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQG27.CBT",
-        "market_time_utc": "2026-08-20T17:50:02+00:00",
-        "age_minutes": 13.69,
+        "market_time_utc": "2026-08-20T20:55:15+00:00",
+        "age_minutes": 10.88,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQH27.CBT",
-        "market_time_utc": "2026-08-20T17:45:51+00:00",
-        "age_minutes": 17.88,
+        "market_time_utc": "2026-08-20T20:37:17+00:00",
+        "age_minutes": 28.85,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQJ27.CBT",
-        "market_time_utc": "2026-08-20T17:50:29+00:00",
-        "age_minutes": 13.24,
+        "market_time_utc": "2026-08-20T20:51:16+00:00",
+        "age_minutes": 14.86,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQK27.CBT",
-        "market_time_utc": "2026-08-20T17:45:40+00:00",
-        "age_minutes": 18.06,
+        "market_time_utc": "2026-08-20T20:47:15+00:00",
+        "age_minutes": 18.88,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQM27.CBT",
-        "market_time_utc": "2026-08-20T17:44:29+00:00",
-        "age_minutes": 19.24,
+        "market_time_utc": "2026-08-20T20:45:24+00:00",
+        "age_minutes": 20.73,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQN27.CBT",
-        "market_time_utc": "2026-08-20T17:49:36+00:00",
-        "age_minutes": 14.13,
+        "market_time_utc": "2026-08-20T20:51:16+00:00",
+        "age_minutes": 14.86,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQQ26.CBT",
-        "market_time_utc": "2026-08-20T16:18:37+00:00",
-        "age_minutes": 105.11,
+        "market_time_utc": "2026-08-20T20:52:24+00:00",
+        "age_minutes": 13.73,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQQ27.CBT",
-        "market_time_utc": "2026-08-20T17:18:48+00:00",
-        "age_minutes": 44.93,
+        "market_time_utc": "2026-08-20T20:44:54+00:00",
+        "age_minutes": 21.23,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQU26.CBT",
-        "market_time_utc": "2026-08-20T17:47:38+00:00",
-        "age_minutes": 16.09,
+        "market_time_utc": "2026-08-20T20:46:59+00:00",
+        "age_minutes": 19.15,
         "status": "LIVE",
         "market_state": null
       },
@@ -1224,15 +1223,15 @@
         "group": "zq_curve",
         "symbol": "ZQU27.CBT",
         "market_time_utc": "2026-08-20T17:30:17+00:00",
-        "age_minutes": 33.44,
-        "status": "LIVE",
+        "age_minutes": 215.85,
+        "status": "CACHE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQV26.CBT",
-        "market_time_utc": "2026-08-20T17:46:28+00:00",
-        "age_minutes": 17.26,
+        "market_time_utc": "2026-08-20T20:48:05+00:00",
+        "age_minutes": 18.05,
         "status": "LIVE",
         "market_state": null
       },
@@ -1240,15 +1239,15 @@
         "group": "zq_curve",
         "symbol": "ZQV27.CBT",
         "market_time_utc": "2026-08-20T14:09:17+00:00",
-        "age_minutes": 234.44,
+        "age_minutes": 416.85,
         "status": "CACHE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQX26.CBT",
-        "market_time_utc": "2026-08-20T17:18:55+00:00",
-        "age_minutes": 44.81,
+        "market_time_utc": "2026-08-20T20:53:21+00:00",
+        "age_minutes": 12.78,
         "status": "LIVE",
         "market_state": null
       },
@@ -1256,15 +1255,15 @@
         "group": "zq_curve",
         "symbol": "ZQX27.CBT",
         "market_time_utc": "2026-08-20T11:49:06+00:00",
-        "age_minutes": 374.63,
+        "age_minutes": 557.03,
         "status": "CACHE",
         "market_state": null
       },
       {
         "group": "zq_curve",
         "symbol": "ZQZ26.CBT",
-        "market_time_utc": "2026-08-20T17:45:57+00:00",
-        "age_minutes": 17.78,
+        "market_time_utc": "2026-08-20T20:53:00+00:00",
+        "age_minutes": 13.13,
         "status": "LIVE",
         "market_state": null
       },
@@ -1272,95 +1271,95 @@
         "group": "zq_curve",
         "symbol": "ZQZ27.CBT",
         "market_time_utc": "2026-07-23T11:46:06+00:00",
-        "age_minutes": 40697.63,
+        "age_minutes": 40880.03,
         "status": "CACHE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1F27.CME",
-        "market_time_utc": "2026-08-20T17:46:40+00:00",
-        "age_minutes": 17.06,
+        "market_time_utc": "2026-08-20T20:54:59+00:00",
+        "age_minutes": 11.15,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1G27.CME",
-        "market_time_utc": "2026-08-20T17:45:05+00:00",
-        "age_minutes": 18.64,
+        "market_time_utc": "2026-08-20T20:55:04+00:00",
+        "age_minutes": 11.06,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1H27.CME",
-        "market_time_utc": "2026-08-20T17:52:18+00:00",
-        "age_minutes": 11.43,
+        "market_time_utc": "2026-08-20T20:30:20+00:00",
+        "age_minutes": 35.8,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1J27.CME",
-        "market_time_utc": "2026-08-20T17:46:04+00:00",
-        "age_minutes": 17.66,
+        "market_time_utc": "2026-08-20T20:41:32+00:00",
+        "age_minutes": 24.6,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1K27.CME",
-        "market_time_utc": "2026-08-20T17:48:35+00:00",
-        "age_minutes": 15.14,
+        "market_time_utc": "2026-08-20T20:52:29+00:00",
+        "age_minutes": 13.65,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1M27.CME",
-        "market_time_utc": "2026-08-20T17:46:14+00:00",
-        "age_minutes": 17.49,
+        "market_time_utc": "2026-08-20T20:44:40+00:00",
+        "age_minutes": 21.46,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1N27.CME",
-        "market_time_utc": "2026-08-20T17:33:41+00:00",
-        "age_minutes": 30.04,
+        "market_time_utc": "2026-08-20T20:44:40+00:00",
+        "age_minutes": 21.46,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1Q26.CME",
-        "market_time_utc": "2026-08-20T17:47:48+00:00",
-        "age_minutes": 15.93,
+        "market_time_utc": "2026-08-20T20:49:11+00:00",
+        "age_minutes": 16.95,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1Q27.CME",
-        "market_time_utc": "2026-08-20T17:33:36+00:00",
-        "age_minutes": 30.13,
+        "market_time_utc": "2026-08-20T20:44:54+00:00",
+        "age_minutes": 21.23,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1U26.CME",
-        "market_time_utc": "2026-08-20T17:47:55+00:00",
-        "age_minutes": 15.81,
+        "market_time_utc": "2026-08-20T20:55:00+00:00",
+        "age_minutes": 11.13,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1V26.CME",
-        "market_time_utc": "2026-08-20T17:48:44+00:00",
-        "age_minutes": 14.99,
+        "market_time_utc": "2026-08-20T20:54:49+00:00",
+        "age_minutes": 11.31,
         "status": "LIVE",
         "market_state": null
       },
@@ -1368,15 +1367,15 @@
         "group": "sofr_curve",
         "symbol": "SR1V27.CME",
         "market_time_utc": "2026-08-17T18:13:12+00:00",
-        "age_minutes": 4310.53,
+        "age_minutes": 4492.93,
         "status": "CACHE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1X26.CME",
-        "market_time_utc": "2026-08-20T17:49:58+00:00",
-        "age_minutes": 13.76,
+        "market_time_utc": "2026-08-20T20:54:54+00:00",
+        "age_minutes": 11.23,
         "status": "LIVE",
         "market_state": null
       },
@@ -1384,15 +1383,15 @@
         "group": "sofr_curve",
         "symbol": "SR1X27.CME",
         "market_time_utc": "2026-08-17T18:00:48+00:00",
-        "age_minutes": 4322.93,
+        "age_minutes": 4505.33,
         "status": "CACHE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR1Z26.CME",
-        "market_time_utc": "2026-08-20T17:45:57+00:00",
-        "age_minutes": 17.78,
+        "market_time_utc": "2026-08-20T20:54:57+00:00",
+        "age_minutes": 11.18,
         "status": "LIVE",
         "market_state": null
       },
@@ -1400,23 +1399,23 @@
         "group": "sofr_curve",
         "symbol": "SR3F27.CME",
         "market_time_utc": "2026-08-17T10:41:08+00:00",
-        "age_minutes": 4762.59,
+        "age_minutes": 4945.0,
         "status": "CACHE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR3H27.CME",
-        "market_time_utc": "2026-08-20T17:49:27+00:00",
-        "age_minutes": 14.28,
+        "market_time_utc": "2026-08-20T20:55:28+00:00",
+        "age_minutes": 10.66,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR3M27.CME",
-        "market_time_utc": "2026-08-20T17:50:38+00:00",
-        "age_minutes": 13.09,
+        "market_time_utc": "2026-08-20T20:54:59+00:00",
+        "age_minutes": 11.15,
         "status": "LIVE",
         "market_state": null
       },
@@ -1424,23 +1423,23 @@
         "group": "sofr_curve",
         "symbol": "SR3Q26.CME",
         "market_time_utc": "2026-08-20T15:02:48+00:00",
-        "age_minutes": 180.93,
+        "age_minutes": 363.33,
         "status": "CACHE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR3U26.CME",
-        "market_time_utc": "2026-08-20T17:51:49+00:00",
-        "age_minutes": 11.91,
+        "market_time_utc": "2026-08-20T20:55:09+00:00",
+        "age_minutes": 10.98,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR3U27.CME",
-        "market_time_utc": "2026-08-20T17:52:06+00:00",
-        "age_minutes": 11.63,
+        "market_time_utc": "2026-08-20T20:53:22+00:00",
+        "age_minutes": 12.76,
         "status": "LIVE",
         "market_state": null
       },
@@ -1448,7 +1447,7 @@
         "group": "sofr_curve",
         "symbol": "SR3V26.CME",
         "market_time_utc": "2026-08-20T08:22:33+00:00",
-        "age_minutes": 581.18,
+        "age_minutes": 763.58,
         "status": "CACHE",
         "market_state": null
       },
@@ -1456,23 +1455,23 @@
         "group": "sofr_curve",
         "symbol": "SR3X26.CME",
         "market_time_utc": "2026-08-17T17:31:15+00:00",
-        "age_minutes": 4352.48,
+        "age_minutes": 4534.88,
         "status": "CACHE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR3Z26.CME",
-        "market_time_utc": "2026-08-20T17:52:01+00:00",
-        "age_minutes": 11.71,
+        "market_time_utc": "2026-08-20T20:55:00+00:00",
+        "age_minutes": 11.13,
         "status": "LIVE",
         "market_state": null
       },
       {
         "group": "sofr_curve",
         "symbol": "SR3Z27.CME",
-        "market_time_utc": "2026-08-20T17:48:35+00:00",
-        "age_minutes": 15.14,
+        "market_time_utc": "2026-08-20T20:55:40+00:00",
+        "age_minutes": 10.46,
         "status": "LIVE",
         "market_state": null
       }
@@ -1481,7 +1480,7 @@
   "us_macro_context": {
     "schema_version": "1.0",
     "metric": "us_liquidity_dxy",
-    "generated_at_utc": "2026-08-20T18:03:43.336635+00:00",
+    "generated_at_utc": "2026-08-20T21:06:07.547126+00:00",
     "available": true,
     "m2": {
       "available": true,
@@ -2611,10 +2610,10 @@
       "status": "LIVE",
       "symbol": "DX-Y.NYB",
       "source": "Yahoo Finance DXY delayed market data",
-      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/DX-Y.NYB?range=5y&interval=1d&events=history&_ts=1787249016",
+      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/DX-Y.NYB?range=5y&interval=1d&events=history&_ts=1787259959",
       "observation_date": "2026-08-20",
-      "market_time_utc": "2026-08-20T17:53:34+00:00",
-      "current": 98.9,
+      "market_time_utc": "2026-08-20T20:55:57+00:00",
+      "current": 98.872,
       "history": [
         {
           "date": "2021-08-20",
@@ -7642,23 +7641,23 @@
         },
         {
           "date": "2026-08-20",
-          "value": 98.9
+          "value": 98.872
         }
       ],
-      "forecast_1m": 98.9,
-      "forecast_3m": 99.050428,
-      "forecast_change_3m_pct": 0.152101,
+      "forecast_1m": 98.872,
+      "forecast_3m": 99.032873,
+      "forecast_change_3m_pct": 0.162708,
       "forecast_range_80": [
-        95.258537,
-        102.842319
+        95.241651,
+        102.824095
       ],
       "direction_3m": "up",
       "confidence": 72,
       "selected_model_1m": "price_ensemble",
       "selected_model_3m": "price_mean_reversion",
       "backtest_1m": {
-        "rmse_pct": 1.7772596541967938,
-        "baseline_rmse_pct": 1.7772596541967938,
+        "rmse_pct": 1.7773085262175585,
+        "baseline_rmse_pct": 1.7773085262175585,
         "skill_pct": 0.0,
         "backtests": 760,
         "direction_accuracy": 47.94721407624634,
@@ -7667,11 +7666,11 @@
       },
       "backtest_3m": {
         "available": true,
-        "forecast_return_pct": 0.15210136871406377,
-        "rmse_pct": 2.987081114814382,
-        "baseline_rmse_pct": 3.2643763456479444,
-        "skill_pct": 8.494585227688333,
-        "raw_skill_pct": 8.494585227688333,
+        "forecast_return_pct": 0.1627080448485696,
+        "rmse_pct": 2.987083306112265,
+        "baseline_rmse_pct": 3.264378936902961,
+        "skill_pct": 8.494590736876184,
+        "raw_skill_pct": 8.494590736876184,
         "direction_accuracy": 73.5080058224163,
         "direction_cases": 687,
         "backtests": 760,
@@ -7689,37 +7688,37 @@
             "lookback_days": 120.0,
             "strength": 0.4,
             "weight": 0.25,
-            "anchor": 99.65725032806397,
-            "forecast": 99.20290013122559
+            "anchor": 99.65701699473063,
+            "forecast": 99.18600679789225
           },
           {
             "lookback_days": 180.0,
             "strength": 0.4,
             "weight": 0.25,
-            "anchor": 99.12905569288466,
-            "forecast": 98.99162227715387
+            "anchor": 99.1289001373291,
+            "forecast": 98.97476005493164
           },
           {
             "lookback_days": 252.0,
             "strength": 0.4,
             "weight": 0.25,
-            "anchor": 98.99154786609469,
-            "forecast": 98.93661914643788
+            "anchor": 98.99143675498357,
+            "forecast": 98.91977470199343
           },
           {
             "lookback_days": 378.0,
             "strength": 0.3,
             "weight": 0.25,
-            "anchor": 99.46857153271873,
-            "forecast": 99.07057145981562
+            "anchor": 99.46849745864465,
+            "forecast": 99.0509492375934
           }
         ],
         "model": "fixed multi-window mean reversion with persistence benchmark"
       },
       "price_model_audit": {
         "1m": {
-          "rmse_pct": 1.7772596541967938,
-          "baseline_rmse_pct": 1.7772596541967938,
+          "rmse_pct": 1.7773085262175585,
+          "baseline_rmse_pct": 1.7773085262175585,
           "skill_pct": 0.0,
           "backtests": 760,
           "direction_accuracy": 47.94721407624634,
@@ -7727,8 +7726,8 @@
           "fallback_used": true
         },
         "3m": {
-          "rmse_pct": 3.2643763456479444,
-          "baseline_rmse_pct": 3.2643763456479444,
+          "rmse_pct": 3.264378936902961,
+          "baseline_rmse_pct": 3.264378936902961,
           "skill_pct": 0.0,
           "backtests": 760,
           "direction_accuracy": 36.3901018922853,
@@ -7739,11 +7738,11 @@
       "mean_reversion_model_audit": {
         "1m": {
           "available": true,
-          "forecast_return_pct": 0.05070045623802866,
-          "rmse_pct": 1.7460695311237555,
-          "baseline_rmse_pct": 1.7772596541967938,
-          "skill_pct": 1.7549558951268862,
-          "raw_skill_pct": 1.7549558951268862,
+          "forecast_return_pct": 0.054236014949538,
+          "rmse_pct": 1.7461138478820921,
+          "baseline_rmse_pct": 1.7773085262175585,
+          "skill_pct": 1.755163938916926,
+          "raw_skill_pct": 1.755163938916926,
           "direction_accuracy": 59.384164222873906,
           "direction_cases": 682,
           "backtests": 760,
@@ -7761,40 +7760,40 @@
               "lookback_days": 120.0,
               "strength": 0.4,
               "weight": 0.25,
-              "anchor": 99.65725032806397,
-              "forecast": 99.00096671040853
+              "anchor": 99.65701699473063,
+              "forecast": 98.97666893263074
             },
             {
               "lookback_days": 180.0,
               "strength": 0.4,
               "weight": 0.25,
-              "anchor": 99.12905569288466,
-              "forecast": 98.9305407590513
+              "anchor": 99.1289001373291,
+              "forecast": 98.90625335164388
             },
             {
               "lookback_days": 252.0,
               "strength": 0.4,
               "weight": 0.25,
-              "anchor": 98.99154786609469,
-              "forecast": 98.91220638214597
+              "anchor": 98.99143675498357,
+              "forecast": 98.88792490066447
             },
             {
               "lookback_days": 378.0,
               "strength": 0.3,
               "weight": 0.25,
-              "anchor": 99.46857153271873,
-              "forecast": 98.95685715327188
+              "anchor": 99.46849745864465,
+              "forecast": 98.93164974586446
             }
           ],
           "model": "fixed multi-window mean reversion with persistence benchmark"
         },
         "3m": {
           "available": true,
-          "forecast_return_pct": 0.15210136871406377,
-          "rmse_pct": 2.987081114814382,
-          "baseline_rmse_pct": 3.2643763456479444,
-          "skill_pct": 8.494585227688333,
-          "raw_skill_pct": 8.494585227688333,
+          "forecast_return_pct": 0.1627080448485696,
+          "rmse_pct": 2.987083306112265,
+          "baseline_rmse_pct": 3.264378936902961,
+          "skill_pct": 8.494590736876184,
+          "raw_skill_pct": 8.494590736876184,
           "direction_accuracy": 73.5080058224163,
           "direction_cases": 687,
           "backtests": 760,
@@ -7812,29 +7811,29 @@
               "lookback_days": 120.0,
               "strength": 0.4,
               "weight": 0.25,
-              "anchor": 99.65725032806397,
-              "forecast": 99.20290013122559
+              "anchor": 99.65701699473063,
+              "forecast": 99.18600679789225
             },
             {
               "lookback_days": 180.0,
               "strength": 0.4,
               "weight": 0.25,
-              "anchor": 99.12905569288466,
-              "forecast": 98.99162227715387
+              "anchor": 99.1289001373291,
+              "forecast": 98.97476005493164
             },
             {
               "lookback_days": 252.0,
               "strength": 0.4,
               "weight": 0.25,
-              "anchor": 98.99154786609469,
-              "forecast": 98.93661914643788
+              "anchor": 98.99143675498357,
+              "forecast": 98.91977470199343
             },
             {
               "lookback_days": 378.0,
               "strength": 0.3,
               "weight": 0.25,
-              "anchor": 99.46857153271873,
-              "forecast": 99.07057145981562
+              "anchor": 99.46849745864465,
+              "forecast": 99.0509492375934
             }
           ],
           "model": "fixed multi-window mean reversion with persistence benchmark"
@@ -7843,7 +7842,7 @@
       "macro_model_audit": {
         "1m": {
           "available": true,
-          "forecast_return_pct": -1.940062798773617,
+          "forecast_return_pct": -1.6649980858208264,
           "rmse_pct": 1.821673528039251,
           "baseline_rmse_pct": 1.4114061906291706,
           "skill_pct": 0.0,
@@ -7875,8 +7874,8 @@
           "candidate_audit": {
             "domestic_financial": {
               "available": true,
-              "forecast": 96.99977031761404,
-              "forecast_return_pct": -1.940062798773617,
+              "forecast": 97.23941208691922,
+              "forecast_return_pct": -1.6649980858208264,
               "rmse_pct": 1.821673528039251,
               "baseline_rmse_pct": 1.4114061906291706,
               "skill_pct": 0.0,
@@ -7908,8 +7907,8 @@
             },
             "relative_policy_rates": {
               "available": true,
-              "forecast": 96.82004083294358,
-              "forecast_return_pct": -2.1255232376414135,
+              "forecast": 97.03409322759148,
+              "forecast_return_pct": -1.8763690964364677,
               "rmse_pct": 2.1083363698296376,
               "baseline_rmse_pct": 1.4114061906291706,
               "skill_pct": 0.0,
@@ -7939,8 +7938,8 @@
             },
             "combined": {
               "available": true,
-              "forecast": 97.28634932306488,
-              "forecast_return_pct": -1.6450554005912421,
+              "forecast": 97.51109309090114,
+              "forecast_return_pct": -1.385993746425654,
               "rmse_pct": 2.145322394407188,
               "baseline_rmse_pct": 1.4114061906291706,
               "skill_pct": 0.0,
@@ -7979,7 +7978,7 @@
         },
         "3m": {
           "available": true,
-          "forecast_return_pct": -6.490969877739353,
+          "forecast_return_pct": -5.940635916068548,
           "rmse_pct": 2.360250406571206,
           "baseline_rmse_pct": 1.5134669812082036,
           "skill_pct": 0.0,
@@ -8011,8 +8010,8 @@
           "candidate_audit": {
             "domestic_financial": {
               "available": true,
-              "forecast": 92.68434125948032,
-              "forecast_return_pct": -6.490969877739353,
+              "forecast": 93.16943573292227,
+              "forecast_return_pct": -5.940635916068548,
               "rmse_pct": 2.360250406571206,
               "baseline_rmse_pct": 1.5134669812082036,
               "skill_pct": 0.0,
@@ -8044,8 +8043,8 @@
             },
             "relative_policy_rates": {
               "available": true,
-              "forecast": 94.03124324529252,
-              "forecast_return_pct": -5.048213663305946,
+              "forecast": 94.35962939714899,
+              "forecast_return_pct": -4.6712757297544485,
               "rmse_pct": 4.469846137671053,
               "baseline_rmse_pct": 1.5134669812082036,
               "skill_pct": 0.0,
@@ -8075,8 +8074,8 @@
             },
             "combined": {
               "available": true,
-              "forecast": 92.84660651543066,
-              "forecast_return_pct": -6.316049952767311,
+              "forecast": 93.17298474052134,
+              "forecast_return_pct": -5.936826791350215,
               "rmse_pct": 4.78815468363309,
               "baseline_rmse_pct": 1.5134669812082036,
               "skill_pct": 0.0,
@@ -8121,20 +8120,16 @@
       "available": true,
       "status": "LIVE",
       "source": "FRED DFII5/DFII10/DFII20 + T10YIE; Federal Reserve H.15",
-      "as_of": "2026-08-18",
-      "current_pct": 2.41,
+      "as_of": "2026-08-19",
+      "current_pct": 2.35,
       "current_curve": {
-        "real_5y_pct": 2.1,
-        "real_10y_pct": 2.41,
-        "real_20y_pct": 2.81,
-        "10y_minus_5y_pctp": 0.31,
-        "20y_minus_10y_pctp": 0.4
+        "real_5y_pct": 2.07,
+        "real_10y_pct": 2.35,
+        "real_20y_pct": 2.72,
+        "10y_minus_5y_pctp": 0.28,
+        "20y_minus_10y_pctp": 0.37
       },
       "history": [
-        {
-          "date": "2021-08-03",
-          "value": -1.19
-        },
         {
           "date": "2021-08-04",
           "value": -1.16
@@ -13170,50 +13165,54 @@
         {
           "date": "2026-08-18",
           "value": 2.41
+        },
+        {
+          "date": "2026-08-19",
+          "value": 2.35
         }
       ],
       "recent_change": {
-        "5d_pctp": -0.02,
-        "1m_pctp": 0.06,
-        "3m_pctp": 0.28
+        "5d_pctp": -0.07,
+        "1m_pctp": -0.02,
+        "3m_pctp": 0.17
       },
-      "forecast_1m_pct": 2.41,
-      "forecast_3m_pct": 2.3207,
+      "forecast_1m_pct": 2.35,
+      "forecast_3m_pct": 2.2829,
       "forecast_change_1m_pctp": 0.0,
-      "forecast_change_3m_pctp": -0.0893,
+      "forecast_change_3m_pctp": -0.0671,
       "direction_1m": "flat",
       "direction_3m": "falling",
       "forecast_usable_1m": false,
       "forecast_usable_3m": true,
       "forecast_3m_range_80_pct": [
-        1.9027,
-        2.7388
+        1.8674,
+        2.6984
       ],
       "confidence": 56,
       "selected_model_1m": "persistence",
       "selected_model_3m": "validated_mean_reversion",
-      "candidate_forecast_1m_pct": 2.2642,
-      "candidate_forecast_3m_pct": 2.4274,
+      "candidate_forecast_1m_pct": 2.2239,
+      "candidate_forecast_3m_pct": 2.3506,
       "candidate_direction_3m": "flat",
       "model": "validated selection among persistence, fixed mean-reversion, real-curve momentum, and macro ridge using nominal yields + breakeven inflation + financial conditions",
       "components_1m": {
-        "trend": 2.4281,
-        "curve": 2.411,
-        "mean_reversion": 2.3923
+        "trend": 2.3557,
+        "curve": 2.3513,
+        "mean_reversion": 2.3347
       },
       "components_3m": {
-        "trend": 2.4643,
-        "curve": 2.413,
-        "mean_reversion": 2.3568
+        "trend": 2.3671,
+        "curve": 2.354,
+        "mean_reversion": 2.3042
       },
       "backtest_1m": {
-        "mae": 0.1771,
-        "rmse": 0.2319,
-        "baseline_rmse": 0.2313,
+        "mae": 0.1764,
+        "rmse": 0.2309,
+        "baseline_rmse": 0.2304,
         "skill_pct": 0.0,
-        "raw_skill_pct": -0.2345,
+        "raw_skill_pct": -0.2217,
         "direction_accuracy": 50.6,
-        "direction_cases": 811,
+        "direction_cases": 810,
         "samples": 979,
         "fallback_used": true,
         "quality_gate": {
@@ -13226,11 +13225,11 @@
         }
       },
       "backtest_3m": {
-        "mae": 0.2514,
-        "rmse": 0.3262,
-        "baseline_rmse": 0.3417,
-        "skill_pct": 4.53,
-        "raw_skill_pct": 4.53,
+        "mae": 0.2505,
+        "rmse": 0.3242,
+        "baseline_rmse": 0.34,
+        "skill_pct": 4.6391,
+        "raw_skill_pct": 4.6391,
         "direction_accuracy": 64.4,
         "direction_cases": 823,
         "samples": 937,
@@ -13247,13 +13246,13 @@
       },
       "structural_model_audit": {
         "1m": {
-          "mae": 0.1771,
-          "rmse": 0.2319,
-          "baseline_rmse": 0.2313,
+          "mae": 0.1764,
+          "rmse": 0.2309,
+          "baseline_rmse": 0.2304,
           "skill_pct": 0.0,
-          "raw_skill_pct": -0.2345,
+          "raw_skill_pct": -0.2217,
           "direction_accuracy": 50.6,
-          "direction_cases": 811,
+          "direction_cases": 810,
           "samples": 979,
           "fallback_used": true,
           "quality_gate": {
@@ -13266,12 +13265,12 @@
           }
         },
         "3m": {
-          "mae": 0.2893,
-          "rmse": 0.3595,
-          "baseline_rmse": 0.3417,
+          "mae": 0.2882,
+          "rmse": 0.3577,
+          "baseline_rmse": 0.34,
           "skill_pct": 0.0,
-          "raw_skill_pct": -5.2085,
-          "direction_accuracy": 42.0,
+          "raw_skill_pct": -5.2164,
+          "direction_accuracy": 42.2,
           "direction_cases": 823,
           "samples": 937,
           "fallback_used": true,
@@ -13287,13 +13286,13 @@
       },
       "mean_reversion_model_audit": {
         "1m": {
-          "mae": 0.1736,
-          "rmse": 0.231,
-          "baseline_rmse": 0.2313,
-          "skill_pct": 0.1379,
-          "raw_skill_pct": 0.1379,
+          "mae": 0.1729,
+          "rmse": 0.2301,
+          "baseline_rmse": 0.2304,
+          "skill_pct": 0.1461,
+          "raw_skill_pct": 0.1461,
           "direction_accuracy": 56.0,
-          "direction_cases": 811,
+          "direction_cases": 810,
           "samples": 979,
           "fallback_used": true,
           "quality_gate": {
@@ -13305,19 +13304,19 @@
             }
           },
           "model": "fixed horizon-specific mean reversion",
-          "forecast": 2.3984,
+          "forecast": 2.3417,
           "parameters": {
-            "anchor": 2.178777777777778,
+            "anchor": 2.183222222222222,
             "strength": 0.049999999999999996,
             "lookback_days": 90.0
           }
         },
         "3m": {
-          "mae": 0.2514,
-          "rmse": 0.3262,
-          "baseline_rmse": 0.3417,
-          "skill_pct": 4.53,
-          "raw_skill_pct": 4.53,
+          "mae": 0.2505,
+          "rmse": 0.3242,
+          "baseline_rmse": 0.34,
+          "skill_pct": 4.6391,
+          "raw_skill_pct": 4.6391,
           "direction_accuracy": 64.4,
           "direction_cases": 823,
           "samples": 937,
@@ -13331,22 +13330,22 @@
             }
           },
           "model": "fixed horizon-specific mean reversion",
-          "forecast": 2.3207,
+          "forecast": 2.2829,
           "parameters": {
-            "anchor": 2.154952380952381,
+            "anchor": 2.158190476190476,
             "strength": 0.35,
             "lookback_days": 105.0
           }
         }
       },
       "short_horizon_selective_audit": {
-        "mae": 0.1724,
-        "rmse": 0.2296,
-        "baseline_rmse": 0.2313,
-        "skill_pct": 0.7533,
-        "raw_skill_pct": 0.7533,
-        "direction_accuracy": 66.1,
-        "direction_cases": 811,
+        "mae": 0.1718,
+        "rmse": 0.2287,
+        "baseline_rmse": 0.2304,
+        "skill_pct": 0.7587,
+        "raw_skill_pct": 0.7587,
+        "direction_accuracy": 66.0,
+        "direction_cases": 810,
         "samples": 979,
         "fallback_used": true,
         "quality_gate": {
@@ -13365,7 +13364,7 @@
           "contrarian_63d": 530,
           "mean_reversion_90d": 121
         },
-        "forecast": 2.4130000000000003,
+        "forecast": 2.349,
         "selection_no_lookahead": true,
         "selection_window_errors": 48
       },
@@ -13373,8 +13372,8 @@
         "1m": {
           "available": true,
           "variant": "rates_inflation",
-          "forecast": 2.264156052920118,
-          "forecast_change_pctp": -0.1458439470798823,
+          "forecast": 2.2238617549651654,
+          "forecast_change_pctp": -0.12613824503483487,
           "features": [
             "10Y real yield 21d change",
             "10Y real yield 63d change",
@@ -13386,13 +13385,13 @@
             "EFFR"
           ],
           "model": "expanding walk-forward ridge on real-yield/nominal/breakeven/financial inputs",
-          "mae": 0.1162,
-          "rmse": 0.1408,
-          "baseline_rmse": 0.1346,
+          "mae": 0.117,
+          "rmse": 0.1407,
+          "baseline_rmse": 0.1347,
           "skill_pct": 0.0,
-          "raw_skill_pct": -4.5703,
-          "direction_accuracy": 47.8,
-          "direction_cases": 46,
+          "raw_skill_pct": -4.4608,
+          "direction_accuracy": 50.0,
+          "direction_cases": 48,
           "samples": 62,
           "fallback_used": true,
           "quality_gate": {
@@ -13407,8 +13406,8 @@
             "rates_inflation": {
               "available": true,
               "variant": "rates_inflation",
-              "forecast": 2.264156052920118,
-              "forecast_change_pctp": -0.1458439470798823,
+              "forecast": 2.2238617549651654,
+              "forecast_change_pctp": -0.12613824503483487,
               "features": [
                 "10Y real yield 21d change",
                 "10Y real yield 63d change",
@@ -13420,13 +13419,13 @@
                 "EFFR"
               ],
               "model": "expanding walk-forward ridge on real-yield/nominal/breakeven/financial inputs",
-              "mae": 0.1162,
-              "rmse": 0.1408,
-              "baseline_rmse": 0.1346,
+              "mae": 0.117,
+              "rmse": 0.1407,
+              "baseline_rmse": 0.1347,
               "skill_pct": 0.0,
-              "raw_skill_pct": -4.5703,
-              "direction_accuracy": 47.8,
-              "direction_cases": 46,
+              "raw_skill_pct": -4.4608,
+              "direction_accuracy": 50.0,
+              "direction_cases": 48,
               "samples": 62,
               "fallback_used": true,
               "quality_gate": {
@@ -13441,8 +13440,8 @@
             "financial_conditions": {
               "available": true,
               "variant": "financial_conditions",
-              "forecast": 2.4185079087907044,
-              "forecast_change_pctp": 0.00850790879070444,
+              "forecast": 2.3667750392699975,
+              "forecast_change_pctp": 0.0167750392699973,
               "features": [
                 "10Y real yield 21d change",
                 "10Y real yield 63d change",
@@ -13452,13 +13451,13 @@
                 "VIX"
               ],
               "model": "expanding walk-forward ridge on real-yield/nominal/breakeven/financial inputs",
-              "mae": 0.1157,
-              "rmse": 0.1421,
-              "baseline_rmse": 0.1346,
+              "mae": 0.1212,
+              "rmse": 0.1446,
+              "baseline_rmse": 0.1347,
               "skill_pct": 0.0,
-              "raw_skill_pct": -5.5475,
-              "direction_accuracy": 43.5,
-              "direction_cases": 46,
+              "raw_skill_pct": -7.3587,
+              "direction_accuracy": 39.6,
+              "direction_cases": 48,
               "samples": 62,
               "fallback_used": true,
               "quality_gate": {
@@ -13473,8 +13472,8 @@
             "combined": {
               "available": true,
               "variant": "combined",
-              "forecast": 2.271340408130298,
-              "forecast_change_pctp": -0.13865959186970206,
+              "forecast": 2.229051330346139,
+              "forecast_change_pctp": -0.120948669653861,
               "features": [
                 "10Y real yield 21d change",
                 "10Y real yield 63d change",
@@ -13489,13 +13488,13 @@
                 "VIX"
               ],
               "model": "expanding walk-forward ridge on real-yield/nominal/breakeven/financial inputs",
-              "mae": 0.1228,
-              "rmse": 0.1488,
-              "baseline_rmse": 0.1346,
+              "mae": 0.124,
+              "rmse": 0.1503,
+              "baseline_rmse": 0.1347,
               "skill_pct": 0.0,
-              "raw_skill_pct": -10.5348,
-              "direction_accuracy": 43.5,
-              "direction_cases": 46,
+              "raw_skill_pct": -11.5483,
+              "direction_accuracy": 41.7,
+              "direction_cases": 48,
               "samples": 62,
               "fallback_used": true,
               "quality_gate": {
@@ -13513,8 +13512,8 @@
         "3m": {
           "available": true,
           "variant": "combined",
-          "forecast": 2.0572669175236835,
-          "forecast_change_pctp": -0.3527330824763168,
+          "forecast": 2.076461266135762,
+          "forecast_change_pctp": -0.2735387338642382,
           "features": [
             "10Y real yield 21d change",
             "10Y real yield 63d change",
@@ -13529,11 +13528,11 @@
             "VIX"
           ],
           "model": "expanding walk-forward ridge on real-yield/nominal/breakeven/financial inputs",
-          "mae": 0.203,
-          "rmse": 0.2492,
-          "baseline_rmse": 0.2365,
+          "mae": 0.1975,
+          "rmse": 0.2466,
+          "baseline_rmse": 0.2327,
           "skill_pct": 0.0,
-          "raw_skill_pct": -5.3504,
+          "raw_skill_pct": -5.9693,
           "direction_accuracy": 58.3,
           "direction_cases": 36,
           "samples": 45,
@@ -13550,8 +13549,8 @@
             "rates_inflation": {
               "available": true,
               "variant": "rates_inflation",
-              "forecast": 2.1100008563730417,
-              "forecast_change_pctp": -0.29999914362695856,
+              "forecast": 2.132169175613947,
+              "forecast_change_pctp": -0.217830824386053,
               "features": [
                 "10Y real yield 21d change",
                 "10Y real yield 63d change",
@@ -13563,12 +13562,12 @@
                 "EFFR"
               ],
               "model": "expanding walk-forward ridge on real-yield/nominal/breakeven/financial inputs",
-              "mae": 0.2038,
-              "rmse": 0.2493,
-              "baseline_rmse": 0.2365,
+              "mae": 0.1984,
+              "rmse": 0.2467,
+              "baseline_rmse": 0.2327,
               "skill_pct": 0.0,
-              "raw_skill_pct": -5.3952,
-              "direction_accuracy": 61.1,
+              "raw_skill_pct": -6.0452,
+              "direction_accuracy": 58.3,
               "direction_cases": 36,
               "samples": 45,
               "fallback_used": true,
@@ -13584,8 +13583,8 @@
             "financial_conditions": {
               "available": true,
               "variant": "financial_conditions",
-              "forecast": 2.3274413554027604,
-              "forecast_change_pctp": -0.08255864459723992,
+              "forecast": 2.3256179792814855,
+              "forecast_change_pctp": -0.02438202071851462,
               "features": [
                 "10Y real yield 21d change",
                 "10Y real yield 63d change",
@@ -13595,12 +13594,12 @@
                 "VIX"
               ],
               "model": "expanding walk-forward ridge on real-yield/nominal/breakeven/financial inputs",
-              "mae": 0.2406,
-              "rmse": 0.2857,
-              "baseline_rmse": 0.2365,
+              "mae": 0.2384,
+              "rmse": 0.2798,
+              "baseline_rmse": 0.2327,
               "skill_pct": 0.0,
-              "raw_skill_pct": -20.7838,
-              "direction_accuracy": 30.6,
+              "raw_skill_pct": -20.2789,
+              "direction_accuracy": 33.3,
               "direction_cases": 36,
               "samples": 45,
               "fallback_used": true,
@@ -13616,8 +13615,8 @@
             "combined": {
               "available": true,
               "variant": "combined",
-              "forecast": 2.0572669175236835,
-              "forecast_change_pctp": -0.3527330824763168,
+              "forecast": 2.076461266135762,
+              "forecast_change_pctp": -0.2735387338642382,
               "features": [
                 "10Y real yield 21d change",
                 "10Y real yield 63d change",
@@ -13632,11 +13631,11 @@
                 "VIX"
               ],
               "model": "expanding walk-forward ridge on real-yield/nominal/breakeven/financial inputs",
-              "mae": 0.203,
-              "rmse": 0.2492,
-              "baseline_rmse": 0.2365,
+              "mae": 0.1975,
+              "rmse": 0.2466,
+              "baseline_rmse": 0.2327,
               "skill_pct": 0.0,
-              "raw_skill_pct": -5.3504,
+              "raw_skill_pct": -5.9693,
               "direction_accuracy": 58.3,
               "direction_cases": 36,
               "samples": 45,
@@ -13669,20 +13668,16 @@
     "available": true,
     "status": "LIVE",
     "source": "FRED DFII5/DFII10/DFII20 + T10YIE; Federal Reserve H.15",
-    "as_of": "2026-08-18",
-    "current_pct": 2.41,
+    "as_of": "2026-08-19",
+    "current_pct": 2.35,
     "current_curve": {
-      "real_5y_pct": 2.1,
-      "real_10y_pct": 2.41,
-      "real_20y_pct": 2.81,
-      "10y_minus_5y_pctp": 0.31,
-      "20y_minus_10y_pctp": 0.4
+      "real_5y_pct": 2.07,
+      "real_10y_pct": 2.35,
+      "real_20y_pct": 2.72,
+      "10y_minus_5y_pctp": 0.28,
+      "20y_minus_10y_pctp": 0.37
     },
     "history": [
-      {
-        "date": "2021-08-03",
-        "value": -1.19
-      },
       {
         "date": "2021-08-04",
         "value": -1.16
@@ -18718,50 +18713,54 @@
       {
         "date": "2026-08-18",
         "value": 2.41
+      },
+      {
+        "date": "2026-08-19",
+        "value": 2.35
       }
     ],
     "recent_change": {
-      "5d_pctp": -0.02,
-      "1m_pctp": 0.06,
-      "3m_pctp": 0.28
+      "5d_pctp": -0.07,
+      "1m_pctp": -0.02,
+      "3m_pctp": 0.17
     },
-    "forecast_1m_pct": 2.41,
-    "forecast_3m_pct": 2.3207,
+    "forecast_1m_pct": 2.35,
+    "forecast_3m_pct": 2.2829,
     "forecast_change_1m_pctp": 0.0,
-    "forecast_change_3m_pctp": -0.0893,
+    "forecast_change_3m_pctp": -0.0671,
     "direction_1m": "flat",
     "direction_3m": "falling",
     "forecast_usable_1m": false,
     "forecast_usable_3m": true,
     "forecast_3m_range_80_pct": [
-      1.9027,
-      2.7388
+      1.8674,
+      2.6984
     ],
     "confidence": 56,
     "selected_model_1m": "persistence",
     "selected_model_3m": "validated_mean_reversion",
-    "candidate_forecast_1m_pct": 2.2642,
-    "candidate_forecast_3m_pct": 2.4274,
+    "candidate_forecast_1m_pct": 2.2239,
+    "candidate_forecast_3m_pct": 2.3506,
     "candidate_direction_3m": "flat",
     "model": "validated selection among persistence, fixed mean-reversion, real-curve momentum, and macro ridge using nominal yields + breakeven inflation + financial conditions",
     "components_1m": {
-      "trend": 2.4281,
-      "curve": 2.411,
-      "mean_reversion": 2.3923
+      "trend": 2.3557,
+      "curve": 2.3513,
+      "mean_reversion": 2.3347
     },
     "components_3m": {
-      "trend": 2.4643,
-      "curve": 2.413,
-      "mean_reversion": 2.3568
+      "trend": 2.3671,
+      "curve": 2.354,
+      "mean_reversion": 2.3042
     },
     "backtest_1m": {
-      "mae": 0.1771,
-      "rmse": 0.2319,
-      "baseline_rmse": 0.2313,
+      "mae": 0.1764,
+      "rmse": 0.2309,
+      "baseline_rmse": 0.2304,
       "skill_pct": 0.0,
-      "raw_skill_pct": -0.2345,
+      "raw_skill_pct": -0.2217,
       "direction_accuracy": 50.6,
-      "direction_cases": 811,
+      "direction_cases": 810,
       "samples": 979,
       "fallback_used": true,
       "quality_gate": {
@@ -18774,11 +18773,11 @@
       }
     },
     "backtest_3m": {
-      "mae": 0.2514,
-      "rmse": 0.3262,
-      "baseline_rmse": 0.3417,
-      "skill_pct": 4.53,
-      "raw_skill_pct": 4.53,
+      "mae": 0.2505,
+      "rmse": 0.3242,
+      "baseline_rmse": 0.34,
+      "skill_pct": 4.6391,
+      "raw_skill_pct": 4.6391,
       "direction_accuracy": 64.4,
       "direction_cases": 823,
       "samples": 937,
@@ -18795,13 +18794,13 @@
     },
     "structural_model_audit": {
       "1m": {
-        "mae": 0.1771,
-        "rmse": 0.2319,
-        "baseline_rmse": 0.2313,
+        "mae": 0.1764,
+        "rmse": 0.2309,
+        "baseline_rmse": 0.2304,
         "skill_pct": 0.0,
-        "raw_skill_pct": -0.2345,
+        "raw_skill_pct": -0.2217,
         "direction_accuracy": 50.6,
-        "direction_cases": 811,
+        "direction_cases": 810,
         "samples": 979,
         "fallback_used": true,
         "quality_gate": {
@@ -18814,12 +18813,12 @@
         }
       },
       "3m": {
-        "mae": 0.2893,
-        "rmse": 0.3595,
-        "baseline_rmse": 0.3417,
+        "mae": 0.2882,
+        "rmse": 0.3577,
+        "baseline_rmse": 0.34,
         "skill_pct": 0.0,
-        "raw_skill_pct": -5.2085,
-        "direction_accuracy": 42.0,
+        "raw_skill_pct": -5.2164,
+        "direction_accuracy": 42.2,
         "direction_cases": 823,
         "samples": 937,
         "fallback_used": true,
@@ -18835,13 +18834,13 @@
     },
     "mean_reversion_model_audit": {
       "1m": {
-        "mae": 0.1736,
-        "rmse": 0.231,
-        "baseline_rmse": 0.2313,
-        "skill_pct": 0.1379,
-        "raw_skill_pct": 0.1379,
+        "mae": 0.1729,
+        "rmse": 0.2301,
+        "baseline_rmse": 0.2304,
+        "skill_pct": 0.1461,
+        "raw_skill_pct": 0.1461,
         "direction_accuracy": 56.0,
-        "direction_cases": 811,
+        "direction_cases": 810,
         "samples": 979,
         "fallback_used": true,
         "quality_gate": {
@@ -18853,19 +18852,19 @@
           }
         },
         "model": "fixed horizon-specific mean reversion",
-        "forecast": 2.3984,
+        "forecast": 2.3417,
         "parameters": {
-          "anchor": 2.178777777777778,
+          "anchor": 2.183222222222222,
           "strength": 0.049999999999999996,
           "lookback_days": 90.0
         }
       },
       "3m": {
-        "mae": 0.2514,
-        "rmse": 0.3262,
-        "baseline_rmse": 0.3417,
-        "skill_pct": 4.53,
-        "raw_skill_pct": 4.53,
+        "mae": 0.2505,
+        "rmse": 0.3242,
+        "baseline_rmse": 0.34,
+        "skill_pct": 4.6391,
+        "raw_skill_pct": 4.6391,
         "direction_accuracy": 64.4,
         "direction_cases": 823,
         "samples": 937,
@@ -18879,22 +18878,22 @@
           }
         },
         "model": "fixed horizon-specific mean reversion",
-        "forecast": 2.3207,
+        "forecast": 2.2829,
         "parameters": {
-          "anchor": 2.154952380952381,
+          "anchor": 2.158190476190476,
           "strength": 0.35,
           "lookback_days": 105.0
         }
       }
     },
     "short_horizon_selective_audit": {
-      "mae": 0.1724,
-      "rmse": 0.2296,
-      "baseline_rmse": 0.2313,
-      "skill_pct": 0.7533,
-      "raw_skill_pct": 0.7533,
-      "direction_accuracy": 66.1,
-      "direction_cases": 811,
+      "mae": 0.1718,
+      "rmse": 0.2287,
+      "baseline_rmse": 0.2304,
+      "skill_pct": 0.7587,
+      "raw_skill_pct": 0.7587,
+      "direction_accuracy": 66.0,
+      "direction_cases": 810,
       "samples": 979,
       "fallback_used": true,
       "quality_gate": {
@@ -18913,7 +18912,7 @@
         "contrarian_63d": 530,
         "mean_reversion_90d": 121
       },
-      "forecast": 2.4130000000000003,
+      "forecast": 2.349,
       "selection_no_lookahead": true,
       "selection_window_errors": 48
     },
@@ -18921,8 +18920,8 @@
       "1m": {
         "available": true,
         "variant": "rates_inflation",
-        "forecast": 2.264156052920118,
-        "forecast_change_pctp": -0.1458439470798823,
+        "forecast": 2.2238617549651654,
+        "forecast_change_pctp": -0.12613824503483487,
         "features": [
           "10Y real yield 21d change",
           "10Y real yield 63d change",
@@ -18934,13 +18933,13 @@
           "EFFR"
         ],
         "model": "expanding walk-forward ridge on real-yield/nominal/breakeven/financial inputs",
-        "mae": 0.1162,
-        "rmse": 0.1408,
-        "baseline_rmse": 0.1346,
+        "mae": 0.117,
+        "rmse": 0.1407,
+        "baseline_rmse": 0.1347,
         "skill_pct": 0.0,
-        "raw_skill_pct": -4.5703,
-        "direction_accuracy": 47.8,
-        "direction_cases": 46,
+        "raw_skill_pct": -4.4608,
+        "direction_accuracy": 50.0,
+        "direction_cases": 48,
         "samples": 62,
         "fallback_used": true,
         "quality_gate": {
@@ -18955,8 +18954,8 @@
           "rates_inflation": {
             "available": true,
             "variant": "rates_inflation",
-            "forecast": 2.264156052920118,
-            "forecast_change_pctp": -0.1458439470798823,
+            "forecast": 2.2238617549651654,
+            "forecast_change_pctp": -0.12613824503483487,
             "features": [
               "10Y real yield 21d change",
               "10Y real yield 63d change",
@@ -18968,13 +18967,13 @@
               "EFFR"
             ],
             "model": "expanding walk-forward ridge on real-yield/nominal/breakeven/financial inputs",
-            "mae": 0.1162,
-            "rmse": 0.1408,
-            "baseline_rmse": 0.1346,
+            "mae": 0.117,
+            "rmse": 0.1407,
+            "baseline_rmse": 0.1347,
             "skill_pct": 0.0,
-            "raw_skill_pct": -4.5703,
-            "direction_accuracy": 47.8,
-            "direction_cases": 46,
+            "raw_skill_pct": -4.4608,
+            "direction_accuracy": 50.0,
+            "direction_cases": 48,
             "samples": 62,
             "fallback_used": true,
             "quality_gate": {
@@ -18989,8 +18988,8 @@
           "financial_conditions": {
             "available": true,
             "variant": "financial_conditions",
-            "forecast": 2.4185079087907044,
-            "forecast_change_pctp": 0.00850790879070444,
+            "forecast": 2.3667750392699975,
+            "forecast_change_pctp": 0.0167750392699973,
             "features": [
               "10Y real yield 21d change",
               "10Y real yield 63d change",
@@ -19000,13 +18999,13 @@
               "VIX"
             ],
             "model": "expanding walk-forward ridge on real-yield/nominal/breakeven/financial inputs",
-            "mae": 0.1157,
-            "rmse": 0.1421,
-            "baseline_rmse": 0.1346,
+            "mae": 0.1212,
+            "rmse": 0.1446,
+            "baseline_rmse": 0.1347,
             "skill_pct": 0.0,
-            "raw_skill_pct": -5.5475,
-            "direction_accuracy": 43.5,
-            "direction_cases": 46,
+            "raw_skill_pct": -7.3587,
+            "direction_accuracy": 39.6,
+            "direction_cases": 48,
             "samples": 62,
             "fallback_used": true,
             "quality_gate": {
@@ -19021,8 +19020,8 @@
           "combined": {
             "available": true,
             "variant": "combined",
-            "forecast": 2.271340408130298,
-            "forecast_change_pctp": -0.13865959186970206,
+            "forecast": 2.229051330346139,
+            "forecast_change_pctp": -0.120948669653861,
             "features": [
               "10Y real yield 21d change",
               "10Y real yield 63d change",
@@ -19037,13 +19036,13 @@
               "VIX"
             ],
             "model": "expanding walk-forward ridge on real-yield/nominal/breakeven/financial inputs",
-            "mae": 0.1228,
-            "rmse": 0.1488,
-            "baseline_rmse": 0.1346,
+            "mae": 0.124,
+            "rmse": 0.1503,
+            "baseline_rmse": 0.1347,
             "skill_pct": 0.0,
-            "raw_skill_pct": -10.5348,
-            "direction_accuracy": 43.5,
-            "direction_cases": 46,
+            "raw_skill_pct": -11.5483,
+            "direction_accuracy": 41.7,
+            "direction_cases": 48,
             "samples": 62,
             "fallback_used": true,
             "quality_gate": {
@@ -19061,8 +19060,8 @@
       "3m": {
         "available": true,
         "variant": "combined",
-        "forecast": 2.0572669175236835,
-        "forecast_change_pctp": -0.3527330824763168,
+        "forecast": 2.076461266135762,
+        "forecast_change_pctp": -0.2735387338642382,
         "features": [
           "10Y real yield 21d change",
           "10Y real yield 63d change",
@@ -19077,11 +19076,11 @@
           "VIX"
         ],
         "model": "expanding walk-forward ridge on real-yield/nominal/breakeven/financial inputs",
-        "mae": 0.203,
-        "rmse": 0.2492,
-        "baseline_rmse": 0.2365,
+        "mae": 0.1975,
+        "rmse": 0.2466,
+        "baseline_rmse": 0.2327,
         "skill_pct": 0.0,
-        "raw_skill_pct": -5.3504,
+        "raw_skill_pct": -5.9693,
         "direction_accuracy": 58.3,
         "direction_cases": 36,
         "samples": 45,
@@ -19098,8 +19097,8 @@
           "rates_inflation": {
             "available": true,
             "variant": "rates_inflation",
-            "forecast": 2.1100008563730417,
-            "forecast_change_pctp": -0.29999914362695856,
+            "forecast": 2.132169175613947,
+            "forecast_change_pctp": -0.217830824386053,
             "features": [
               "10Y real yield 21d change",
               "10Y real yield 63d change",
@@ -19111,12 +19110,12 @@
               "EFFR"
             ],
             "model": "expanding walk-forward ridge on real-yield/nominal/breakeven/financial inputs",
-            "mae": 0.2038,
-            "rmse": 0.2493,
-            "baseline_rmse": 0.2365,
+            "mae": 0.1984,
+            "rmse": 0.2467,
+            "baseline_rmse": 0.2327,
             "skill_pct": 0.0,
-            "raw_skill_pct": -5.3952,
-            "direction_accuracy": 61.1,
+            "raw_skill_pct": -6.0452,
+            "direction_accuracy": 58.3,
             "direction_cases": 36,
             "samples": 45,
             "fallback_used": true,
@@ -19132,8 +19131,8 @@
           "financial_conditions": {
             "available": true,
             "variant": "financial_conditions",
-            "forecast": 2.3274413554027604,
-            "forecast_change_pctp": -0.08255864459723992,
+            "forecast": 2.3256179792814855,
+            "forecast_change_pctp": -0.02438202071851462,
             "features": [
               "10Y real yield 21d change",
               "10Y real yield 63d change",
@@ -19143,12 +19142,12 @@
               "VIX"
             ],
             "model": "expanding walk-forward ridge on real-yield/nominal/breakeven/financial inputs",
-            "mae": 0.2406,
-            "rmse": 0.2857,
-            "baseline_rmse": 0.2365,
+            "mae": 0.2384,
+            "rmse": 0.2798,
+            "baseline_rmse": 0.2327,
             "skill_pct": 0.0,
-            "raw_skill_pct": -20.7838,
-            "direction_accuracy": 30.6,
+            "raw_skill_pct": -20.2789,
+            "direction_accuracy": 33.3,
             "direction_cases": 36,
             "samples": 45,
             "fallback_used": true,
@@ -19164,8 +19163,8 @@
           "combined": {
             "available": true,
             "variant": "combined",
-            "forecast": 2.0572669175236835,
-            "forecast_change_pctp": -0.3527330824763168,
+            "forecast": 2.076461266135762,
+            "forecast_change_pctp": -0.2735387338642382,
             "features": [
               "10Y real yield 21d change",
               "10Y real yield 63d change",
@@ -19180,11 +19179,11 @@
               "VIX"
             ],
             "model": "expanding walk-forward ridge on real-yield/nominal/breakeven/financial inputs",
-            "mae": 0.203,
-            "rmse": 0.2492,
-            "baseline_rmse": 0.2365,
+            "mae": 0.1975,
+            "rmse": 0.2466,
+            "baseline_rmse": 0.2327,
             "skill_pct": 0.0,
-            "raw_skill_pct": -5.3504,
+            "raw_skill_pct": -5.9693,
             "direction_accuracy": 58.3,
             "direction_cases": 36,
             "samples": 45,
