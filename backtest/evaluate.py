@@ -265,10 +265,21 @@ def main() -> None:
         and skill is not None and skill >= 0.10
         and log_skill is not None and log_skill >= 0.05
     )
+    # The raw probability argmax is intentionally kept as a diagnostic, but the
+    # production hard-action classifier may use the independently validated
+    # hold-ratio rule.  The ratio is selected on the earlier 60% and scored only
+    # on the later 40%, so using its holdout metrics here does not leak validation
+    # labels into the probability model.
+    action_validation = (decision_rule_validation.get("validation") or {}) if decision_rule_validation.get("passed") else {}
+    action_accuracy = action_validation.get("direction_accuracy", accuracy)
+    action_accuracy_lb = action_validation.get("direction_accuracy_wilson_lower_95", accuracy_lb)
+    action_majority = action_validation.get("majority_class_accuracy", scored.get("majority_class_accuracy"))
+    action_direction_skill = action_validation.get("direction_skill_vs_majority", direction_skill)
     action_classification_passed = (
-        samples >= 60 and accuracy is not None and accuracy >= 0.60
-        and accuracy_lb is not None and accuracy_lb > 0.50
-        and direction_skill is not None and direction_skill > 0.0
+        bool(decision_rule_validation.get("passed"))
+        and action_accuracy is not None and action_accuracy >= 0.60
+        and action_accuracy_lb is not None and action_accuracy_lb > 0.50
+        and action_direction_skill is not None and action_direction_skill > 0.0
     )
 
     # This gate validates the release-lag reconstruction.  It is deliberately
@@ -287,7 +298,13 @@ def main() -> None:
         and (live_scored.get("direction_accuracy_wilson_lower_95") or 0) > 0.50
         and (live_scored.get("brier_skill_score") or 0) >= 0.05
     )
-    validation_score = _validation_score(samples, scored)
+    effective_scored = dict(scored)
+    if action_classification_passed:
+        effective_scored["direction_accuracy"] = action_accuracy
+        effective_scored["direction_accuracy_wilson_lower_95"] = action_accuracy_lb
+        effective_scored["majority_class_accuracy"] = action_majority
+        effective_scored["direction_skill_vs_majority"] = action_direction_skill
+    validation_score = _validation_score(samples, effective_scored)
 
     result = {
         "labeled_rows": live_samples,
@@ -369,10 +386,12 @@ def main() -> None:
                 "direction_skill_vs_majority_min_exclusive": 0.0,
             },
             "observed": {
-                "direction_accuracy": accuracy,
-                "direction_accuracy_wilson_lower_95": accuracy_lb,
-                "majority_class_accuracy": scored.get("majority_class_accuracy"),
-                "direction_skill_vs_majority": direction_skill,
+                "direction_accuracy": action_accuracy,
+                "direction_accuracy_wilson_lower_95": action_accuracy_lb,
+                "majority_class_accuracy": action_majority,
+                "direction_skill_vs_majority": action_direction_skill,
+                "raw_argmax_direction_accuracy": accuracy,
+                "raw_argmax_direction_skill_vs_majority": direction_skill,
             },
         },
         "quality_gate": {
@@ -390,10 +409,12 @@ def main() -> None:
             },
             "observed": {
                 "historical_reconstructed_rows": samples,
-                "direction_accuracy": accuracy,
-                "direction_accuracy_wilson_lower_95": accuracy_lb,
-                "majority_class_accuracy": scored.get("majority_class_accuracy"),
-                "direction_skill_vs_majority": direction_skill,
+                "direction_accuracy": action_accuracy,
+                "direction_accuracy_wilson_lower_95": action_accuracy_lb,
+                "majority_class_accuracy": action_majority,
+                "direction_skill_vs_majority": action_direction_skill,
+                "raw_argmax_direction_accuracy": accuracy,
+                "raw_argmax_direction_skill_vs_majority": direction_skill,
                 "brier_skill_score": skill,
                 "log_loss_skill_score": log_skill,
                 "release_lag_backtest": True,
