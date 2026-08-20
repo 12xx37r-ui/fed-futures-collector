@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at_utc": "2026-08-20T17:45:13.189947+00:00",
+  "generated_at_utc": "2026-08-20T18:02:45.294687+00:00",
   "engine": "US Fed policy engine",
   "entries": [
     {
@@ -17,7 +17,7 @@
         "grade": "HIGH",
         "observation_count": 4,
         "live_ratio": 1.0,
-        "max_age_minutes": 20.9
+        "max_age_minutes": 16.1
       },
       "quality_gate": {
         "passed": true,
@@ -30,7 +30,7 @@
       "label": "Fed policy rate 3m",
       "horizon": "3m",
       "current": 3.63,
-      "forecast": 3.72,
+      "forecast": 3.725,
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
@@ -39,7 +39,7 @@
         "grade": "HIGH",
         "observation_count": 4,
         "live_ratio": 1.0,
-        "max_age_minutes": 11.0
+        "max_age_minutes": 17.3
       },
       "quality_gate": {
         "passed": true,
@@ -61,7 +61,7 @@
         "grade": "HIGH",
         "observation_count": 4,
         "live_ratio": 1.0,
-        "max_age_minutes": 10.6
+        "max_age_minutes": 28.5
       },
       "quality_gate": {
         "passed": true,
@@ -83,7 +83,7 @@
         "grade": "HIGH",
         "observation_count": 4,
         "live_ratio": 1.0,
-        "max_age_minutes": 14.6
+        "max_age_minutes": 14.1
       },
       "quality_gate": {
         "passed": true,
@@ -131,14 +131,14 @@
       "id": "dxy_1m",
       "label": "DXY 1m",
       "horizon": "1m",
-      "current": 98.904,
-      "forecast": 98.904,
+      "current": 98.9,
+      "forecast": 98.9,
       "status": "ABSTAIN",
       "usable": false,
       "basis": "price_ensemble",
       "validation": {
-        "rmse_pct": 1.7772527253005157,
-        "baseline_rmse_pct": 1.7772527253005157,
+        "rmse_pct": 1.7772596541967938,
+        "baseline_rmse_pct": 1.7772596541967938,
         "skill_pct": 0.0,
         "backtests": 760,
         "direction_accuracy": 47.94721407624634,
@@ -151,18 +151,18 @@
       "id": "dxy_3m",
       "label": "DXY 3m",
       "horizon": "3m",
-      "current": 98.904,
-      "forecast": 99.052936,
+      "current": 98.9,
+      "forecast": 99.050428,
       "status": "VALIDATED",
       "usable": true,
       "basis": "price_mean_reversion",
       "validation": {
         "available": true,
-        "forecast_return_pct": 0.15058661951605767,
-        "rmse_pct": 2.9870808307940044,
-        "baseline_rmse_pct": 3.264376002079593,
-        "skill_pct": 8.494584297548313,
-        "raw_skill_pct": 8.494584297548313,
+        "forecast_return_pct": 0.15210136871406377,
+        "rmse_pct": 2.987081114814382,
+        "baseline_rmse_pct": 3.2643763456479444,
+        "skill_pct": 8.494585227688333,
+        "raw_skill_pct": 8.494585227688333,
         "direction_accuracy": 73.5080058224163,
         "direction_cases": 687,
         "backtests": 760,
@@ -180,29 +180,29 @@
             "lookback_days": 120.0,
             "strength": 0.4,
             "weight": 0.25,
-            "anchor": 99.6572836613973,
-            "forecast": 99.20531346455891
+            "anchor": 99.65725032806397,
+            "forecast": 99.20290013122559
           },
           {
             "lookback_days": 180.0,
             "strength": 0.4,
             "weight": 0.25,
-            "anchor": 99.12907791510688,
-            "forecast": 98.99403116604275
+            "anchor": 99.12905569288466,
+            "forecast": 98.99162227715387
           },
           {
             "lookback_days": 252.0,
             "strength": 0.4,
             "weight": 0.25,
-            "anchor": 98.99156373911055,
-            "forecast": 98.93902549564422
+            "anchor": 98.99154786609469,
+            "forecast": 98.93661914643788
           },
           {
             "lookback_days": 378.0,
             "strength": 0.3,
             "weight": 0.25,
-            "anchor": 99.4685821147293,
-            "forecast": 99.07337463441878
+            "anchor": 99.46857153271873,
+            "forecast": 99.07057145981562
           }
         ],
         "model": "fixed multi-window mean reversion with persistence benchmark"
