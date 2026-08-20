@@ -247,6 +247,74 @@ def _walk_forward_mean_reversion(values: list[float], horizon: int) -> dict[str,
     out["model"] = "fixed horizon-specific mean reversion"
     return out
 
+
+def _short_horizon_candidates(values: list[float]) -> dict[str, float]:
+    """Small fixed 1M candidate family used only in past-only selection.
+
+    Parameters are deliberately fixed and low-amplitude.  The selector may
+    promote this block only after it clears the same persistence RMSE gate as
+    every other production candidate.
+    """
+    cur = values[-1]
+    def hist(k: int) -> float:
+        return values[-1-k] if len(values) > k else cur
+    anchor90 = mean(values[-min(90, len(values)):])
+    return {
+        "persistence": cur,
+        "mean_reversion_90d": cur + _clamp((anchor90-cur)*0.05, -0.45, 0.45),
+        "contrarian_63d": cur + _clamp(-(cur-hist(63))*0.05, -0.45, 0.45),
+        "momentum_21d": cur + _clamp((cur-hist(21))*0.05, -0.45, 0.45),
+    }
+
+
+def _walk_forward_short_horizon_selection(values: list[float], horizon: int = 21) -> dict[str, Any]:
+    """Nested/past-only 1M selector with a fixed candidate family.
+
+    Candidate choice at each origin uses only the preceding 48 realized
+    squared errors.  This is intentionally stricter than choosing the best
+    candidate on the reported OOS sample.
+    """
+    errs: list[float] = []
+    base_errs: list[float] = []
+    hits = cases = 0
+    losses: dict[str, list[float]] = {}
+    counts: dict[str, int] = {}
+    start = max(252, len(values)-1000)
+    for i in range(start, len(values)-horizon):
+        forecasts = _short_horizon_candidates(values[:i+1])
+        eligible = []
+        for name, ls in losses.items():
+            if len(ls) >= 36:
+                eligible.append((mean(ls[-48:]), name))
+        selected = min(eligible)[1] if eligible else "persistence"
+        pred = forecasts[selected]
+        actual = values[i+horizon]
+        cur = values[i]
+        errs.append(pred-actual)
+        base_errs.append(cur-actual)
+        counts[selected] = counts.get(selected, 0) + 1
+        actual_change = actual-cur
+        pred_change = pred-cur
+        if abs(actual_change) >= 0.05:
+            cases += 1
+            hits += int((actual_change >= 0) == (pred_change >= 0))
+        for name, forecast in forecasts.items():
+            losses.setdefault(name, []).append((forecast-actual)**2)
+    out = _metrics(errs, base_errs, hits, cases, 60)
+    final_eligible = [(mean(ls[-48:]), name) for name, ls in losses.items() if len(ls) >= 36]
+    final_name = min(final_eligible)[1] if final_eligible else "persistence"
+    final_forecast = _short_horizon_candidates(values)[final_name]
+    out.update({
+        "model": "past-only 48-error rolling selector over fixed low-amplitude 1M candidates",
+        "selected_model": final_name,
+        "selected_model_counts": counts,
+        "forecast": final_forecast,
+        "selection_no_lookahead": True,
+        "selection_window_errors": 48,
+    })
+    return out
+
+
 def _recent_changes(vals: list[float]) -> dict[str, float | None]:
     cur = vals[-1]
     def ch(n: int) -> float | None:
@@ -280,10 +348,11 @@ def build(raw: dict[str, Any]) -> dict[str, Any]:
     meanrev3, meanrev3_meta = _validated_mean_reversion_predict(vals, 63)
     bt_meanrev1 = _walk_forward_mean_reversion(vals, 21)
     bt_meanrev3 = _walk_forward_mean_reversion(vals, 63)
+    selective1 = _walk_forward_short_horizon_selection(vals, 21)
     macro1 = _macro_model(raw, dates, vals, 21)
     macro3 = _macro_model(raw, dates, vals, 63)
 
-    def select(structural: float, bt: dict[str, Any], meanrev: float, bt_meanrev: dict[str, Any], macro: dict[str, Any]) -> tuple[float, str, dict[str, Any]]:
+    def select(structural: float, bt: dict[str, Any], meanrev: float, bt_meanrev: dict[str, Any], macro: dict[str, Any], selective: dict[str, Any] | None = None) -> tuple[float, str, dict[str, Any]]:
         candidates = []
         if (bt.get("quality_gate") or {}).get("passed"):
             candidates.append((float(bt.get("rmse") or 999), structural, "curve_momentum", bt))
@@ -291,12 +360,14 @@ def build(raw: dict[str, Any]) -> dict[str, Any]:
             candidates.append((float(bt_meanrev.get("rmse") or 999), meanrev, "validated_mean_reversion", bt_meanrev))
         if macro.get("available") and (macro.get("quality_gate") or {}).get("passed"):
             candidates.append((float(macro.get("rmse") or 999), float(macro["forecast"]), "macro_ridge", macro))
+        if selective and (selective.get("quality_gate") or {}).get("passed") and selective.get("forecast") is not None:
+            candidates.append((float(selective.get("rmse") or 999), float(selective["forecast"]), "selective_1m_fixed_family", selective))
         if not candidates:
             return cur, "persistence", {"quality_gate": {"passed": False}, "fallback_used": True}
         _, forecast, name, audit = min(candidates, key=lambda x: x[0])
         return forecast, name, audit
 
-    p1, model1, selected1 = select(structural1, bt_struct1, meanrev1, bt_meanrev1, macro1)
+    p1, model1, selected1 = select(structural1, bt_struct1, meanrev1, bt_meanrev1, macro1, selective1)
     p3, model3, selected3 = select(structural3, bt_struct3, meanrev3, bt_meanrev3, macro3)
     # Unvalidated candidate is still published for audit, but never promoted as the final forecast.
     raw_candidates_3m = [structural3, meanrev3]
@@ -323,6 +394,7 @@ def build(raw: dict[str, Any]) -> dict[str, Any]:
         "as_of": s10[-1][0],
         "current_pct": round(cur, 4),
         "current_curve": current_curve,
+        "history": [{"date": d, "value": round(v, 6)} for d, v in s10[-1260:]],
         "recent_change": _recent_changes(vals),
         "forecast_1m_pct": round(p1, 4), "forecast_3m_pct": round(p3, 4),
         "forecast_change_1m_pctp": round(p1-cur, 4), "forecast_change_3m_pctp": round(p3-cur, 4),
@@ -345,6 +417,7 @@ def build(raw: dict[str, Any]) -> dict[str, Any]:
             "1m": {**bt_meanrev1, "forecast": round(meanrev1, 4), "parameters": meanrev1_meta},
             "3m": {**bt_meanrev3, "forecast": round(meanrev3, 4), "parameters": meanrev3_meta},
         },
+        "short_horizon_selective_audit": selective1,
         "macro_model_audit": {"1m": macro1, "3m": macro3},
         "forecast_quality_gate": {"passed": gate3, "benchmark": "persistence", "horizon": "3m"},
         "limitation": "Final forward movement is promoted only when a fixed, past-only walk-forward model beats persistence and clears the direction gate. Unvalidated candidates remain audit-only.",

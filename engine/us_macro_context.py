@@ -468,6 +468,7 @@ def _dxy_payload(raw: dict[str, Any]) -> dict[str, Any]:
         "available": True, "status": "LKG" if dxy.get("stale") else "LIVE", "symbol": "DX-Y.NYB",
         "source": "Yahoo Finance DXY delayed market data", "source_url": dxy.get("source_url"),
         "observation_date": rows[-1]["date"], "market_time_utc": dxy.get("market_time_utc"), "current": round(current, 6),
+        "history": [{"date": x["date"], "value": round(float(x["value"]), 6)} for x in rows[-1260:]],
         "forecast_1m": round(float(f1["forecast"]), 6), "forecast_3m": round(float(f3["forecast"]), 6),
         "forecast_change_3m_pct": round(c3, 6),
         "forecast_range_80": [round(float(f3["forecast"]) * (1 - interval / 100.0), 6), round(float(f3["forecast"]) * (1 + interval / 100.0), 6)],
