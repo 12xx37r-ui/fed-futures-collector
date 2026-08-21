@@ -1,10 +1,28 @@
 {
   "schema_version": "1.0",
-  "generated_at_utc": "2026-08-20T19:57:18.853187+00:00",
-  "status": "SKIP_RECENT_FULL",
-  "reason": "full output is recent",
-  "full_generated_at_utc": "2026-08-20T18:02:45.294687+00:00",
-  "full_age_minutes": 114.56,
-  "guard_minutes": 120,
-  "network_calls": 0
+  "generated_at_utc": "2026-08-21T03:37:11.902791+00:00",
+  "status": "UPDATED",
+  "symbols_attempted": [
+    "ZQ=F",
+    "ZQQ26.CBT",
+    "ZQU26.CBT",
+    "ZQV26.CBT",
+    "SR1Q26.CME",
+    "SR1U26.CME",
+    "SR1V26.CME"
+  ],
+  "symbols_updated": [
+    "SR1Q26.CME",
+    "SR1U26.CME",
+    "SR1V26.CME",
+    "ZQ=F",
+    "ZQQ26.CBT",
+    "ZQU26.CBT",
+    "ZQV26.CBT"
+  ],
+  "network_calls": 8,
+  "max_symbols_per_run": 8,
+  "dxy_updated": true,
+  "model_formulas_changed": false,
+  "probabilities_recomputed": false
 }
