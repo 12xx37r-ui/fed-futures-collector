@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at_utc": "2026-08-21T09:01:16.521584+00:00",
+  "generated_at_utc": "2026-08-21T13:00:49.926440+00:00",
   "engine": "US Fed policy engine",
   "entries": [
     {
@@ -8,7 +8,7 @@
       "label": "Fed policy rate 1m",
       "horizon": "1m",
       "current": 3.63,
-      "forecast": 3.708,
+      "forecast": 3.71,
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
@@ -17,7 +17,7 @@
         "grade": "HIGH",
         "observation_count": 5,
         "live_ratio": 1.0,
-        "max_age_minutes": 31.6
+        "max_age_minutes": 35.5
       },
       "quality_gate": {
         "passed": true,
@@ -39,7 +39,7 @@
         "grade": "HIGH",
         "observation_count": 5,
         "live_ratio": 1.0,
-        "max_age_minutes": 44.3
+        "max_age_minutes": 16.7
       },
       "quality_gate": {
         "passed": true,
@@ -52,7 +52,7 @@
       "label": "Fed policy rate 6m",
       "horizon": "6m",
       "current": 3.63,
-      "forecast": 3.86,
+      "forecast": 3.865,
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
@@ -61,7 +61,7 @@
         "grade": "HIGH",
         "observation_count": 5,
         "live_ratio": 1.0,
-        "max_age_minutes": 36.7
+        "max_age_minutes": 20.5
       },
       "quality_gate": {
         "passed": true,
@@ -74,7 +74,7 @@
       "label": "Fed policy rate 12m",
       "horizon": "12m",
       "current": 3.63,
-      "forecast": 4.005,
+      "forecast": 4.01,
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
@@ -83,7 +83,7 @@
         "grade": "HIGH",
         "observation_count": 5,
         "live_ratio": 1.0,
-        "max_age_minutes": 11.4
+        "max_age_minutes": 14.7
       },
       "quality_gate": {
         "passed": true,
@@ -131,14 +131,14 @@
       "id": "dxy_1m",
       "label": "DXY 1m",
       "horizon": "1m",
-      "current": 98.632,
-      "forecast": 98.632,
+      "current": 98.756,
+      "forecast": 98.756,
       "status": "ABSTAIN",
       "usable": false,
       "basis": "price_ensemble",
       "validation": {
-        "rmse_pct": 1.7764984012078882,
-        "baseline_rmse_pct": 1.7764984012078882,
+        "rmse_pct": 1.7762332506630532,
+        "baseline_rmse_pct": 1.7762332506630532,
         "skill_pct": 0.0,
         "backtests": 760,
         "direction_accuracy": 47.94721407624634,
@@ -151,18 +151,18 @@
       "id": "dxy_3m",
       "label": "DXY 3m",
       "horizon": "3m",
-      "current": 98.632,
-      "forecast": 98.881368,
+      "current": 98.756,
+      "forecast": 98.959114,
       "status": "VALIDATED",
       "usable": true,
       "basis": "price_mean_reversion",
       "validation": {
         "available": true,
-        "forecast_return_pct": 0.25282660943444224,
-        "rmse_pct": 2.987124229657535,
-        "baseline_rmse_pct": 3.2643916209358106,
-        "skill_pct": 8.493692653174712,
-        "raw_skill_pct": 8.493692653174712,
+        "forecast_return_pct": 0.20567253955550147,
+        "rmse_pct": 2.987100908334456,
+        "baseline_rmse_pct": 3.264366039704379,
+        "skill_pct": 8.49368998444281,
+        "raw_skill_pct": 8.49368998444281,
         "direction_accuracy": 73.5080058224163,
         "direction_cases": 687,
         "backtests": 760,
@@ -180,29 +180,29 @@
             "lookback_days": 120.0,
             "strength": 0.4,
             "weight": 0.25,
-            "anchor": 99.6593503636678,
-            "forecast": 99.04294014546713
+            "anchor": 99.66038369700114,
+            "forecast": 99.11775347880045
           },
           {
             "lookback_days": 180.0,
             "strength": 0.4,
             "weight": 0.25,
-            "anchor": 99.12501125352648,
-            "forecast": 98.8292045014106
+            "anchor": 99.12570014241537,
+            "forecast": 98.90388005696614
           },
           {
             "lookback_days": 252.0,
             "strength": 0.4,
             "weight": 0.25,
-            "anchor": 98.99318278794063,
-            "forecast": 98.77647311517626
+            "anchor": 98.99367485143269,
+            "forecast": 98.85106994057307
           },
           {
             "lookback_days": 378.0,
             "strength": 0.3,
             "weight": 0.25,
-            "anchor": 99.44818001205202,
-            "forecast": 98.8768540036156
+            "anchor": 99.44850805438007,
+            "forecast": 98.96375241631402
           }
         ],
         "model": "fixed multi-window mean reversion with persistence benchmark"
