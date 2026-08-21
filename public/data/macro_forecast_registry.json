@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at_utc": "2026-08-21T13:00:49.926440+00:00",
+  "generated_at_utc": "2026-08-21T21:05:27.026877+00:00",
   "engine": "US Fed policy engine",
   "entries": [
     {
@@ -8,7 +8,7 @@
       "label": "Fed policy rate 1m",
       "horizon": "1m",
       "current": 3.63,
-      "forecast": 3.71,
+      "forecast": 3.73,
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
@@ -17,7 +17,7 @@
         "grade": "HIGH",
         "observation_count": 5,
         "live_ratio": 1.0,
-        "max_age_minutes": 35.5
+        "max_age_minutes": 11.5
       },
       "quality_gate": {
         "passed": true,
@@ -30,7 +30,7 @@
       "label": "Fed policy rate 3m",
       "horizon": "3m",
       "current": 3.63,
-      "forecast": 3.725,
+      "forecast": 3.74,
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
@@ -39,7 +39,7 @@
         "grade": "HIGH",
         "observation_count": 5,
         "live_ratio": 1.0,
-        "max_age_minutes": 16.7
+        "max_age_minutes": 15.9
       },
       "quality_gate": {
         "passed": true,
@@ -52,7 +52,7 @@
       "label": "Fed policy rate 6m",
       "horizon": "6m",
       "current": 3.63,
-      "forecast": 3.865,
+      "forecast": 3.9,
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
@@ -61,7 +61,7 @@
         "grade": "HIGH",
         "observation_count": 5,
         "live_ratio": 1.0,
-        "max_age_minutes": 20.5
+        "max_age_minutes": 18.5
       },
       "quality_gate": {
         "passed": true,
@@ -74,7 +74,7 @@
       "label": "Fed policy rate 12m",
       "horizon": "12m",
       "current": 3.63,
-      "forecast": 4.01,
+      "forecast": 4.07,
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
@@ -83,7 +83,7 @@
         "grade": "HIGH",
         "observation_count": 5,
         "live_ratio": 1.0,
-        "max_age_minutes": 14.7
+        "max_age_minutes": 37.5
       },
       "quality_gate": {
         "passed": true,
@@ -131,14 +131,14 @@
       "id": "dxy_1m",
       "label": "DXY 1m",
       "horizon": "1m",
-      "current": 98.756,
-      "forecast": 98.756,
+      "current": 98.85,
+      "forecast": 98.85,
       "status": "ABSTAIN",
       "usable": false,
       "basis": "price_ensemble",
       "validation": {
-        "rmse_pct": 1.7762332506630532,
-        "baseline_rmse_pct": 1.7762332506630532,
+        "rmse_pct": 1.7760408715876128,
+        "baseline_rmse_pct": 1.7760408715876128,
         "skill_pct": 0.0,
         "backtests": 760,
         "direction_accuracy": 47.94721407624634,
@@ -151,20 +151,20 @@
       "id": "dxy_3m",
       "label": "DXY 3m",
       "horizon": "3m",
-      "current": 98.756,
-      "forecast": 98.959114,
+      "current": 98.85,
+      "forecast": 99.01805,
       "status": "VALIDATED",
       "usable": true,
       "basis": "price_mean_reversion",
       "validation": {
         "available": true,
-        "forecast_return_pct": 0.20567253955550147,
-        "rmse_pct": 2.987100908334456,
-        "baseline_rmse_pct": 3.264366039704379,
-        "skill_pct": 8.49368998444281,
-        "raw_skill_pct": 8.49368998444281,
-        "direction_accuracy": 73.5080058224163,
-        "direction_cases": 687,
+        "forecast_return_pct": 0.17000554486588104,
+        "rmse_pct": 2.987087925891733,
+        "baseline_rmse_pct": 3.2643509593026727,
+        "skill_pct": 8.4936649541558,
+        "raw_skill_pct": 8.4936649541558,
+        "direction_accuracy": 73.46938775510205,
+        "direction_cases": 686,
         "backtests": 760,
         "fallback_used": false,
         "quality_gate": {
@@ -180,29 +180,29 @@
             "lookback_days": 120.0,
             "strength": 0.4,
             "weight": 0.25,
-            "anchor": 99.66038369700114,
-            "forecast": 99.11775347880045
+            "anchor": 99.66116703033448,
+            "forecast": 99.17446681213379
           },
           {
             "lookback_days": 180.0,
             "strength": 0.4,
             "weight": 0.25,
-            "anchor": 99.12570014241537,
-            "forecast": 98.90388005696614
+            "anchor": 99.12622236463758,
+            "forecast": 98.96048894585503
           },
           {
             "lookback_days": 252.0,
             "strength": 0.4,
             "weight": 0.25,
-            "anchor": 98.99367485143269,
-            "forecast": 98.85106994057307
+            "anchor": 98.9940478673057,
+            "forecast": 98.90761914692227
           },
           {
             "lookback_days": 378.0,
             "strength": 0.3,
             "weight": 0.25,
-            "anchor": 99.44850805438007,
-            "forecast": 98.96375241631402
+            "anchor": 99.44875673162873,
+            "forecast": 99.02962701948861
           }
         ],
         "model": "fixed multi-window mean reversion with persistence benchmark"
@@ -219,13 +219,13 @@
       "usable": false,
       "basis": "persistence",
       "validation": {
-        "mae": 0.1764,
-        "rmse": 0.2309,
-        "baseline_rmse": 0.2304,
+        "mae": 0.1757,
+        "rmse": 0.2295,
+        "baseline_rmse": 0.229,
         "skill_pct": 0.0,
-        "raw_skill_pct": -0.2217,
-        "direction_accuracy": 50.6,
-        "direction_cases": 810,
+        "raw_skill_pct": -0.2043,
+        "direction_accuracy": 50.7,
+        "direction_cases": 809,
         "samples": 979,
         "fallback_used": true,
         "quality_gate": {
@@ -237,24 +237,24 @@
           }
         }
       },
-      "candidate_forecast": 2.2239,
-      "reason": "abstain: RMSE 0.2309 vs persistence 0.2304"
+      "candidate_forecast": 2.3576,
+      "reason": "abstain: RMSE 0.2295 vs persistence 0.2290"
     },
     {
       "id": "real_rate_10y_3m",
       "label": "US 10Y real yield 3m",
       "horizon": "3m",
       "current": 2.35,
-      "forecast": 2.2829,
+      "forecast": 2.284,
       "status": "VALIDATED",
       "usable": true,
       "basis": "validated_mean_reversion",
       "validation": {
-        "mae": 0.2505,
-        "rmse": 0.3242,
-        "baseline_rmse": 0.34,
-        "skill_pct": 4.6391,
-        "raw_skill_pct": 4.6391,
+        "mae": 0.2495,
+        "rmse": 0.3217,
+        "baseline_rmse": 0.3377,
+        "skill_pct": 4.7424,
+        "raw_skill_pct": 4.7424,
         "direction_accuracy": 64.4,
         "direction_cases": 823,
         "samples": 937,
@@ -269,7 +269,7 @@
         },
         "model": "fixed horizon-specific mean reversion"
       },
-      "candidate_forecast": 2.3506,
+      "candidate_forecast": 2.3475,
       "reason": "validated real-yield forecast"
     },
     {
@@ -306,7 +306,7 @@
       "id": "fed_feature_financial",
       "label": "Financial-conditions factor",
       "horizon": "current",
-      "current": -0.28663,
+      "current": -0.27096,
       "forecast": null,
       "status": "CURRENT_ONLY",
       "usable": false,
