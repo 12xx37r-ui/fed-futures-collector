@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at_utc": "2026-08-21T21:05:27.026877+00:00",
+  "generated_at_utc": "2026-08-21T22:01:23.102664+00:00",
   "engine": "US Fed policy engine",
   "entries": [
     {
@@ -17,7 +17,7 @@
         "grade": "HIGH",
         "observation_count": 5,
         "live_ratio": 1.0,
-        "max_age_minutes": 11.5
+        "max_age_minutes": 63.2
       },
       "quality_gate": {
         "passed": true,
@@ -39,7 +39,7 @@
         "grade": "HIGH",
         "observation_count": 5,
         "live_ratio": 1.0,
-        "max_age_minutes": 15.9
+        "max_age_minutes": 63.0
       },
       "quality_gate": {
         "passed": true,
@@ -61,7 +61,7 @@
         "grade": "HIGH",
         "observation_count": 5,
         "live_ratio": 1.0,
-        "max_age_minutes": 18.5
+        "max_age_minutes": 62.9
       },
       "quality_gate": {
         "passed": true,
@@ -74,7 +74,7 @@
       "label": "Fed policy rate 12m",
       "horizon": "12m",
       "current": 3.63,
-      "forecast": 4.07,
+      "forecast": 4.075,
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
@@ -83,7 +83,7 @@
         "grade": "HIGH",
         "observation_count": 5,
         "live_ratio": 1.0,
-        "max_age_minutes": 37.5
+        "max_age_minutes": 66.4
       },
       "quality_gate": {
         "passed": true,
@@ -131,14 +131,14 @@
       "id": "dxy_1m",
       "label": "DXY 1m",
       "horizon": "1m",
-      "current": 98.85,
-      "forecast": 98.85,
+      "current": 98.839,
+      "forecast": 98.839,
       "status": "ABSTAIN",
       "usable": false,
       "basis": "price_ensemble",
       "validation": {
-        "rmse_pct": 1.7760408715876128,
-        "baseline_rmse_pct": 1.7760408715876128,
+        "rmse_pct": 1.7760630013616219,
+        "baseline_rmse_pct": 1.7760630013616219,
         "skill_pct": 0.0,
         "backtests": 760,
         "direction_accuracy": 47.94721407624634,
@@ -151,20 +151,20 @@
       "id": "dxy_3m",
       "label": "DXY 3m",
       "horizon": "3m",
-      "current": 98.85,
-      "forecast": 99.01805,
+      "current": 98.839,
+      "forecast": 99.011154,
       "status": "VALIDATED",
       "usable": true,
       "basis": "price_mean_reversion",
       "validation": {
         "available": true,
-        "forecast_return_pct": 0.17000554486588104,
-        "rmse_pct": 2.987087925891733,
-        "baseline_rmse_pct": 3.2643509593026727,
-        "skill_pct": 8.4936649541558,
-        "raw_skill_pct": 8.4936649541558,
-        "direction_accuracy": 73.46938775510205,
-        "direction_cases": 686,
+        "forecast_return_pct": 0.17417583717267426,
+        "rmse_pct": 2.987089236731153,
+        "baseline_rmse_pct": 3.264352532720352,
+        "skill_pct": 8.493668904018193,
+        "raw_skill_pct": 8.493668904018193,
+        "direction_accuracy": 73.5080058224163,
+        "direction_cases": 687,
         "backtests": 760,
         "fallback_used": false,
         "quality_gate": {
@@ -180,29 +180,29 @@
             "lookback_days": 120.0,
             "strength": 0.4,
             "weight": 0.25,
-            "anchor": 99.66116703033448,
-            "forecast": 99.17446681213379
+            "anchor": 99.6610753636678,
+            "forecast": 99.16783014546712
           },
           {
             "lookback_days": 180.0,
             "strength": 0.4,
             "weight": 0.25,
-            "anchor": 99.12622236463758,
-            "forecast": 98.96048894585503
+            "anchor": 99.12616125352648,
+            "forecast": 98.95386450141059
           },
           {
             "lookback_days": 252.0,
             "strength": 0.4,
             "weight": 0.25,
-            "anchor": 98.9940478673057,
-            "forecast": 98.90761914692227
+            "anchor": 98.99400421651204,
+            "forecast": 98.90100168660481
           },
           {
             "lookback_days": 378.0,
             "strength": 0.3,
             "weight": 0.25,
-            "anchor": 99.44875673162873,
-            "forecast": 99.02962701948861
+            "anchor": 99.44872763109964,
+            "forecast": 99.02191828932989
           }
         ],
         "model": "fixed multi-window mean reversion with persistence benchmark"
