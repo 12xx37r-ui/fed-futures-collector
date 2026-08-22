@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at_utc": "2026-08-22T09:01:24.401008+00:00",
+  "generated_at_utc": "2026-08-22T13:00:44.030388+00:00",
   "engine": "US Fed policy engine",
   "entries": [
     {
@@ -17,7 +17,7 @@
         "grade": "MEDIUM",
         "observation_count": 5,
         "live_ratio": 0.0,
-        "max_age_minutes": 722.3
+        "max_age_minutes": 962.1
       },
       "quality_gate": {
         "passed": true,
@@ -39,7 +39,7 @@
         "grade": "MEDIUM",
         "observation_count": 5,
         "live_ratio": 0.0,
-        "max_age_minutes": 722.1
+        "max_age_minutes": 962.0
       },
       "quality_gate": {
         "passed": true,
@@ -61,7 +61,7 @@
         "grade": "MEDIUM",
         "observation_count": 5,
         "live_ratio": 0.0,
-        "max_age_minutes": 722.0
+        "max_age_minutes": 961.9
       },
       "quality_gate": {
         "passed": true,
@@ -83,7 +83,7 @@
         "grade": "MEDIUM",
         "observation_count": 5,
         "live_ratio": 0.0,
-        "max_age_minutes": 725.4
+        "max_age_minutes": 965.3
       },
       "quality_gate": {
         "passed": true,

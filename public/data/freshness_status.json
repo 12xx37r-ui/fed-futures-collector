@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1.0",
   "patch_version": "V228-zero-call-freshness-unification",
-  "generated_at_utc": "2026-08-22T09:02:03.282799+00:00",
-  "engine_generated_at_utc": "2026-08-22T09:01:24.401008+00:00",
+  "generated_at_utc": "2026-08-22T13:01:55.968306+00:00",
+  "engine_generated_at_utc": "2026-08-22T13:00:44.030388+00:00",
   "compatibility": {
     "existing_keys_removed": false,
     "existing_field_semantics_changed": false,
@@ -17,7 +17,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 72,
+      "elapsed_ms": 673,
       "error": null,
       "blocking": null,
       "classification": null
@@ -27,7 +27,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 169,
+      "elapsed_ms": 75,
       "error": null,
       "blocking": null,
       "classification": null
@@ -37,7 +37,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 345,
+      "elapsed_ms": 245,
       "error": null,
       "blocking": null,
       "classification": null
@@ -47,7 +47,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 557,
+      "elapsed_ms": 425,
       "error": null,
       "blocking": null,
       "classification": null
@@ -57,7 +57,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 701,
+      "elapsed_ms": 608,
       "error": null,
       "blocking": null,
       "classification": null
@@ -67,7 +67,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 713,
+      "elapsed_ms": 712,
       "error": null,
       "blocking": null,
       "classification": null
@@ -77,7 +77,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 719,
+      "elapsed_ms": 725,
       "error": null,
       "blocking": null,
       "classification": null
@@ -87,17 +87,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 684,
-      "error": null,
-      "blocking": null,
-      "classification": null
-    },
-    {
-      "source": "zq:ZQH27.CBT",
-      "status": "LIVE",
-      "cadence": "collector-run",
-      "observation_at": null,
-      "elapsed_ms": 722,
+      "elapsed_ms": 728,
       "error": null,
       "blocking": null,
       "classification": null
@@ -107,7 +97,17 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 725,
+      "elapsed_ms": 724,
+      "error": null,
+      "blocking": null,
+      "classification": null
+    },
+    {
+      "source": "zq:ZQH27.CBT",
+      "status": "LIVE",
+      "cadence": "collector-run",
+      "observation_at": null,
+      "elapsed_ms": 1026,
       "error": null,
       "blocking": null,
       "classification": null
@@ -117,7 +117,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 723,
+      "elapsed_ms": 725,
       "error": null,
       "blocking": null,
       "classification": null
@@ -127,7 +127,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 724,
+      "elapsed_ms": 711,
       "error": null,
       "blocking": null,
       "classification": null
@@ -137,7 +137,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 719,
+      "elapsed_ms": 540,
       "error": null,
       "blocking": null,
       "classification": null
@@ -147,7 +147,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 719,
+      "elapsed_ms": 596,
       "error": null,
       "blocking": null,
       "classification": null
@@ -157,7 +157,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 718,
+      "elapsed_ms": 714,
       "error": null,
       "blocking": null,
       "classification": null
@@ -167,7 +167,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 717,
+      "elapsed_ms": 721,
       "error": null,
       "blocking": null,
       "classification": null
@@ -177,7 +177,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 722,
+      "elapsed_ms": 746,
       "error": null,
       "blocking": null,
       "classification": null
@@ -187,7 +187,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 718,
+      "elapsed_ms": 711,
       "error": null,
       "blocking": null,
       "classification": null
@@ -207,7 +207,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 190,
+      "elapsed_ms": 171,
       "error": null,
       "blocking": null,
       "classification": null
@@ -217,7 +217,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 367,
+      "elapsed_ms": 344,
       "error": null,
       "blocking": null,
       "classification": null
@@ -227,7 +227,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 542,
+      "elapsed_ms": 523,
       "error": null,
       "blocking": null,
       "classification": null
@@ -237,7 +237,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 721,
+      "elapsed_ms": 735,
       "error": null,
       "blocking": null,
       "classification": null
@@ -247,7 +247,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 717,
+      "elapsed_ms": 722,
       "error": null,
       "blocking": null,
       "classification": null
@@ -257,7 +257,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 715,
+      "elapsed_ms": 725,
       "error": null,
       "blocking": null,
       "classification": null
@@ -267,7 +267,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 719,
+      "elapsed_ms": 722,
       "error": null,
       "blocking": null,
       "classification": null
@@ -277,7 +277,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 722,
+      "elapsed_ms": 767,
       "error": null,
       "blocking": null,
       "classification": null
@@ -287,7 +287,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 722,
+      "elapsed_ms": 712,
       "error": null,
       "blocking": null,
       "classification": null
@@ -297,17 +297,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 719,
-      "error": null,
-      "blocking": null,
-      "classification": null
-    },
-    {
-      "source": "sofr:SR1M27.CME",
-      "status": "LIVE",
-      "cadence": "collector-run",
-      "observation_at": null,
-      "elapsed_ms": 722,
+      "elapsed_ms": 716,
       "error": null,
       "blocking": null,
       "classification": null
@@ -317,7 +307,17 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 719,
+      "elapsed_ms": 646,
+      "error": null,
+      "blocking": null,
+      "classification": null
+    },
+    {
+      "source": "sofr:SR1M27.CME",
+      "status": "LIVE",
+      "cadence": "collector-run",
+      "observation_at": null,
+      "elapsed_ms": 1117,
       "error": null,
       "blocking": null,
       "classification": null
@@ -327,7 +327,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 714,
+      "elapsed_ms": 796,
       "error": null,
       "blocking": null,
       "classification": null
@@ -337,17 +337,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 1768,
-      "error": null,
-      "blocking": null,
-      "classification": null
-    },
-    {
-      "source": "sofr:SR1V27.CME",
-      "status": "LIVE",
-      "cadence": "collector-run",
-      "observation_at": null,
-      "elapsed_ms": 1783,
+      "elapsed_ms": 727,
       "error": null,
       "blocking": null,
       "classification": null
@@ -357,17 +347,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 1734,
-      "error": null,
-      "blocking": null,
-      "classification": null
-    },
-    {
-      "source": "sofr:SR3Q26.CME",
-      "status": "LIVE",
-      "cadence": "collector-run",
-      "observation_at": null,
-      "elapsed_ms": 217,
+      "elapsed_ms": 505,
       "error": null,
       "blocking": null,
       "classification": null
@@ -377,27 +357,37 @@
       "status": "CACHE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 1735,
+      "elapsed_ms": 678,
       "error": "ValueError: No observed close for SR1Z27.CME; metadata-only price rejected",
       "blocking": false,
       "classification": "quality_rejection"
+    },
+    {
+      "source": "sofr:SR3Q26.CME",
+      "status": "LIVE",
+      "cadence": "collector-run",
+      "observation_at": null,
+      "elapsed_ms": 521,
+      "error": null,
+      "blocking": null,
+      "classification": null
+    },
+    {
+      "source": "sofr:SR1V27.CME",
+      "status": "LIVE",
+      "cadence": "collector-run",
+      "observation_at": null,
+      "elapsed_ms": 1559,
+      "error": null,
+      "blocking": null,
+      "classification": null
     },
     {
       "source": "sofr:SR3U26.CME",
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 364,
-      "error": null,
-      "blocking": null,
-      "classification": null
-    },
-    {
-      "source": "sofr:SR3V26.CME",
-      "status": "LIVE",
-      "cadence": "collector-run",
-      "observation_at": null,
-      "elapsed_ms": 455,
+      "elapsed_ms": 543,
       "error": null,
       "blocking": null,
       "classification": null
@@ -407,7 +397,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 542,
+      "elapsed_ms": 530,
       "error": null,
       "blocking": null,
       "classification": null
@@ -417,7 +407,17 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 647,
+      "elapsed_ms": 609,
+      "error": null,
+      "blocking": null,
+      "classification": null
+    },
+    {
+      "source": "sofr:SR3V26.CME",
+      "status": "LIVE",
+      "cadence": "collector-run",
+      "observation_at": null,
+      "elapsed_ms": 883,
       "error": null,
       "blocking": null,
       "classification": null
@@ -427,7 +427,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 716,
+      "elapsed_ms": 722,
       "error": null,
       "blocking": null,
       "classification": null
@@ -437,7 +437,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 720,
+      "elapsed_ms": 567,
       "error": null,
       "blocking": null,
       "classification": null
@@ -447,7 +447,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 724,
+      "elapsed_ms": 727,
       "error": null,
       "blocking": null,
       "classification": null
@@ -457,7 +457,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 751,
+      "elapsed_ms": 723,
       "error": null,
       "blocking": null,
       "classification": null
@@ -467,7 +467,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 722,
+      "elapsed_ms": 734,
       "error": null,
       "blocking": null,
       "classification": null
@@ -487,7 +487,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 1444,
+      "elapsed_ms": 3711,
       "error": null,
       "blocking": null,
       "classification": null
@@ -497,17 +497,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 1902,
-      "error": null,
-      "blocking": null,
-      "classification": null
-    },
-    {
-      "source": "fred:DFF",
-      "status": "LIVE",
-      "cadence": "collector-run",
-      "observation_at": null,
-      "elapsed_ms": 1025,
+      "elapsed_ms": 7665,
       "error": null,
       "blocking": null,
       "classification": null
@@ -517,17 +507,17 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 985,
+      "elapsed_ms": 1119,
       "error": null,
       "blocking": null,
       "classification": null
     },
     {
-      "source": "fred:DFEDTARL",
+      "source": "fred:DFF",
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 1049,
+      "elapsed_ms": 5312,
       "error": null,
       "blocking": null,
       "classification": null
@@ -537,7 +527,17 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 1566,
+      "elapsed_ms": 9063,
+      "error": null,
+      "blocking": null,
+      "classification": null
+    },
+    {
+      "source": "fred:DFEDTARL",
+      "status": "LIVE",
+      "cadence": "collector-run",
+      "observation_at": null,
+      "elapsed_ms": 9455,
       "error": null,
       "blocking": null,
       "classification": null
@@ -547,17 +547,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 1123,
-      "error": null,
-      "blocking": null,
-      "classification": null
-    },
-    {
-      "source": "fred:PCEPI",
-      "status": "LIVE",
-      "cadence": "collector-run",
-      "observation_at": null,
-      "elapsed_ms": 1041,
+      "elapsed_ms": 6014,
       "error": null,
       "blocking": null,
       "classification": null
@@ -567,17 +557,17 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 1501,
+      "elapsed_ms": 7951,
       "error": null,
       "blocking": null,
       "classification": null
     },
     {
-      "source": "fred:PCEPILFE",
+      "source": "fred:PCEPI",
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 637,
+      "elapsed_ms": 4122,
       "error": null,
       "blocking": null,
       "classification": null
@@ -587,17 +577,17 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 520,
+      "elapsed_ms": 5881,
       "error": null,
       "blocking": null,
       "classification": null
     },
     {
-      "source": "fred:USREC",
+      "source": "fred:PCEPILFE",
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 848,
+      "elapsed_ms": 8897,
       "error": null,
       "blocking": null,
       "classification": null
@@ -607,7 +597,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 1204,
+      "elapsed_ms": 1743,
       "error": null,
       "blocking": null,
       "classification": null
@@ -617,7 +607,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 1151,
+      "elapsed_ms": 1362,
       "error": null,
       "blocking": null,
       "classification": null
@@ -627,17 +617,17 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 1214,
+      "elapsed_ms": 1288,
       "error": null,
       "blocking": null,
       "classification": null
     },
     {
-      "source": "fred:JTSJOL",
+      "source": "fred:USREC",
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 1180,
+      "elapsed_ms": 7178,
       "error": null,
       "blocking": null,
       "classification": null
@@ -647,7 +637,17 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 1700,
+      "elapsed_ms": 1617,
+      "error": null,
+      "blocking": null,
+      "classification": null
+    },
+    {
+      "source": "fred:JTSJOL",
+      "status": "LIVE",
+      "cadence": "collector-run",
+      "observation_at": null,
+      "elapsed_ms": 3601,
       "error": null,
       "blocking": null,
       "classification": null
@@ -657,7 +657,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 1400,
+      "elapsed_ms": 429,
       "error": null,
       "blocking": null,
       "classification": null
@@ -667,17 +667,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 725,
-      "error": null,
-      "blocking": null,
-      "classification": null
-    },
-    {
-      "source": "fred:BAMLH0A0HYM2",
-      "status": "LIVE",
-      "cadence": "collector-run",
-      "observation_at": null,
-      "elapsed_ms": 1086,
+      "elapsed_ms": 1234,
       "error": null,
       "blocking": null,
       "classification": null
@@ -687,7 +677,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 1225,
+      "elapsed_ms": 865,
       "error": null,
       "blocking": null,
       "classification": null
@@ -697,7 +687,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 1154,
+      "elapsed_ms": 877,
       "error": null,
       "blocking": null,
       "classification": null
@@ -707,7 +697,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 1143,
+      "elapsed_ms": 396,
       "error": null,
       "blocking": null,
       "classification": null
@@ -717,7 +707,17 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 1165,
+      "elapsed_ms": 464,
+      "error": null,
+      "blocking": null,
+      "classification": null
+    },
+    {
+      "source": "fred:BAMLH0A0HYM2",
+      "status": "LIVE",
+      "cadence": "collector-run",
+      "observation_at": null,
+      "elapsed_ms": 3787,
       "error": null,
       "blocking": null,
       "classification": null
@@ -727,7 +727,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 1310,
+      "elapsed_ms": 804,
       "error": null,
       "blocking": null,
       "classification": null
@@ -737,7 +737,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 1239,
+      "elapsed_ms": 1098,
       "error": null,
       "blocking": null,
       "classification": null
@@ -747,7 +747,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 1088,
+      "elapsed_ms": 1090,
       "error": null,
       "blocking": null,
       "classification": null
@@ -757,7 +757,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 1148,
+      "elapsed_ms": 1270,
       "error": null,
       "blocking": null,
       "classification": null
@@ -767,7 +767,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 80,
+      "elapsed_ms": 94,
       "error": null,
       "blocking": null,
       "classification": null
@@ -777,7 +777,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 390,
+      "elapsed_ms": 235,
       "error": null,
       "blocking": null,
       "classification": null
@@ -787,7 +787,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 123,
+      "elapsed_ms": 221,
       "error": null,
       "blocking": null,
       "classification": null
@@ -797,7 +797,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 44,
+      "elapsed_ms": 64,
       "error": null,
       "blocking": null,
       "classification": null
@@ -807,7 +807,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 228,
+      "elapsed_ms": 243,
       "error": null,
       "blocking": null,
       "classification": null
@@ -817,7 +817,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 449,
+      "elapsed_ms": 493,
       "error": null,
       "blocking": null,
       "classification": null
@@ -827,7 +827,7 @@
       "status": "LIVE",
       "cadence": "collector-run",
       "observation_at": null,
-      "elapsed_ms": 722,
+      "elapsed_ms": 676,
       "error": null,
       "blocking": null,
       "classification": null
@@ -837,7 +837,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:55+00:00",
-      "age_hours": 12.04,
+      "age_hours": 16.03,
       "market_state": null
     },
     {
@@ -845,7 +845,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:59+00:00",
-      "age_hours": 12.03,
+      "age_hours": 16.03,
       "market_state": null
     },
     {
@@ -853,7 +853,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:59+00:00",
-      "age_hours": 12.03,
+      "age_hours": 16.03,
       "market_state": null
     },
     {
@@ -861,7 +861,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:37:08+00:00",
-      "age_hours": 12.42,
+      "age_hours": 16.41,
       "market_state": null
     },
     {
@@ -869,7 +869,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:56:45+00:00",
-      "age_hours": 12.09,
+      "age_hours": 16.09,
       "market_state": null
     },
     {
@@ -877,7 +877,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:58+00:00",
-      "age_hours": 12.03,
+      "age_hours": 16.03,
       "market_state": null
     },
     {
@@ -885,7 +885,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:56:34+00:00",
-      "age_hours": 12.09,
+      "age_hours": 16.09,
       "market_state": null
     },
     {
@@ -893,7 +893,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:56:34+00:00",
-      "age_hours": 12.09,
+      "age_hours": 16.09,
       "market_state": null
     },
     {
@@ -901,7 +901,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:30+00:00",
-      "age_hours": 12.04,
+      "age_hours": 16.04,
       "market_state": null
     },
     {
@@ -909,7 +909,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:38+00:00",
-      "age_hours": 12.04,
+      "age_hours": 16.04,
       "market_state": null
     },
     {
@@ -917,7 +917,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:45+00:00",
-      "age_hours": 12.04,
+      "age_hours": 16.04,
       "market_state": null
     },
     {
@@ -925,7 +925,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:38+00:00",
-      "age_hours": 12.04,
+      "age_hours": 16.04,
       "market_state": null
     },
     {
@@ -933,7 +933,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:55+00:00",
-      "age_hours": 12.04,
+      "age_hours": 16.03,
       "market_state": null
     },
     {
@@ -941,7 +941,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T15:00:24+00:00",
-      "age_hours": 18.03,
+      "age_hours": 22.03,
       "market_state": null
     },
     {
@@ -949,7 +949,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:59+00:00",
-      "age_hours": 12.03,
+      "age_hours": 16.03,
       "market_state": null
     },
     {
@@ -957,7 +957,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-20T11:49:06+00:00",
-      "age_hours": 45.22,
+      "age_hours": 49.21,
       "market_state": null
     },
     {
@@ -965,7 +965,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:58+00:00",
-      "age_hours": 12.03,
+      "age_hours": 16.03,
       "market_state": null
     },
     {
@@ -973,7 +973,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-07-23T11:46:06+00:00",
-      "age_hours": 717.27,
+      "age_hours": 721.26,
       "market_state": null
     },
     {
@@ -981,7 +981,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:59+00:00",
-      "age_hours": 12.03,
+      "age_hours": 16.03,
       "market_state": null
     },
     {
@@ -989,7 +989,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:58+00:00",
-      "age_hours": 12.03,
+      "age_hours": 16.03,
       "market_state": null
     },
     {
@@ -997,7 +997,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:32:00+00:00",
-      "age_hours": 12.5,
+      "age_hours": 16.5,
       "market_state": null
     },
     {
@@ -1005,7 +1005,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:27:46+00:00",
-      "age_hours": 12.57,
+      "age_hours": 16.57,
       "market_state": null
     },
     {
@@ -1013,7 +1013,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:29:31+00:00",
-      "age_hours": 12.54,
+      "age_hours": 16.54,
       "market_state": null
     },
     {
@@ -1021,7 +1021,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:30+00:00",
-      "age_hours": 12.04,
+      "age_hours": 16.04,
       "market_state": null
     },
     {
@@ -1029,7 +1029,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:38+00:00",
-      "age_hours": 12.04,
+      "age_hours": 16.04,
       "market_state": null
     },
     {
@@ -1037,7 +1037,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:57+00:00",
-      "age_hours": 12.04,
+      "age_hours": 16.03,
       "market_state": null
     },
     {
@@ -1045,7 +1045,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T17:53:23+00:00",
-      "age_hours": 15.14,
+      "age_hours": 19.14,
       "market_state": null
     },
     {
@@ -1053,7 +1053,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:57+00:00",
-      "age_hours": 12.04,
+      "age_hours": 16.03,
       "market_state": null
     },
     {
@@ -1061,7 +1061,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T17:53:23+00:00",
-      "age_hours": 15.14,
+      "age_hours": 19.14,
       "market_state": null
     },
     {
@@ -1069,7 +1069,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:57+00:00",
-      "age_hours": 12.04,
+      "age_hours": 16.03,
       "market_state": null
     },
     {
@@ -1077,7 +1077,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-17T18:13:12+00:00",
-      "age_hours": 110.81,
+      "age_hours": 114.81,
       "market_state": null
     },
     {
@@ -1085,7 +1085,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:57+00:00",
-      "age_hours": 12.04,
+      "age_hours": 16.03,
       "market_state": null
     },
     {
@@ -1093,7 +1093,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-17T18:00:48+00:00",
-      "age_hours": 111.02,
+      "age_hours": 115.02,
       "market_state": null
     },
     {
@@ -1101,7 +1101,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:57+00:00",
-      "age_hours": 12.04,
+      "age_hours": 16.03,
       "market_state": null
     },
     {
@@ -1109,7 +1109,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-17T10:41:08+00:00",
-      "age_hours": 118.35,
+      "age_hours": 122.35,
       "market_state": null
     },
     {
@@ -1117,7 +1117,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:59+00:00",
-      "age_hours": 12.03,
+      "age_hours": 16.03,
       "market_state": null
     },
     {
@@ -1125,7 +1125,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:56+00:00",
-      "age_hours": 12.04,
+      "age_hours": 16.03,
       "market_state": null
     },
     {
@@ -1133,7 +1133,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T19:34:44+00:00",
-      "age_hours": 13.46,
+      "age_hours": 17.45,
       "market_state": null
     },
     {
@@ -1141,7 +1141,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:59+00:00",
-      "age_hours": 12.03,
+      "age_hours": 16.03,
       "market_state": null
     },
     {
@@ -1149,7 +1149,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:59+00:00",
-      "age_hours": 12.03,
+      "age_hours": 16.03,
       "market_state": null
     },
     {
@@ -1157,7 +1157,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T19:37:04+00:00",
-      "age_hours": 13.42,
+      "age_hours": 17.41,
       "market_state": null
     },
     {
@@ -1165,7 +1165,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-17T17:31:15+00:00",
-      "age_hours": 111.51,
+      "age_hours": 115.51,
       "market_state": null
     },
     {
@@ -1173,7 +1173,7 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:58+00:00",
-      "age_hours": 12.03,
+      "age_hours": 16.03,
       "market_state": null
     },
     {
@@ -1181,14 +1181,14 @@
       "status": "CACHE",
       "cadence": "intraday-market",
       "observation_at": "2026-08-21T20:59:56+00:00",
-      "age_hours": 12.04,
+      "age_hours": 16.03,
       "market_state": null
     },
     {
       "source": "effective_fed_funds_rate",
       "status": "LIVE",
       "cadence": "business-day",
-      "observation_at": "2026-08-22T09:01:24.401008+00:00",
+      "observation_at": "2026-08-22T13:00:44.030388+00:00",
       "value": 3.63,
       "provider": "nyfed_effr",
       "semantic": "EFFR observed effective rate; not the FOMC target-range midpoint"
@@ -1197,7 +1197,7 @@
       "source": "fomc_target_range",
       "status": "UNAVAILABLE",
       "cadence": "event/FOMC",
-      "observation_at": "2026-08-22T09:01:24.401008+00:00",
+      "observation_at": "2026-08-22T13:00:44.030388+00:00",
       "lower": null,
       "upper": null,
       "note": "FOMC 결정이 없는 날 값이 동일한 것은 정상입니다. 매 workflow마다 새 값이 생기는 계열이 아닙니다."
