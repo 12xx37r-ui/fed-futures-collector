@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at_utc": "2026-08-22T01:01:17.834378+00:00",
+  "generated_at_utc": "2026-08-22T05:02:57.522081+00:00",
   "engine": "US Fed policy engine",
   "entries": [
     {
@@ -8,7 +8,7 @@
       "label": "Fed policy rate 1m",
       "horizon": "1m",
       "current": 3.63,
-      "forecast": 3.73,
+      "forecast": 3.72,
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
@@ -17,7 +17,7 @@
         "grade": "MEDIUM",
         "observation_count": 5,
         "live_ratio": 0.0,
-        "max_age_minutes": 242.2
+        "max_age_minutes": 483.8
       },
       "quality_gate": {
         "passed": true,
@@ -30,7 +30,7 @@
       "label": "Fed policy rate 3m",
       "horizon": "3m",
       "current": 3.63,
-      "forecast": 3.74,
+      "forecast": 3.735,
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
@@ -39,7 +39,7 @@
         "grade": "MEDIUM",
         "observation_count": 5,
         "live_ratio": 0.0,
-        "max_age_minutes": 242.0
+        "max_age_minutes": 483.6
       },
       "quality_gate": {
         "passed": true,
@@ -52,7 +52,7 @@
       "label": "Fed policy rate 6m",
       "horizon": "6m",
       "current": 3.63,
-      "forecast": 3.9,
+      "forecast": 3.89,
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
@@ -61,7 +61,7 @@
         "grade": "MEDIUM",
         "observation_count": 5,
         "live_ratio": 0.0,
-        "max_age_minutes": 242.0
+        "max_age_minutes": 483.6
       },
       "quality_gate": {
         "passed": true,
@@ -74,7 +74,7 @@
       "label": "Fed policy rate 12m",
       "horizon": "12m",
       "current": 3.63,
-      "forecast": 4.075,
+      "forecast": 4.07,
       "status": "MARKET_IMPLIED",
       "usable": true,
       "basis": "Fed Funds futures / ZQ meeting path",
@@ -83,7 +83,7 @@
         "grade": "MEDIUM",
         "observation_count": 5,
         "live_ratio": 0.0,
-        "max_age_minutes": 245.4
+        "max_age_minutes": 487.0
       },
       "quality_gate": {
         "passed": true,
