@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "metric": "us_liquidity_dxy",
-  "generated_at_utc": "2026-08-21T22:02:55.296429+00:00",
+  "generated_at_utc": "2026-08-22T01:01:56.707886+00:00",
   "available": true,
   "m2": {
     "available": true,
@@ -1131,7 +1131,7 @@
     "status": "LIVE",
     "symbol": "DX-Y.NYB",
     "source": "Yahoo Finance DXY delayed market data",
-    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/DX-Y.NYB?range=5y&interval=1d&events=history&_ts=1787349766",
+    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/DX-Y.NYB?range=5y&interval=1d&events=history&_ts=1787360507",
     "observation_date": "2026-08-21",
     "market_time_utc": "2026-08-21T20:59:59+00:00",
     "current": 98.839,
